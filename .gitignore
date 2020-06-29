@@ -1,1 +1,7 @@
 C:\wamp64\www\amarhospital\wp-content\plugins\docdirect_core\shortcodes
+.phpintel
+.idea
+*.log
+*.zip
+wp-content/uploads/
+

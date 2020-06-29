@@ -20,7 +20,7 @@ function custom_post_division()
 {
     $labels = array(
         'name' => __('Location'),
-        'singular_name' => __(' Division'),
+        'singular_name' => __('Division'),
         'add_new_item' => __('Add New  Division'),
         'edit_item' => __('Edit  Division'),
         'new_item' => __('New  Division'),

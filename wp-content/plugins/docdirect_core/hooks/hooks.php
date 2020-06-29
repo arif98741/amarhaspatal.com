@@ -218,6 +218,10 @@ if (!function_exists('docdirect_user_registration')) {
         $terms = esc_attr($_POST['terms']);
         $password = esc_sql($_POST['password']);
         $confirm_password = esc_sql($_POST['confirm_password']);
+        $loc_division_id = esc_sql($_POST['division_id']);
+        $loc_district_id = esc_sql($_POST['district_id']);
+        $loc_upazila_id = esc_sql($_POST['upazila_id']);
+        $loc_union_id = esc_sql($_POST['union_id']);
 
         $json = array();
 
@@ -305,7 +309,10 @@ if (!function_exists('docdirect_user_registration')) {
             $wpdb->update(
                 $wpdb->prefix . 'users',
                 array('user_status' => 1,
-                    'loc_division_id' => 1
+                    'loc_division_id' => $loc_division_id,
+                    'loc_district_id' => $loc_district_id,
+                    'loc_upazila_id' => $loc_upazila_id,
+                    'loc_union_id' => $loc_union_id
                 ),
                 array('ID' => esc_sql($user_identity))
             );
@@ -406,10 +413,18 @@ if (!function_exists('docdirect_user_registration')) {
             $user_array = array();
             $user_array['user_login'] = $username;
             $user_array['user_password'] = $random_password;
-            $status = wp_signon($user_array, false);
+            //$status = wp_signon($user_array, false);
 
             $json['type'] = "success";
+            $json['added_by'] = "user";
             $json['profile_url'] = $profile_url;
+            if (is_user_logged_in() && wp_get_current_user()->data->user_login == 'admin') {
+                $json['added_by'] = "admin";
+                $json['profile_url'] = site_url() . '/wp-admin/users.php';
+            }else{
+                $status = wp_signon($user_array, false);
+            }
+
             $json['message'] = esc_html__("Your have successfully signed up.", "docdirect_core");
             echo json_encode($json);
             die;
@@ -420,6 +435,79 @@ if (!function_exists('docdirect_user_registration')) {
     add_action('wp_ajax_docdirect_user_registration', 'docdirect_user_registration');
     add_action('wp_ajax_nopriv_docdirect_user_registration', 'docdirect_user_registration');
 }
+
+/**
+ * District Fetch
+ * @param division_id
+ * @return json
+ */
+add_action('wp_ajax_get_district_bydivision', 'get_districts_by_division_id');
+add_action('wp_ajax_nopriv_get_district_bydivision', 'get_districts_by_division_id');
+if (!function_exists('get_districts_by_division_id')) {
+    function get_districts_by_division_id()
+    {
+        global $wpdb;
+        $json = [];
+        $division_id = '';
+        if (isset($_POST['division_id'])) {
+            $division_id = esc_sql($_POST['division_id']);
+        }
+        $districtSql = "select id, title,title_en from loc_districts where status='1' and loc_division_id='$division_id'";
+        $districts = $wpdb->get_results($districtSql);
+        echo json_encode($districts);
+        exit;
+    }
+}
+
+/**
+ * Upazila Fetch
+ * @param district_id
+ * @return json
+ */
+add_action('wp_ajax_get_upazila_bydistrict', 'get_upazilas_by_district_id');
+add_action('wp_ajax_nopriv_get_upazila_bydistrict', 'get_upazilas_by_district_id');
+if (!function_exists('get_upazilas_by_district_id')) {
+    function get_upazilas_by_district_id()
+    {
+        global $wpdb;
+
+        $json = [];
+        $district_id = '';
+        if (isset($_POST['district_id'])) {
+            $district_id = esc_sql($_POST['district_id']);
+        }
+        $upazilaSql = "select id, title,title_en from loc_upazilas where status='1' and loc_district_id='$district_id'";
+        $upazilas = $wpdb->get_results($upazilaSql);
+        echo json_encode($upazilas);
+        exit;
+    }
+}
+
+/**
+ * Union Fetch
+ * @param upazila_id
+ * @return json
+ */
+add_action('wp_ajax_get_union_byupazila', 'get_unions_by_upazila_id');
+add_action('wp_ajax_nopriv_get_union_byupazila', 'get_unions_by_upazila_id');
+if (!function_exists('get_unions_by_upazila_id')) {
+    function get_unions_by_upazila_id()
+    {
+        global $wpdb;
+
+        $json = [];
+        $upazila_id = '';
+        if (isset($_POST['upazila_id'])) {
+            $upazila_id = esc_sql($_POST['upazila_id']);
+        }
+
+        $unionSql = "select id, title,title_en from loc_unions where status='1' and loc_upazila_id='$upazila_id'";
+        $unions = $wpdb->get_results($unionSql);
+        echo json_encode($unions);
+        exit;
+    }
+}
+
 
 /**
  * @User Notification

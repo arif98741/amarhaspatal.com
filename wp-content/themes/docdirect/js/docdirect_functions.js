@@ -438,49 +438,98 @@ jQuery(document).ready(function ($) {
     /**
      * ---------------------------------------
      * Change on Division Dropdown
+     * Get Districts
      * ---------------------------------------------
      */
     jQuery('#division_id').on('change', function (event) {
         var division_id = jQuery(this).val();
-        var _this = jQuery(this);
-        var _authenticationform = _this.parents('form.do-registration-form').serialize();
-
         jQuery.ajax({
             type: "POST",
             url: scripts_vars.ajaxurl,
-            data: _authenticationform + '&action=get_districts_by_division_id',
+            data: {
+                'action': 'get_district_bydivision',
+                'division_id': division_id
+            },
             dataType: "json",
             success: function (response) {
-                console.log(response); 
+                $('#district_id').html('<option value="">Select District </option>');
+                $.each(response, function (key, value) {
 
-                if (response.type === 'success') {
-                    jQuery.sticky(response.message, {
-                        classList: 'success',
-                        speed: 200,
-                        autoclose: 5000,
-                        position: 'top-right',
-                    });
-                    if (response.profile_url) {
-                        jQuery('body').append(loder_html);
-                        window.location.replace(response.profile_url);
-                    } else {
-                        window.location.reload();
-                    }
-                } else {
-                    if (scripts_vars.captcha_settings === 'enable') {
-                        grecaptcha.reset(signup_reset);
-                    }
-                    jQuery.sticky(response.message, {classList: 'important', speed: 200, autoclose: 5000});
-                }
+                    $('#district_id')
+                        .append($("<option></option>")
+                            .attr("value", value.id)
+                            .text(value.title_en));
+                });
             }
         });
     });
 
 
-    /* ---------------------------------------
+    /**
+     * ---------------------------------------
+     * Change on District Dropdown
+     * Get Upazilas
+     * ---------------------------------------------
+     */
+    jQuery('#district_id').on('change', function (event) {
+        var district_id = jQuery(this).val();
+        jQuery.ajax({
+            type: "POST",
+            url: scripts_vars.ajaxurl,
+            data: {
+                'action': 'get_upazila_bydistrict',
+                'district_id': district_id
+            },
+            dataType: "json",
+            success: function (response) {
+                $('#upazila_id').html('<option value="">Select Upazila </option>');
+                $.each(response, function (key, value) {
+
+                    $('#upazila_id')
+                        .append($("<option></option>")
+                            .attr("value", value.id)
+                            .text(value.title_en));
+                });
+            }
+        });
+    });
+
+
+    /**
+     * ---------------------------------------
+     * Change on Upazila Dropdown
+     * Get Unions
+     * ---------------------------------------------
+     */
+    jQuery('#upazila_id').on('change', function (event) {
+        var upazila_id = jQuery(this).val();
+        jQuery.ajax({
+            type: "POST",
+            url: scripts_vars.ajaxurl,
+            data: {
+                'action': 'get_union_byupazila',
+                'upazila_id': upazila_id
+            },
+            dataType: "json",
+            success: function (response) {
+                $('#union_id').html('<option value="">Select Union </option>');
+                $.each(response, function (key, value) {
+
+                    $('#union_id')
+                        .append($("<option></option>")
+                            .attr("value", value.id)
+                            .text(value.title_en));
+                });
+            }
+        });
+    });
+
+
+    /*---------------------------------------
      Registration Ajax
      --------------------------------------- */
     jQuery('.do-registration-form').on('click', '.do-register-button', function (event) {
+
         event.preventDefault();
         var _this = jQuery(this);
         jQuery('body').append(loder_html);
@@ -496,6 +545,9 @@ jQuery(document).ready(function ($) {
                 jQuery('body').find('.docdirect-site-wrap').remove();
 
                 if (response.type === 'success') {
+                    console.log(response);
+
+
                     jQuery.sticky(response.message, {
                         classList: 'success',
                         speed: 200,
@@ -1390,4 +1442,4 @@ $.fn.serializeObject = function () {
         return !$.cookie(key);
     };
 
-}));                            
+}));

@@ -125,29 +125,16 @@ if (!class_exists('SC_Authentication')) {
                                                 </div>
                                             </div>
                                             <div class="form-group user-types">
-										<span class="select">
-											<select name="directory_type">
-												<option value="0"><?php esc_html_e('Select User Type', 'docdirect_core'); ?></option>
-													<?php
-                                                    $posts_array = array();
-                                                    $args = array('posts_per_page' => "-1",
-                                                        'post_type' => 'directory_type',
-                                                        'order' => 'DESC',
-                                                        'orderby' => 'ID',
-                                                        'post_status' => 'published',
-                                                        'ignore_sticky_posts' => 1,
-                                                        'suppress_filters' => false,
-                                                    );
 
-                                                    $posts_query = get_posts($args);
-                                                    if (isset($posts_query) && !empty($posts_query)) {
-                                                        foreach ($posts_query as $direcotry) { ?>
+                                                <select name="directory_type">
 
-                                                            <option value="<?php echo intval($direcotry->ID); ?>"><?php echo esc_attr($direcotry->post_title); ?></option>
-                                                        <?php }
-                                                    } ?>
-											</select>
-										</span>
+                                                    <option value="0">Select User Type</option>
+                                                    <option value="127">Doctor</option>
+                                                    <option value="126">Hospital</option>
+                                                    <option value="122">Blood Donor</option>
+
+                                                </select>
+
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" name="username" class="form-control"
@@ -182,6 +169,42 @@ if (!class_exists('SC_Authentication')) {
                                                 <input type="password" name="confirm_password" class="form-control"
                                                        placeholder="<?php esc_html_e('Confirm Password', 'docdirect_core'); ?>">
 
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="division_id" id="division_id" class="form-control">
+                                                    <option>Select Division</option>
+                                                    <?php
+                                                    global $wpdb;
+                                                    $divisionSql = "select id, title,title_en from loc_divisions where status='1'";
+                                                    $divisions = $wpdb->get_results($divisionSql);
+
+                                                    ?>
+                                                    <?php foreach ($divisions as $division) { ?>
+
+                                                        <option value="<?= $division->id; ?>"><?= $division->title_en ?></option>
+                                                    <?php } ?>
+                                                </select>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <select name="district_id" id="district_id" class="form-control">
+                                                    <option value="">Select District</option>
+
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <select name="upazila_id" id="upazila_id" class="form-control">
+                                                    <option>Select Upazila</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group" style="display: none;">
+                                                <select name="union_id" id="union_id" class="form-control">
+                                                    <option value="">Select Union</option>
+                                                    <option>Dhaka</option>
+                                                </select>
                                             </div>
                                             <div class="form-group tg-checkbox">
                                                 <input name="terms" type="hidden" value="0"/>
@@ -360,32 +383,14 @@ if (!class_exists('SC_Authentication')) {
                                                 </div>
                                             </div>
                                             <div class="form-group user-types">
-                                        <span class="select">
-                                            <select name="directory_type">
-                                                <option value="0"><?php esc_html_e('Select User Type', 'docdirect_core'); ?></option>
-                                                    <?php
-                                                    $posts_array = array();
-                                                    $args = array('posts_per_page' => "-1",
-                                                        'post_type' => 'directory_type',
-                                                        'order' => 'DESC',
-                                                        'orderby' => 'ID',
-                                                        'post_status' => 'publish',
-                                                        'ignore_sticky_posts' => 1,
-                                                        'suppress_filters' => false,
-                                                    );
+                                                <select name="directory_type">
 
-                                                    $posts_query = get_posts($args);
+                                                    <option value="0">Select User Type</option>
+                                                    <option value="127">Doctor</option>
+                                                    <option value="126">Hospital</option>
+                                                    <option value="122">Blood Donor</option>
 
-
-                                                    if (isset($posts_query) && !empty($posts_query)) {
-                                                        foreach ($posts_query as $direcotry) { ?>
-
-                                                            <option value="<?php echo intval($direcotry->ID); ?>"><?php echo esc_attr($direcotry->post_title); ?></option>
-                                                        <?php }
-                                                    } ?>
-                                            </select>
-
-                                        </span>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" name="username" class="form-control"
@@ -449,18 +454,13 @@ if (!class_exists('SC_Authentication')) {
                                                 </select>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group" style="display: none">
                                                 <select name="union_id" id="union_id" class="form-control">
                                                     <option value="">Select Union</option>
                                                     <option>Dhaka</option>
                                                 </select>
                                             </div>
 
-                                            <div class="form-group">
-                                                <select name="ward_id" id="word_id" class="form-control">
-                                                    <option value="">Select Ward</option>
-                                                </select>
-                                            </div>
 
                                             <div class="form-group tg-checkbox">
                                                 <input name="terms" type="hidden" value="0"/>
