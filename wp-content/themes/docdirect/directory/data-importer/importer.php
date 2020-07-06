@@ -5,22 +5,22 @@
  */
 
 
-
 /**
  * @Data Importer
- * @return 
+ * @return
  */
 if (!function_exists('docdirect_update_users')) {
 
-    function docdirect_update_users() {
+    function docdirect_update_users()
+    {
         $query_args = array(
             'role' => 'professional',
-			'count_total' => false,
+            'count_total' => false,
         );
-        
-		$user_query = new WP_User_Query($query_args);
-        $booking_confirmed_default = 'Hey %customer_name%!<br/>
 
+        $user_query = new WP_User_Query($query_args);
+        $booking_confirmed_default = 'Hey %customer_name%!<br/>
+k
 						This is confirmation that you have booked "%service%"<br/> with %provider%.<br/>
 						We will let your know regarding your booking soon.<br/><br/>
 						
@@ -69,8 +69,8 @@ if (!function_exists('docdirect_update_users')) {
             'currency_symbol' => '$',
             'currency' => 'USD',
         );
-		
-		//Doctors
+
+        //Doctors
         $categories['127'] = array(
             'services_cats' => array(
                 'dentist' => 'Dentist',
@@ -111,7 +111,7 @@ if (!function_exists('docdirect_update_users')) {
             ),
         );
 
-		//Blood Bank
+        //Blood Bank
         $categories['122'] = array(
             'services_cats' => array(
                 'general-blood' => 'General Blood',
@@ -150,9 +150,9 @@ if (!function_exists('docdirect_update_users')) {
                     'category' => 'blood-assurance',
                 )
             ),
-        ); 
-		
-		//Pharmacy
+        );
+
+        //Pharmacy
         $categories['123'] = array(
             'services_cats' => array(
                 'albarello' => 'Albarello',
@@ -192,8 +192,8 @@ if (!function_exists('docdirect_update_users')) {
                 ),
             ),
         );
-		
-		//clinic
+
+        //clinic
         $categories['125'] = array(
             'services_cats' => array(
                 'abortion' => 'Abortion',
@@ -232,9 +232,9 @@ if (!function_exists('docdirect_update_users')) {
                     'category' => 'walk-in-clinic',
                 ),
             ),
-        ); 
-		
-		//hospital
+        );
+
+        //hospital
         $categories['126'] = array(
             'services_cats' => array(
                 'children-hospital' => 'children hospital',
@@ -273,9 +273,9 @@ if (!function_exists('docdirect_update_users')) {
                     'category' => 'gynecologist-hospital',
                 ),
             ),
-        ); 
-		
-		//Fitness Center	
+        );
+
+        //Fitness Center
         $categories['121'] = array(
             'services_cats' => array(
                 'aerobic-centers' => 'Aerobic Centers',
@@ -314,148 +314,147 @@ if (!function_exists('docdirect_update_users')) {
                     'category' => 'pilates-centers',
                 ),
             ),
-        ); 		
-		
-		$experience	= array(
-			array(
-				'title' => 'Lecturer, Department of gastroenterology',
-				'company' => 'Co-ed/Women/Boys',
-				'start_date' => '2010-05-07',
-				'end_date' => '2012-07-17',
-				'start_date_formated' => date('M,Y',strtotime('2010-05-07')),
-				'end_date_formated'   => date('M,Y',strtotime('2012-07-17')),
-				'description' => 'The Cardiovascular & Respiratory Systems category covers resources concerned with all aspects of cardiovascular and thoracic surgery and respiratory diseases. Topics include circulation, cardiovascular technology and measurement, cardiovascular pharmacology and therapy, hypertension, heart and lung transplantation, arteries, arteriosclerosis, thrombosis, angiology, perfusion, stroke, as well as all types of respiratory and lung diseases.',
-			),
-			array(
-				'title' => 'Sr Consultant at Gastroentology Hospital',
-				'company' => 'Adams State College',
-				'start_date' => '2012-09-22',
-				'end_date' => '2014-08-17',
-				'start_date_formated' => date('M,Y',strtotime('2012-09-22')),
-				'end_date_formated'   => date('M,Y',strtotime('2014-08-17')),
-				'description' => 'The Clinical Immunology & Infectious Diseases category covers resources that focus on basic research in clinical and applied allergy, immunology, and infectious disease. Microbiology and virology resources are included in this category as are resources on HIV, AIDS, sexually transmitted diseases (STDs), and hospital infections.',
-			),
-			array(
-				'title' => 'Present Consultant, Department of Gastroenterology at Apollo Hospital',
-				'company' => 'Florida Hospital College of Health Sciences',
-				'start_date' => '2014-03-27',
-				'end_date' => '2016-08-03',
-				'start_date_formated' => date('M,Y',strtotime('2014-03-27')),
-				'end_date_formated'   => date('M,Y',strtotime('2016-08-03')),
-				'description' => 'Oral Surgery & Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including their epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.',
-			)
-		);
-		
-		
-		
-		//Profile Banners
-		$banners	= array(
-						121 => '1206', //Fintness Center
-						122 => '1203', //Blood Bank
-						123 => '1207', //Pharmacy
-						125 => '1204', //Clinics
-						126 => '1205', //Hospital
-						127 => '1205', //Doctors
-					);
-		
-		$privacy	= array(
-			'appointments'	=> 'on',
-			'phone'	=> 'on',
-			'email'	=> 'on',
-			'contact_form'	=> 'on',
-			'opening_hours'	=> 'on',
-		);
-		
-		$teams	= array(33,34,35,36,37,40);
-        $gallery_ids	= '212,211,210,209,207';
-		
-		$price_list	= 'a:5:{i:0;a:3:{s:5:"title";s:17:"BIPOLAR DISORDERS";s:5:"price";s:4:"$225";s:11:"description";s:398:"Oral Surgery &amp; Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including thseir epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.";}i:1;a:3:{s:5:"title";s:21:"Medical/Surgical Unit";s:5:"price";s:5:"$1500";s:11:"description";s:397:"Oral Surgery &amp; Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including their epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.";}i:2;a:3:{s:5:"title";s:24:"Inpatient Rehabilitation";s:5:"price";s:8:"$1091.44";s:11:"description";s:397:"Oral Surgery &amp; Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including their epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.";}i:3;a:3:{s:5:"title";s:25:"Cesarean Section Delivery";s:5:"price";s:9:"$13182.79";s:11:"description";s:397:"Oral Surgery &amp; Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including their epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.";}i:4;a:3:{s:5:"title";s:32:"Pediatric Evaluation – Level 1";s:5:"price";s:7:"$387.91";s:11:"description";s:397:"Oral Surgery &amp; Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including their epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.";}}';
-		
-		$schedules	= 'a:14:{s:9:"mon_start";s:5:"08:00";s:7:"mon_end";s:5:"18:00";s:9:"tue_start";s:5:"08:00";s:7:"tue_end";s:6:"018:00";s:9:"wed_start";s:5:"08:00";s:7:"wed_end";s:5:"18:00";s:9:"thu_start";s:5:"08:00";s:7:"thu_end";s:5:"18:00";s:9:"fri_start";s:5:"08:00";s:7:"fri_end";s:5:"18:00";s:9:"sat_start";s:5:"08:00";s:7:"sat_end";s:5:"18:00";s:9:"sun_start";s:5:"08:00";s:7:"sun_end";s:5:"18:00";}';
-		
-		$professional_statement	= 'In just three simple steps, DocDirect will help you find your nearest healthcare setting without having to signup. We aim to facilitate you in finding your right doctor with just three clicks without having to ask around or wander to find your nearest healthcare facility.';
-		foreach ($user_query->results as $user) {
+        );
+
+        $experience = array(
+            array(
+                'title' => 'Lecturer, Department of gastroenterology',
+                'company' => 'Co-ed/Women/Boys',
+                'start_date' => '2010-05-07',
+                'end_date' => '2012-07-17',
+                'start_date_formated' => date('M,Y', strtotime('2010-05-07')),
+                'end_date_formated' => date('M,Y', strtotime('2012-07-17')),
+                'description' => 'The Cardiovascular & Respiratory Systems category covers resources concerned with all aspects of cardiovascular and thoracic surgery and respiratory diseases. Topics include circulation, cardiovascular technology and measurement, cardiovascular pharmacology and therapy, hypertension, heart and lung transplantation, arteries, arteriosclerosis, thrombosis, angiology, perfusion, stroke, as well as all types of respiratory and lung diseases.',
+            ),
+            array(
+                'title' => 'Sr Consultant at Gastroentology Hospital',
+                'company' => 'Adams State College',
+                'start_date' => '2012-09-22',
+                'end_date' => '2014-08-17',
+                'start_date_formated' => date('M,Y', strtotime('2012-09-22')),
+                'end_date_formated' => date('M,Y', strtotime('2014-08-17')),
+                'description' => 'The Clinical Immunology & Infectious Diseases category covers resources that focus on basic research in clinical and applied allergy, immunology, and infectious disease. Microbiology and virology resources are included in this category as are resources on HIV, AIDS, sexually transmitted diseases (STDs), and hospital infections.',
+            ),
+            array(
+                'title' => 'Present Consultant, Department of Gastroenterology at Apollo Hospital',
+                'company' => 'Florida Hospital College of Health Sciences',
+                'start_date' => '2014-03-27',
+                'end_date' => '2016-08-03',
+                'start_date_formated' => date('M,Y', strtotime('2014-03-27')),
+                'end_date_formated' => date('M,Y', strtotime('2016-08-03')),
+                'description' => 'Oral Surgery & Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including their epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.',
+            )
+        );
+
+
+        //Profile Banners
+        $banners = array(
+            121 => '1206', //Fintness Center
+            122 => '1203', //Blood Bank
+            123 => '1207', //Pharmacy
+            125 => '1204', //Clinics
+            126 => '1205', //Hospital
+            127 => '1205', //Doctors
+        );
+
+        $privacy = array(
+            'appointments' => 'on',
+            'phone' => 'on',
+            'email' => 'on',
+            'contact_form' => 'on',
+            'opening_hours' => 'on',
+        );
+
+        $teams = array(33, 34, 35, 36, 37, 40);
+        $gallery_ids = '212,211,210,209,207';
+
+        $price_list = 'a:5:{i:0;a:3:{s:5:"title";s:17:"BIPOLAR DISORDERS";s:5:"price";s:4:"$225";s:11:"description";s:398:"Oral Surgery &amp; Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including thseir epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.";}i:1;a:3:{s:5:"title";s:21:"Medical/Surgical Unit";s:5:"price";s:5:"$1500";s:11:"description";s:397:"Oral Surgery &amp; Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including their epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.";}i:2;a:3:{s:5:"title";s:24:"Inpatient Rehabilitation";s:5:"price";s:8:"$1091.44";s:11:"description";s:397:"Oral Surgery &amp; Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including their epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.";}i:3;a:3:{s:5:"title";s:25:"Cesarean Section Delivery";s:5:"price";s:9:"$13182.79";s:11:"description";s:397:"Oral Surgery &amp; Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including their epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.";}i:4;a:3:{s:5:"title";s:32:"Pediatric Evaluation – Level 1";s:5:"price";s:7:"$387.91";s:11:"description";s:397:"Oral Surgery &amp; Medicine resources are concerned with basic, applied, and clinical aspects of oral infections and diseases, including their epidemiology, diagnosis, treatment, and rehabilitation. Specialties such as oral pathology/biology, oral epidemiology, oral rehabilitation, and oral implants are also included. Facial pain and craniomandibular resources are also covered in this category.";}}';
+
+        $schedules = 'a:14:{s:9:"mon_start";s:5:"08:00";s:7:"mon_end";s:5:"18:00";s:9:"tue_start";s:5:"08:00";s:7:"tue_end";s:6:"018:00";s:9:"wed_start";s:5:"08:00";s:7:"wed_end";s:5:"18:00";s:9:"thu_start";s:5:"08:00";s:7:"thu_end";s:5:"18:00";s:9:"fri_start";s:5:"08:00";s:7:"fri_end";s:5:"18:00";s:9:"sat_start";s:5:"08:00";s:7:"sat_end";s:5:"18:00";s:9:"sun_start";s:5:"08:00";s:7:"sun_end";s:5:"18:00";}';
+
+        $professional_statement = 'In just three simple steps, DocDirect will help you find your nearest healthcare setting without having to signup. We aim to facilitate you in finding your right doctor with just three clicks without having to ask around or wander to find your nearest healthcare facility.';
+        foreach ($user_query->results as $user) {
             $directory_type = get_user_meta($user->ID, 'directory_type', true);
-			$username = docdirect_get_username($user->ID);
+            $username = docdirect_get_username($user->ID);
 
-			update_user_meta( $user->ID, 'show_admin_bar_front', false );
-			update_user_meta( $user->ID, 'rich_editing', 'true' );
-			update_user_meta( $user->ID, 'professional_statements', $professional_statement );
-			
-			//Update privacy settings
-			update_user_meta( $user->ID, 'privacy', $privacy );
-		
-			//update privacy for search
-			if( !empty( $privacy ) ) {
-				foreach( $privacy as $key => $value ) {
-					update_user_meta( $user->ID, $key, $value );
-				}
-			}
-			
-			$package_expiry	= date('2019-06-06');
-			
-			update_user_meta( $user->ID, 'prices_list', unserialize($price_list) );
-			update_user_meta( $user->ID, 'full_name', $username );
-			update_user_meta( $user->ID, 'schedules', unserialize($schedules) );
-			update_user_meta( $user->ID, 'show_admin_bar_front', 'false' );
+            update_user_meta($user->ID, 'show_admin_bar_front', false);
+            update_user_meta($user->ID, 'rich_editing', 'true');
+            update_user_meta($user->ID, 'professional_statements', $professional_statement);
 
-			update_user_meta($user->ID,'user_current_package_expiry',strtotime( $package_expiry )); //package duration
-			update_user_meta($user->ID,'user_featured_expiry',strtotime( '2022-12-31' )); //featured Expiry
-			update_user_meta($user->ID,'user_featured',1); //featured Expiry
-			
-			update_user_meta($user->ID,'user_current_package',34); //Current package
-			
-			//Update Banners
-			if (!empty($directory_type) && $directory_type == 121) {
-				update_user_meta($user->ID, 'userprofile_banner', $banners[121]); //Fintness Center
-			} else if (!empty($directory_type) && $directory_type == 122) {
-				update_user_meta($user->ID, 'userprofile_banner', $banners[122]); //Blood Bank
-			} else if (!empty($directory_type) && $directory_type == 123) {
-				update_user_meta($user->ID, 'userprofile_banner', $banners[123]); //Pharmacy
-			} else if (!empty($directory_type) && $directory_type == 125) {
-				update_user_meta($user->ID, 'userprofile_banner', $banners[125]); //Clinics
-			} else if (!empty($directory_type) && $directory_type == 126) {
-				update_user_meta($user->ID, 'userprofile_banner', $banners[126]); //Hospital
-			} else if (!empty($directory_type) && $directory_type == 127) {
-				update_user_meta($user->ID, 'userprofile_banner', $banners[127]); //Doctors
-			}
-			
-			//Update Experience
-			if (!empty($directory_type) && $directory_type == 127) {
-				
-				$experiences	= array();
-				if( !empty( $experience ) ){
-					$counter	= 0;
-					foreach( $experience as $key => $value ){
-						if( !empty( $value['title'] ) && !empty( $value['company'] ) ) {
-							$experiences[$counter]['title']	= 	esc_attr( $value['title'] ); 
-							$experiences[$counter]['company']	 = 	esc_attr( $value['company'] ); 
-							$experiences[$counter]['start_date']	= 	esc_attr( $value['start_date'] ); 
-							$experiences[$counter]['end_date']	  = 	esc_attr( $value['end_date'] ); 
-							$experiences[$counter]['start_date_formated']  = date('M,Y',strtotime($value['start_date'])); 
-							$experiences[$counter]['end_date_formated']	= date('M,Y',strtotime($value['end_date'])); 
-							$experiences[$counter]['description']	= 	esc_attr( $value['description'] ); 
-							$counter++;
-						}
-					}
-					$json['experience']	= $experiences;
-				}
-				
-				update_user_meta( $user->ID, 'experience', $experiences );
-			}
-			
-			update_user_meta( $user->ID, 'paypal_enable', 'on' );
-			update_user_meta( $user->ID, 'paypal_email_id', 'wordpress@yourdomain.com' );
-			update_user_meta( $user->ID, 'stripe_enable', 'on' );
-			update_user_meta( $user->ID, 'stripe_secret', '' );
-			update_user_meta( $user->ID, 'stripe_publishable', '' );
-			update_user_meta( $user->ID, 'stripe_site', 'DocDirect Stripe Payment' );
-			update_user_meta( $user->ID, 'stripe_decimal', 2 );
-			
-			//Import Timings, categories and services
-			if (!empty($categories[$directory_type])) {
-				
-				update_user_meta($user->ID, 'approved_title', $categories['generals']['approved_title']);
+            //Update privacy settings
+            update_user_meta($user->ID, 'privacy', $privacy);
+
+            //update privacy for search
+            if (!empty($privacy)) {
+                foreach ($privacy as $key => $value) {
+                    update_user_meta($user->ID, $key, $value);
+                }
+            }
+
+            $package_expiry = date('2019-06-06');
+
+            update_user_meta($user->ID, 'prices_list', unserialize($price_list));
+            update_user_meta($user->ID, 'full_name', $username);
+            update_user_meta($user->ID, 'schedules', unserialize($schedules));
+            update_user_meta($user->ID, 'show_admin_bar_front', 'false');
+
+            update_user_meta($user->ID, 'user_current_package_expiry', strtotime($package_expiry)); //package duration
+            update_user_meta($user->ID, 'user_featured_expiry', strtotime('2022-12-31')); //featured Expiry
+            update_user_meta($user->ID, 'user_featured', 1); //featured Expiry
+
+            update_user_meta($user->ID, 'user_current_package', 34); //Current package
+
+            //Update Banners
+            if (!empty($directory_type) && $directory_type == 121) {
+                update_user_meta($user->ID, 'userprofile_banner', $banners[121]); //Fintness Center
+            } else if (!empty($directory_type) && $directory_type == 122) {
+                update_user_meta($user->ID, 'userprofile_banner', $banners[122]); //Blood Bank
+            } else if (!empty($directory_type) && $directory_type == 123) {
+                update_user_meta($user->ID, 'userprofile_banner', $banners[123]); //Pharmacy
+            } else if (!empty($directory_type) && $directory_type == 125) {
+                update_user_meta($user->ID, 'userprofile_banner', $banners[125]); //Clinics
+            } else if (!empty($directory_type) && $directory_type == 126) {
+                update_user_meta($user->ID, 'userprofile_banner', $banners[126]); //Hospital
+            } else if (!empty($directory_type) && $directory_type == 127) {
+                update_user_meta($user->ID, 'userprofile_banner', $banners[127]); //Doctors
+            }
+
+            //Update Experience
+            if (!empty($directory_type) && $directory_type == 127) {
+
+                $experiences = array();
+                if (!empty($experience)) {
+                    $counter = 0;
+                    foreach ($experience as $key => $value) {
+                        if (!empty($value['title']) && !empty($value['company'])) {
+                            $experiences[$counter]['title'] = esc_attr($value['title']);
+                            $experiences[$counter]['company'] = esc_attr($value['company']);
+                            $experiences[$counter]['start_date'] = esc_attr($value['start_date']);
+                            $experiences[$counter]['end_date'] = esc_attr($value['end_date']);
+                            $experiences[$counter]['start_date_formated'] = date('M,Y', strtotime($value['start_date']));
+                            $experiences[$counter]['end_date_formated'] = date('M,Y', strtotime($value['end_date']));
+                            $experiences[$counter]['description'] = esc_attr($value['description']);
+                            $counter++;
+                        }
+                    }
+                    $json['experience'] = $experiences;
+                }
+
+                update_user_meta($user->ID, 'experience', $experiences);
+            }
+
+            update_user_meta($user->ID, 'paypal_enable', 'on');
+            update_user_meta($user->ID, 'paypal_email_id', 'wordpress@yourdomain.com');
+            update_user_meta($user->ID, 'stripe_enable', 'on');
+            update_user_meta($user->ID, 'stripe_secret', '');
+            update_user_meta($user->ID, 'stripe_publishable', '');
+            update_user_meta($user->ID, 'stripe_site', 'DocDirect Stripe Payment');
+            update_user_meta($user->ID, 'stripe_decimal', 2);
+
+            //Import Timings, categories and services
+            if (!empty($categories[$directory_type])) {
+
+                update_user_meta($user->ID, 'approved_title', $categories['generals']['approved_title']);
                 update_user_meta($user->ID, 'confirmation_title', $categories['generals']['confirmation_title']);
                 update_user_meta($user->ID, 'cancelled_title', $categories['generals']['cancelled_title']);
                 update_user_meta($user->ID, 'thank_you', $categories['generals']['thank_you']);
@@ -471,24 +470,24 @@ if (!function_exists('docdirect_update_users')) {
                 update_user_meta($user->ID, 'services_cats', $categories[$directory_type]['services_cats']);
                 update_user_meta($user->ID, 'booking_services', $categories[$directory_type]['booking_services']);
             }
-			
-			//gallery
-			$user_gallery	= explode(',',$gallery_ids);
-			$db_user_gallery = array();
 
-			foreach( $user_gallery as $key => $value ){
-				$thumbnail = docdirect_get_image_source($value, 150, 150);
-				$db_user_gallery[$value]['url'] = $thumbnail;
-				$db_user_gallery[$value]['id']  = $value;
-			}
+            //gallery
+            $user_gallery = explode(',', $gallery_ids);
+            $db_user_gallery = array();
 
-			update_user_meta( $user->ID, 'user_gallery', $db_user_gallery );
-			
-			//Update Teams
-			$team_id	= array();
-			$team_id[]  = $user->ID;
-			$teamsdata = array_diff( $teams , $team_id );	
-			update_user_meta($user->ID,'teams_data',$teamsdata);
+            foreach ($user_gallery as $key => $value) {
+                $thumbnail = docdirect_get_image_source($value, 150, 150);
+                $db_user_gallery[$value]['url'] = $thumbnail;
+                $db_user_gallery[$value]['id'] = $value;
+            }
+
+            update_user_meta($user->ID, 'user_gallery', $db_user_gallery);
+
+            //Update Teams
+            $team_id = array();
+            $team_id[] = $user->ID;
+            $teamsdata = array_diff($teams, $team_id);
+            update_user_meta($user->ID, 'teams_data', $teamsdata);
         }
     }
 
@@ -497,62 +496,63 @@ if (!function_exists('docdirect_update_users')) {
 
 //update demo articles
 if (!function_exists('docdirect_update_articles')) {
-	function docdirect_update_articles(){
-		$data	= array(
-			3083 => array(
-				'user'	=> 30,
-				'category' => 127
-			),
-			587 => array(
-				'user'	=> 30,
-				'category' => 127
-			),
-			3086 => array(
-				'user'	=> 30,
-				'category' => 127
-			),
-			585 => array(
-				'user'	=> 30,
-				'category' => 127
-			),
-			583 => array(
-				'user'	=> 31,
-				'category' => 127
-			),
-			578 => array(
-				'user'	=> 35,
-				'category' => 127
-			),
-			3084 => array(
-				'user'	=> 34,
-				'category' => 127
-			),
-			581 => array(
-				'user'	=> 33,
-				'category' => 127
-			),
-			3085 => array(
-				'user'	=> 32,
-				'category' => 127
-			),
-			3082 => array(
-				'user'	=> 40,
-				'category' => 127
-			),
+    function docdirect_update_articles()
+    {
+        $data = array(
+            3083 => array(
+                'user' => 30,
+                'category' => 127
+            ),
+            587 => array(
+                'user' => 30,
+                'category' => 127
+            ),
+            3086 => array(
+                'user' => 30,
+                'category' => 127
+            ),
+            585 => array(
+                'user' => 30,
+                'category' => 127
+            ),
+            583 => array(
+                'user' => 31,
+                'category' => 127
+            ),
+            578 => array(
+                'user' => 35,
+                'category' => 127
+            ),
+            3084 => array(
+                'user' => 34,
+                'category' => 127
+            ),
+            581 => array(
+                'user' => 33,
+                'category' => 127
+            ),
+            3085 => array(
+                'user' => 32,
+                'category' => 127
+            ),
+            3082 => array(
+                'user' => 40,
+                'category' => 127
+            ),
 
-		);
+        );
 
-		foreach( $data as $key => $val){
+        foreach ($data as $key => $val) {
 
-			update_post_meta($key, 'provider_category', $val['category']);
-			$arg = array(
-				'ID' => intval($key ),
-				'post_author' => intval($val['user']),
-			);
-            
-			wp_update_post($arg);
-		}
-	}
+            update_post_meta($key, 'provider_category', $val['category']);
+            $arg = array(
+                'ID' => intval($key),
+                'post_author' => intval($val['user']),
+            );
 
-	//docdirect_update_articles();
+            wp_update_post($arg);
+        }
+    }
+
+    //docdirect_update_articles();
 }

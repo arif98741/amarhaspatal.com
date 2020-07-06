@@ -6,6 +6,7 @@ if (!defined('FW'))
  */
 $uniq_flag = fw_unique_increment();
 $autoplay	= !empty( $atts['auto'] ) ? $atts['auto'] : 'false';
+
 ?>
 <div class="sc-testimonials">
     <?php if ( !empty($atts['heading']) && !empty($atts['sub_heading']) && !empty($atts['description']) ) { ?>

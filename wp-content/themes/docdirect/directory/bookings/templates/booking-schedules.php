@@ -139,7 +139,7 @@ $custom_slot_list	= docdirect_prepare_seprate_array($custom_slot_list);
                 </div>
                 <div role="tabpanel" class="tab-pane" id="two">
                   <div class="tg-heading-border tg-small">
-                    <h3><?php esc_html_e('appointment schedule','docdirect');?></h3>
+                    <h3><?php esc_html_e('Appointment Schedule','docdirect');?></h3>
                   </div>
                   <div class="tg-daytimeslot" data-day="sun">
                     <div class="tg-dayname"> 
@@ -478,8 +478,11 @@ $custom_slot_list	= docdirect_prepare_seprate_array($custom_slot_list);
 <script type="text/template" id="tmpl-default-slots">
 	<div class="tg-timeslotswrapper">
 		<div class="form-group">
-		  <input type="text" name="slot_title" class="form-control" name="title" placeholder="<?php esc_attr_e('Title (Optional)','docdirect');?>">
+		  <input type="text" name="slot_title" class="form-control" name="title" placeholder="<?php esc_attr_e('Chamber Name','docdirect');?>">
 		</div>
+        <div class="form-group">
+            <input type="text" name="slot_title" class="form-control" name="hospital_title" placeholder="<?php esc_attr_e('Hospital Name','docdirect');?>">
+        </div>
 		<div class="form-group">
 		  <div class="tg-select">
 			<select name="start_time" class="start_time">
@@ -633,7 +636,7 @@ $custom_slot_list	= docdirect_prepare_seprate_array($custom_slot_list);
 	<div class="tg-timeslotswrapper">
 		<form action="#" method="post" class="time-slots-form">
 			<div class="form-group">
-			  <input type="text" name="slot_title" class="form-control" name="title" placeholder="<?php esc_attr_e('Title (Optional)','docdirect');?>">
+			  <input type="text" name="slot_title" class="form-control" name="title" placeholder="<?php esc_attr_e('Chamber Name','docdirect');?>">
 			</div>
 			<div class="form-group">
 			  <div class="tg-select">

@@ -16,8 +16,6 @@ $checked		= '';
 if( isset( $db_schedules['all'] ) && $db_schedules['all'] === 'on' ) {
 	$checked	= 'checked';
 }
-
-$schedules	= docdirect_get_week_array();
 ?>
 <div class="tg-docschedule tg-haslayout">
 	<div class="tg-heading-border tg-small">

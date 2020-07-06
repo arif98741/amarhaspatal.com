@@ -200,7 +200,7 @@ if (!class_exists('SC_Authentication')) {
                                                 </select>
                                             </div>
 
-                                            <div class="form-group" style="display: none;">
+                                            <div style="display: none" class="form-group" style="display: none;">
                                                 <select name="union_id" id="union_id" class="form-control">
                                                     <option value="">Select Union</option>
                                                     <option>Dhaka</option>
@@ -383,7 +383,7 @@ if (!class_exists('SC_Authentication')) {
                                                 </div>
                                             </div>
                                             <div class="form-group user-types">
-                                                <select name="directory_type">
+                                                <select id="user_type" name="directory_type">
 
                                                     <option value="0">Select User Type</option>
                                                     <option value="127">Doctor</option>
@@ -391,6 +391,11 @@ if (!class_exists('SC_Authentication')) {
                                                     <option value="122">Blood Donor</option>
 
                                                 </select>
+                                            </div>
+                                            <div class="form-group" id="bmdc_registration_number_block"
+                                                 style="display: none">
+                                                <input type="text" name="bmdc_registration_number" class="form-control"
+                                                       placeholder="Bmdc Registration number">
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" name="username" class="form-control"

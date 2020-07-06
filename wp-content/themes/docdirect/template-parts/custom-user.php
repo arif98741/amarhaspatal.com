@@ -85,7 +85,7 @@ get_header();
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div style="display: none" class="form-group">
                         <select name="union_id" id="union_id" class="form-control">
                             <option value="">Select Union</option>
                             <option>Dhaka</option>

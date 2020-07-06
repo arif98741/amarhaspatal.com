@@ -47,7 +47,7 @@ if( isset( $profile_hits[$year] ) && !empty( $profile_hits[$year] ) ){
 	<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
 		<div class="tg-costumerreview">
 			<div class="tg-heading-border tg-small">
-				<h3><?php esc_html_e('Customer Reviews','docdirect');?></h3>
+				<h3><?php esc_html_e('Patient Reviews','docdirect');?></h3>
 			</div>
 			<div id="tg-reviewscrol" class="tg-reviewscrol">
 				<ul class="tg-reviews">

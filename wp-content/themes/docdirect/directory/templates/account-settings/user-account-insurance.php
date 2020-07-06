@@ -18,7 +18,7 @@ $db_insurance		  = get_user_meta( $user_identity, 'insurance', true);
 if( isset( $insurance_switch ) && $insurance_switch === 'enable' ) {
   if( apply_filters('docdirect_do_check_user_type',$user_identity ) === true ){
 	if( apply_filters('docdirect_is_setting_enabled',$user_identity,'insurance' ) === true ){?>
-	<div class="tg-bordertop tg-haslayout">
+	<div style="display: none" class="tg-bordertop tg-haslayout">
 		<div class="tg-formsection">
 			<div class="tg-heading-border tg-small">
 				<h3><?php esc_html_e('Insurance Plans','docdirect');?></h3>

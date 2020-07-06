@@ -144,7 +144,7 @@ $profile_page = isset($dir_profile_page[0]) ? $dir_profile_page[0] : '';
             <td data-name="id"><?php echo esc_attr( $bk_code );?></td>
             <td data-name="subject"><?php echo esc_attr( $bk_subject );?></td>
             <td data-name="phone"><?php echo esc_attr( $bk_userphone );?></td>
-            <td data-name="notes"><a class="get-detail" href="javascript:;"><i class="fa fa-sticky-note-o"></i></a></td>
+            <td data-name="notes"><a class="get-detail" href="javascript:;"><i class="fa fa-eye"></i></a></td>
             <td>
             	<?php if( isset( $bk_status ) && $bk_status == 'approved' ){?>
                 	<a class="tg-btncheck appointment-actioned fa fa-check" href="javascript:;"><?php esc_html_e('Approved','docdirect');?></a> 

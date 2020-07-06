@@ -30,8 +30,7 @@ if (is_multisite()) {
 }
 
 if (isset($_REQUEST['action']) && 'adduser' == $_REQUEST['action']) {
-    echo '<pre>';
-    print_r($_POST); exit;
+
     check_admin_referer('add-user', '_wpnonce_add-user');
 
     $user_details = null;
@@ -180,8 +179,7 @@ Please click the following link to confirm the invite:
         // Adding a new user to this site.
         $new_user_email = wp_unslash($_REQUEST['email']);
         $user_details = wpmu_validate_user_signup($_REQUEST['user_login'], $new_user_email);
-        echo '<pre>';
-        print_r($user_details); exit;
+
         if (is_wp_error($user_details['errors']) && $user_details['errors']->has_errors()) {
             $add_user_errors = $user_details['errors'];
         } else {
