@@ -465,9 +465,6 @@ $count_post = $query->found_posts;
             while ($query->have_posts()) : $query->the_post();
 
                 global $post;
-//                echo '<pre>';
-//                print_r(get_post_meta($post->ID, 'bk_booking_date', true));
-//                exit;
 
                 $counter++;
                 $bk_code = get_post_meta($post->ID, 'bk_code', true);
@@ -493,6 +490,16 @@ $count_post = $query->found_posts;
                 $services_cats = get_user_meta($bk_user_to, 'services_cats', true);
                 $booking_services = get_user_meta($bk_user_to, 'booking_services', true);
                 $doc_name = docdirect_get_username($bk_user_to);
+
+                $userMeta = get_user_meta($bk_user_to);
+
+                //    $slots = unserialize(get_user_meta($bk_user_to)['default_slots']);
+
+
+                /*$selectedSlotdate = strtolower(date('D', strtotime(esc_html($_POST['slot_date']))));
+                $chamber = array_column($default_slots[0][$selectedSlotdate . '-details'], 'slot_title');
+                */
+
 
                 $address = get_user_meta($bk_user_to, 'address', true);
 

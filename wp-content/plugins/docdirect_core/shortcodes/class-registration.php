@@ -172,7 +172,7 @@ if (!class_exists('SC_Authentication')) {
                                             </div>
                                             <div class="form-group">
                                                 <select name="division_id" id="division_id" class="form-control">
-                                                    <option>Select Division</option>
+                                                    <option>Selects Division</option>
                                                     <?php
                                                     global $wpdb;
                                                     $divisionSql = "select id, title,title_en from loc_divisions where status='1'";

@@ -33,6 +33,7 @@ if( isset( $profile_hits[$year] ) && !empty( $profile_hits[$year] ) ){
 		$hits_data[$key]	= 0;
 	}
 }
+
 ?>
 <div class="tg-graph tg-haslayout">
 	<div class="tg-profilehits">
@@ -48,6 +49,7 @@ if( isset( $profile_hits[$year] ) && !empty( $profile_hits[$year] ) ){
 		<div class="tg-costumerreview">
 			<div class="tg-heading-border tg-small">
 				<h3><?php esc_html_e('Patient Reviews','docdirect');?></h3>
+
 			</div>
 			<div id="tg-reviewscrol" class="tg-reviewscrol">
 				<ul class="tg-reviews">

@@ -244,7 +244,7 @@ if (!class_exists('ChatSystem')) {
 
 			?>
 			<div class="sl-topbar-notify">
-				<div class="sl-topbar-notify__icons dropdown sl-dropdown">
+				<div style="display: none" class="sl-topbar-notify__icons dropdown sl-dropdown">
 					<?php if(!empty($messages)){?>
 						<a href="<?php echo esc_attr($link);?>" class="sl-topbar-notify__anchor" id="slMessages" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<?php }else{?>

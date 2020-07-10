@@ -331,7 +331,6 @@ if ( ! function_exists( 'docdirect_delete_time_slot' ) ) {
 
 		echo json_encode($json);
 		die;
-
 	}
 	add_action('wp_ajax_docdirect_delete_time_slot','docdirect_delete_time_slot');
 	add_action( 'wp_ajax_nopriv_docdirect_delete_time_slot', 'docdirect_delete_time_slot' );

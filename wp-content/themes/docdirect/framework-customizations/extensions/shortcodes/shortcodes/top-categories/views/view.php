@@ -67,7 +67,9 @@ $cust_query = get_posts($args);
                         <div class="doc-hoverbg">
                             <h3><?php echo esc_attr($title); ?></h3>
                         </div>
-                        <img src="<?php echo esc_url($banner); ?>" alt="<?php echo esc_attr($title); ?>">
+                        <a href="<?php echo esc_url($search_page); ?>?directory_type=<?php echo esc_attr($dir->post_name); ?>">
+                            <img src="<?php echo esc_url($banner); ?>" alt="<?php echo esc_attr($title); ?>">
+                        </a>
                         <figcaption class="doc-imghover">
                             <div class="doc-categoryname"><h4><a
                                             href="<?php echo esc_url($search_page); ?>?directory_type=<?php echo esc_attr($dir->post_name); ?>"><?php echo esc_attr($title); ?></a>
@@ -86,8 +88,10 @@ $cust_query = get_posts($args);
                 <div class="doc-hoverbg">
                     <h3>Pharmacy</h3>
                 </div>
-                <img src="<?= site_url('wp-content/uploads/2020/07/clear-plastic-ampoules-3944795.jpg'); ?>"
-                     alt="Blood Donor">
+                <a href="<?= site_url('shop') ?>">
+                    <img src="<?= site_url('wp-content/uploads/2020/07/shutterstock_717437125-1-750x450-1.gif'); ?>"
+                         alt="Blood Donor">
+                </a>
                 <figcaption class="doc-imghover">
                     <div class="doc-categoryname"><h4><a
                                     href="<?= site_url('shop') ?>">Pharmacy</a>

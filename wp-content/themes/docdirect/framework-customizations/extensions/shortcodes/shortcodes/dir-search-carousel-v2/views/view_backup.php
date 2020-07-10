@@ -194,7 +194,7 @@ if( !empty( $atts['advance_filters'] ) && $atts['advance_filters'] === 'enable' 
 									<div class="doc-fieldsetholder">
 									<?php if( isset( $dir_keywords ) && $dir_keywords === 'enable' ){?>
 										<div class="form-group">
-										   <input type="text" name="by_name" placeholder="<?php esc_html_e('Type Keyword here.','docdirect');?>" class="form-control">
+										   <input type="text" name="by_name" placeholder="<?php esc_html_e('Type Keyword heres','docdirect');?>" class="form-control">
 										</div>
 									<?php }?>
 									<?php if( isset( $dir_location ) && $dir_location === 'enable' ){?>

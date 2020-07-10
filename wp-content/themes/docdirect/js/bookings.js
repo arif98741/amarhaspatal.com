@@ -724,6 +724,7 @@ jQuery(document).ready(function ($) {
 				dataType:"json",
 				success: function(response) {
 					jQuery('body').find('.docdirect-loader-wrap').remove();
+
 					if( response.type === 'error' ){
 						jQuery.sticky(response.message, {classList: 'important', speed: 200, autoclose: 5000});
 					} else{

@@ -13,8 +13,8 @@ get_header();
 ?>
     <div class="container">
         <div class="">
-            <h1 class="text-red"> We are currenty working on this page
-            </h1>
+            <!--            <h1 class="text-red"> We are currenty working on this page-->
+            <!--            </h1>-->
             <br>
             <form action="<?= site_url('prescription-upload') ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
@@ -30,6 +30,10 @@ get_header();
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" class="form-control" placeholder="Enter email address here" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="location" class="form-control" placeholder="Enter location here" required>
                         </div>
 
                     </div>
@@ -50,9 +54,9 @@ get_header();
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label>Address </label>
+                            <label>Note </label>
                             <textarea cols="4" rows="4" class="form-control"
-                                      placeholder="Enter details here" required></textarea>
+                                      placeholder="Enter note text here" required></textarea>
                         </div>
                     </div>
                     <div class="col-md-3">

@@ -17,12 +17,16 @@ add_action('admin_menu', 'linked_url');
 function linked_url()
 {
     add_menu_page('linked_url', 'Appointment Report', 'read', '../appointment-report', '', 'dashicons-chart-bar', 15);
+    add_menu_page('linked_url', 'Ambulance Report', 'read', '../ambulence-report', '', 'dashicons-clock', 16);
+    add_menu_page('linked_url', 'Ambulence Booking', 'read', '../ambulence-booking', '', 'dashicons-share-alt2', 17);
+    add_menu_page('linked_url', 'Add Other User', 'read', '../add-user', '', 'dashicons-pressthis', 70);
 }
 
-add_action('admin_menu', 'linkedurl_function');
 function linkedurl_function()
 {
     global $menu;
     $menu[1][2] = "http://www.example.com";
 }
+
+add_action('admin_menu', 'linkedurl_function');
 
