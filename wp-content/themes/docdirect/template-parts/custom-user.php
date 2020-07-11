@@ -19,7 +19,7 @@ get_header();
                     <div class="form-group user-types" style="display: block;">
                         <select name="directory_type" required>
                             <option value="0">Select User Type</option>
-                            <option value="125">Clinic</option>
+<!--                            <option value="125">Clinic</option>-->
                             <option value="123">Ambulance</option>
                             <option value="121">Diagnostics</option>
                         </select>

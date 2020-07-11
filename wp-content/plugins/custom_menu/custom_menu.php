@@ -25,7 +25,7 @@ function linked_url()
 function linkedurl_function()
 {
     global $menu;
-    $menu[1][2] = "http://www.example.com";
+    //$menu[1][2] = "http://www.example.com";
 }
 
 add_action('admin_menu', 'linkedurl_function');

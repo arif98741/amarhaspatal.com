@@ -393,7 +393,8 @@ $today = time();
                 </div>
         	</div>
        	</div>
-        
+
+
         <!--Honour & Awards-->
         <div class="tg-bordertop tg-haslayout">
           <div class="tg-formsection tg-honor-awards">

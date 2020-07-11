@@ -7,12 +7,16 @@
 global $current_user, $wp_roles,$userdata,$post;
 $user_identity  = $current_user->ID;
 $db_directory_type	 = get_user_meta( $user_identity, 'directory_type', true);
+$userMeta = get_user_meta($current_user->ID);
 
 $user_url	= '';
 if( isset( $db_directory_type ) && !empty( $db_directory_type ) ) {
 	$current_userdata	   		= get_userdata($user_identity);
 	$user_url					= $current_userdata->data->user_url;
 }
+
+//echo '<pre>';
+//print_r(get_user_meta($current_user->ID)); exit;
 ?>
 <div class="tg-bordertop tg-haslayout">
 	<div class="tg-formsection">

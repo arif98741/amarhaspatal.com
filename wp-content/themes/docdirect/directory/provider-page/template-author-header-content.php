@@ -30,6 +30,7 @@ if( !empty( $banner ) ){
 
 ?>
 <div class="tg-userbanner-content">
+
 	<h1><?php echo esc_attr( $username );?></h1>
 	<?php if( !empty( $author_profile->tagline ) ) {?>
 		<span><?php echo esc_attr( $author_profile->tagline );?></span>
