@@ -525,12 +525,22 @@ jQuery(document).ready(function ($) {
     });
 
     /**
+     * ---------------------------------------
+     * Change on Upazila Dropdown
+     * Get Unions
+     * ---------------------------------------------
+     */
+    jQuery('#ambulanceBookingbtn').on('change', function (event) {
+        alert('hello boos');
+    });
+
+    /**
      * BMDC Registration Block HIde/Show According to Dropdown
      */
-    $('#user_type').change(function(){
+    $('#user_type').change(function () {
         console.log($(this).val());
         var user_type = $(this).val();
-      //  if(user_type=)
+        //  if(user_type=)
 
     });
 

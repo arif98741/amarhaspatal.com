@@ -7,9 +7,40 @@ global $current_user, $wp_roles, $userdata, $post, $paged;
 $dir_obj = new DocDirect_Scripts();
 $user_identity = $current_user->ID;
 $url_identity = $user_identity;
-
-
 get_header();
+if (isset($_POST['ambulance_type'])) {
+
+    $ambulance_type = esc_html($_POST['ambulance_type']);
+    $booking_date = esc_html($_POST['booking_date']);
+    $start_from = esc_html($_POST['start_from']);
+    $destination = esc_html($_POST['destination']);
+    $trip_type = esc_html($_POST['trip_type']);
+    $full_name = esc_html($_POST['full_name']);
+    $email = esc_html($_POST['email']);
+    $contact_no = esc_html($_POST['contact_no']);
+    global $wpdb; //removed $name and $description there is no need to assign them to a global variable
+    // $table_name = $wpdb->prefix . "liquor_type"; //try not using Uppercase letters or blank spaces when naming db tables
+    $table_name = "ambulance_booking"; //try not using Uppercase letters or blank spaces when naming db tables
+    $message = '';
+
+    $status = $wpdb->insert($table_name, array(
+        'ambulance_type' => $ambulance_type,
+        'booking_date' => $booking_date,
+        'start_from' => $start_from,
+        'destination' => $destination,
+        'trip_type' => $trip_type,
+        'full_name' => $full_name,
+        'email' => $email,
+        'contact_no' => $contact_no
+
+    ));
+    if ($status) {
+        $message = '<p style="font-size: 22px; color: green; text-align: center">Ambulance booking is successfully completed. We will contact
+    with you soon.
+</p>';
+    }
+
+}
 ?>
     <style>
 
@@ -719,42 +750,51 @@ get_header();
                         <h2 class="title">Book Ambulance</h2>
                     </div>
                     <div class="card-body">
-                        <form method="POST">
+                        <?php if ($message != ''): ?>
+                            <?php
+                            echo $message;
+                            ?>
+                        <?php
+                        endif;
+                        ?>
+                        <form method="POST" action="<?= site_url('ambulance-booking') ?>">
 
                             <div class="form-row">
-                                <div class="name">Select Ambulence Type</div>
+                                <div class="name">Select Ambulance Type</div>
                                 <div class="value m-b-25">
 
-                                    <select name="Ambulance_Type" class="input--style-6" id="sel1" req>
+                                    <select name="ambulance_type" class="input--style-6" required>
+                                        <option value="" selected disabled>--</option>
                                         <option value="Ac">Ac Ambulance</option>
-                                        <option value=" Non-Ac"> Non-Ac Ambulance</option>
-                                        <option value=" ICU"> ICU Ambulance</option>
-                                        <option value=" NICU"> NICU Ambulance</option>
-                                        <option value=" Freezer Van"> Freezer Van Ambulance</option>
-                                        <option value=" Air"> Air Ambulance</option>
+                                        <option value="Non-Ac"> Non-Ac Ambulance</option>
+                                        <option value="ICU"> ICU Ambulance</option>
+                                        <option value="NICU"> NICU Ambulance</option>
+                                        <option value="Freezer Van"> Freezer Van Ambulance</option>
+                                        <option value="Air"> Air Ambulance</option>
                                     </select>
                                 </div>
 
                                 <div class="name">Booking Date</div>
                                 <div class="value m-b-25">
-                                    <input class="input--style-6" type="date" name="booking_date">
+                                    <input class="input--style-6" type="date" name="booking_date" required>
                                 </div>
 
                                 <div class="name">Start from</div>
                                 <div class="value m-b-25">
-                                    <input class="input--style-6" type="text" name="start_from">
+                                    <input class="input--style-6" type="text" name="start_from" required>
                                 </div>
 
 
                                 <div class="name">Destination</div>
                                 <div class="value m-b-25">
-                                    <input class="input--style-6" type="text" name="destination">
+                                    <input class="input--style-6" type="text" name="destination" required>
                                 </div>
 
                                 <div class="name">Select Trip Type</div>
                                 <div class="value m-b-25">
 
-                                    <select name="Ambulance_Type" class="input--style-6" id="sel1">
+                                    <select name="trip_type" class="input--style-6" id="sel1" required>
+                                        <option value="" selected disabled>--</option>
                                         <option value="Single Trip">Single Trip</option>
                                         <option value="Round Trip">Round Trip</option>
 
@@ -764,20 +804,22 @@ get_header();
                                 <div class="name">Full name</div>
                                 <div class="value m-b-25">
                                     <input class="input--style-6" type="text" placeholder="Enter your full name"
-                                           name="full_name">
+                                           name="full_name" required>
                                 </div>
 
                                 <div class="name">Email</div>
                                 <div class="value m-b-25">
                                     <input class="input--style-6" type="text" placeholder="Enter your email here"
-                                           name="email">
+                                           name="email" required>
                                 </div>
 
                                 <div class="name">Contact No</div>
                                 <div class="value m-b-25">
                                     <input class="input--style-6 m-b-25" type="text" placeholder="Contact No"
-                                           name="email">
-                                    <button class="btn btn--radius-2 btn--blue-2" type="submit">Submit</button>
+                                           name="contact_no" required>
+                                    <button class="btn btn--radius-2 btn--blue-2" id="ambulanceBookingbtn"
+                                            type="submit">Submit
+                                    </button>
                                 </div>
                             </div>
 
@@ -790,13 +832,9 @@ get_header();
         </div>
 
         <!-- Jquery JS-->
-        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="<?= site_url('docdirect/js/vendor/docdirect_functions.js') ?>"></script>
 
-
-        <!-- Main JS-->
-        <script src="js/global.js"></script>
-
-        </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+        </body>
 
     </div>
 

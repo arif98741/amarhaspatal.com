@@ -480,14 +480,14 @@ if (!function_exists('docdirect_get_booking_step_two')) {
                 }
                 ?>
                 <div class="tg-doctimeslot <?php echo sanitize_html_class($slotClass); ?>">
-                    <div class="tg-box" >
+                    <div class="tg-box">
                         <div class="tg-radio">
                             <input <?php echo esc_attr($slot_status); ?> id="<?php echo esc_attr($key); ?>"
                                                                          value="<?php echo esc_attr($key); ?>"
                                                                          type="radio" name="slottime">
                             <label for="<?php echo esc_attr($key); ?>"><?php echo date_i18n($time_format, strtotime('2016-01-01 ' . $time[0])); ?>
                                 &nbsp;-&nbsp;<?php echo date_i18n($time_format, strtotime('2016-01-01 ' . $time[1])); ?>
-                            <small style="font-size: 14px"><?php echo $chamber[0]; ?></small>
+                                <small style="font-size: 14px"><?php echo $chamber[0]; ?></small>
                             </label>
 
                         </div>
@@ -562,7 +562,7 @@ if (!function_exists('docdirect_get_booking_step_two_calender')) {
             <div class="tg-appointmenttime">
                 <?php if (!empty($schedule_message)) { ?>
                     <div class="tg-description">
-                        <p><?php echo force_balance_tags($schedule_message); ?></p>
+                        <p>Please click on below calender<br> to find out available schedule</p>
                     </div>
                 <?php } ?>
                 <div class="clearfix"></div>
@@ -741,7 +741,7 @@ if (!function_exists('docdirect_get_booking_step_five')) {
             <div class="tg-message">
                 <h2><?php esc_html_e('Thank you!', 'docdirect'); ?></h2>
                 <div class="tg-description">
-                    <p><?php echo force_balance_tags($thank_you); ?></p>
+                    <p>Your appointment is successfully received. Please wait for acceptance by doctor...</p>
                 </div>
             </div>
         </div>
