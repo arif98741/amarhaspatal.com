@@ -16,6 +16,7 @@ get_header();//Include Headers
 if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && function_exists('fw_get_db_settings_option')) {
     if (apply_filters('docdirect_is_visitor', $author_profile->ID) === false) {
         $directory_type = $author_profile->directory_type;
+
         $uni_flag = rand(1, 9999);
         $privacy = docdirect_get_privacy_settings($author_profile->ID); //Privacy settings
 
@@ -70,29 +71,110 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
         $display_settings = docdirect_profile_display_settings();
         $display_settings = apply_filters('docdirect_filter_profile_display_settings', $display_settings);
 
-
         if (isset($is_profile_visible) && $is_profile_visible === 'yes') { ?>
             <?php get_template_part('directory/provider-page/template-author', 'header'); ?>
             <div class="container">
+                dfd
                 <div class="row">
+
                     <div class="tg-userdetail <?php echo sanitize_html_class($apointmentClass); ?>">
                         <?php get_template_part('directory/provider-page/template-author', 'sidebar'); ?>
-                        <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-                            <div class="tg-haslayout provider-sections">
-                                <?php
+                        <?php if ($directory_type == 127) { ?>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                                <div class="tg-haslayout provider-sections">
+                                    <div class="col-md-12">
+                                        <nav>
+                                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                                <a class="nav-item nav-link" id="nav-specilities-tab" data-toggle="tab"
+                                                   href="#nav-specilities" role="tab" aria-controls="nav-specilities"
+                                                   aria-selected="false">Specialities</a>
+                                                <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab"
+                                                   href="#nav-education" role="tab" aria-controls="nav-education"
+                                                   aria-selected="false">Education</a>
+                                                <a class="nav-item nav-link" id="nav-experience-tab" data-toggle="tab"
+                                                   href="#nav-experience" role="tab" aria-controls="nav-experience"
+                                                   aria-selected="false">Experience</a>
 
-                                foreach ($display_settings as $key => $value) {
-                                    if ($key == 'map' || $key == 'reviews') {
-                                        continue;
+                                                <a class="nav-item nav-link" id="nav-honors-tab" data-toggle="tab"
+                                                   href="#nav-honors" role="tab" aria-controls="nav-honors"
+                                                   aria-selected="false">Honors</a>
+                                            </div>
+                                        </nav>
+                                        <br>
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade" id="nav-specilities" role="tabpanel"
+                                                 aria-labelledby="nav-specilities-tab">
+                                                <?php get_template_part('directory/provider-page/template-author-specialities'); ?>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-education" role="tabpanel"
+                                                 aria-labelledby="nav-education-tab">
+                                                <?php get_template_part('directory/provider-page/template-author-education'); ?>
+
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-experience" role="tabpanel"
+                                                 aria-labelledby="nav-experience-tab">
+                                                <?php get_template_part('directory/provider-page/template-author-experience'); ?>
+
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-honors" role="tabpanel"
+                                                 aria-labelledby="nav-honors-tab">
+                                                <?php get_template_part('directory/provider-page/template-author-awards'); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tg-haslayout provider-sections">
+                                    <?php
+
+                                    foreach ($display_settings as $key => $value) {
+                                        if ($directory_type == 127) {
+                                            if ($key == 'map' || $key == 'reviews' || $key == 'specialities'
+                                                || $key == 'experience' || $key == 'awards' || $key == 'education') {
+                                                continue;
+                                            }
+                                            get_template_part('directory/provider-page/template-author', $key);
+                                        } else {
+                                            echo 'hi';
+                                            if ($key == 'map') {
+                                                continue;
+                                            }
+                                            get_template_part('directory/provider-page/template-author', $key);
+
+                                        }
+
                                     }
-                                    get_template_part('directory/provider-page/template-author', $key);
-                                }
-                                get_template_part('directory/provider-page/template-author-reviews');
-                                get_template_part('directory/provider-page/template-author-map');
-                                ?>
+                                    get_template_part('directory/provider-page/template-author-reviews');
+                                    get_template_part('directory/provider-page/template-author-map');
+                                    ?>
+                                </div>
                             </div>
-                        </div>
+                        <?php } else { ?>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                                <div class="tg-haslayout provider-sections">
+                                    <div class="col-md-12">
+
+
+                                    </div>
+                                </div>
+                                <div class="tg-haslayout provider-sections">
+                                    <?php
+
+                                    foreach ($display_settings as $key => $value) {
+
+                                        if ($key == 'map' || $key == 'reviews') {
+                                            continue;
+                                        }
+                                        get_template_part('directory/provider-page/template-author', $key);
+
+                                    }
+                                    get_template_part('directory/provider-page/template-author-reviews');
+                                    get_template_part('directory/provider-page/template-author-map');
+                                    ?>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
+
                 </div>
             </div>
         <?php } else { ?>
@@ -173,3 +255,59 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
     get_footer();
 }
 do_action('am_chat_modal', $author_profile->ID);
+
+?>
+<style>
+    .nav-tab {
+        padding: 10%;
+        margin-top: -8%;
+    }
+
+    div#nav-tab a {
+        padding: 12px;
+        font-size: 18px;
+
+    }
+
+    .project-tab #tabs {
+        background: #007b5e;
+        color: #eee;
+    }
+
+    .project-tab #tabs h6.section-title {
+        color: #eee;
+    }
+
+    .project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        color: #0062cc;
+        background-color: transparent;
+        border-color: transparent transparent #f3f3f3;
+        border-bottom: 3px solid !important;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .project-tab .nav-link {
+        border: 1px solid transparent;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        color: #0062cc;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .project-tab .nav-link:hover {
+        border: none;
+    }
+
+    .project-tab thead {
+        background: #f3f3f3;
+        color: #333;
+    }
+
+    .project-tab a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+    }
+</style>
