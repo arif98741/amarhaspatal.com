@@ -71,10 +71,24 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
         width: 50% !important;
         margin-left: auto;
         min-height: 358px;
-        border: 4px solid #000 !important;
+        border: 4px solid #3a76a324 !important;
         background: #fff;
         padding: 10px;
-        height: 383px;
+        height: 356px;
+    }
+
+    @media (min-width: 481px) and (max-width: 767px) {
+
+        #search-div-carousal {
+            width: 100% !important;
+            margin: 0 auto;
+            min-height: 398px;
+            border: 4px solid #3a76a324 !important;
+            background: #fff;
+            padding: 10px;
+            height: 490px;
+        }
+
     }
 </style>
 <div id="doc-homebannerslider-<?php echo esc_attr($uni_flag); ?>"
@@ -129,10 +143,10 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group" ng-init="city = '0'">
-                                            <label for="city">Directory Type</label>
+                                            <label for="city">Service</label>
                                             <select name="directory_type">
 
-                                                <option value="0" selected>Select Type</option>
+                                                <option value="0" selected>---</option>
                                                 <option value="123">Ambulance</option>
                                                 <option value="122">Blood Donor</option>
                                                 <option value="121">Diagnostics</option>
@@ -146,8 +160,8 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                 <div class="row">
 
                                     <div class="col-sm-12">
-                                        <div class="form-group" ng-init="service = 'ambulances'">
-                                            <label for="service">Search keyword</label>
+                                        <div class="form-group">
+                                            <label for="service">Speciality</label>
                                             <input class="form-control" name="search_key">
                                         </div>
                                     </div>

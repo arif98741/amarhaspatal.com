@@ -1811,15 +1811,28 @@ if (!function_exists('docdirect_search_filters')) {
         <div class="search-filters-wrap">
             <div class="doc-widget doc-widgetsearch">
                 <div class="doc-widgetheading">
-                    <h2><?php esc_html_e('Narrow your search', 'docdirect'); ?></h2>
+                    <h2><?php esc_html_e('Search for services', 'docdirect'); ?></h2>
                 </div>
                 <div class="doc-widgetcontent">
                     <fieldset>
+                        <div class="form-group" >
+                            <label for="city">Service</label>
+                            <select name="directory_type">
+
+                                <option value="0" selected>---</option>
+                                <option value="123">Ambulance</option>
+                                <option value="122">Blood Donor</option>
+                                <option value="121">Diagnostics</option>
+                                <option value="127">Doctor</option>
+                                <option value="126">Hospital</option>
+
+                            </select>
+                        </div>
                         <?php if (isset($dir_keywords) && $dir_keywords === 'enable') { ?>
                             <div class="form-group">
                                 <input type="text" class="form-control" value="<?php echo esc_attr($by_name); ?>"
                                        name="by_name"
-                                       placeholder="<?php esc_html_e('Type Keyword...', 'docdirect'); ?>">
+                                       placeholder="<?php esc_html_e('Speciality', 'docdirect'); ?>">
                             </div>
                         <?php } ?>
                         <div class="form-group">
@@ -1922,7 +1935,7 @@ if (!function_exists('docdirect_search_filters')) {
                             </div>
                         </div>
 
-                          <div class="form-group">
+                        <div class="form-group">
                             <div class="tg-inputicon tg-geolocationicon tg-angledown">
                                 <select name="upazila_id" id="upazila_id" class="form-control">
                                     <option value="">Select Upazila</option>
