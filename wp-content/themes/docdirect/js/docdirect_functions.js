@@ -442,6 +442,7 @@ jQuery(document).ready(function ($) {
      * ---------------------------------------------
      */
     jQuery('#division_id').on('change', function (event) {
+
         var division_id = jQuery(this).val();
         jQuery.ajax({
             type: "POST",

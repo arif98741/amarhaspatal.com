@@ -349,9 +349,11 @@ if (!function_exists('docdirect_user_registration')) {
             update_user_meta($user_identity, 'verify_user', 'off');
             update_user_meta($user_identity, 'rich_editing', 'true');
             update_user_meta($user_identity, 'privacy', $privacy);
-
             $full_name = docdirect_get_username($user_identity);
             update_user_meta($user_identity, 'full_name', $full_name);
+            if ($_POST['directory_type'] == 122) {
+                add_user_meta($user_identity->ID, 'blood_group', 'B+', false);
+            }
 
             //Update Profile Hits
             $year = date('y');
@@ -421,7 +423,7 @@ if (!function_exists('docdirect_user_registration')) {
             if (is_user_logged_in() && wp_get_current_user()->data->user_login == 'admin') {
                 $json['added_by'] = "admin";
                 $json['profile_url'] = site_url() . '/wp-admin/users.php';
-            }else{
+            } else {
                 $status = wp_signon($user_array, false);
             }
 

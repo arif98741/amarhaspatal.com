@@ -33,10 +33,9 @@ if (isset($theme_type) && $theme_type === 'custom') {
 } else {
     $rating_color = '#7dbb00';
 }
-//echo '<pre>';
-//print_r($current_user); exit;
+
 ?>
-<div role="tabpanel" class="tg-tabpane tab-pane active" id="reviews">
+<div  role="tabpanel" class="tg-tabpane tab-pane active" id="reviews">
     <?php if (isset($reviews_switch) && $reviews_switch === 'enable') { ?>
         <div class="tg-userreviews">
             <div class="tg-userheading">

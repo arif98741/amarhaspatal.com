@@ -12,6 +12,7 @@ do_action('docdirect_update_profile_hits', $author_profile->ID); //Update Profil
 docdirect_set_user_views($author_profile->ID); //Update profile views
 get_header();//Include Headers
 
+
 if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && function_exists('fw_get_db_settings_option')) {
     if (apply_filters('docdirect_is_visitor', $author_profile->ID) === false) {
         $directory_type = $author_profile->directory_type;
@@ -69,6 +70,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
         $display_settings = docdirect_profile_display_settings();
         $display_settings = apply_filters('docdirect_filter_profile_display_settings', $display_settings);
 
+
         if (isset($is_profile_visible) && $is_profile_visible === 'yes') { ?>
             <?php get_template_part('directory/provider-page/template-author', 'header'); ?>
             <div class="container">
@@ -78,9 +80,15 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
                             <div class="tg-haslayout provider-sections">
                                 <?php
+
                                 foreach ($display_settings as $key => $value) {
+                                    if ($key == 'map' || $key == 'reviews') {
+                                        continue;
+                                    }
                                     get_template_part('directory/provider-page/template-author', $key);
                                 }
+                                get_template_part('directory/provider-page/template-author-reviews');
+                                get_template_part('directory/provider-page/template-author-map');
                                 ?>
                             </div>
                         </div>

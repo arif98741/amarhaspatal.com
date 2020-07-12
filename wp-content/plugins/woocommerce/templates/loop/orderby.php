@@ -30,8 +30,15 @@ if (!defined('ABSPATH')) {
         <br>
     </div>
 <?php endif; ?>
+<br>
+<form class="woocommerce-ordering pull-left" method="get">
+    <input class="form-control" name="search_key">
+    <input type="hidden" name="paged" value="1"/>
+    <?php wc_query_string_form_fields(null, array('orderby', 'submit', 'paged', 'product-page')); ?>
+</form>
 
-<form class="woocommerce-ordering" method="get">
+<form class="woocommerce-ordering pull-right" method="get">
+
     <select name="orderby" class="orderby" aria-label="<?php esc_attr_e('Shop order', 'woocommerce'); ?>">
         <?php foreach ($catalog_orderby_options as $id => $name) : ?>
             <option value="<?php echo esc_attr($id); ?>" <?php selected($orderby, $id); ?>><?php echo esc_html($name); ?></option>

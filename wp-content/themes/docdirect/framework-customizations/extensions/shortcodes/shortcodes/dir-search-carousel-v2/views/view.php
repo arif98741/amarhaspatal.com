@@ -68,12 +68,13 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
 ?>
 <style>
     #search-div-carousal {
-        width: 73% !important;
+        width: 50% !important;
         margin-left: auto;
-        min-height: 500px;
+        min-height: 358px;
         border: 4px solid #000 !important;
         background: #fff;
-        opacity: 0.3;
+        padding: 10px;
+        height: 383px;
     }
 </style>
 <div id="doc-homebannerslider-<?php echo esc_attr($uni_flag); ?>"
@@ -86,63 +87,79 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
         <figcaption class="<?php echo esc_attr($banner_class); ?>">
             <div class="container">
                 <div class="row" id="search-div-carousal">
-                    <div class="col-sm-12 col-xs-offset-0 col-xs-12">
-                        <form class="doc-formtheme doc-formadvancesearch" action="<?php echo esc_url($search_page); ?>"
-                              method="get">
-                            <div id="doc-homecatagoryslider-<?php echo esc_attr($flagslider); ?>"
-                                 class="doc-homecatagoryslider owl-carousel">
-                                <?php
-                                $directories = array();
-                                $first_category = '';
-                                $json = array();
-                                $flag = false;
-                                if (isset($cust_query) && !empty($cust_query)) {
-                                    $counter = 0;
-                                    foreach ($cust_query as $key => $dir) {
-                                        $counter++;
-                                        $title = get_the_title($dir->ID);
-                                        $checked = '';
-                                        $active = '';
-                                        if ($counter === 1) {
-                                            $current_directory = get_the_title($dir->ID);
-                                            $active = 'active';
-                                            $first_category = $dir->ID;
-                                            $checked = 'checked';
-                                        }
-                                        //Prepare categories
-                                        if (isset($dir->ID)) {
-                                            $attached_specialities = get_post_meta($dir->ID, 'attached_specialities', true);
-                                            $subarray = array();
-                                            if (isset($attached_specialities) && !empty($attached_specialities)) {
-                                                foreach ($attached_specialities as $key => $speciality) {
-                                                    if (!empty($speciality)) {
-                                                        $term_data = get_term_by('id', $speciality, 'specialities');
-                                                        if (!empty($term_data)) {
-                                                            $subarray[$term_data->slug] = $term_data->name;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            $json[$dir->ID] = $subarray;
-                                        }
-                                        $parent_categories['categories'] = $json;
-                                        ?>
+                    <div class="col-sm-12 col-xs-offset-0 col-xs-12" style="padding: 25px;">
+                        <div class="search_box" style="height: 400px;margin-bottom: 50px;">
+                            <form ng-controller="searchCtrl" action="<?php echo site_url('dir-search') ?>"
+                                  class="avd_search ng-scope ng-pristine ng-valid ng-valid-required" method="GET">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-init="country = 'Bangladesh'">
+                                            <label for="country">Division</label>
+                                            <select name="division_id" id="division_id" class="form-control">
+                                                <option>Selects Division</option>
+                                                <?php
+                                                global $wpdb;
+                                                $divisionSql = "select id, title,title_en from loc_divisions where status='1'";
+                                                $divisions = $wpdb->get_results($divisionSql);
 
-                                    <?php }
-                                } else {
-                                    $directories['status'] = 'empty';
-                                } ?>
-                            </div>
+                                                ?>
+                                                <?php foreach ($divisions as $division) { ?>
 
+                                                    <option value="<?= $division->id; ?>"><?= $division->title_en ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-init="city = '0'">
+                                            <label for="city">District</label>
+                                            <select name="district_id" id="district_id" class="form-control">
+                                                <option value="">Select District</option>
 
-                            <div class="doc-bannersearcharea">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-init="city = '0'">
+                                            <label for="city">Upazila</label>
+                                            <select name="upazila_id" id="upazila_id" class="form-control">
+                                                <option>Select Upazila</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-init="city = '0'">
+                                            <label for="city">Directory Type</label>
+                                            <select name="directory_type">
 
-                                <div class="form-group">
-                                    <label>Name</label>
+                                                <option value="0" selected>Select Type</option>
+                                                <option value="123">Ambulance</option>
+                                                <option value="122">Blood Donor</option>
+                                                <option value="121">Diagnostics</option>
+                                                <option value="127">Doctor</option>
+                                                <option value="126">Hospital</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group" ng-init="service = 'ambulances'">
+                                            <label for="service">Search keyword</label>
+                                            <input class="form-control" name="search_key">
+                                        </div>
+                                    </div>
                                 </div>
 
-                            </div>
-                        </form>
+                                <div class="col-sm-offset-5">
+                                    <button type="submit"
+                                            class="btn btn-default">Search
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

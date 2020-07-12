@@ -51,7 +51,6 @@ if( !empty( $meta_query_args ) ) {
 	$meta_query_args	= array_merge( $query_relation,$meta_query_args );
 	$query_args['meta_query'] = $meta_query_args;
 }
-																					
 //Featured users
 $query_args['meta_key'] = 'user_featured';
 $query_args['orderby']	 = array( 
