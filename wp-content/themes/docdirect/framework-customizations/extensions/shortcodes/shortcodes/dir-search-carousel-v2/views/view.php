@@ -88,8 +88,24 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
             padding: 10px;
             height: 490px;
         }
-
     }
+
+    @media (min-width: 320px) and (max-width: 480px) {
+
+        #search-div-carousal {
+            width: 100% !important;
+            margin: 0 auto;
+            min-height: 398px;
+            border: 4px solid #3a76a324 !important;
+            background: #fff;
+            padding: 10px;
+            height: 490px;
+        }
+    }
+
+
+
+
 </style>
 <div id="doc-homebannerslider-<?php echo esc_attr($uni_flag); ?>"
      class="doc-homebannerslider doc-haslayout <?php echo esc_attr($isadvance_filter); ?>">

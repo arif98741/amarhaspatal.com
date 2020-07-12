@@ -514,7 +514,7 @@ if (isset($_GET['update'])) {
                                        value="<?php echo esc_attr($new_user_uri); ?>"/></td>
                         </tr>
                         <tr class="form-field">
-                            <th scope="row"><label for="url"><?php _e('Directory Type'); ?></label></th>
+                            <th scope="row"><label for="url"><?php _e('Service'); ?></label></th>
                             <td>
                                 <select name="directory_type">
                                     <option value="0">Select User Type</option>

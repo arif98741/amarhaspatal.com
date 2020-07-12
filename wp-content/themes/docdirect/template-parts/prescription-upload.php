@@ -7,11 +7,14 @@ global $current_user, $wp_roles, $userdata, $post, $paged;
 $dir_obj = new DocDirect_Scripts();
 $user_identity = $current_user->ID;
 $url_identity = $user_identity;
+//echo '<pre>';
+//print_r($current_user); exit;
 
-
+//exit;
 get_header();
 $errors = [];
 $message = '';
+
 if (isset($_POST['prescription_upload'])) {
 
     if (!empty($_FILES['prescription_file']['tmp_name'])) {
@@ -34,8 +37,7 @@ if (isset($_POST['prescription_upload'])) {
                 $prescription_file = $fileName;
             }
 
-            $first_name = esc_html($_POST['first_name']);
-            $last_name = esc_html($_POST['last_name']);
+            $name = esc_html($_POST['name']);
             $email = esc_html($_POST['email']);
             $location = esc_html($_POST['location']);
             $mobile = esc_html($_POST['mobile']);
@@ -47,8 +49,7 @@ if (isset($_POST['prescription_upload'])) {
 
 
             $status = $wpdb->insert($table_name, array(
-                'first_name' => $first_name,
-                'last_name' => $last_name,
+                'name' => $name,
                 'email' => $email,
                 'location' => $location,
                 'mobile' => $mobile,
@@ -84,56 +85,70 @@ if (isset($_POST['prescription_upload'])) {
 
             ?>
             <form action="<?= site_url('prescription-upload') ?>" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>First Name</label>
-                            <input type="text" name="first_name" class="form-control" placeholder="Enter your full name"
-                                   required>
-                        </div>
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" name="last_name" class="form-control" placeholder="Enter your full name">
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="Enter email address here"
-                                   required>
-                        </div>
-                        <div class="form-group">
-                            <label>Location</label>
-                            <input type="location" name="location" class="form-control"
-                                   placeholder="Enter location here" required>
-                        </div>
+                <?php if (is_user_logged_in()) {
+                    $user = $current_user;
+                    $userdata = $user->data;
+                    $userMeta = get_user_meta($userdata->ID);
 
-                    </div>
-                    <div class="col-md-6">
+                    ?>
 
-                        <div class="form-group">
-                            <label>Mobile</label>
-                            <input type="mobile" name="mobile" class="form-control" placeholder="01XXXXXXXXX" required>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name"
+                                       value="<?php echo $userMeta['first_name'][0] . ' ' . $userMeta['last_name'][0] ?>"
+                                       class="form-control"
+                                       placeholder="Enter your full name"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" value="<?php echo $userdata->user_email ?>"
+                                       class="form-control"
+                                       placeholder="Enter email address here"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="location" value="<?php echo $userMeta['user_address'][0] ?>"
+                                       name="location" class="form-control"
+                                       placeholder="Enter address here" required>
+                            </div>
+
                         </div>
-                        <div class="form-group">
-                            <label>Alternative Mobile</label>
-                            <input type="mobile" name="mobile_alternative" class="form-control"
-                                   placeholder="01XXXXXXXXX">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label>Mobile</label>
+                                <input type="mobile" name="mobile" class="form-control"
+                                       value="<?php echo $userMeta['phone_number'][0] ?>" placeholder="01XXXXXXXXX"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label>Alternative Mobile</label>
+                                <input type="mobile" name="mobile_alternative" class="form-control"
+                                       placeholder="01XXXXXXXXX">
+                            </div>
+                            <div class="form-group">
+                                <label>Select Prescription File</label>
+                                <input type="file" name="prescription_file" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Select Prescription File</label>
-                            <input type="file" name="prescription_file" required>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Note </label>
+                                <textarea name="note" cols="4" rows="4" class="form-control"
+                                          placeholder="Enter note text here"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" name="prescription_upload" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Note </label>
-                            <textarea name="note" cols="4" rows="4" class="form-control"
-                                      placeholder="Enter note text here"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="submit" name="prescription_upload" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
+                    <?php
+                }
+                ?>
             </form>
         </div>
 

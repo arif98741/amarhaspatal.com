@@ -134,7 +134,8 @@ $flag = rand(1, 9999);
                                     <?php } ?>
                                     <?php docdirect_get_verified_tag(true, $user->ID, '', 'v2'); ?>
                                     <a href="<?php echo get_author_posts_url($user->ID); ?>" class="list-avatar"><img
-                                                hereis src="<?php echo esc_attr($avatar); ?>"
+                                                hereis class="feature-listing-image"
+                                                src="<?php echo esc_attr($avatar); ?>"
                                                 alt="<?php echo esc_attr($directories_array['name']); ?>"></a>
                                     <?php do_action('docdirect_display_provider_category', $user->ID); ?>
                                 </figure>
@@ -268,7 +269,7 @@ $flag = rand(1, 9999);
         </div>
     <?php } ?>
     <style>
-        .owl-carousel .owl-item img {
+        .owl-carousel .owl-item img.feature-listing-image {
             height: 254px !important;
 
         }

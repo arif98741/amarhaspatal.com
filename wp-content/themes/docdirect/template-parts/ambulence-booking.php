@@ -17,6 +17,7 @@ if (isset($_POST['ambulance_type'])) {
     $trip_type = esc_html($_POST['trip_type']);
     $full_name = esc_html($_POST['full_name']);
     $email = esc_html($_POST['email']);
+    $reference_id = esc_html($_POST['reference_id']);
     $contact_no = esc_html($_POST['contact_no']);
     global $wpdb; //removed $name and $description there is no need to assign them to a global variable
     // $table_name = $wpdb->prefix . "liquor_type"; //try not using Uppercase letters or blank spaces when naming db tables
@@ -31,7 +32,8 @@ if (isset($_POST['ambulance_type'])) {
         'trip_type' => $trip_type,
         'full_name' => $full_name,
         'email' => $email,
-        'contact_no' => $contact_no
+        'reference_id' => $reference_id,
+        'contact_no' => $contact_no,
 
     ));
     if ($status) {
@@ -760,7 +762,7 @@ if (isset($_POST['ambulance_type'])) {
                         <form method="POST" action="<?= site_url('ambulance-booking') ?>">
 
                             <div class="form-row">
-                                <div class="name">Select Ambulance Type</div>
+                                <div class="name">Ambulance Type</div>
                                 <div class="value m-b-25">
 
                                     <select name="ambulance_type" class="input--style-6" required>
@@ -774,20 +776,22 @@ if (isset($_POST['ambulance_type'])) {
                                     </select>
                                 </div>
 
-                                <div class="name">Booking Date</div>
+                                <div class="name">Departing Date</div>
                                 <div class="value m-b-25">
                                     <input class="input--style-6" type="date" name="booking_date" required>
                                 </div>
 
                                 <div class="name">Start from</div>
                                 <div class="value m-b-25">
-                                    <input class="input--style-6" type="text" name="start_from" required>
+                                    <input class="input--style-6" type="text" placeholder="Enter starting location"
+                                           name="start_from" required>
                                 </div>
 
 
                                 <div class="name">Destination</div>
                                 <div class="value m-b-25">
-                                    <input class="input--style-6" type="text" name="destination" required>
+                                    <input class="input--style-6" type="text" placeholder="Enter destination location"
+                                           name="destination" required>
                                 </div>
 
                                 <div class="name">Select Trip Type</div>
@@ -801,7 +805,7 @@ if (isset($_POST['ambulance_type'])) {
                                     </select>
                                 </div>
 
-                                <div class="name">Full name</div>
+                                <div class="name">Name</div>
                                 <div class="value m-b-25">
                                     <input class="input--style-6" type="text" placeholder="Enter your full name"
                                            name="full_name" required>
@@ -811,6 +815,12 @@ if (isset($_POST['ambulance_type'])) {
                                 <div class="value m-b-25">
                                     <input class="input--style-6" type="text" placeholder="Enter your email here"
                                            name="email" required>
+                                </div>
+                                <div class="name">Reference ID</div>
+                                <div class="value m-b-25">
+                                    <input class="input--style-6" type="text"
+                                           placeholder="Enter reference id if available"
+                                           name="reference_id" required>
                                 </div>
 
                                 <div class="name">Contact No</div>

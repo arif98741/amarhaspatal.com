@@ -35,7 +35,7 @@ if (isset($theme_type) && $theme_type === 'custom') {
 }
 
 ?>
-<div  role="tabpanel" class="tg-tabpane tab-pane active" id="reviews">
+<div role="tabpanel" class="tg-tabpane tab-pane active" id="reviews">
     <?php if (isset($reviews_switch) && $reviews_switch === 'enable') { ?>
         <div class="tg-userreviews">
             <div class="tg-userheading">

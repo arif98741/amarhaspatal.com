@@ -17,6 +17,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
     if (apply_filters('docdirect_is_visitor', $author_profile->ID) === false) {
         $directory_type = $author_profile->directory_type;
 
+
         $uni_flag = rand(1, 9999);
         $privacy = docdirect_get_privacy_settings($author_profile->ID); //Privacy settings
 
@@ -125,53 +126,64 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 </div>
                                 <div class="tg-haslayout provider-sections">
                                     <?php
-
+                                    /*echo '<pre>';
+                                    print_r($display_settings); exit;
                                     foreach ($display_settings as $key => $value) {
-                                        if ($directory_type == 127) {
-                                            if ($key == 'map' || $key == 'reviews' || $key == 'specialities'
-                                                || $key == 'experience' || $key == 'awards' || $key == 'education') {
-                                                continue;
-                                            }
-                                            get_template_part('directory/provider-page/template-author', $key);
-                                        } else {
-                                            echo 'hi';
-                                            if ($key == 'map') {
-                                                continue;
-                                            }
-                                            get_template_part('directory/provider-page/template-author', $key);
-
+                                        if ($directory_type == 127 && ($key == 'map' || $key == 'reviews' || $key == 'specialities'
+                                                || $key == 'experience' || $key == 'awards' || $key == 'education')) {
+                                            continue;
                                         }
+                                        get_template_part('directory/provider-page/template-author', $key);
 
                                     }
-                                    get_template_part('directory/provider-page/template-author-reviews');
+                                    */
+
+                                    get_template_part('directory/provider-page/template-author-about');
+                                    get_template_part('directory/provider-page/template-author-ads-area');
+                                    get_template_part('directory/provider-page/template-author-ads-languages');
+                                    get_template_part('directory/provider-page/template-author-ads-prices');
+                                    get_template_part('directory/provider-page/template-author-ads-video');
+                                    get_template_part('directory/provider-page/template-author-ads-gallery');
                                     get_template_part('directory/provider-page/template-author-map');
+                                    get_template_part('directory/provider-page/template-author-more-info-tabs');
+                                    //get_template_part('directory/provider-page/template-author-reviews');
+
                                     ?>
+
                                 </div>
                             </div>
                         <?php } else { ?>
                             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-                                <div class="tg-haslayout provider-sections">
-                                    <div class="col-md-12">
 
-
-                                    </div>
-                                </div>
                                 <div class="tg-haslayout provider-sections">
                                     <?php
 
-                                    foreach ($display_settings as $key => $value) {
+                                    /*foreach ($display_settings as $key => $value) {
 
                                         if ($key == 'map' || $key == 'reviews') {
                                             continue;
                                         }
                                         get_template_part('directory/provider-page/template-author', $key);
 
-                                    }
-                                    get_template_part('directory/provider-page/template-author-reviews');
+                                    }*/
+                                    get_template_part('directory/provider-page/template-author-about');
+                                    get_template_part('directory/provider-page/template-author-ads-area');
+                                    get_template_part('directory/provider-page/template-author-ads-languages');
+                                    get_template_part('directory/provider-page/template-author-ads-prices');
+                                    get_template_part('directory/provider-page/template-author-ads-video');
+                                    get_template_part('directory/provider-page/template-author-ads-gallery');
                                     get_template_part('directory/provider-page/template-author-map');
+                                    get_template_part('directory/provider-page/template-author-more-info-tabs');
+                                   // get_template_part('directory/provider-page/template-author-reviews');
+
                                     ?>
                                 </div>
+                                <?php
+                                //  get_template_part('directory/provider-page/template-author-map');
+                                //  get_template_part('directory/provider-page/template-author-reviews');
+                                ?>
                             </div>
+
                         <?php } ?>
                     </div>
 

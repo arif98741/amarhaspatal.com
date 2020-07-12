@@ -21,15 +21,14 @@ if (!defined('ABSPATH')) {
 
 ?>
 
-<?php if (is_user_logged_in()) : ?>
-    <div class="container">
-        <div class="row">
-            <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right"> Upload
-                Prescription </a>
-        </div>
-        <br>
+
+<div class="container">
+    <div class="row">
+        <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right"> Upload
+            Prescription </a>
     </div>
-<?php endif; ?>
+    <br>
+</div>
 <br>
 <form class="woocommerce-ordering pull-left" method="get">
     <input class="form-control" name="search_key">

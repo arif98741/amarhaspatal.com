@@ -562,7 +562,7 @@ if (!function_exists('docdirect_get_booking_step_two_calender')) {
             <div class="tg-appointmenttime">
                 <?php if (!empty($schedule_message)) { ?>
                     <div class="tg-description">
-                        <p>Please click on below calender<br> to find out available schedule</p>
+                        <p>Select Date and Schedule</p>
                     </div>
                 <?php } ?>
                 <div class="clearfix"></div>
