@@ -18,12 +18,16 @@ $schedule_time_format = isset($author_profile->time_format) ? $author_profile->t
 $privacy = docdirect_get_privacy_settings($author_profile->ID); //Privacy settings
 $db_timezone = get_user_meta($author_profile->ID, 'default_timezone', true);
 $time_zone = get_user_meta($author_profile->ID, 'default_timezone', true);
+echo '<pre>';
 $slots = get_user_meta($author_profile->ID, 'default_slots')[0];
+print_r($slots);
+exit;
 
-if (!empty($slots)) {
+if (apply_filters('docdirect_is_setting_enabled', $author_profile->ID, 'default_slots') === true) {
 
-    $modified_slots = [];
-    $week_array = docdirect_get_week_array();
+    echo '<pre>';
+    print_r(get_user_meta($author_profile->ID, 'default_slots')[0]);
+    exit;
 
     if (!empty($privacy['opening_hours'])
         &&
@@ -41,13 +45,18 @@ if (!empty($slots)) {
                 if (isset($author_profile->schedules) && !empty($author_profile->schedules)) {
                     $db_schedules = $author_profile->schedules;
                 }
+                //echo '<pre>';
+                //  print_r($author_profile); exit;
 
+
+                //Time format
                 if (isset($schedule_time_format) && $schedule_time_format === '24hour') {
                     $time_format = 'H:i';
                 } else {
                     $time_format = get_option('time_format');
                     $time_format = !empty($time_format) ? $time_format : 'g:i A';
                 }
+
 
                 $date_prefix = date('D');
 

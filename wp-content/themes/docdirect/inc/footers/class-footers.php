@@ -214,13 +214,7 @@ if (!class_exists('docdirect_footers')) {
                 <?php } ?>
                 <div class="doc-footerbottombar">
                     <div class="container">
-                        <?php if (!empty($footer_type['footer_v2']['footer_menu']) && $footer_type['footer_v2']['footer_menu'] === 'enable') { ?>
-                            <nav class="doc-footernav">
-                                <?php docdirect_headers::docdirect_prepare_navigation('footer-menu', '', '', '0'); ?>
-                            </nav>
-                        <?php } ?>
-                        <?php if (isset($footer_copyright) && $footer_copyright != '') { ?><p
-                                class="doc-copyrights"><?php echo force_balance_tags($footer_copyright); ?></p><?php } ?>
+                        <p style="color: #fff !important;"><img src="https://softbdltd.com/images/logo.png"> Designed and Developed by <a href="https://softbdltd.com/">SoftBD Ltd</a> </p>
                     </div>
                 </div>
             </footer>

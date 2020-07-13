@@ -615,7 +615,8 @@ jQuery(document).ready(function ($) {
                     });
                     if (response.url) {
                         jQuery('body').append(loder_html);
-                        window.location.replace(response.url);
+                        //window.location.replace(response.url);
+                        window.location.replace(window.location.href);
                     } else {
                         window.location.reload();
                     }

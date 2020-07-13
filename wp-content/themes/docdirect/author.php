@@ -174,7 +174,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     get_template_part('directory/provider-page/template-author-ads-gallery');
                                     get_template_part('directory/provider-page/template-author-map');
                                     get_template_part('directory/provider-page/template-author-more-info-tabs');
-                                   // get_template_part('directory/provider-page/template-author-reviews');
+                                    // get_template_part('directory/provider-page/template-author-reviews');
 
                                     ?>
                                 </div>
@@ -322,4 +322,17 @@ do_action('am_chat_modal', $author_profile->ID);
         color: #333;
         font-weight: 600;
     }
+
+    .nav-tabs {
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 17px;
+    }
+
+    div#nav-tab a {
+        padding: 11px;
+        font-size: 18px;
+        border: 2px solid #000;
+        margin-bottom: 20px !important;
+    }
+
 </style>
