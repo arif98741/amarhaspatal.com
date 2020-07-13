@@ -218,10 +218,6 @@ if (!function_exists('docdirect_user_registration')) {
         $terms = esc_attr($_POST['terms']);
         $password = esc_sql($_POST['password']);
         $confirm_password = esc_sql($_POST['confirm_password']);
-        $loc_division_id = esc_sql($_POST['division_id']);
-        $loc_district_id = esc_sql($_POST['district_id']);
-        $loc_upazila_id = esc_sql($_POST['upazila_id']);
-        $loc_union_id = esc_sql($_POST['union_id']);
 
         $json = array();
 
@@ -308,11 +304,7 @@ if (!function_exists('docdirect_user_registration')) {
             //TODO:: here should update user_data
             $wpdb->update(
                 $wpdb->prefix . 'users',
-                array('user_status' => 1,
-                    'loc_division_id' => $loc_division_id,
-                    'loc_district_id' => $loc_district_id,
-                    'loc_upazila_id' => $loc_upazila_id,
-                    'loc_union_id' => $loc_union_id
+                array('user_status' => 1
                 ),
                 array('ID' => esc_sql($user_identity))
             );
@@ -342,6 +334,9 @@ if (!function_exists('docdirect_user_registration')) {
             update_user_meta($user_identity, 'last_name', esc_sql($_POST['last_name']));
             update_user_meta($user_identity, 'phone_number', esc_sql($_POST['phone_number']));
             update_user_meta($user_identity, 'directory_type', esc_sql($_POST['directory_type']));
+            update_user_meta($user_identity, 'division_id', esc_sql($_POST['division_id']));
+            update_user_meta($user_identity, 'district_id', esc_sql($_POST['district_id']));
+            update_user_meta($user_identity, 'upazila_id', esc_sql($_POST['upazila_id']));
             update_user_meta($user_identity, 'latitude', $dir_latitude);
             update_user_meta($user_identity, 'longitude', $dir_longitude);
             update_user_meta($user_identity, 'profile_status', 'active');

@@ -2094,7 +2094,9 @@ if (!function_exists('docdirect_get_featured_tag')) {
 if (!function_exists('docdirect_get_verified_tag')) {
     function docdirect_get_verified_tag($echo = false, $user_id = '', $view_type = 'svg', $view = 'v1')
     {
+
         global $current_user;
+
 
         if (!empty($user_id)) {
             $featured_date = get_user_meta($user_id, 'verify_user', true);

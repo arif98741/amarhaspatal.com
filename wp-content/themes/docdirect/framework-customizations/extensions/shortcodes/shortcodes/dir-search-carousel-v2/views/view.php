@@ -104,8 +104,6 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
     }
 
 
-
-
 </style>
 <div id="doc-homebannerslider-<?php echo esc_attr($uni_flag); ?>"
      class="doc-homebannerslider doc-haslayout <?php echo esc_attr($isadvance_filter); ?>">
@@ -125,7 +123,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-6">
                                         <div class="form-group" ng-init="country = 'Bangladesh'">
                                             <label for="country">Division</label>
-                                            <select name="division_id" id="division_id" class="form-control">
+                                            <select name="division_id" id="division_id_temp" class="form-control">
                                                 <option>Selects Division</option>
                                                 <?php
                                                 global $wpdb;
@@ -143,7 +141,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-6">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">District</label>
-                                            <select name="district_id" id="district_id" class="form-control">
+                                            <select name="district_id" id="district_id_temp" class="form-control">
                                                 <option value="">Select District</option>
 
                                             </select>
@@ -152,7 +150,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-6">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">Upazila</label>
-                                            <select name="upazila_id" id="upazila_id" class="form-control">
+                                            <select name="upazila_id" id="upazila_id_temp" class="form-control">
                                                 <option>Select Upazila</option>
                                             </select>
                                         </div>

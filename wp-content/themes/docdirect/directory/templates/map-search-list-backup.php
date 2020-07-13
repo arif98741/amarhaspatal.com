@@ -22,102 +22,14 @@ docdirect_enque_map_library();//init Map
 
 //Search center point
 $direction = docdirect_get_location_lat_long();
-$show_users = !empty($atts['show_users']) ? $atts['show_users'] : 10;
-/*$query_args = array(
-    'role' => 'professional',
-    'count_total' => true,
-    'order' => 'ASC',
-    'number' => $show_users,
-    'meta_query' => array(
-        'relation' => 'AND',
-        array(
-            'key' => 'loc_division_id',
-            'value' => '5',
-            'compare' => '='
-        ),
-        array(
-            'key' => 'loc_district_id',
-            'value' => 58,
-            'compare' => '='
-        )
-    )
-);*/
-$directory_type = esc_html($_GET['directory_type']);
-$search_key = esc_html($_GET['search_key']);
-$division_id = esc_html($_GET['division_id']);
-$district_id = esc_html($_GET['district_id']);
-$upazila_id = esc_html($_GET['upazila_id']);
-if (!empty($directory_type)) {
-    $meta_query = array(
-        'relation' => 'AND',
-        array(
-            'key' => 'directory_type',
-            'value' => $directory_type,
-            'compare' => '='
-        ),
-        array(
-            'key' => 'username',
-            'value' => $search_key,
-            'compare' => 'LIKE'
-        )
-    );
-
-} else {
-
-
-    $meta_query = array(
-        'relation' => 'OR',
-        array(
-            'key' => 'user_profile_specialities',
-            'value' => $search_key,
-            'compare' => 'LIKE'
-        ),
-        array(
-            'key' => 'division_id',
-            'value' => $division_id,
-            'compare' => 'LIKE'
-        ),
-        array(
-            'key' => 'district_id',
-            'value' => $district_id,
-            'compare' => 'LIKE'
-        ),
-        array(
-            'key' => 'upazila_id',
-            'value' => $upazila_id,
-            'compare' => 'LIKE'
-        ),
-        array(
-            'key' => 'display_name',
-            'value' => $search_key,
-            'compare' => 'LIKE'
-        )
-    );
-}
-//if ()
-//    echo '<pre>';
-print_r($meta_query);
-
-
-$query_args = $args = array(
-    //'role'       => 'professi',
-    //TODO:: need to work here
-    'number' => $show_users,
-    'order' => 'ASC',
-    'orderby' => 'display_name',
-    'meta_query' => $meta_query
-
-);
 
 
 //query
 $user_query = new WP_User_Query($query_args);
-//echo '<pre>';
-//print_r($user_query->results);
-//exit;
 
 $total_users = !empty($user_query->total_users) ? $user_query->total_users : 0;
 $found_title = docdirect_get_found_title($total_users, $directory_type);
+
 
 if (isset($search_page_map) && $search_page_map === 'enable') {
     ?>

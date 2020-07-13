@@ -1815,7 +1815,14 @@ if (!function_exists('docdirect_search_filters')) {
                 </div>
                 <div class="doc-widgetcontent">
                     <fieldset>
-                        <div class="form-group" >
+                        <?php if (isset($dir_keywords) && $dir_keywords === 'enable') { ?>
+                            <div class="form-group">
+                                <input type="text" class="form-control" value="<?php echo esc_attr($by_name); ?>"
+                                       name="search_key"
+                                       placeholder="<?php esc_html_e('Speciality', 'docdirect'); ?>">
+                            </div>
+                        <?php } ?>
+                        <div class="form-group">
                             <label for="city">Service</label>
                             <select name="directory_type">
 
@@ -1828,16 +1835,10 @@ if (!function_exists('docdirect_search_filters')) {
 
                             </select>
                         </div>
-                        <?php if (isset($dir_keywords) && $dir_keywords === 'enable') { ?>
-                            <div class="form-group">
-                                <input type="text" class="form-control" value="<?php echo esc_attr($by_name); ?>"
-                                       name="by_name"
-                                       placeholder="<?php esc_html_e('Speciality', 'docdirect'); ?>">
-                            </div>
-                        <?php } ?>
+
                         <div class="form-group">
                             <div class="doc-select">
-                                <select name="division_id" id="division_id" class="form-control">
+                                <select name="division_id" id="division_id_temp" class="form-control">
                                     <option>Select Division</option>
                                     <?php
                                     global $wpdb;
@@ -1929,7 +1930,7 @@ if (!function_exists('docdirect_search_filters')) {
 
                         <div class="form-group">
                             <div class="tg-inputicon tg-geolocationicon tg-angledown">
-                                <select name="district_id" id="district_id" class="form-control">
+                                <select name="district_id" id="district_id_temp" class="form-control">
                                     <option value="">Select District</option>
                                 </select>
                             </div>
@@ -1937,14 +1938,14 @@ if (!function_exists('docdirect_search_filters')) {
 
                         <div class="form-group">
                             <div class="tg-inputicon tg-geolocationicon tg-angledown">
-                                <select name="upazila_id" id="upazila_id" class="form-control">
+                                <select name="upazila_id" id="upazila_id_temp" class="form-control">
                                     <option value="">Select Upazila</option>
                                 </select>
                             </div>
                         </div>
                         <div style="display: none" class="form-group">
                             <div class="tg-inputicon tg-geolocationicon tg-angledown">
-                                <select name="union_id" id="union_id" class="form-control">
+                                <select name="union_id" id="union_id_temp" class="form-control">
                                     <option value="">Select Union</option>
                                 </select>
                             </div>

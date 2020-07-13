@@ -442,7 +442,6 @@ jQuery(document).ready(function ($) {
      * ---------------------------------------------
      */
     jQuery('#division_id').on('change', function (event) {
-
         var division_id = jQuery(this).val();
         jQuery.ajax({
             type: "POST",
@@ -457,6 +456,35 @@ jQuery(document).ready(function ($) {
                 $.each(response, function (key, value) {
 
                     $('#district_id')
+                        .append($("<option></option>")
+                            .attr("value", value.id)
+                            .text(value.title_en));
+                });
+            }
+        });
+    });
+    /**
+     * ---------------------------------------
+     * Change on Division Dropdown
+     * Get Districts
+     * ---------------------------------------------
+     */
+    jQuery('#division_id_temp').on('change', function (event) {
+
+        var division_id = jQuery(this).val();
+        jQuery.ajax({
+            type: "POST",
+            url: scripts_vars.ajaxurl,
+            data: {
+                'action': 'get_district_bydivision',
+                'division_id': division_id
+            },
+            dataType: "json",
+            success: function (response) {
+                $('#district_id_temp').html('<option value="">Select District </option>');
+                $.each(response, function (key, value) {
+
+                    $('#district_id_temp')
                         .append($("<option></option>")
                             .attr("value", value.id)
                             .text(value.title_en));
@@ -487,6 +515,35 @@ jQuery(document).ready(function ($) {
                 $.each(response, function (key, value) {
 
                     $('#upazila_id')
+                        .append($("<option></option>")
+                            .attr("value", value.id)
+                            .text(value.title_en));
+                });
+            }
+        });
+    });
+
+    /**
+     * ---------------------------------------
+     * Change on District Dropdown
+     * Get Upazilas
+     * ---------------------------------------------
+     */
+    jQuery('#district_id_temp').on('change', function (event) {
+        var district_id = jQuery(this).val();
+        jQuery.ajax({
+            type: "POST",
+            url: scripts_vars.ajaxurl,
+            data: {
+                'action': 'get_upazila_bydistrict',
+                'district_id': district_id
+            },
+            dataType: "json",
+            success: function (response) {
+                $('#upazila_id_temp').html('<option value="">Select Upazila </option>');
+                $.each(response, function (key, value) {
+
+                    $('#upazila_id_temp')
                         .append($("<option></option>")
                             .attr("value", value.id)
                             .text(value.title_en));
@@ -531,8 +588,37 @@ jQuery(document).ready(function ($) {
      * Get Unions
      * ---------------------------------------------
      */
+    jQuery('#upazila_id_temp').on('change', function (event) {
+        var upazila_id = jQuery(this).val();
+        jQuery.ajax({
+            type: "POST",
+            url: scripts_vars.ajaxurl,
+            data: {
+                'action': 'get_union_byupazila',
+                'upazila_id': upazila_id
+            },
+            dataType: "json",
+            success: function (response) {
+                $('#union_id_temp').html('<option value="">Select Union </option>');
+                $.each(response, function (key, value) {
+
+                    $('#union_id_temp')
+                        .append($("<option></option>")
+                            .attr("value", value.id)
+                            .text(value.title_en));
+                });
+            }
+        });
+    });
+
+
+    /**
+     * ---------------------------------------
+     * Change on Upazila Dropdown
+     * Get Unions
+     * ---------------------------------------------
+     */
     jQuery('#ambulanceBookingbtn').on('change', function (event) {
-        alert('hello boos');
     });
 
     /**

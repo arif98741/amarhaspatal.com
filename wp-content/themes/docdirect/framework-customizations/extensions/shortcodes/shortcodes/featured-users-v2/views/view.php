@@ -20,7 +20,7 @@ $is_verify = 'on';
 $query_args = array(
     'role' => 'professional',
     'count_total' => false,
-    'order' => $order,
+    'order' => 'ASC',
     'number' => $show_users
 );
 
