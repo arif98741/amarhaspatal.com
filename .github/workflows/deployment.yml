@@ -1,0 +1,18 @@
+on:
+  push:
+    branches: [ deploy ]
+name: Amarhaspatal Deployment
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 2
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@3.1.0
+        with:
+          ftp-server: ftp://ftp.amarhaspatal.com/public_html/amarhaspatal.com
+          ftp-username: ${{ secrets.USERNAME }}
+          ftp-password: ${{ secrets.PASSWORD }}
