@@ -423,7 +423,7 @@ $prescriptions = $wpdb->get_results("SELECT * FROM prescriptions where created_a
             ?>
             <tr>
                 <td colspan="10">
-                    <?php DoctorDirectory_NotificationsHelper::informations(esc_html__('No booking data found.', 'docdirect')); ?>
+                    <?php DoctorDirectory_NotificationsHelper::informations(esc_html__('No prescriptions data found.', 'docdirect')); ?>
                 </td>
             </tr>
         <?php }; ?>
