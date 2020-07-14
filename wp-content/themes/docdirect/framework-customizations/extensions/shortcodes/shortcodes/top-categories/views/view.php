@@ -60,9 +60,8 @@ $cust_query = get_posts($args);
             } else {
                 $banner = get_template_directory_uri() . '/images/user470x305.jpg';;
             }
-            ID
-            ?>
 
+            ?>
             <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="doc-category">
                     <figure class="doc-categoryimg">
