@@ -17,6 +17,7 @@ $directory_type = $author_profile->directory_type;
 if (function_exists('fw_get_db_settings_option')) {
     $claims_switch = fw_get_db_post_option($directory_type, 'claims', true);
 }
+$disabled = 0;
 
 
 if (!empty($claims_switch)
@@ -26,7 +27,7 @@ if (!empty($claims_switch)
 ) {
     if (isset($current_user->ID)
         && $current_user->ID != $author_profile->ID
-        && is_user_logged_in()
+        && is_user_logged_in() && $disabled == 1
     ) {
         ?>
         <div class="claim-box tg-widget tg-claimreport">

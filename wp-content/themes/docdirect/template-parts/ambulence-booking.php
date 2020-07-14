@@ -816,21 +816,27 @@ if (isset($_POST['ambulance_type'])) {
                                     <input class="input--style-6" type="text" placeholder="Enter your email here"
                                            name="email" required>
                                 </div>
+
+                                <div class="name">Contact No</div>
+                                <div class="value m-b-25">
+                                    <input class="input--style-6 m-b-25" type="text" placeholder="Contact No"
+                                           name="contact_no" required>
+                                </div>
+
                                 <div class="name">Reference ID</div>
                                 <div class="value m-b-25">
                                     <input class="input--style-6" type="text"
                                            placeholder="Enter reference id if available"
                                            name="reference_id" required>
                                 </div>
-
-                                <div class="name">Contact No</div>
                                 <div class="value m-b-25">
-                                    <input class="input--style-6 m-b-25" type="text" placeholder="Contact No"
-                                           name="contact_no" required>
                                     <button class="btn btn--radius-2 btn--blue-2" id="ambulanceBookingbtn"
                                             type="submit">Submit
                                     </button>
                                 </div>
+
+
+
                             </div>
 
 
