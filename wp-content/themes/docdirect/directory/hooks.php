@@ -1092,6 +1092,7 @@ if (!function_exists('docdirect_get_wishlist_button')) {
     function docdirect_get_wishlist_button($post_id = '', $echo = false, $view = 'v1')
     {
         global $current_user;
+
         if (isset($post_id) && $post_id != $current_user->ID) {
             $wishlist = array();
             $wishlist = get_user_meta($current_user->ID, 'wishlist', true);
