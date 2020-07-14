@@ -133,7 +133,8 @@ $flag = rand(1, 9999);
                                         <?php docdirect_get_featured_tag(true, 'v2'); ?>
                                     <?php } ?>
                                     <?php docdirect_get_verified_tag(true, $user->ID, '', 'v2'); ?>
-                                    <a href="<?php echo get_author_posts_url($user->ID); ?>" class="list-avatar"><img
+                                    <a href="<?php echo ($directory_type != 122) ? get_author_posts_url($user->ID) : '#'; ?>"
+                                       class="list-avatar"><img
                                                 hereis class="feature-listing-image"
                                                 src="<?php echo esc_attr($avatar); ?>"
                                                 alt="<?php echo esc_attr($directories_array['name']); ?>"></a>
@@ -142,7 +143,8 @@ $flag = rand(1, 9999);
                                 <div class="doc-featurecontent">
                                     <div class="doc-featurehead">
                                         <?php docdirect_get_wishlist_button($user->ID, true, 'v2'); ?>
-                                        <h2><a href="<?php echo get_author_posts_url($user->ID); ?>"
+                                        <h2>
+                                            <a href="<?php echo ($directory_type != 122) ? get_author_posts_url($user->ID) : '#'; ?>"
                                                class="list-avatar"><?php echo($get_username); ?></a></h2>
                                         <?php if (!empty($user->tagline)) { ?>
                                             <span><?php echo esc_attr($user->tagline); ?></span>
@@ -151,7 +153,7 @@ $flag = rand(1, 9999);
 
                                             <li><?php docdirect_get_likes_button($user->ID); ?></li>
                                             <?php
-                                            if (isset($reviews_switch) && $reviews_switch === 'enable') {
+                                            if (isset($reviews_switch) && $reviews_switch === 'enable' && $directory_type != 122) {
                                                 docdirect_get_rating_stars_v2($review_data, 'echo');
                                             }
                                             ?>
@@ -167,22 +169,39 @@ $flag = rand(1, 9999);
                                             &&
                                             !empty($privacy['phone'])
                                             &&
-                                            $privacy['phone'] == 'on'
+                                            $privacy['phone'] == 'on' && $directory_type != 123
                                         ) { ?>
                                             <li><i class="fa fa-phone"></i><span><a
                                                             href="tel:<?php echo esc_attr($directories_array['phone_number']); ?>"><?php echo esc_attr($directories_array['phone_number']); ?></a></span>
                                             </li>
+                                        <?php } else { ?>
+                                            <li><i class="fa fa-phone"></i><span><a
+                                                            href="#">01XXXXXXXXX</a></span>
+                                            </li>
                                         <?php } ?>
+
                                         <?php if (!empty($directories_array['email'])
                                             &&
                                             !empty($privacy['email'])
                                             &&
-                                            $privacy['email'] == 'on'
+                                            $privacy['email'] == 'on' && $directory_type != 123
                                         ) { ?>
                                             <li><i class="fa fa-envelope-o"></i><a
                                                         href="mailto:<?php echo esc_attr($directories_array['email']); ?>?subject:<?php esc_html_e('Hello', 'docdirect'); ?>"><?php echo esc_attr($directories_array['email']); ?></a>
                                             </li>
+
+                                        <?php } else { ?>
+                                            <li><i class="fa fa-envelope-o"></i><a
+                                                        href="#">something@example.com</a>
+                                            </li>
                                         <?php } ?>
+                                        <?php if ($directory_type == 122): ?>
+
+                                            <li><i class="fa fa-list"></i><?php echo get_user_meta($user_identity,
+                                                    'last_donation_date', true); ?>
+                                            </li>
+                                        <?php endif; ?>
+
                                         <?php if (!empty($directories_array['fax'])) { ?>
                                             <li>
                                                 <i class="fa fa-fax"></i><span><?php echo esc_attr($directories_array['fax']); ?></span>

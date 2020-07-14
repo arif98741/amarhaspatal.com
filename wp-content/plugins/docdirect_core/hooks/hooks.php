@@ -344,6 +344,10 @@ if (!function_exists('docdirect_user_registration')) {
             update_user_meta($user_identity, 'verify_user', 'off');
             update_user_meta($user_identity, 'rich_editing', 'true');
             update_user_meta($user_identity, 'privacy', $privacy);
+            //if blood donor
+            update_user_meta($user_identity, 'blood_group', '');
+            update_user_meta($user_identity, 'last_donation_date', '');
+            update_user_meta($user_identity, 'privacy', $privacy);
             $full_name = docdirect_get_username($user_identity);
             update_user_meta($user_identity, 'full_name', $full_name);
             if ($_POST['directory_type'] == 122) {

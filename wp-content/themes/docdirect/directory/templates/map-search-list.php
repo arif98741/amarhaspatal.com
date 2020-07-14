@@ -94,10 +94,6 @@ if (!empty($directory_type)) {
         )
     );
 }
-//if ()
-//    echo '<pre>';
-print_r($meta_query);
-
 
 $query_args = $args = array(
     //'role'       => 'professi',
@@ -274,7 +270,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                     &&
                                                     !empty($privacy['email'])
                                                     &&
-                                                    $privacy['email'] == 'on'
+                                                    $privacy['email'] == 'on' && $directory_type != 123
                                                 ) {
                                                     $infoBox .= '<li> <i class="fa fa-envelope"></i> <em><a href="mailto:' . $directories_array['email'] . '?Subject=' . esc_html__('hello', 'docdirect') . '"  target="_top">' . $directories_array['email'] . '</a></em> </li>';
                                                 }
@@ -283,7 +279,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                     &&
                                                     !empty($privacy['phone'])
                                                     &&
-                                                    $privacy['phone'] == 'on'
+                                                    $privacy['phone'] == 'on' && $directory_type != 123
                                                 ) {
                                                     $infoBox .= '<li> <i class="fa fa-phone"></i> <em><a href="javascript:;">' . $directories_array['phone_number'] . '</a></em> </li>';
                                                 }
@@ -306,7 +302,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                             <?php docdirect_get_featured_tag(true, 'v2'); ?>
                                                         <?php } ?>
                                                         <?php docdirect_get_verified_tag(true, $user->ID, '', 'v2'); ?>
-                                                        <a href="<?php echo get_author_posts_url($user->ID); ?>"
+                                                        <a href="<?php echo ($directory_type != 122) ? get_author_posts_url($user->ID) : '#'; ?>"
                                                            class="list-avatar">
                                                             <img src="<?php echo esc_attr($avatar); ?>"
                                                                  alt="<?php echo esc_attr($directories_array['name']); ?>">
@@ -316,7 +312,8 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                     <div class="doc-featurecontent">
                                                         <div class="doc-featurehead">
                                                             <?php docdirect_get_wishlist_button($user->ID, true, 'v2'); ?>
-                                                            <h2><a href="<?php echo get_author_posts_url($user->ID); ?>"
+                                                            <h2>
+                                                                <a href="<?php echo ($directory_type != 122) ? get_author_posts_url($user->ID) : '#'; ?>"
                                                                    class="list-avatar"><?php echo($get_username); ?></a>
                                                             </h2>
                                                             <?php if (!empty($user->tagline)) { ?>
@@ -326,7 +323,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 
                                                                 <li><?php docdirect_get_likes_button($user->ID); ?></li>
                                                                 <?php
-                                                                if (isset($reviews_switch) && $reviews_switch === 'enable') {
+                                                                if (isset($reviews_switch) && $reviews_switch === 'enable' && $directory_type != 122) {
                                                                     docdirect_get_rating_stars_v2($review_data, 'echo');
                                                                 }
                                                                 ?>
@@ -347,26 +344,44 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                                 &&
                                                                 !empty($privacy['phone'])
                                                                 &&
-                                                                $privacy['phone'] == 'on'
+                                                                $privacy['phone'] == 'on' && $directory_type != 123
                                                             ) { ?>
                                                                 <li>
                                                                     <i class="fa fa-phone"></i><span><?php echo esc_attr($directories_array['phone_number']); ?></span>
                                                                 </li>
+                                                            <?php } else { ?>
+                                                                <li>
+                                                                    <i class="fa fa-phone"></i><span>01XXXXXXXXX</span>
+                                                                </li>
                                                             <?php } ?>
+
                                                             <?php if (!empty($directories_array['email'])
                                                                 &&
                                                                 !empty($privacy['email'])
                                                                 &&
-                                                                $privacy['email'] == 'on'
+                                                                $privacy['email'] == 'on' && $directory_type != 123
                                                             ) { ?>
                                                                 <li><i class="fa fa-envelope-o"></i><a
                                                                             href="mailto:<?php echo esc_attr($directories_array['email']); ?>?subject:<?php esc_html_e('Hello', 'docdirect'); ?>"><?php echo esc_attr($directories_array['email']); ?></a>
+                                                                </li>
+                                                            <?php } else { ?>
+                                                                <li><i class="fa fa-envelope-o"></i><a
+                                                                            href="#">something@example.com</a>
                                                                 </li>
                                                             <?php } ?>
                                                             <?php if (!empty($directories_array['fax'])) { ?>
                                                                 <li>
                                                                     <i class="fa fa-fax"></i><span><?php echo esc_attr($directories_array['fax']); ?></span>
                                                                 </li>
+                                                            <?php } ?>
+                                                            <?php if ($directory_type == 122) { ?>
+                                                                <li>
+                                                                    <i class="fa fa-fax"></i><span>Blood Date: <?php echo get_user_meta($user->ID, 'blood_group')[0]; ?></span>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-calendar"></i><span>Last donation date: <?php echo get_user_meta($user->ID, 'last_donation_date')[0]; ?></span>
+                                                                </li>
+
                                                             <?php } ?>
 
                                                             <?php
