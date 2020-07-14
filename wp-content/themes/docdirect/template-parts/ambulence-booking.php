@@ -745,6 +745,7 @@ if (isset($_POST['ambulance_type'])) {
         }
     </style>
     <div class="container">
+        <h1>Hello Ambulance Man</h1>
         <div class="page-wrapper bg-blue p-t-100 p-b-50">
             <div class="wrapper wrapper--w900">
                 <div class="card card-6">
