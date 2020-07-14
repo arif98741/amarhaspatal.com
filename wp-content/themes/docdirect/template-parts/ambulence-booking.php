@@ -766,7 +766,7 @@ if (isset($_POST['ambulance_type'])) {
                                 <div class="value m-b-25">
 
                                     <select name="ambulance_type" class="input--style-6" required>
-                                        <option value="" selected disabled>--</option>
+                                        <option value="" selected disabled>Select Ambulance Type</option>
                                         <option value="Ac">Ac Ambulance</option>
                                         <option value="Non-Ac"> Non-Ac Ambulance</option>
                                         <option value="ICU"> ICU Ambulance</option>
@@ -798,7 +798,7 @@ if (isset($_POST['ambulance_type'])) {
                                 <div class="value m-b-25">
 
                                     <select name="trip_type" class="input--style-6" id="sel1" required>
-                                        <option value="" selected disabled>--</option>
+                                        <option value="" selected disabled>Select Type</option>
                                         <option value="Single Trip">Single Trip</option>
                                         <option value="Round Trip">Round Trip</option>
 

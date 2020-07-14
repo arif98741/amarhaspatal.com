@@ -1815,18 +1815,12 @@ if (!function_exists('docdirect_search_filters')) {
                 </div>
                 <div class="doc-widgetcontent">
                     <fieldset>
-                        <?php if (isset($dir_keywords) && $dir_keywords === 'enable') { ?>
-                            <div class="form-group">
-                                <input type="text" class="form-control" value="<?php echo esc_attr($by_name); ?>"
-                                       name="search_key"
-                                       placeholder="<?php esc_html_e('Speciality', 'docdirect'); ?>">
-                            </div>
-                        <?php } ?>
+
                         <div class="form-group">
                             <label for="city">Service</label>
                             <select name="directory_type">
 
-                                <option value="0" selected>---</option>
+                                <option value="0" selected>Select Service</option>
                                 <option value="123">Ambulance</option>
                                 <option value="122">Blood Donor</option>
                                 <option value="121">Diagnostics</option>
@@ -1835,6 +1829,13 @@ if (!function_exists('docdirect_search_filters')) {
 
                             </select>
                         </div>
+                        <?php if (isset($dir_keywords) && $dir_keywords === 'enable') { ?>
+                            <div class="form-group">
+                                <input type="text" class="form-control" value="<?php echo esc_attr($by_name); ?>"
+                                       name="search_key"
+                                       placeholder="<?php esc_html_e('Speciality', 'docdirect'); ?>">
+                            </div>
+                        <?php } ?>
 
                         <div class="form-group">
                             <div class="doc-select">

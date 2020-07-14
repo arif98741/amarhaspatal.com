@@ -160,7 +160,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                             <label for="city">Service</label>
                                             <select name="directory_type">
 
-                                                <option value="0" selected>---</option>
+                                                <option value="0" selected>Select Service</option>
                                                 <option value="123">Ambulance</option>
                                                 <option value="122">Blood Donor</option>
                                                 <option value="121">Diagnostics</option>
