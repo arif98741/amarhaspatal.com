@@ -60,6 +60,7 @@ $cust_query = get_posts($args);
             } else {
                 $banner = get_template_directory_uri() . '/images/user470x305.jpg';;
             }
+
             ?>
             <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="doc-category">
@@ -67,12 +68,12 @@ $cust_query = get_posts($args);
                         <div class="doc-hoverbg">
                             <h3><?php echo esc_attr($title); ?></h3>
                         </div>
-                        <a href="<?php echo esc_url($search_page); ?>?directory_type=<?php echo esc_attr($dir->post_name); ?>">
+                        <a href="<?php echo esc_url($search_page); ?>?directory_type=<?php echo esc_attr($dir->ID); ?>">
                             <img src="<?php echo esc_url($banner); ?>" alt="<?php echo esc_attr($title); ?>">
                         </a>
                         <figcaption class="doc-imghover">
                             <div class="doc-categoryname"><h4><a
-                                            href="<?php echo esc_url($search_page); ?>?directory_type=<?php echo esc_attr($dir->post_name); ?>"><?php echo esc_attr($title); ?></a>
+                                            href="<?php echo esc_url($search_page); ?>?directory_type=<?php echo esc_attr($dir->ID); ?>"><?php echo esc_attr($title); ?></a>
                                 </h4></div>
                             <?php /*?><span class="doc-categorycount"><a href="javascript:;"><?php echo intval( $total_users );?><i class="fa fa-clone"></i></a></span><?php */ ?>
                         </figcaption>
@@ -90,7 +91,7 @@ $cust_query = get_posts($args);
                 </div>
                 <a href="<?= site_url('shop') ?>">
                     <img src="<?= site_url('wp-content/uploads/2020/07/shutterstock_717437125-1-750x450-1.gif'); ?>"
-                         alt="Blood Donor">
+                         alt="Pharmacy">
                 </a>
                 <figcaption class="doc-imghover">
                     <div class="doc-categoryname"><h4><a
