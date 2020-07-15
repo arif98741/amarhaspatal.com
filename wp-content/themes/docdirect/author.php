@@ -82,47 +82,57 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         <?php get_template_part('directory/provider-page/template-author', 'sidebar'); ?>
                         <?php if ($directory_type == 127) { ?>
                             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-                                <div class="tg-haslayout provider-sections">
-                                    <div class="col-md-12">
-                                        <nav>
-                                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                                <a class="nav-item nav-link" id="nav-specilities-tab" data-toggle="tab"
-                                                   href="#nav-specilities" role="tab" aria-controls="nav-specilities"
-                                                   aria-selected="false">Specialities</a>
-                                                <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab"
-                                                   href="#nav-education" role="tab" aria-controls="nav-education"
-                                                   aria-selected="false">Education</a>
-                                                <a class="nav-item nav-link" id="nav-experience-tab" data-toggle="tab"
-                                                   href="#nav-experience" role="tab" aria-controls="nav-experience"
-                                                   aria-selected="false">Experience</a>
 
-                                                <a class="nav-item nav-link" id="nav-honors-tab" data-toggle="tab"
-                                                   href="#nav-honors" role="tab" aria-controls="nav-honors"
-                                                   aria-selected="false">Honors</a>
-                                            </div>
-                                        </nav>
-                                        <br>
-                                        <div class="tab-content" id="nav-tabContent">
-                                            <div class="tab-pane fade" id="nav-specilities" role="tabpanel"
-                                                 aria-labelledby="nav-specilities-tab">
-                                                <?php get_template_part('directory/provider-page/template-author-specialities'); ?>
-                                            </div>
-                                            <div class="tab-pane fade" id="nav-education" role="tabpanel"
-                                                 aria-labelledby="nav-education-tab">
-                                                <?php get_template_part('directory/provider-page/template-author-education'); ?>
+                                <div class="col-md-12">
+                                    <nav style="width: 100%;">
+                                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 
-                                            </div>
-                                            <div class="tab-pane fade" id="nav-experience" role="tabpanel"
-                                                 aria-labelledby="nav-experience-tab">
-                                                <?php get_template_part('directory/provider-page/template-author-experience'); ?>
+                                            <a class="nav-item nav-link selected" id="nav-about-me-tab"
+                                               data-toggle="tab"
+                                               href="#nav-about-me" role="tab" aria-controls="nav-about-me"
+                                               aria-selected="false">About Me</a>
 
-                                            </div>
-                                            <div class="tab-pane fade" id="nav-honors" role="tabpanel"
-                                                 aria-labelledby="nav-honors-tab">
-                                                <?php get_template_part('directory/provider-page/template-author-awards'); ?>
-                                            </div>
+                                            <a class="nav-item nav-link" id="nav-specilities-tab" data-toggle="tab"
+                                               href="#nav-specilities" role="tab" aria-controls="nav-specilities"
+                                               aria-selected="false">Specialities</a>
+                                            <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab"
+                                               href="#nav-education" role="tab" aria-controls="nav-education"
+                                               aria-selected="false">Education</a>
+                                            <a class="nav-item nav-link" id="nav-experience-tab" data-toggle="tab"
+                                               href="#nav-experience" role="tab" aria-controls="nav-experience"
+                                               aria-selected="false">Experience</a>
+
+                                            <a class="nav-item nav-link" id="nav-honors-tab" data-toggle="tab"
+                                               href="#nav-honors" role="tab" aria-controls="nav-honors"
+                                               aria-selected="false">Honors and Awards</a>
+                                        </div>
+                                    </nav>
+                                    <br>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade" id="nav-about-me" role="tabpanel"
+                                             aria-labelledby="nav-about-me-tab">
+                                            <?php get_template_part('directory/provider-page/template-author-about'); ?>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-specilities" role="tabpanel"
+                                             aria-labelledby="nav-specilities-tab">
+                                            <?php get_template_part('directory/provider-page/template-author-specialities'); ?>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-education" role="tabpanel"
+                                             aria-labelledby="nav-education-tab">
+                                            <?php get_template_part('directory/provider-page/template-author-education'); ?>
+
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-experience" role="tabpanel"
+                                             aria-labelledby="nav-experience-tab">
+                                            <?php get_template_part('directory/provider-page/template-author-experience'); ?>
+
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-honors" role="tabpanel"
+                                             aria-labelledby="nav-honors-tab">
+                                            <?php get_template_part('directory/provider-page/template-author-awards'); ?>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="tg-haslayout provider-sections">
                                     <?php
@@ -138,7 +148,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     }
                                     */
 
-                                    get_template_part('directory/provider-page/template-author-about');
+                                    //get_template_part('directory/provider-page/template-author-about');
                                     get_template_part('directory/provider-page/template-author-ads-area');
                                     get_template_part('directory/provider-page/template-author-ads-languages');
                                     get_template_part('directory/provider-page/template-author-ads-prices');
@@ -224,7 +234,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 <ul class="tg-navdocappointment" role="tablist">
                                     <li class="active">
                                         <a href="javascript:;"
-                                                          class="bk-step-1"><?php esc_html_e('1. choose service', 'docdirect'); ?>
+                                           class="bk-step-1"><?php esc_html_e('1. choose service', 'docdirect'); ?>
                                         </a>
 
                                     </li>
@@ -245,7 +255,8 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                      data-id="<?php echo esc_attr($author_profile->ID); ?>">
                                     <div class="tab-pane active step-one-contents" id="one">
                                         <?php docdirect_get_booking_step_one($author_profile->ID, 'echo'); ?>
-                                        <p id="step1-message" class="text-left" style="color: red; font-size: 16px;"></p>
+                                        <p id="step1-message" class="text-left"
+                                           style="color: red; font-size: 16px;"></p>
                                     </div>
                                     <div class="tab-pane step-two-contents" id="two">
                                         <?php docdirect_get_booking_step_two_calender($author_profile->ID, 'echo'); ?>
@@ -276,15 +287,37 @@ do_action('am_chat_modal', $author_profile->ID);
 ?>
 <style>
     .nav-tab {
-        padding: 10%;
-        margin-top: -8%;
+
     }
 
     div#nav-tab a {
-        padding: 12px;
+        padding: 11px 12px;
         font-size: 18px;
+        border: 2px solid #000;
+        margin-bottom: 20px !important;
+        background: #807293;
+        color: #fff;
 
     }
+
+    div#nav-tab a:hover {
+        padding: 12px 11px;
+        font-size: 18px;
+        border: 2px solid #000;
+        margin-bottom: 20px !important;
+        background: #3c2d2d;
+        color: #fff;
+    }
+
+    .selected {
+        padding: 12px 11px;
+        font-size: 18px;
+        border: 2px solid #000;
+        margin-bottom: 20px !important;
+        background: #3c2d2d !important;
+        color: #fff;
+    }
+
 
     .project-tab #tabs {
         background: #007b5e;
@@ -339,5 +372,17 @@ do_action('am_chat_modal', $author_profile->ID);
         border: 2px solid #000;
         margin-bottom: 20px !important;
     }
-
 </style>
+<script>
+    $(document).ready(function () {
+
+        $('#nav-tab a').click(function () {
+
+            var siblings = $(this).siblings();
+            siblings.each(function (index, element) {
+                $(this).removeClass('selected');
+            });
+            $(this).addClass('selected');
+        });
+    });
+</script>
