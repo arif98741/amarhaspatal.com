@@ -214,7 +214,7 @@ if (!class_exists('docdirect_footers')) {
                 <?php } ?>
                 <div class="doc-footerbottombar">
                     <div class="container">
-                        <p style="color: #fff !important;"><img src="https://softbdltd.com/images/logo.png"> Designed and Developed by <a href="https://softbdltd.com/">SoftBD Ltd</a> </p>
+                        <p style="color: #fff !important;">Designed and Developed by <a href="https://softbdltd.com/"><img src="https://softbdltd.com/images/logo.png"> </a> </p>
                     </div>
                 </div>
             </footer>

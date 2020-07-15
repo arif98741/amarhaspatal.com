@@ -743,7 +743,7 @@ jQuery(document).ready(function ($) {
             Z_Steps.booking_step == 1
         ) {
 
-
+            $('#step1-message').html('');
             jQuery('.booking-model-contents').append(loder_html);
             var dataString = 'data_id=' + data_id + '&action=docdirect_get_booking_step_two';
             jQuery.ajax({
