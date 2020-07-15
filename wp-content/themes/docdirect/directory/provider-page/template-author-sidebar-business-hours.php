@@ -90,7 +90,7 @@ if (!empty($slots)) {
                                 ?>
                                 <ul>
                                     <li class="<?php echo sanitize_html_class($active); ?>">
-                                        <span><?php echo $opened_slot_key; ?>;</span><em><?php echo esc_attr($opened_slot['slot_title']); ?></em>
+                                        <span><?php echo $opened_slot_key; ?></span><em><?php echo esc_attr($opened_slot['slot_title']); ?></em>
                                     </li>
                                 </ul>
 
@@ -100,53 +100,11 @@ if (!empty($slots)) {
                         } else {
 
                             $day = str_replace('-details', '', $slot_key);
-                            //echo '<li class="active">' . $week_array[$day] . '</li>';
+
 
                         }
 
-                        /* foreach ($week_array as $key => $value) {
-                             $start_time_formate = '';
-                             $end_time_formate = '';
-                             $start_time = !empty($db_schedules[$key . '_start']) ? $db_schedules[$key . '_start'] : '';
-                             $end_time = !empty($db_schedules[$key . '_end']) ? $db_schedules[$key . '_end'] : '';
 
-                             if (!empty($start_time)) {
-                                 $start_time_formate = date_i18n($time_format, strtotime($start_time));
-                             }
-
-                             if (isset($end_time) && !empty($end_time)) {
-                                 $end_time_formate = date_i18n($time_format, strtotime($end_time));
-                                 $end_time_formate = docdirect_date_24midnight($time_format, strtotime($end_time));
-                             }
-
-                             //user timezone
-                             if (!empty($db_timezone)) {
-                                 $date = new DateTime("now", new DateTimeZone($db_timezone));
-                                 $current_time_date = $date->format('Y-m-d H:i:s');
-                             } else {
-                                 $current_time_date = current_time('mysql');
-                             }
-
-                             //Current Day
-                             $today_day = date('D', strtotime($current_time_date));
-                             $today_day = strtolower($today_day);
-
-
-                             $active = '';
-                             if ($today_day == $key) {
-                                 $active = 'current';
-                             }
-
-                             //
-                             if (!empty($start_time_formate) && $end_time_formate) {
-                                 $data_key = $start_time_formate . ' - ' . $end_time_formate;
-                             } else if (!empty($start_time_formate)) {
-                                 $data_key = $start_time_formate;
-                             } else if (!empty($end_time_formate)) {
-                                 $data_key = $end_time_formate;
-                             } else {
-                                 $data_key = esc_html__('Closed', 'docdirect');
-                             }*/
                         ?>
 
                     <?php }
