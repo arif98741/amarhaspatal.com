@@ -20,10 +20,13 @@ $db_timezone = get_user_meta($author_profile->ID, 'default_timezone', true);
 $time_zone = get_user_meta($author_profile->ID, 'default_timezone', true);
 $slots = get_user_meta($author_profile->ID, 'default_slots')[0];
 
+
 if (!empty($slots)) {
+
 
     $modified_slots = [];
     $week_array = docdirect_get_week_array();
+
 
     if (!empty($privacy['opening_hours'])
         &&
@@ -37,6 +40,7 @@ if (!empty($slots)) {
             <ul>
                 <?php
                 $week_array = docdirect_get_week_array();
+
                 $db_schedules = array();
                 if (isset($author_profile->schedules) && !empty($author_profile->schedules)) {
                     $db_schedules = $author_profile->schedules;
@@ -53,53 +57,97 @@ if (!empty($slots)) {
 
 
                 if (isset($week_array) && !empty($week_array)) {
+                    $array_keys = array_keys($week_array);
+                    if (!empty($db_timezone)) {
+                        $date = new DateTime("now", new DateTimeZone($db_timezone));
+                        $current_time_date = $date->format('Y-m-d H:i:s');
+                    } else {
+                        $current_time_date = current_time('mysql');
+                    }
 
-                    foreach ($week_array as $key => $value) {
-                        $start_time_formate = '';
-                        $end_time_formate = '';
-                        $start_time = !empty($db_schedules[$key . '_start']) ? $db_schedules[$key . '_start'] : '';
-                        $end_time = !empty($db_schedules[$key . '_end']) ? $db_schedules[$key . '_end'] : '';
+                    //Current Day
+                    $today_day = date('D', strtotime($current_time_date));
+                    $today_day = strtolower($today_day);
 
-                        if (!empty($start_time)) {
-                            $start_time_formate = date_i18n($time_format, strtotime($start_time));
-                        }
 
-                        if (isset($end_time) && !empty($end_time)) {
-                            $end_time_formate = date_i18n($time_format, strtotime($end_time));
-                            $end_time_formate = docdirect_date_24midnight($time_format, strtotime($end_time));
-                        }
+                    foreach ($slots as $slot_key => $slot) {
 
-                        //user timezone
-                        if (!empty($db_timezone)) {
-                            $date = new DateTime("now", new DateTimeZone($db_timezone));
-                            $current_time_date = $date->format('Y-m-d H:i:s');
+
+                        if (!in_array($slot_key, $array_keys)) {
+                            $active = '';
+                            if ($today_day == $key) {
+                                $active = 'current';
+                            }
+
+                            $day = str_replace('-details', '', $slot_key);
+                            echo '<li class="active">' . $week_array[$day] . '</li><hr>';
+
+
+                            $opened_slots = $slots[$slot_key];
+                            foreach ($opened_slots as $opened_slot_key => $opened_slot) {
+//                               echo '<pre>';
+//                               print_r($opened_slot_key); exit;
+                                ?>
+                                <ul>
+                                    <li class="<?php echo sanitize_html_class($active); ?>">
+                                        <span><?php echo $opened_slot_key; ?>;</span><em><?php echo esc_attr($opened_slot['slot_title']); ?></em>
+                                    </li>
+                                </ul>
+
+
+                            <?php }
+
                         } else {
-                            $current_time_date = current_time('mysql');
+
+                            $day = str_replace('-details', '', $slot_key);
+                            //echo '<li class="active">' . $week_array[$day] . '</li>';
+
                         }
 
-                        //Current Day
-                        $today_day = date('D', strtotime($current_time_date));
-                        $today_day = strtolower($today_day);
+                        /* foreach ($week_array as $key => $value) {
+                             $start_time_formate = '';
+                             $end_time_formate = '';
+                             $start_time = !empty($db_schedules[$key . '_start']) ? $db_schedules[$key . '_start'] : '';
+                             $end_time = !empty($db_schedules[$key . '_end']) ? $db_schedules[$key . '_end'] : '';
+
+                             if (!empty($start_time)) {
+                                 $start_time_formate = date_i18n($time_format, strtotime($start_time));
+                             }
+
+                             if (isset($end_time) && !empty($end_time)) {
+                                 $end_time_formate = date_i18n($time_format, strtotime($end_time));
+                                 $end_time_formate = docdirect_date_24midnight($time_format, strtotime($end_time));
+                             }
+
+                             //user timezone
+                             if (!empty($db_timezone)) {
+                                 $date = new DateTime("now", new DateTimeZone($db_timezone));
+                                 $current_time_date = $date->format('Y-m-d H:i:s');
+                             } else {
+                                 $current_time_date = current_time('mysql');
+                             }
+
+                             //Current Day
+                             $today_day = date('D', strtotime($current_time_date));
+                             $today_day = strtolower($today_day);
 
 
-                        $active = '';
-                        if ($today_day == $key) {
-                            $active = 'current';
-                        }
+                             $active = '';
+                             if ($today_day == $key) {
+                                 $active = 'current';
+                             }
 
-                        //
-                        if (!empty($start_time_formate) && $end_time_formate) {
-                            $data_key = $start_time_formate . ' - ' . $end_time_formate;
-                        } else if (!empty($start_time_formate)) {
-                            $data_key = $start_time_formate;
-                        } else if (!empty($end_time_formate)) {
-                            $data_key = $end_time_formate;
-                        } else {
-                            $data_key = esc_html__('Closed', 'docdirect');
-                        }
+                             //
+                             if (!empty($start_time_formate) && $end_time_formate) {
+                                 $data_key = $start_time_formate . ' - ' . $end_time_formate;
+                             } else if (!empty($start_time_formate)) {
+                                 $data_key = $start_time_formate;
+                             } else if (!empty($end_time_formate)) {
+                                 $data_key = $end_time_formate;
+                             } else {
+                                 $data_key = esc_html__('Closed', 'docdirect');
+                             }*/
                         ?>
-                        <li class="<?php echo sanitize_html_class($active); ?>">
-                            <span><?php echo esc_attr($value); ?></span><em><?php echo esc_attr($data_key); ?></em></li>
 
                     <?php }
                 } ?>
