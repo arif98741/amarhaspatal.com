@@ -222,9 +222,13 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         <form action="#" method="post" class="appointment-form">
                             <fieldset class="booking-model-contents">
                                 <ul class="tg-navdocappointment" role="tablist">
-                                    <li class="active"><a href="javascript:;"
-                                                          class="bk-step-1"><?php esc_html_e('1. choose service', 'docdirect'); ?></a>
+                                    <li class="active">
+                                        <a href="javascript:;"
+                                                          class="bk-step-1"><?php esc_html_e('1. choose service', 'docdirect'); ?>
+                                        </a>
+
                                     </li>
+
                                     <li><a href="javascript:;"
                                            class="bk-step-2"><?php esc_html_e('2. available schedule', 'docdirect'); ?></a>
                                     </li>
@@ -241,6 +245,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                      data-id="<?php echo esc_attr($author_profile->ID); ?>">
                                     <div class="tab-pane active step-one-contents" id="one">
                                         <?php docdirect_get_booking_step_one($author_profile->ID, 'echo'); ?>
+                                        <p id="step1-message" class="text-left" style="color: red; font-size: 16px;"></p>
                                     </div>
                                     <div class="tab-pane step-two-contents" id="two">
                                         <?php docdirect_get_booking_step_two_calender($author_profile->ID, 'echo'); ?>
