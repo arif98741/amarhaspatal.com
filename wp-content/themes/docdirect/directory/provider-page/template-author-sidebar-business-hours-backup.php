@@ -18,16 +18,10 @@ $schedule_time_format = isset($author_profile->time_format) ? $author_profile->t
 $privacy = docdirect_get_privacy_settings($author_profile->ID); //Privacy settings
 $db_timezone = get_user_meta($author_profile->ID, 'default_timezone', true);
 $time_zone = get_user_meta($author_profile->ID, 'default_timezone', true);
-echo '<pre>';
 $slots = get_user_meta($author_profile->ID, 'default_slots')[0];
-print_r($slots);
-exit;
 
 if (apply_filters('docdirect_is_setting_enabled', $author_profile->ID, 'default_slots') === true) {
 
-    echo '<pre>';
-    print_r(get_user_meta($author_profile->ID, 'default_slots')[0]);
-    exit;
 
     if (!empty($privacy['opening_hours'])
         &&
