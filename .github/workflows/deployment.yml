@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [ deploy ]
+    branches: [ master ]
 name: Amarhaspatal Deployment
 jobs:
   FTP-Deploy-Action:
