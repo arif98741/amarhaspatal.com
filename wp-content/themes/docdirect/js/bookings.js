@@ -735,7 +735,7 @@ jQuery(document).ready(function ($) {
 
         //check empty status
         if (bk_category == '' || bk_service == '') {
-            $('#step1-message').html('Please select service and category first');
+            $('#step1-message').html('<p style="color: red; font-size: 16px; margin-left:17px">Please select service and category first</p>');
         } else if (bk_category
             &&
             bk_service

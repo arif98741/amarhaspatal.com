@@ -6,5 +6,6 @@ C:\wamp64\www\amarhospital\wp-content\plugins\docdirect_core\shortcodes
 .vscode
 *.iml
 wp-content/uploads/
-git add . && git commit -m  "fix image height" &&
-git checkout production && git merge master && git push && git checkout master
+git add . && git commit -m  "add schedule tab to dr profile" &&
+git checkout production && git merge master &&
+git push && git checkout master && git push
