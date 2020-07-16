@@ -68,13 +68,13 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
 ?>
 <style>
     #search-div-carousal {
-        width: 50% !important;
+        width: 46% !important;
         margin-left: auto;
         min-height: 358px;
         border: 4px solid #3a76a324 !important;
         background: #fff;
         padding: 10px;
-        height: 356px;
+        height: 420px;
     }
 
     @media (min-width: 481px) and (max-width: 767px) {
@@ -147,7 +147,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">Upazila</label>
                                             <select name="upazila_id" id="upazila_id_temp" class="form-control">
@@ -155,7 +155,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">Service</label>
                                             <select name="directory_type" id="directory_type_dropdown">
