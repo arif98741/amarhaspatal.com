@@ -485,6 +485,48 @@ if (!function_exists('get_upazilas_by_district_id')) {
 }
 
 /**
+ * Specilities Fetch
+ * @param district_id
+ * @return json
+ */
+add_action('wp_ajax_get_specialities_bydirectorytype', 'get_specialities_bydirectorytype');
+add_action('wp_ajax_nopriv_get_specialities_bydirectorytype', 'get_specialities_bydirectorytype');
+if (!function_exists('get_specialities_bydirectorytype')) {
+    function get_specialities_bydirectorytype()
+    {
+        global $wpdb;
+
+        $json = [];
+        $directory_type = '';
+
+        if (isset($_POST['directory_type'])) {
+            $directory_type = esc_sql($_POST['directory_type']);
+        }
+
+        $data = $wpdb->get_results("select * from wp_usermeta where meta_key='user_profile_specialities'");
+        $data = array_column($data, 'meta_value');
+        $newArray = [];
+        foreach ($data as $key => $value) {
+
+            $count = count(unserialize($value));
+            if ($count > 0) {
+                array_push($newArray, unserialize($value));
+            }
+
+        }
+        echo '<pre>';
+        print_r($newArray);
+        exit;
+
+
+        $upazilaSql = "select id, title,title_en from loc_upazilas where status='1' and loc_district_id='$district_id'";
+        $upazilas = $wpdb->get_results($upazilaSql);
+        echo json_encode($upazilas);
+        exit;
+    }
+}
+
+/**
  * Union Fetch
  * @param upazila_id
  * @return json
