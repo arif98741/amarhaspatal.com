@@ -611,6 +611,37 @@ jQuery(document).ready(function ($) {
         });
     });
 
+    /**
+     * ---------------------------------------
+     * Get Speciality According to directorytype
+     * Get Unions
+     * ---------------------------------------------
+     */
+    jQuery('#directory_type_dropdown').on('change', function (event) {
+        var directory_type = jQuery(this).val();
+        alert('hello');
+        return false;
+        jQuery.ajax({
+            type: "POST",
+            url: scripts_vars.ajaxurl,
+            data: {
+                'action': 'get_specialities_bydirectorytype',
+                'upazila_id': upazila_id
+            },
+            dataType: "json",
+            success: function (response) {
+                $('#union_id_temp').html('<option value="">Select Union </option>');
+                $.each(response, function (key, value) {
+
+                    $('#union_id_temp')
+                        .append($("<option></option>")
+                            .attr("value", value.id)
+                            .text(value.title_en));
+                });
+            }
+        });
+    });
+
 
     /**
      * ---------------------------------------

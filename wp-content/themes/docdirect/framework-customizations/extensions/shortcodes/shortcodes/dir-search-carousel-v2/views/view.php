@@ -158,7 +158,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-6">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">Service</label>
-                                            <select name="directory_type">
+                                            <select name="directory_type" id="directory_type_dropdown">
 
                                                 <option value="0" selected>Select Service</option>
                                                 <option value="123">Ambulance</option>
