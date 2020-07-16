@@ -90,7 +90,7 @@ $cust_query = get_posts($args);
                     <h3>Pharmacy</h3>
                 </div>
                 <a href="<?= site_url('shop') ?>">
-                    <img src="<?= site_url('wp-content/uploads/2020/07/shutterstock_717437125-1-750x450-1.gif'); ?>"
+                    <img style="height: 225px" src="<?= site_url('wp-content/uploads/2020/07/shutterstock_717437125-1-750x450-1.gif'); ?>"
                          alt="Pharmacy">
                 </a>
                 <figcaption class="doc-imghover">
