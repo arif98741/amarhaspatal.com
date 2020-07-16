@@ -376,7 +376,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                             <?php } ?>
                                                             <?php if ($directory_type == 122) { ?>
                                                                 <li>
-                                                                    <i class="fa fa-fax"></i><span>Blood Date: <?php echo get_user_meta($user->ID, 'blood_group')[0]; ?></span>
+                                                                    <i class="fa fa-fax"></i><span>Blood group: <?php echo get_user_meta($user->ID, 'blood_group')[0]; ?></span>
                                                                 </li>
                                                                 <li>
                                                                     <i class="fa fa-calendar"></i><span>Last donation date: <?php echo get_user_meta($user->ID, 'last_donation_date')[0]; ?></span>

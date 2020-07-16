@@ -619,17 +619,18 @@ jQuery(document).ready(function ($) {
      */
     jQuery('#directory_type_dropdown').on('change', function (event) {
         var directory_type = jQuery(this).val();
-        alert('hello');
-        return false;
+
         jQuery.ajax({
             type: "POST",
             url: scripts_vars.ajaxurl,
             data: {
                 'action': 'get_specialities_bydirectorytype',
-                'upazila_id': upazila_id
+                'directory_type': directory_type
             },
             dataType: "json",
             success: function (response) {
+                console.log(response);
+                return false;
                 $('#union_id_temp').html('<option value="">Select Union </option>');
                 $.each(response, function (key, value) {
 

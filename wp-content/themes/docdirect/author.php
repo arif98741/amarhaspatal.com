@@ -12,6 +12,13 @@ do_action('docdirect_update_profile_hits', $author_profile->ID); //Update Profil
 docdirect_set_user_views($author_profile->ID); //Update profile views
 get_header();//Include Headers
 
+$directory_type = $author_profile->directory_type;
+$schedule_time_format = isset($author_profile->time_format) ? $author_profile->time_format : '12hour';
+$privacy = docdirect_get_privacy_settings($author_profile->ID); //Privacy settings
+$db_timezone = get_user_meta($author_profile->ID, 'default_timezone', true);
+$time_zone = get_user_meta($author_profile->ID, 'default_timezone', true);
+$slots = get_user_meta($author_profile->ID, 'default_slots')[0];
+
 
 if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && function_exists('fw_get_db_settings_option')) {
     if (apply_filters('docdirect_is_visitor', $author_profile->ID) === false) {
@@ -92,44 +99,134 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                href="#nav-about-me" role="tab" aria-controls="nav-about-me"
                                                aria-selected="false">About Me</a>
 
-                                            <a class="nav-item nav-link" id="nav-specilities-tab" data-toggle="tab"
-                                               href="#nav-specilities" role="tab" aria-controls="nav-specilities"
+                                            <a class="nav-item nav-link" id="nav-specilities-honors-tab"
+                                               data-toggle="tab"
+                                               href="#nav-specilities-honors" role="tab"
+                                               aria-controls="nav-specilities-honors"
                                                aria-selected="false">Specialities</a>
-                                            <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab"
-                                               href="#nav-education" role="tab" aria-controls="nav-education"
-                                               aria-selected="false">Education</a>
-                                            <a class="nav-item nav-link" id="nav-experience-tab" data-toggle="tab"
-                                               href="#nav-experience" role="tab" aria-controls="nav-experience"
-                                               aria-selected="false">Experience</a>
-
-                                            <a class="nav-item nav-link" id="nav-honors-tab" data-toggle="tab"
-                                               href="#nav-honors" role="tab" aria-controls="nav-honors"
-                                               aria-selected="false">Honors and Awards</a>
+                                            <a class="nav-item nav-link" id="nav-schedule-tab" data-toggle="tab"
+                                               href="#nav-schedule" role="tab" aria-controls="nav-schedule"
+                                               aria-selected="false">Schedule</a>
+                                            <!--
+                                           <a class="nav-item nav-link" id="nav-experience-tab" data-toggle="tab"
+                                              href="#nav-experience" role="tab" aria-controls="nav-experience"
+                                              aria-selected="false">Experience</a>-->
                                         </div>
                                     </nav>
                                     <br>
                                     <div class="tab-content" id="nav-tabContent">
-                                        <div class="tab-pane fade" id="nav-about-me" role="tabpanel"
+                                        <div class="tab-pane fade active in" id="nav-about-me" role="tabpanel"
                                              aria-labelledby="nav-about-me-tab">
                                             <?php get_template_part('directory/provider-page/template-author-about'); ?>
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-specilities" role="tabpanel"
-                                             aria-labelledby="nav-specilities-tab">
-                                            <?php get_template_part('directory/provider-page/template-author-specialities'); ?>
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-education" role="tabpanel"
-                                             aria-labelledby="nav-education-tab">
                                             <?php get_template_part('directory/provider-page/template-author-education'); ?>
-
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-experience" role="tabpanel"
-                                             aria-labelledby="nav-experience-tab">
                                             <?php get_template_part('directory/provider-page/template-author-experience'); ?>
 
                                         </div>
-                                        <div class="tab-pane fade" id="nav-honors" role="tabpanel"
-                                             aria-labelledby="nav-honors-tab">
+                                        <div class="tab-pane fade" id="nav-specilities-honors" role="tabpanel"
+                                             aria-labelledby="nav-specilities-honors-tab">
+                                            <?php get_template_part('directory/provider-page/template-author-specialities'); ?>
                                             <?php get_template_part('directory/provider-page/template-author-awards'); ?>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-schedule" role="tabpanel"
+                                             aria-labelledby="nav-schedule-tab">
+
+                                            <?php if (!empty($slots)) {
+
+
+                                                $modified_slots = [];
+                                                $week_array = docdirect_get_week_array();
+
+
+                                                if (!empty($privacy['opening_hours'])
+                                                    &&
+                                                    $privacy['opening_hours'] == 'on'
+                                                ) { ?>
+                                                    <div class="tg-userschedule">
+                                                        <h3><?php esc_html_e('Schedule', 'docdirect'); ?></h3>
+                                                        <?php if (!empty($time_zone)) { ?>
+                                                        <?php } ?>
+                                                        <ul>
+                                                            <?php
+                                                            $week_array = docdirect_get_week_array();
+
+                                                            $db_schedules = array();
+                                                            if (isset($author_profile->schedules) && !empty($author_profile->schedules)) {
+                                                                $db_schedules = $author_profile->schedules;
+                                                            }
+
+                                                            if (isset($schedule_time_format) && $schedule_time_format === '24hour') {
+                                                                $time_format = 'H:i';
+                                                            } else {
+                                                                $time_format = get_option('time_format');
+                                                                $time_format = !empty($time_format) ? $time_format : 'g:i A';
+                                                            }
+
+                                                            $date_prefix = date('D');
+
+
+                                                            if (isset($week_array) && !empty($week_array)) {
+                                                                $array_keys = array_keys($week_array);
+                                                                if (!empty($db_timezone)) {
+                                                                    $date = new DateTime("now", new DateTimeZone($db_timezone));
+                                                                    $current_time_date = $date->format('Y-m-d H:i:s');
+                                                                } else {
+                                                                    $current_time_date = current_time('mysql');
+                                                                }
+
+                                                                //Current Day
+                                                                $today_day = date('D', strtotime($current_time_date));
+                                                                $today_day = strtolower($today_day);
+
+
+                                                                foreach ($slots as $slot_key => $slot) {
+
+
+                                                                    if (!in_array($slot_key, $array_keys)) {
+                                                                        $active = '';
+                                                                        if ($today_day == $key) {
+                                                                            $active = 'current';
+                                                                        }
+
+                                                                        $day = str_replace('-details', '', $slot_key);
+                                                                        echo '<span style="font-weight: bold; display: block;border: 1px solid black; padding: 9px 15px; background: #bb96d0; color: #fff;" class="active">' . $week_array[$day] . '</span>';
+
+
+                                                                        $opened_slots = $slots[$slot_key];
+                                                                        echo '<table> <tr><th>Schedule Time</th><th>Chamber</th></tr>';
+                                                                        foreach ($opened_slots as $opened_slot_key => $opened_slot) {
+//
+                                                                            ?>
+                                                                            <tr>
+                                                                                <td style="text-align: left;"
+                                                                                    class="<?php echo sanitize_html_class($active); ?>">
+                                                                                    <?php echo $opened_slot_key; ?>
+                                                                                </td>
+                                                                                <td style="text-align: left;"
+                                                                                    class="<?php echo sanitize_html_class($active); ?>">
+                                                                                    <?php echo esc_attr($opened_slot['slot_title']); ?>
+                                                                                </td>
+                                                                            </tr>
+
+
+                                                                        <?php }
+                                                                        echo '</table>';
+
+                                                                    } else {
+
+                                                                        $day = str_replace('-details', '', $slot_key);
+
+
+                                                                    }
+
+
+                                                                    ?>
+
+                                                                <?php }
+                                                            } ?>
+                                                        </ul>
+                                                    </div>
+                                                <?php }
+                                            } ?>
                                         </div>
                                     </div>
 

@@ -6,4 +6,5 @@ C:\wamp64\www\amarhospital\wp-content\plugins\docdirect_core\shortcodes
 .vscode
 *.iml
 wp-content/uploads/
-
+git add . && git commit -m  "fix image height" &&
+git checkout production && git merge master && git push && git checkout master

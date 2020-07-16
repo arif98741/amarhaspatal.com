@@ -33,7 +33,10 @@ if (!empty($slots)) {
         $privacy['opening_hours'] == 'on'
     ) { ?>
         <div class="tg-userschedule">
-
+            <h3><?php esc_html_e('Schedule', 'docdirect'); ?></h3>
+            <?php if (!empty($time_zone)) { ?>
+                <span class="timezone-display"><strong><?php esc_html_e('Timezone', 'docdirect'); ?></strong>:&nbsp;<?php echo esc_attr($time_zone); ?></span>
+            <?php } ?>
             <ul>
                 <?php
                 $week_array = docdirect_get_week_array();
@@ -77,6 +80,7 @@ if (!empty($slots)) {
                             }
 
                             $day = str_replace('-details', '', $slot_key);
+                            echo '<li class="active">' . $week_array[$day] . '</li><hr>';
 
 
                             $opened_slots = $slots[$slot_key];
@@ -84,7 +88,11 @@ if (!empty($slots)) {
 //                               echo '<pre>';
 //                               print_r($opened_slot_key); exit;
                                 ?>
-
+                                <ul>
+                                    <li class="<?php echo sanitize_html_class($active); ?>">
+                                        <span><?php echo $opened_slot_key; ?></span><em><?php echo esc_attr($opened_slot['slot_title']); ?></em>
+                                    </li>
+                                </ul>
 
 
                             <?php }
