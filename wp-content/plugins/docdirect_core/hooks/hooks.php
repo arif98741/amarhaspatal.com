@@ -523,8 +523,8 @@ if (!function_exists('get_specialities_bydirectorytype')) {
               array_push($jsonArray,$array)  ;
             }*/
             echo json_encode($newArray);
+            exit;
         }
-     //   exit;
     }
 }
 
