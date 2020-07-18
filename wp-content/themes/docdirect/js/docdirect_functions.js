@@ -620,6 +620,7 @@ jQuery(document).ready(function ($) {
     jQuery('#directory_type_dropdown').on('change', function (event) {
         var directory_type = jQuery(this).val();
 
+        //TODO:: need to work on directory dropdown
         jQuery.ajax({
             type: "POST",
             url: scripts_vars.ajaxurl,
@@ -629,15 +630,19 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                console.log(response);
-                return false;
-                $('#union_id_temp').html('<option value="">Select Union </option>');
-                $.each(response, function (key, value) {
 
+                $('#speciality_dropdown').html('<option value="">Select Speciality </option>');
+               /* $.each(response, function (key, value) {
+                    console.log(typeof  value);
                     $('#union_id_temp')
                         .append($("<option></option>")
                             .attr("value", value.id)
                             .text(value.title_en));
+                });*/
+                console.log('hello');
+                Object.entries(response).forEach(([key, value]) => {
+                   // console.log(`${key} ${value}`);
+                    console.log('<option value="'+key+'">ywa</option>');
                 });
             }
         });
