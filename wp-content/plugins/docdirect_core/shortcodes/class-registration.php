@@ -3,6 +3,7 @@
  * @File Type: Registration & Login
  * @return {}
  */
+//TODO:: file should be changed
 if (!class_exists('SC_Authentication')) {
 
 
@@ -113,25 +114,29 @@ if (!class_exists('SC_Authentication')) {
                                 if (apply_filters('docdirect_is_user_logged_in', 'check_user') === false) { ?>
                                     <form class="tg-form-modal tg-form-signup do-registration-form">
                                         <fieldset>
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <div class="tg-radiobox user-selection active-user-type">
                                                     <input type="radio" checked="checked" name="user_type"
                                                            value="professional" id="professional">
-                                                    <label for="professional"><?php esc_html_e('Professional', 'docdirect_core'); ?></label>
-                                                </div>
-                                                <div class="tg-radiobox user-selection active-user-type visitor-type">
-                                                    <input type="radio" name="user_type" value="visitor" id="visitor">
-                                                    <label for="visitor"><?php esc_html_e('Visitor', 'docdirect_core'); ?></label>
-                                                </div>
-                                            </div>
+                                                    <label for="professional"><?php //esc_html_e('Professional', 'docdirect_core'); ?></label>
+                                                </div>-->
+                                            <!--                                                TODO:: usertype should be visitor/professional-->
+                                            <!--                                                <div class="tg-radiobox user-selection active-user-type visitor-type">-->
+                                            <!--                                                    <input type="radio" name="user_type" value="visitor" id="visitor">-->
+                                            <!--                                                    <label for="visitor">-->
+                                            <?php //esc_html_e('Visitor', 'docdirect_core'); ?><!--</label>-->
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
                                             <div class="form-group user-types">
-
-                                                <select name="directory_type">
+                                                <input type="hidden" name="user_type" value="professional"
+                                                       id="user_type">
+                                                <select name="directory_type" id="directory_typedropdown">
 
                                                     <option value="0">Select User Type</option>
                                                     <option value="127">Doctor</option>
                                                     <option value="126">Hospital</option>
                                                     <option value="122">Blood Donor</option>
+                                                    <option value="122">Visitor</option>
 
                                                 </select>
 
@@ -162,11 +167,13 @@ if (!class_exists('SC_Authentication')) {
 
 
                                             <div class="form-group">
-                                                <input type="password" name="password" class="form-control"
+                                                <input type="password" name="password" autocomplete="off"
+                                                       class="form-control"
                                                        placeholder="<?php esc_html_e('Password', 'docdirect_core'); ?>">
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" name="confirm_password" class="form-control"
+                                                <input type="password" name="confirm_password" autocomplete="off"
+                                                       class="form-control"
                                                        placeholder="<?php esc_html_e('Confirm Password', 'docdirect_core'); ?>">
 
                                             </div>
@@ -383,7 +390,7 @@ if (!class_exists('SC_Authentication')) {
                                                 </div>
                                             </div>
                                             <div class="form-group user-types">
-                                                <select id="user_type" name="directory_type">
+                                                <select id="user_type" onchange="myFunction()" name="directory_type">
 
                                                     <option value="0">Select User Type</option>
                                                     <option value="127">Doctor</option>
@@ -422,11 +429,13 @@ if (!class_exists('SC_Authentication')) {
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="password" name="password" class="form-control"
+                                                <input type="password" name="password" autocomplete="off"
+                                                       class="form-control"
                                                        placeholder="<?php esc_html_e('Password', 'docdirect_core'); ?>">
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" name="confirm_password" class="form-control"
+                                                <input type="password" name="confirm_password" autocomplete="off"
+                                                       class="form-control"
                                                        placeholder="<?php esc_html_e('Confirm Password', 'docdirect_core'); ?>">
 
                                             </div>
@@ -511,3 +520,11 @@ if (!class_exists('SC_Authentication')) {
 
     new SC_Authentication();
 }
+?>
+<script type='text/javascript' src='https://amarhaspatal.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+
+<script>
+    function test() {
+        alert('hello');
+    }
+</script>

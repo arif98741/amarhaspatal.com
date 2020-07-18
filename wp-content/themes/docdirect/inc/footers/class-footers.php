@@ -150,7 +150,8 @@ if (!class_exists('docdirect_footers')) {
             }
 
             ?>
-            <footer id="doc-footer" class="doc-footer doc-haslayout footer-v2">
+            <footer id="doc-footer" style="box-shadow: 1px 0px 1px 1px #00000026;"
+                    class="doc-footer doc-haslayout footer-v2">
                 <?php if (!empty($footer_type['footer_v2']['newsletter']) && $footer_type['footer_v2']['newsletter'] === 'enable') { ?>
                     <div class="doc-newsletter" style="display: none">
                         <div class="container">
@@ -214,7 +215,9 @@ if (!class_exists('docdirect_footers')) {
                 <?php } ?>
                 <div class="doc-footerbottombar">
                     <div class="container">
-                        <p style="color: #fff !important;">Designed and Developed by <a href="https://softbdltd.com/"><img src="https://softbdltd.com/images/logo.png"> </a> </p>
+                        <p style="color: #fff !important;">Designed and Developed by <a
+                                    href="https://softbdltd.com/"><img src="https://softbdltd.com/images/logo.png"> </a>
+                        </p>
                     </div>
                 </div>
             </footer>

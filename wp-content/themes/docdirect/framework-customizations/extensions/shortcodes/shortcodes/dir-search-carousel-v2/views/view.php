@@ -176,7 +176,10 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label for="service">Speciality</label>
-                                            <input class="form-control" name="search_key">
+                                            <!--   <input class="form-control" name="search_key">-->
+                                            <select name="search_key" id="speciality_dropdown">
+
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

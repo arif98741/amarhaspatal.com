@@ -172,6 +172,9 @@ if (!function_exists('docdirect_user_registration')) {
         $verify_user = 'off';
         $verify_switch = '';
 
+//        echo '<pre>';
+//        print_r($_REQUEST); exit;
+
         if (function_exists('fw_get_db_settings_option')) {
             $verify_switch = fw_get_db_settings_option('verify_user', $default_value = null);
         }
@@ -503,25 +506,28 @@ if (!function_exists('get_specialities_bydirectorytype')) {
             $directory_type = esc_sql($_POST['directory_type']);
         }
 
-        $data = $wpdb->get_results("select * from wp_usermeta where meta_key='user_profile_specialities'");
-        $data = array_column($data, 'meta_value');
-        $newArray = [];
-        foreach ($data as $key => $value) {
+        if ($directory_type == 123 || $directory_type == 127) {
+            $users = get_users(array(
+                'meta_key' => 'directory_type',
+                'meta_value' => $directory_type,
+                'meta_compare' => '=',
+            ));
+            $newArray = [];
+            foreach ($users as $key => $user) {
 
-            $count = count(unserialize($value));
-            if ($count > 0) {
-                array_push($newArray, unserialize($value));
+                $userArray = get_user_meta($user->ID, 'user_profile_specialities');
+
+                if (array_key_exists('0', $userArray) && count($userArray[0]) > 0) {
+
+                    $newArray = $userArray[0];
+                }
             }
-
+            /*$jsonArray =[];
+            foreach ($newArray as $key => $array) {
+              array_push($jsonArray,$array)  ;
+            }*/
+            echo json_encode($newArray);
         }
-        echo '<pre>';
-        print_r($newArray);
-        exit;
-
-
-        $upazilaSql = "select id, title,title_en from loc_upazilas where status='1' and loc_district_id='$district_id'";
-        $upazilas = $wpdb->get_results($upazilaSql);
-        echo json_encode($upazilas);
         exit;
     }
 }
