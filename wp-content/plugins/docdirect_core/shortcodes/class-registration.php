@@ -523,8 +523,3 @@ if (!class_exists('SC_Authentication')) {
 ?>
 <script type='text/javascript' src='https://amarhaspatal.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
 
-<script>
-    function test() {
-        alert('hello');
-    }
-</script>
