@@ -172,8 +172,6 @@ if (!function_exists('docdirect_user_registration')) {
         $verify_user = 'off';
         $verify_switch = '';
 
-//        echo '<pre>';
-//        print_r($_REQUEST); exit;
 
         if (function_exists('fw_get_db_settings_option')) {
             $verify_switch = fw_get_db_settings_option('verify_user', $default_value = null);
@@ -458,7 +456,6 @@ if (!function_exists('get_districts_by_division_id')) {
         $districtSql = "select id, title,title_en from loc_districts where status='1' and loc_division_id='$division_id'";
         $districts = $wpdb->get_results($districtSql);
         echo json_encode($districts);
-        exit;
     }
 }
 
@@ -527,7 +524,7 @@ if (!function_exists('get_specialities_bydirectorytype')) {
             }*/
             echo json_encode($newArray);
         }
-        exit;
+     //   exit;
     }
 }
 
