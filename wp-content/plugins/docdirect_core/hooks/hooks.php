@@ -187,7 +187,6 @@ if (!function_exists('docdirect_user_registration')) {
             $json['type'] = "error";
             $json['message'] = esc_html__("Registration is disabled by administrator", 'docdirect_core');
             echo json_encode($json);
-            exit();
         }
 
         if (function_exists('fw_get_db_settings_option')) {
