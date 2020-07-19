@@ -834,12 +834,7 @@ if (isset($_POST['ambulance_type'])) {
                                             type="submit">Submit
                                     </button>
                                 </div>
-
-
-
                             </div>
-
-
                         </form>
                     </div>
 
@@ -851,7 +846,6 @@ if (isset($_POST['ambulance_type'])) {
         <script src="<?= site_url('docdirect/js/vendor/docdirect_functions.js') ?>"></script>
 
         </body>
-
     </div>
 
 <?php

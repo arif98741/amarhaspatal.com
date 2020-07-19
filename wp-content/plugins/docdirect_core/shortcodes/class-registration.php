@@ -130,7 +130,7 @@ if (!class_exists('SC_Authentication')) {
                                             <div class="form-group user-types">
                                                 <input type="hidden" name="user_type" value="professional"
                                                        id="user_type">
-                                                <select name="directory_type" id="directory_typedropdown">
+                                                <select name="directory_type" id="usertypedropdown">
 
                                                     <option value="0">Select User Type</option>
                                                     <option value="127">Doctor</option>
