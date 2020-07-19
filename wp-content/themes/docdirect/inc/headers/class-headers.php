@@ -115,10 +115,13 @@ if (!class_exists('docdirect_headers')) {
 							<span class="doc-contactweb"><?php echo do_shortcode( $header_type['header_v2']['contact_info'] );?></span>
 						<?php }?>
 						<?php if( !empty( $header_type['header_v2']['social_icons'] ) ){?>
+
 							<div class="doc-languages">
 								<?php if( !empty( $header_type['header_v2']['social_icons'] ) ){?>
 									<ul class="tg-socialicon">
-										<?php 
+									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target=".tg-user-modal">Login</li>
+									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target=".tg-user-modal">Registration</li>
+										<?php
 											$social_icons	= $header_type['header_v2']['social_icons'];
 											if(isset($social_icons) && !empty($social_icons)){
 												foreach($social_icons as $social){
@@ -184,6 +187,7 @@ if (!class_exists('docdirect_headers')) {
                     <?php }?>
                     <?php if( !empty( $header_type['header_v1']['social_icons'] ) ){?>
                          <div class="doc-languages">
+
                          	<ul class="tg-socialicon">
 								<?php 
 									$social_icons	= $header_type['header_v1']['social_icons'];

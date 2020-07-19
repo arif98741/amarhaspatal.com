@@ -24,25 +24,32 @@ if (!defined('ABSPATH')) {
 
 <div class="container">
     <div class="row">
-        <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right"> Upload
-            Prescription </a>
+
+
+        <div class="col-md-7">
+            <div class="form-group pull-left">
+                <form class="" method="get">
+                    <input class="form-control" name="search_key" placeholder="Enter search keyword here">
+                    <input type="hidden" name="paged" value="1"/>
+                    <?php wc_query_string_form_fields(null, array('orderby', 'submit', 'paged', 'product-page')); ?>
+                    <input class="btn btn-sm btn-primary" id="search-text-input" value="search">
+                    <div id='button-holder'>
+                        <img src='magnifying_glass.png'/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group pull-right">
+                <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right"> Upload
+                    Prescription </a>
+            </div>
+
+        </div>
+
     </div>
     <br>
 </div>
-<br>
-<form class="woocommerce-ordering pull-left" method="get">
-    <input class="form-control" name="search_key">
-    <input type="hidden" name="paged" value="1"/>
-    <?php wc_query_string_form_fields(null, array('orderby', 'submit', 'paged', 'product-page')); ?>
-</form>
 
-<form class="woocommerce-ordering pull-right" method="get">
 
-    <select name="orderby" class="orderby" aria-label="<?php esc_attr_e('Shop order', 'woocommerce'); ?>">
-        <?php foreach ($catalog_orderby_options as $id => $name) : ?>
-            <option value="<?php echo esc_attr($id); ?>" <?php selected($orderby, $id); ?>><?php echo esc_html($name); ?></option>
-        <?php endforeach; ?>
-    </select>
-    <input type="hidden" name="paged" value="1"/>
-    <?php wc_query_string_form_fields(null, array('orderby', 'submit', 'paged', 'product-page')); ?>
-</form>
+
