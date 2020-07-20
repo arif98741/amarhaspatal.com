@@ -218,7 +218,7 @@ final class _FW_Component_Theme {
 			$url_install_plugin = is_multisite() ? network_admin_url( 'plugin-install.php?s=brizy&tab=search&type=term' ) : admin_url( 'plugin-install.php?s=brizy&tab=search&type=term' );
 
 			echo
-				'<div class="notice updated is-dismissible fw-brz-dismiss">
+				'<div style="display: none;" class="notice updated is-dismissible fw-brz-dismiss">
 					<p style="font-size:14px;">' .
 						esc_html__( 'Try Brizy: A Fast & Easy Way of Creating Pages Visually', 'fw' ) .
 						' - <a href="' . admin_url( 'admin.php?page=fw-new' ) . '">' .

@@ -69,9 +69,6 @@ if (!function_exists('docdirect_account_settings')) {
         global $current_user, $wp_roles, $userdata, $post;
         $user_identity = $current_user->ID;
 
-        //echo '<pre>';
-        //print_r($_POST); exit;
-
         //Update Socials
         if (isset($_POST['socials']) && !empty($_POST['socials'])) {
             foreach ($_POST['socials'] as $key => $value) {
@@ -274,6 +271,17 @@ if (!function_exists('docdirect_account_settings')) {
             update_user_meta($user_identity, 'blood_group', esc_html($_POST['blood_group']));
             update_user_meta($user_identity, 'last_donation_date', esc_html($_POST['last_donation_date']));
         }
+
+        //if isset car no
+        if (isset($_POST['car_no'])) {
+            update_user_meta($user_identity, 'car_no', esc_html($_POST['car_no']));
+        }
+
+        //if isset car no
+        if (isset($_POST['bmdc_registration_no'])) {
+            update_user_meta($user_identity, 'bmdc_registration_no', esc_html($_POST['bmdc_registration_no']));
+        }
+
 
         do_action('docdirect_do_update_profile_settings', $_POST); //Save custom data
 

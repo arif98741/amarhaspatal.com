@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData">
+  <component name="PublishConfigData" serverName="Amarhaspatal.com">
     <serverData>
-      <paths name="PHP Email Project">
+      <paths name="Amarhaspatal.com">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path=".github" />
+            <excludedPath local="true" path="wp-admin" />
+            <excludedPath local="true" path="webadmin" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

@@ -3,6 +3,7 @@
 Template Name: Custom User Page
 */
 get_header();
+
 ?>
 <div class="full-width">
     <div class="col-md-offset-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -21,7 +22,7 @@ get_header();
                             <option value="0">Select User Type</option>
 <!--                            <option value="125">Clinic</option>-->
                             <option value="123">Ambulance</option>
-                            <option value="121">Diagnostics</option>
+
                         </select>
                     </div>
                     <div class="form-group">

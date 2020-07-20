@@ -7,7 +7,17 @@ global $current_user, $wp_roles, $userdata, $post, $paged;
 $dir_obj = new DocDirect_Scripts();
 $user_identity = $current_user->ID;
 $query = $wpdb->get_results("select * from wp_users");
-
+$users = get_users(
+    array(
+        'meta_query' => array(
+            array(
+                'key' => 'directory_type',
+                'value' => 127,
+                'compare' => '=='
+            )
+        )
+    )
+);
 
 foreach ($query as $user) {
     $userMeta = get_user_meta($user_id->ID, [
@@ -30,10 +40,18 @@ get_header();
                     <div class="col-md-4">
                         <div class="form-group">
 
-                            <select class="form-control">
+                            <select name="user_id" class="form-control select2">
                                 <option>Select Doctor</option>
+                                <?php foreach ($users as $user) {
+                                    $userMeta = get_user_meta($user->ID);
+                                    ?>
+                                    <option value="<?= $user->ID ?>"><?= $userMeta['first_name'][0] ?>
+                                        (<?= $userMeta['bmdc_registration_no'][0] ?>)
+                                    </option>
 
+                                <?php } ?>
                             </select>
+
                         </div>
                     </div>
 
@@ -44,14 +62,16 @@ get_header();
                                    name="identity">
                             <input type="text" required class="form-control booking-search-date"
                                    value="<?php echo isset($_GET['by_date']) && !empty($_GET['by_date']) ? $_GET['by_date'] : ''; ?>"
-                                   name="start_date" placeholder="<?php esc_html_e('Start date', 'docdirect'); ?>">
+                                   name="start_date" autocomplete="off"
+                                   placeholder="<?php esc_html_e('Start date', 'docdirect'); ?>">
                             <!--                            <button type="submit"><i class="fa fa-search"></i></button>-->
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
 
-                            <input type="text" required class="form-control booking-search-date" value=""
+                            <input type="text" autocomplete="off" required class="form-control booking-search-date"
+                                   value=""
                                    name="end_date" placeholder="<?php esc_html_e('End date', 'docdirect'); ?>">
                         </div>
 
@@ -67,7 +87,34 @@ get_header();
             </form>
         </div>
     </div>
+    <style>
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            height: 46px !important;
+        }
 
+        .select2-container--default .select2-selection--single .select2-selection__arrow b {
+            border-color: #888 transparent transparent transparent;
+            border-style: solid;
+            border-width: 5px 4px 0 4px;
+            height: 0;
+            left: 50%;
+            margin-left: -4px;
+            margin-top: 6px !important;
+            position: absolute;
+            top: 50%;
+            width: 0;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('.select2').select2();
+        });
+    </script>
 <?php
 get_footer();
 ?>

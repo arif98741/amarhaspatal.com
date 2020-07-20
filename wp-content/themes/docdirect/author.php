@@ -117,9 +117,33 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     <div class="tab-content" id="nav-tabContent">
                                         <div class="tab-pane fade active in" id="nav-about-me" role="tabpanel"
                                              aria-labelledby="nav-about-me-tab">
-                                            <?php get_template_part('directory/provider-page/template-author-about'); ?>
-                                            <?php get_template_part('directory/provider-page/template-author-education'); ?>
-                                            <?php get_template_part('directory/provider-page/template-author-experience'); ?>
+                                            <button type="button" class="btn btn-info btn-sm"
+                                                    style="display: block; width: 100%;    padding: 8px;"
+                                                    data-toggle="collapse"
+                                                    data-target="#about-me-btn-collapse">About Me
+                                            </button>
+                                            <div id="about-me-btn-collapse" class="collapse in">
+                                                <?php get_template_part('directory/provider-page/template-author-about'); ?>
+                                            </div>
+
+                                            <button type="button" class="btn btn-info btn-sm"
+                                                    style="display: block; width: 100%;    padding: 8px;"
+                                                    data-toggle="collapse"
+                                                    data-target="#about-me-btn-education">Education
+                                            </button>
+                                            <div id="about-me-btn-education" class="collapse ">
+                                                <?php get_template_part('directory/provider-page/template-author-education'); ?>
+                                            </div>
+
+                                            <button type="button" class="btn btn-info btn-sm"
+                                                    style="display: block; width: 100%;    padding: 8px;"
+                                                    data-toggle="collapse"
+                                                    data-target="#about-me-btn-experience">Experience
+                                            </button>
+                                            <div id="about-me-btn-experience" class="collapse">
+                                                <?php get_template_part('directory/provider-page/template-author-experience'); ?>
+                                            </div>
+
 
                                         </div>
                                         <div class="tab-pane fade" id="nav-specilities-honors" role="tabpanel"
@@ -142,7 +166,6 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                     $privacy['opening_hours'] == 'on'
                                                 ) { ?>
                                                     <div class="tg-userschedule">
-                                                        <h3><?php esc_html_e('Schedule', 'docdirect'); ?></h3>
                                                         <?php if (!empty($time_zone)) { ?>
                                                         <?php } ?>
                                                         <ul>
@@ -188,10 +211,11 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                                         }
 
                                                                         $day = str_replace('-details', '', $slot_key);
-                                                                        echo '<span style="font-weight: bold; display: block;border: 1px solid black; padding: 9px 15px; background: #bb96d0; color: #fff;" class="active">' . $week_array[$day] . '</span>';
+                                                                        echo '<span type="button" data-toggle="collapse" data-target="#demo' . $day . '" style="font-weight: bold; display: block;border: 1px solid black; padding: 9px 15px; background: #bb96d0; color: #fff;" class="active">' . $week_array[$day] . '</span>';
 
 
                                                                         $opened_slots = $slots[$slot_key];
+                                                                        echo '<div id="demo' . $day . '" class="collapse" style="margin-top: 3px;">';
                                                                         echo '<table> <tr><th>Schedule Time</th><th>Chamber</th></tr>';
                                                                         foreach ($opened_slots as $opened_slot_key => $opened_slot) {
 //
@@ -209,7 +233,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
 
 
                                                                         <?php }
-                                                                        echo '</table>';
+                                                                        echo '</table></div>';
 
                                                                     } else {
 

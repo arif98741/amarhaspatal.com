@@ -843,7 +843,6 @@ if (isset($_POST['ambulance_type'])) {
         </div>
 
         <!-- Jquery JS-->
-        <script src="<?= site_url('docdirect/js/vendor/docdirect_functions.js') ?>"></script>
 
         </body>
     </div>

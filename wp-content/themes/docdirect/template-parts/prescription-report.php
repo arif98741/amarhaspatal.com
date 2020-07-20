@@ -23,7 +23,7 @@ get_header();
                     <div class="col-md-4">
                         <div class="form-group">
                             <input type="hidden" class="" value="prescription" name="ref">
-                            <input type="text" required class="form-control booking-search-date"
+                            <input autocomplete="off" type="text" required class="form-control booking-search-date"
                                    value="<?php echo isset($_GET['by_date']) && !empty($_GET['by_date']) ? $_GET['by_date'] : ''; ?>"
                                    name="start_date" placeholder="<?php esc_html_e('Start date', 'docdirect'); ?>">
                             <!--                            <button type="submit"><i class="fa fa-search"></i></button>-->
@@ -32,7 +32,8 @@ get_header();
                     <div class="col-md-4">
                         <div class="form-group">
 
-                            <input type="text" required class="form-control booking-search-date" value=""
+                            <input type="text" autocomplete="off" required class="form-control booking-search-date"
+                                   value=""
                                    name="end_date" placeholder="<?php esc_html_e('End date', 'docdirect'); ?>">
                         </div>
 

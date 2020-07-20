@@ -131,11 +131,11 @@ if (!class_exists('SC_Authentication')) {
                                                 <input type="hidden" name="user_type" value="professional"
                                                        id="user_type">
                                                 <select name="directory_type" id="usertypedropdown">
-
                                                     <option value="0">Select User Type</option>
+                                                    <option value="122">Blood Donor</option>
+                                                    <option value="121">Diagnostics</option>
                                                     <option value="127">Doctor</option>
                                                     <option value="126">Hospital</option>
-                                                    <option value="122">Blood Donor</option>
                                                     <option value="122">Visitor</option>
 
                                                 </select>

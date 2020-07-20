@@ -197,7 +197,7 @@ $flag = rand(1, 9999);
                                         <?php } ?>
                                         <?php if ($directory_type == 122): ?>
 
-                                            <li><i class="fa fa-list"></i><?php echo get_user_meta($user_identity,
+                                            <li><i class="fa fa-list"></i><?php echo get_user_meta($user->ID,
                                                     'last_donation_date', true); ?>
                                             </li>
                                         <?php endif; ?>

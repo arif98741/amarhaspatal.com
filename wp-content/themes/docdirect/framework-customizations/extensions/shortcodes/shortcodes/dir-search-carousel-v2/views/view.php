@@ -71,7 +71,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
         width: 46% !important;
         margin-left: auto;
         min-height: 358px;
-        border: 4px solid #3a76a324 !important;
+        border: 4px solid #0000ff78 !important;
         background: #fff;
         padding: 10px;
         height: 420px;
@@ -176,10 +176,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label for="service">Speciality</label>
-                                            <!--   <input class="form-control" name="search_key">-->
-                                            <select name="search_key" id="speciality_dropdown">
-
-                                            </select>
+                                            <input class="form-control" name="search_key">
                                         </div>
                                     </div>
                                 </div>

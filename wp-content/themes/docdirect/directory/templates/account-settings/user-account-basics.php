@@ -45,6 +45,28 @@ if (isset($db_directory_type) && !empty($db_directory_type)) {
                            placeholder="<?php esc_attr_e('Last Name', 'docdirect'); ?>">
                 </div>
             </div>
+            <?php if ($db_directory_type == 127 ): ?>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <input class="form-control" name="bmdc_registration_no"
+                               value="<?php echo get_user_meta($user_identity, 'bmdc_registration_no', true); ?>"
+                               type="text"
+                               placeholder="<?php esc_attr_e('BMDC Regration No', 'docdirect'); ?>">
+                    </div>
+                </div>
+
+
+            <?php endif; ?>
+            <?php if ($db_directory_type == 123): ?>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <input class="form-control" name="car_no" required
+                               value="<?php echo get_user_meta($user_identity, 'car_no', true); ?>" type="text"
+                               placeholder="<?php esc_attr_e('Car no', 'docdirect'); ?>">
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <input class="form-control" name="basics[phone_number]"
@@ -71,6 +93,8 @@ if (isset($db_directory_type) && !empty($db_directory_type)) {
                 </div>
 
             <?php endif; ?>
+
+
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <input class="form-control" name="basics[fax]"
@@ -101,6 +125,7 @@ if (isset($db_directory_type) && !empty($db_directory_type)) {
 
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
+
                     <input class="form-control" name="basics[user_address]"
                            value="<?php echo get_user_meta($user_identity, 'user_address', true); ?>" type="text"
                            placeholder="<?php esc_attr_e('Address', 'docdirect'); ?>">

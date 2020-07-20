@@ -612,16 +612,31 @@ jQuery(document).ready(function ($) {
     });
 
     /**
+     * User type dropdown change
+     * It will change user type in input according to type
+     */
+    jQuery('#usertypedropdown').on('change', function () {
+        var user_type = $(this).val();
+        if (user_type == 122) {
+            $('#user_type').val('visitor');
+        } else {
+            $('#user_type').val('professional');
+        }
+    });
+
+    /**
      * ---------------------------------------
      * Get Speciality According to directorytype
      * Get Unions
      * ---------------------------------------------
      */
-    jQuery('#usertypedropdown').on('change', function (event) {
+    jQuery('#directory_type_dropdown').on('change', function (event) {
         var directory_type = jQuery(this).val();
         console.log(directory_type);
-        //TODO:: need to work on directory dropdown
-        jQuery.ajax({
+        return false;
+        //TODO:: need to work here
+        /**
+         * jQuery.ajax({
             type: "POST",
             url: scripts_vars.ajaxurl,
             data: {
@@ -632,20 +647,21 @@ jQuery(document).ready(function ($) {
             success: function (response) {
 
                 $('#speciality_dropdown').html('<option value="">Select Speciality </option>');
-                /* $.each(response, function (key, value) {
+                 $.each(response, function (key, value) {
                      console.log(typeof  value);
                      $('#union_id_temp')
                          .append($("<option></option>")
                              .attr("value", value.id)
                              .text(value.title_en));
-                 });*/
-                console.log('hello');
-                Object.entries(response).forEach(([key, value]) => {
-                    // console.log(`${key} ${value}`);
-                    console.log('<option value="' + key + '">ywa</option>');
-                });
-            }
+                 });
+            console.log('hello');
+            Object.entries(response).forEach(([key, value]) => {
+                // console.log(`${key} ${value}`);
+                        console.log('<option value="' + key + '">ywa</option>');
+                    });
+                }
         });
+         */
     });
 
 
