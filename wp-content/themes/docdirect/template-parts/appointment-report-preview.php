@@ -86,11 +86,7 @@ $count_post = $query->found_posts;
     <style>
 
         @font-face {
-            font-family: 'SolaimanLipiNormal';
-            src: url('fonts/solaiman-lipi.eot');
-            src: url('fonts/solaiman-lipi.eot') format('embedded-opentype'), url('fonts/solaiman-lipi.woff') format('woff'), url('fonts/solaiman-lipi.ttf') format('truetype'), url('fonts/solaiman-lipi.svg#SolaimanLipiNormal') format('svg');
-            font-weight: normal;
-            font-style: normal;
+           
         }
 
         body {

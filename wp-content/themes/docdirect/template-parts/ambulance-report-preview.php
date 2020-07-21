@@ -9,12 +9,20 @@ $user_identity = $current_user->ID;
 $url_identity = $user_identity;
 $start = esc_html($_GET['start_date']);
 $end = esc_html($_GET['end_date']);
+$user_id = '';
+$sql = "SELECT * FROM ambulance_booking where created_at >= '$start' and created_at <='$end'";
+if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
+    $user_id = esc_html($_GET['user_id']);
+    $sql = "SELECT * FROM ambulance_booking where created_at >= '$start' and created_at <='$end' and user_id='$user_id'";
+}
 
 $start = $start . ' 00:00:00';
 $end = $end . ' 23:59:59';
 
 global $wpdb;
-$bookings = $wpdb->get_results("SELECT * FROM ambulance_booking where created_at >= '$start' and created_at <='$end'");
+
+$bookings = $wpdb->get_results($sql);
+
 
 ?>
 <!DOCTYPE html>
@@ -366,7 +374,16 @@ $bookings = $wpdb->get_results("SELECT * FROM ambulance_booking where created_at
             <td width="10%" height="82" align="left" valign="top"><a href="#"></td>
             <td width="81%" align="left" valign="top">
                 <h1>Ambulance Report</h1>
-                <hr>
+                <h3>
+                    <?php
+                    if (isset($_GET['user_id']) && !empty($_GET['user_id'])) ?>
+                        <?php
+
+                    echo get_user_meta($user_id)['first_name'][0];
+                    ?>
+
+                </h3>
+
                 <h3>From
                     date: <?= date('d-m-Y', strtotime($start)) ?>
                     <br>To Date: <?= date('d-m-Y', strtotime($end)) ?></h3>
@@ -406,7 +423,7 @@ $bookings = $wpdb->get_results("SELECT * FROM ambulance_booking where created_at
             foreach ($bookings as $book) {
                 $counter++;
                 ?>
-                <tr class="<?php echo esc_attr($trClass); ?> booking-<?php echo intval($post->ID); ?>">
+                <tr class="">
                     <td data-name="id"><?= $counter ?></td>
                     <td><?php echo esc_attr($book->ambulance_type); ?></td>
                     <td><?php echo esc_attr(date('d-m-Y', strtotime($book->booking_date))); ?></td>
@@ -426,7 +443,7 @@ $bookings = $wpdb->get_results("SELECT * FROM ambulance_booking where created_at
             ?>
             <tr>
                 <td colspan="10">
-                    <?php DoctorDirectory_NotificationsHelper::informations(esc_html__('No booking data found.', 'docdirect')); ?>
+                    <?php DoctorDirectory_NotificationsHelper::informations(esc_html__('No data found.', 'docdirect')); ?>
                 </td>
             </tr>
         <?php }; ?>
@@ -436,7 +453,7 @@ $bookings = $wpdb->get_results("SELECT * FROM ambulance_booking where created_at
     </table>
     <br>
 
-    </p>
+    </div>
 
     <div class="footer-text">
         <center>Technical Assistance: SoftBD Ltd | Generated on <?= date('d-m-Y h:i:sA') ?>

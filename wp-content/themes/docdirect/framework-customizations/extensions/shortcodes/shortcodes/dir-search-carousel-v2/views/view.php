@@ -68,13 +68,15 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
 ?>
 <style>
     #search-div-carousal {
-        width: 46% !important;
+        width: 42% !important;
         margin-left: auto;
         min-height: 358px;
         border: 4px solid #0000ff78 !important;
         background: #fff;
         padding: 10px;
-        height: 420px;
+        height: 415px;
+        margin-top: 83px;
+
     }
 
     @media (min-width: 481px) and (max-width: 767px) {

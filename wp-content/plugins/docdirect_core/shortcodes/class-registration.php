@@ -34,6 +34,7 @@ if (!class_exists('SC_Authentication')) {
                 $terms_link = fw_get_db_settings_option('terms_link', $default_value = null);
             }
             ?>
+            <!----Ambulance Booking Popup----->
             <div class="modal fade tg-user-modal" tabindex="-1" role="dialog">
                 <div class="tg-modal-content">
                     <ul class="tg-modaltabs-nav" role="tablist">
@@ -250,6 +251,130 @@ if (!class_exists('SC_Authentication')) {
                     </div>
                 </div>
             </div>
+            <div id="ambulance-booking-modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Ambulance Booking</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card card-6">
+
+                                <div class="card-body">
+                                    <?php if ($message != ''): ?>
+                                        <?php
+                                        echo $message;
+                                        //global $wp_query, $current_user;
+                                        //$author_profile = $wp_query->get_queried_object();
+                                        ?>
+                                    <?php
+                                    endif;
+                                    ?>
+                                    <form method="POST" action="<?= site_url('ambulance-booking') ?>">
+
+                                        <div class="form-row">
+                                            <div class="name">Ambulance Type</div>
+                                            <?php
+                                            global $author_profile;
+
+                                            ?>
+                                            <div class="value m-b-25">
+                                                <input type="hidden" name="user_id"
+                                                       value="<?php echo $author_profile->ID
+                                                       ?>">
+
+                                                <select name="ambulance_type" class="input--style-6" required>
+                                                    <option value="" selected disabled>Select Ambulance Type</option>
+                                                    <option value="Ac">Ac Ambulance</option>
+                                                    <option value="Non-Ac"> Non-Ac Ambulance</option>
+                                                    <option value="ICU"> ICU Ambulance</option>
+                                                    <option value="NICU"> NICU Ambulance</option>
+                                                    <option value="Freezer Van"> Freezer Van Ambulance</option>
+                                                    <option value="Air"> Air Ambulance</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="name">Departing Date</div>
+                                            <div class="value m-b-25">
+                                                <input class="input--style-6" type="date" name="booking_date" required>
+                                            </div>
+
+                                            <div class="name">Start from</div>
+                                            <div class="value m-b-25">
+                                                <input class="input--style-6" type="text"
+                                                       placeholder="Enter starting location"
+                                                       name="start_from" required>
+                                            </div>
+
+
+                                            <div class="name">Destination</div>
+                                            <div class="value m-b-25">
+                                                <input class="input--style-6" type="text"
+                                                       placeholder="Enter destination location"
+                                                       name="destination" required>
+                                            </div>
+
+                                            <div class="name">Select Trip Type</div>
+                                            <div class="value m-b-25">
+
+                                                <select name="trip_type" class="input--style-6" id="sel1" required>
+                                                    <option value="" selected disabled>Select Type</option>
+                                                    <option value="Single Trip">Single Trip</option>
+                                                    <option value="Round Trip">Round Trip</option>
+
+                                                </select>
+                                            </div>
+
+                                            <div class="name">Name</div>
+                                            <div class="value m-b-25">
+                                                <input class="input--style-6" type="text"
+                                                       placeholder="Enter your full name"
+                                                       name="full_name" required>
+                                            </div>
+
+                                            <div class="name">Email</div>
+                                            <div class="value m-b-25">
+                                                <input class="input--style-6" type="text"
+                                                       placeholder="Enter your email here"
+                                                       name="email" required>
+                                            </div>
+
+                                            <div class="name">Contact No</div>
+                                            <div class="value m-b-25">
+                                                <input class="input--style-6 m-b-25" type="text"
+                                                       placeholder="Contact No"
+                                                       name="contact_no" required>
+                                            </div>
+
+                                            <div class="name">Reference ID</div>
+                                            <div class="value m-b-25">
+                                                <input class="input--style-6" type="text"
+                                                       placeholder="Enter reference id if available"
+                                                       name="reference_id" required>
+                                            </div>
+                                            <br>
+                                            <div class="value m-b-25">
+                                                <button class="btn btn--radius-2 btn--blue-2 btn btn-primary"
+                                                        id="ambulanceBookingbtn"
+                                                        type="submit">Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-----Ambulance Booking Popup End---->
             <?php
         }
 

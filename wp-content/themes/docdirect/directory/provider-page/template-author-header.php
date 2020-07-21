@@ -72,7 +72,7 @@ if (!empty($banner)) {
                         }
                     } ?>
                     <?php if ($directory_type == 123): ?>
-                        <a class="tg-btn tg-btn-lg make-appointment-btn" href="<?= site_url('ambulance-booking'); ?>">Book Ambulance
+                        <a class="tg-btn tg-btn-lg make-appointment-btn doc-btn"  data-toggle="modal" data-target="#ambulance-booking-modal">Book Ambulance
                         </a>
                     <?php endif; ?>
                 </div>
@@ -80,3 +80,8 @@ if (!empty($banner)) {
         </div>
     </div>
 </div>
+
+
+<!-------ambulance booking modal---->
+
+<!-------ambulance booking modal---->

@@ -11,6 +11,7 @@ get_header();
 if (isset($_POST['ambulance_type'])) {
 
     $ambulance_type = esc_html($_POST['ambulance_type']);
+    $user_id = esc_html($_POST['user_id']);
     $booking_date = esc_html($_POST['booking_date']);
     $start_from = esc_html($_POST['start_from']);
     $destination = esc_html($_POST['destination']);
@@ -26,6 +27,7 @@ if (isset($_POST['ambulance_type'])) {
 
     $status = $wpdb->insert($table_name, array(
         'ambulance_type' => $ambulance_type,
+        'user_id' => $user_id,
         'booking_date' => $booking_date,
         'start_from' => $start_from,
         'destination' => $destination,
@@ -745,103 +747,23 @@ if (isset($_POST['ambulance_type'])) {
         }
     </style>
     <div class="container">
-        <div class="page-wrapper bg-blue p-t-100 p-b-50">
-            <div class="wrapper wrapper--w900">
-                <div class="card card-6">
-                    <div class="card-heading">
-                        <h2 class="title">Book Ambulance</h2>
-                    </div>
-                    <div class="card-body">
-                        <?php if ($message != ''): ?>
-                            <?php
-                            echo $message;
-                            ?>
-                        <?php
-                        endif;
-                        ?>
-                        <form method="POST" action="<?= site_url('ambulance-booking') ?>">
+        <div class="wrapper wrapper--w900">
 
-                            <div class="form-row">
-                                <div class="name">Ambulance Type</div>
-                                <div class="value m-b-25">
+            <?php if ($message != ''): ?>
+                <?php
+                echo $message;
+                ?>
+            <?php
+            endif;
+            ?>
 
-                                    <select name="ambulance_type" class="input--style-6" required>
-                                        <option value="" selected disabled>Select Ambulance Type</option>
-                                        <option value="Ac">Ac Ambulance</option>
-                                        <option value="Non-Ac"> Non-Ac Ambulance</option>
-                                        <option value="ICU"> ICU Ambulance</option>
-                                        <option value="NICU"> NICU Ambulance</option>
-                                        <option value="Freezer Van"> Freezer Van Ambulance</option>
-                                        <option value="Air"> Air Ambulance</option>
-                                    </select>
-                                </div>
-
-                                <div class="name">Departing Date</div>
-                                <div class="value m-b-25">
-                                    <input class="input--style-6" type="date" name="booking_date" required>
-                                </div>
-
-                                <div class="name">Start from</div>
-                                <div class="value m-b-25">
-                                    <input class="input--style-6" type="text" placeholder="Enter starting location"
-                                           name="start_from" required>
-                                </div>
-
-
-                                <div class="name">Destination</div>
-                                <div class="value m-b-25">
-                                    <input class="input--style-6" type="text" placeholder="Enter destination location"
-                                           name="destination" required>
-                                </div>
-
-                                <div class="name">Select Trip Type</div>
-                                <div class="value m-b-25">
-
-                                    <select name="trip_type" class="input--style-6" id="sel1" required>
-                                        <option value="" selected disabled>Select Type</option>
-                                        <option value="Single Trip">Single Trip</option>
-                                        <option value="Round Trip">Round Trip</option>
-
-                                    </select>
-                                </div>
-
-                                <div class="name">Name</div>
-                                <div class="value m-b-25">
-                                    <input class="input--style-6" type="text" placeholder="Enter your full name"
-                                           name="full_name" required>
-                                </div>
-
-                                <div class="name">Email</div>
-                                <div class="value m-b-25">
-                                    <input class="input--style-6" type="text" placeholder="Enter your email here"
-                                           name="email" required>
-                                </div>
-
-                                <div class="name">Contact No</div>
-                                <div class="value m-b-25">
-                                    <input class="input--style-6 m-b-25" type="text" placeholder="Contact No"
-                                           name="contact_no" required>
-                                </div>
-
-                                <div class="name">Reference ID</div>
-                                <div class="value m-b-25">
-                                    <input class="input--style-6" type="text"
-                                           placeholder="Enter reference id if available"
-                                           name="reference_id" required>
-                                </div>
-                                <div class="value m-b-25">
-                                    <button class="btn btn--radius-2 btn--blue-2" id="ambulanceBookingbtn"
-                                            type="submit">Submit
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
+            <button class="button blue" onclick="goBack()">Back</button>
+            <script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
         </div>
-
         <!-- Jquery JS-->
 
         </body>

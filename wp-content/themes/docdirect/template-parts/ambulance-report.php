@@ -28,15 +28,12 @@ get_header();
                         <div class="form-group">
 
 
-                            <select name="car_no" class="form-control select2">
+                            <select name="user_id" class="form-control select2">
                                 <option>Select Ambulance</option>
                                 <?php foreach ($users as $user) {
-
                                     $userMeta = get_user_meta($user->ID);
-
                                     ?>
-                                    <option value="<?= $userMeta['car_no'][0] ?>"><?= $userMeta['first_name'][0] ?>
-                                        (<?= $userMeta['car_no'][0] ?>)
+                                    <option value="<?= $user->ID ?>"><?= $userMeta['first_name'][0] ?>
                                     </option>
 
                                 <?php } ?>

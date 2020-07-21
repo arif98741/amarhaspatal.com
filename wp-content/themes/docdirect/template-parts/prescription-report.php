@@ -10,7 +10,7 @@ $user_identity = $current_user->ID;
 
 get_header();
 ?>
-    <div class="container">
+    <div class="container" style="position: relative">
         <div class="tg-dashboard tg-docappointmentlisting tg-haslayout">
             <h4 class="text-center"><?php esc_html_e('Select start and end date to generate report ', 'docdirect'); ?>
                 :</h4>

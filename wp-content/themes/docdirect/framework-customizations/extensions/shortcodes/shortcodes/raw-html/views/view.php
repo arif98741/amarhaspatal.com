@@ -7,7 +7,7 @@ if (!defined('FW'))
 ?>
 
 <?php if (isset($atts['textblock_description']) && $atts['textblock_description'] != '') { ?>
-    <div class="raw-html-description">
-        <?php echo do_shortcode($atts['textblock_description']); ?>
+    <div class="raw-html-descriptionss">
+        <?php //echo do_shortcode($atts['textblock_description']); ?>
     </div>
 <?php } ?>

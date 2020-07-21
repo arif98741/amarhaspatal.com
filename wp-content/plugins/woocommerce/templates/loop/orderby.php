@@ -20,26 +20,34 @@ if (!defined('ABSPATH')) {
 }
 
 ?>
+<style>
 
 
-<div class="container">
+    @media only screen and (max-width: 768px) {
+        .woocommerce ul.products[class*=columns-] li.product, .woocommerce-page ul.products[class*=columns-] li.product {
+            padding: 4px 5px;
+
+        }
+
+    }
+
+</style>
+
+<div class="container-fluid" style="margin-bottom: 5px">
     <div class="row">
+        <div class="col-md-7 pull-left" style="position: absolute">
 
+            <form class="" method="get">
+                <input class="form-control" name="search_key" placeholder="Enter search keyword here">
+                <input type="hidden" name="paged" value="1"/>
+                <?php wc_query_string_form_fields(null, array('orderby', 'submit', 'paged', 'product-page')); ?>
+                <br>
+                <span><input class="btn btn-sm btn-primary" id="search-text-input" value="search"></span>
 
-        <div class="col-md-7">
-            <div class="form-group pull-left">
-                <form class="" method="get">
-                    <input class="form-control" name="search_key" placeholder="Enter search keyword here">
-                    <input type="hidden" name="paged" value="1"/>
-                    <?php wc_query_string_form_fields(null, array('orderby', 'submit', 'paged', 'product-page')); ?>
-                    <input class="btn btn-sm btn-primary" id="search-text-input" value="search">
-                    <div id='button-holder'>
-                        <img src='magnifying_glass.png'/>
-                    </div>
-                </form>
-            </div>
+            </form>
+
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 pull-right" style="position:relative;">
             <div class="form-group pull-right">
                 <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right"> Upload
                     Prescription </a>
@@ -50,6 +58,8 @@ if (!defined('ABSPATH')) {
     </div>
     <br>
 </div>
+
+
 
 
 

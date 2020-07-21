@@ -131,6 +131,8 @@ if (isset($_POST['prescription_upload'])) {
                                 <input type="file" name="prescription_file" required>
                             </div>
                         </div>
+
+                        <div class="clearfix"></div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Note </label>
@@ -138,8 +140,10 @@ if (isset($_POST['prescription_upload'])) {
                                           placeholder="Enter note text here"></textarea>
                             </div>
                         </div>
+
+                        <div class="clearfix"></div>
                         <div class="col-md-3">
-                            <button type="submit" name="prescription_upload" class="btn btn-primary">Submit</button>
+                            <div class=""><button type="submit" name="prescription_upload" class="btn btn-primary">Submit</button></div>
                         </div>
                     </div>
                     <?php
@@ -184,6 +188,7 @@ if (isset($_POST['prescription_upload'])) {
                                 <input type="file" name="prescription_file" required>
                             </div>
                         </div>
+                        <div class="clearfix"></div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Note </label>
@@ -191,6 +196,7 @@ if (isset($_POST['prescription_upload'])) {
                                           placeholder="Enter note text here"></textarea>
                             </div>
                         </div>
+                        <div class="clearfix"></div>
                         <div class="col-md-3">
                             <button type="submit" name="prescription_upload" class="btn btn-primary">Submit</button>
                         </div>
