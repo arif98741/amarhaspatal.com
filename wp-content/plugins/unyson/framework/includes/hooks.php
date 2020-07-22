@@ -256,7 +256,7 @@ add_filter( 'fw_github_api_url', '_fw_filter_github_api_url' );
 				&&
 				! session_id()
 			) {
-				session_start();
+				//session_start();
 			}
 		}
 

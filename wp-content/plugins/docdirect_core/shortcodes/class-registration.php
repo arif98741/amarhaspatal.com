@@ -263,7 +263,7 @@ if (!class_exists('SC_Authentication')) {
                             <div class="card card-6">
 
                                 <div class="card-body">
-                                    <?php if ($message != ''): ?>
+                                    <?php if (isset($message) ): ?>
                                         <?php
                                         echo $message;
                                         //global $wp_query, $current_user;
@@ -646,4 +646,3 @@ if (!class_exists('SC_Authentication')) {
     new SC_Authentication();
 }
 ?>
-

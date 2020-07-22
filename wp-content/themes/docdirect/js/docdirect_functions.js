@@ -632,36 +632,33 @@ jQuery(document).ready(function ($) {
      */
     jQuery('#directory_type_dropdown').on('change', function (event) {
         var directory_type = jQuery(this).val();
-        console.log(directory_type);
-        return false;
-        //TODO:: need to work here
-        /**
-         * jQuery.ajax({
+        jQuery.ajax({
             type: "POST",
             url: scripts_vars.ajaxurl,
             data: {
                 'action': 'get_specialities_bydirectorytype',
                 'directory_type': directory_type
             },
-            dataType: "json",
+            dataType: "text",
             success: function (response) {
 
                 $('#speciality_dropdown').html('<option value="">Select Speciality </option>');
-                 $.each(response, function (key, value) {
-                     console.log(typeof  value);
-                     $('#union_id_temp')
-                         .append($("<option></option>")
-                             .attr("value", value.id)
-                             .text(value.title_en));
-                 });
-            console.log('hello');
-            Object.entries(response).forEach(([key, value]) => {
-                // console.log(`${key} ${value}`);
-                        console.log('<option value="' + key + '">ywa</option>');
-                    });
-                }
+                $('#speciality_dropdown').html(response);
+                /*$.each(response, function (key, value) {
+                    console.log(typeof value);
+                    $('#speciality_dropdown')
+                        .append($("<option></option>")
+                            .attr("value", value.id)
+                            .text(value.title_en));
+                });
+                console.log('hello');
+                Object.entries(response).forEach(([key, value]) => {
+                    // console.log(`${key} ${value}`);
+                    console.log('<option value="' + key + '">ywa</option>');
+                });*/
+            }
         });
-         */
+
     });
 
 

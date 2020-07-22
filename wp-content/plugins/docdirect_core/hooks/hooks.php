@@ -521,11 +521,14 @@ if (!function_exists('get_specialities_bydirectorytype')) {
                     $newArray = $userArray[0];
                 }
             }
-            /*$jsonArray =[];
-            foreach ($newArray as $key => $array) {
-              array_push($jsonArray,$array)  ;
-            }*/
-            echo json_encode($newArray);
+            $data = '<option value="" selected>Select Ambulance</option>';
+
+            foreach ($newArray as $key => $value) {
+                $data .= '<option value="' . $value . '">' . $value . '</option>';
+            }
+
+            //echo json_encode($newArray);
+            echo $data;
         }
         exit;
     }
