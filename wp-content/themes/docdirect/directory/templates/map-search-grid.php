@@ -28,6 +28,7 @@ $user_query = new WP_User_Query($query_args);
 $total_users = !empty($user_query->total_users) ? $user_query->total_users : 0;
 $found_title = docdirect_get_found_title($total_users, $directory_type);
 
+
 if (isset($search_page_map) && $search_page_map === 'enable') {
     ?>
     <div class="map-top">

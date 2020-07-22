@@ -34,7 +34,6 @@ if (!class_exists('SC_Authentication')) {
                 $terms_link = fw_get_db_settings_option('terms_link', $default_value = null);
             }
             ?>
-            <!----Ambulance Booking Popup----->
             <div class="modal fade tg-user-modal" tabindex="-1" role="dialog">
                 <div class="tg-modal-content">
                     <ul class="tg-modaltabs-nav" role="tablist">
@@ -252,18 +251,28 @@ if (!class_exists('SC_Authentication')) {
                 </div>
             </div>
             <div id="ambulance-booking-modal" class="modal fade" role="dialog">
+                <style>
+                    .ambulance-booking-popup-body {
+                        background: #007AA5;
+                        color: #fff;
+                    }
+
+                    h1.ambulance-booking-popup-body {
+                        color: #fff !important;
+                    }
+                </style>
                 <div class="modal-dialog">
                     <!-- Modal content-->
-                    <div class="modal-content">
+                    <div class="modal-content  ambulance-booking-popup-body">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Ambulance Booking</h4>
+                            <h4 class="modal-title ambulance-booking-popup-heading">Ambulance Booking</h4>
                         </div>
                         <div class="modal-body">
                             <div class="card card-6">
 
                                 <div class="card-body">
-                                    <?php if (isset($message) ): ?>
+                                    <?php if (isset($message)): ?>
                                         <?php
                                         echo $message;
                                         //global $wp_query, $current_user;

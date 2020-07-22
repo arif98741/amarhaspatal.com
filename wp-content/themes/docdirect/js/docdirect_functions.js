@@ -452,7 +452,7 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#district_id').html('<option value="">Select District </option>');
+                $('#district_id').html('<option value="">SELECT DISTRICT</option>');
                 $.each(response, function (key, value) {
 
                     $('#district_id')
@@ -481,7 +481,7 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#district_id_temp').html('<option value="">Select District </option>');
+                $('#district_id_temp').html('<option value="">SELECT DISTRICT</option>');
                 $.each(response, function (key, value) {
 
                     $('#district_id_temp')
@@ -511,7 +511,7 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#upazila_id').html('<option value="">Select Upazila </option>');
+                $('#upazila_id').html('<option value="">SELECT UPAZILA</option>');
                 $.each(response, function (key, value) {
 
                     $('#upazila_id')
@@ -540,7 +540,7 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#upazila_id_temp').html('<option value="">Select Upazila </option>');
+                $('#upazila_id_temp').html('<option value="">SELECT UPAZILA</option>');
                 $.each(response, function (key, value) {
 
                     $('#upazila_id_temp')
@@ -570,7 +570,7 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#union_id').html('<option value="">Select Union </option>');
+                $('#union_id').html('<option value="">SELECT UNION/option>');
                 $.each(response, function (key, value) {
 
                     $('#union_id')
@@ -599,7 +599,7 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#union_id_temp').html('<option value="">Select Union </option>');
+                $('#union_id_temp').html('<option value="">SELECT UNION</option>');
                 $.each(response, function (key, value) {
 
                     $('#union_id_temp')
@@ -643,7 +643,13 @@ jQuery(document).ready(function ($) {
             success: function (response) {
 
                 $('#speciality_dropdown').html('<option value="">Select Speciality </option>');
-                $('#speciality_dropdown').html(response);
+                if (response != '') {
+
+                    $('#speciality_dropdown').html(response);
+                    $('#speciality_dropdown').parent().parent().removeAttr('style');
+                } else {
+                    $('#speciality_dropdown').parent().parent().attr('style', 'display: none');
+                }
                 /*$.each(response, function (key, value) {
                     console.log(typeof value);
                     $('#speciality_dropdown')

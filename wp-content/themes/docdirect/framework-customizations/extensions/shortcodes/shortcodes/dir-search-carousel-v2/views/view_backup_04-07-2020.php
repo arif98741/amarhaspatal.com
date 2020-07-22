@@ -197,5 +197,11 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                 background: <?php echo esc_attr($atts['background_color']);?>;
             }</style>
     <?php } ?>
+    <style>
+        #division_id, #district_id, #upazila_id, #directory_type_dropdown, #speciality_dropdown {
+            text-transform: uppercase !important;
+            font-weight: 700;
+        }
+    </style>
 </div>
 

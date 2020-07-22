@@ -1819,10 +1819,9 @@ if (!function_exists('docdirect_search_filters')) {
 
                         <div class="form-group">
                             <label for="city">Service</label>
-                            <select name="directory_type">
-
-                                <option value="0" selected>Select Service</option>
-                                <option value="123">Ambulance</option>
+                            <select name="directory_type" id="directory_type_dropdown">
+                                <option value="0" selected>SELECT SERVICE</option>
+                                <option value="123">AMBULANCE</option>
                                 <option value="122">Blood Donor</option>
                                 <option value="121">Diagnostics</option>
                                 <option value="127">Doctor</option>
@@ -1832,16 +1831,18 @@ if (!function_exists('docdirect_search_filters')) {
                         </div>
                         <?php if (isset($dir_keywords) && $dir_keywords === 'enable') { ?>
                             <div class="form-group">
-                                <input type="text" class="form-control" value="<?php echo esc_attr($by_name); ?>"
-                                       name="search_key"
-                                       placeholder="<?php esc_html_e('Speciality', 'docdirect'); ?>">
+                                <label for="service">Speciality</label>
+                                <select id="speciality_dropdown_sidebar" class="form-control">
+                                    <option>SELECT SPECIALITY</option>
+
+                                </select>
                             </div>
                         <?php } ?>
 
                         <div class="form-group">
                             <div class="doc-select">
                                 <select name="division_id" id="division_id_temp" class="form-control">
-                                    <option>Select Division</option>
+                                    <option>SELECT DISTRICT</option>
                                     <?php
                                     global $wpdb;
                                     $divisionSql = "select id, title,title_en from loc_divisions where status='1'";
@@ -1933,7 +1934,7 @@ if (!function_exists('docdirect_search_filters')) {
                         <div class="form-group">
                             <div class="tg-inputicon tg-geolocationicon tg-angledown">
                                 <select name="district_id" id="district_id_temp" class="form-control">
-                                    <option value="">Select District</option>
+                                    <option value="">SELECT DISTRICT</option>
                                 </select>
                             </div>
                         </div>
@@ -1941,14 +1942,14 @@ if (!function_exists('docdirect_search_filters')) {
                         <div class="form-group">
                             <div class="tg-inputicon tg-geolocationicon tg-angledown">
                                 <select name="upazila_id" id="upazila_id_temp" class="form-control">
-                                    <option value="">Select Upazila</option>
+                                    <option value="">SELECT UPAZILA</option>
                                 </select>
                             </div>
                         </div>
                         <div style="display: none" class="form-group">
                             <div class="tg-inputicon tg-geolocationicon tg-angledown">
                                 <select name="union_id" id="union_id_temp" class="form-control">
-                                    <option value="">Select Union</option>
+                                    <option value="">SELECT UNION</option>
                                 </select>
                             </div>
                         </div>
@@ -2002,6 +2003,21 @@ if (!function_exists('docdirect_search_filters')) {
                         </div>
                     </fieldset>
                 </div>
+                <style>
+                    #division_id, #district_id, #upazila_id, #division_id_temp {
+                        text-transform: uppercase;
+                    }
+
+                    #division_id_temp option,
+                    #district_id_temp option,
+                    #upazila_id_temp option,
+                    #district_id_temp option,
+                    #directory_type_dropdown option,
+                    #speciality_dropdown option {
+                        font-weight: bold;
+                    }
+
+                </style>
             </div>
             <?php if (apply_filters('docdirect_get_theme_settings', 'sub_category') === 'enable') { ?>
                 <div class="subcategories-search-wrap"></div>

@@ -1979,7 +1979,7 @@ if (!function_exists('docdirect_locateme_snipt')) {
         <?php if (isset($dir_radius) && $dir_radius === 'enable') { ?>
         <script>
             jQuery(document).ready(function (e) {
-                jQuery("#geo_distance").slider({
+                /*jQuery("#geo_distance").slider({
                     range: "min",
                     min: 1,
                     max:<?php echo esc_js($dir_max_radius);?>,
@@ -1991,6 +1991,7 @@ if (!function_exists('docdirect_locateme_snipt')) {
                         jQuery(".geo_distance").val(ui.value);
                     }
                 });
+                */
             });
         </script>
     <?php } ?>

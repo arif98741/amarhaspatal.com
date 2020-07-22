@@ -119,8 +119,12 @@ if (!class_exists('docdirect_headers')) {
 							<div class="doc-languages">
 								<?php if( !empty( $header_type['header_v2']['social_icons'] ) ){?>
 									<ul class="tg-socialicon">
+									<?php if(!is_user_logged_in()): ?>
 									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target=".tg-user-modal">Login</li>
 									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target=".tg-user-modal">Registration</li>
+									<?php
+endif;
+ ?>
 										<?php
 											$social_icons	= $header_type['header_v2']['social_icons'];
 											if(isset($social_icons) && !empty($social_icons)){
@@ -371,7 +375,7 @@ if (!class_exists('docdirect_headers')) {
                        </div>
                    </div>
                  <?php } else {?>
-                    	<a class="doc-btn get-user-modal" href="javascript:;" data-toggle="modal" data-target=".tg-user-modal"><?php esc_html_e('Become A Member','docdirect');?></a>
+<!--                    	<a class="doc-btn get-user-modal" href="javascript:;" data-toggle="modal" data-target=".tg-user-modal">--><?php //esc_html_e('Become A Member','docdirect');?><!--</a>-->
                         <?php if( isset( $_GET['invitation'] ) && $_GET['invitation'] === 'signup' ) {?>
 							<script>
                                 jQuery(window).load(function() {

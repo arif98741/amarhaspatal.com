@@ -23,6 +23,7 @@ docdirect_enque_map_library();//init Map
 //Search center point
 $direction = docdirect_get_location_lat_long();
 $show_users = !empty($atts['show_users']) ? $atts['show_users'] : 10;
+
 /*$query_args = array(
     'role' => 'professional',
     'count_total' => true,
@@ -47,23 +48,71 @@ $search_key = esc_html($_GET['search_key']);
 $division_id = esc_html($_GET['division_id']);
 $district_id = esc_html($_GET['district_id']);
 $upazila_id = esc_html($_GET['upazila_id']);
+
 if (!empty($directory_type)) {
-    $meta_query = array(
-        'relation' => 'AND',
-        array(
-            'key' => 'directory_type',
-            'value' => $directory_type,
-            'compare' => '='
-        ),
-        array(
-            'key' => 'username',
-            'value' => $search_key,
-            'compare' => 'LIKE'
-        )
-    );
+
+    if (!empty($division_id) && !empty($district_id) && !empty($upazila_id)) {
+        $meta_query = array(
+            'relation' => 'AND',
+            array(
+                'key' => 'directory_type',
+                'value' => $directory_type,
+                'compare' => '='
+            ),
+            array(
+                'key' => 'division_id',
+                'value' => $division_id,
+                'compare' => '='
+            ),
+            array(
+                'key' => 'district_id',
+                'value' => $district_id,
+                'compare' => '='
+            ),
+            array(
+                'key' => 'upazila_id',
+                'value' => $upazila_id,
+                'compare' => '='
+            ),
+        );
+    } elseif ( !empty($division_id) && !empty($district_id)) {
+
+        $meta_query = array(
+            'relation' => 'AND',
+            array(
+                'key' => 'directory_type',
+                'value' => $directory_type,
+                'compare' => '='
+            ),
+            array(
+                'key' => 'division_id',
+                'value' => $division_id,
+                'compare' => '='
+            ),
+            array(
+                'key' => 'district_id',
+                'value' => $district_id,
+                'compare' => '='
+            )
+        );
+    } else {
+        $meta_query = array(
+            'relation' => 'AND',
+            array(
+                'key' => 'directory_type',
+                'value' => $directory_type,
+                'compare' => '='
+            ),
+            array(
+                'key' => 'username',
+                'value' => $search_key,
+                'compare' => 'LIKE'
+            )
+        );
+    }
+
 
 } else {
-
 
     $meta_query = array(
         'relation' => 'OR',
@@ -95,7 +144,7 @@ if (!empty($directory_type)) {
     );
 }
 
-$query_args = $args = array(
+$query_args = array(
     //'role'       => 'professi',
     //TODO:: need to work here
     'number' => $show_users,
@@ -108,9 +157,7 @@ $query_args = $args = array(
 
 //query
 $user_query = new WP_User_Query($query_args);
-//echo '<pre>';
-//print_r($user_query->results);
-//exit;
+
 
 $total_users = !empty($user_query->total_users) ? $user_query->total_users : 0;
 $found_title = docdirect_get_found_title($total_users, $directory_type);
@@ -180,6 +227,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="row">
+
                                     <div class="col-sm-12">
                                         <?php
                                         $directories = array();
@@ -285,7 +333,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                 }
 
                                                 if (!empty($directories_array['address'])) {
-                                                    $infoBox .= '<li> <i class="fa fa-home"></i> <address>' . $directories_array['address'] . '</address> </li>';
+                                                    $infoBox .= '<li> <i class="fa fa-cart"></i> <address>' . $directories_array['address'] . '</address> </li>';
                                                 }
 
                                                 $infoBox .= '</ul>';
@@ -297,6 +345,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                 ?>
                                                 <div class="doc-featurelist"
                                                      class="user-<?php echo intval($user->ID); ?>">
+
                                                     <figure class="doc-featureimg">
                                                         <?php if (isset($featured_string['featured_till']) && $featured_string['featured_till'] > $current_string) { ?>
                                                             <?php docdirect_get_featured_tag(true, 'v2'); ?>
@@ -310,6 +359,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                         <?php do_action('docdirect_display_provider_category', $user->ID); ?>
                                                     </figure>
                                                     <div class="doc-featurecontent">
+
                                                         <div class="doc-featurehead">
                                                             <?php docdirect_get_wishlist_button($user->ID, true, 'v2'); ?>
                                                             <h2>

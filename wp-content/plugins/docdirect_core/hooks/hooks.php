@@ -511,6 +511,25 @@ if (!function_exists('get_specialities_bydirectorytype')) {
                 'meta_value' => $directory_type,
                 'meta_compare' => '=',
             ));
+
+            $specialities_list = docdirect_prepare_taxonomies('directory_type', 'specialities', 0, 'array');
+            $attached_specialities = get_post_meta($directory_type, 'attached_specialities', true);
+            echo '<pre>';
+            print_r($specialities_list); exit;
+           /* echo '<pre>';
+            print_r($specialities_list);
+            exit;
+            if (isset($specialities_list) && !empty($specialities_list)) {
+                $data = '<option value="" selected>Select Ambulance</option>';
+                foreach ($specialities_list as $key => $speciality) {
+                    //echo json_encode($speciality);
+                    $data .= '<option value="' . $speciality->term_id . '">' . $speciality->name . '</option>';
+/
+                }
+            }*/
+            //exit;
+//            echo '<pre>';
+//            print_r($attached_specialities);
             $newArray = [];
             foreach ($users as $key => $user) {
 
@@ -521,13 +540,12 @@ if (!function_exists('get_specialities_bydirectorytype')) {
                     $newArray = $userArray[0];
                 }
             }
-            $data = '<option value="" selected>Select Ambulance</option>';
+            $data = '<option value="" selected>Select Speciality</option>';
 
             foreach ($newArray as $key => $value) {
                 $data .= '<option value="' . $value . '">' . $value . '</option>';
             }
 
-            //echo json_encode($newArray);
             echo $data;
         }
         exit;
