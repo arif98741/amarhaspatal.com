@@ -21,6 +21,7 @@ if( !empty( $author_profile->user_profile_specialities ) ) {?>
 	</div>
 	<div class="tg-doctor-profile">
 		  <ul class="tg-tags">
+
 			  <?php
 				do_action('enqueue_unyson_icon_css');														
 				foreach( $author_profile->user_profile_specialities as $key => $value ){

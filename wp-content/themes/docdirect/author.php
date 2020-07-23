@@ -104,7 +104,8 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                href="#nav-specilities-honors" role="tab"
                                                aria-controls="nav-specilities-honors"
                                                aria-selected="false">Specialities</a>
-                                            <a class="nav-item nav-link" id="nav-schedule-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-schednav-schedule-tabule-tab"
+                                               data-toggle="tab"
                                                href="#nav-schedule" role="tab" aria-controls="nav-schedule"
                                                aria-selected="false">Schedule</a>
                                             <!--

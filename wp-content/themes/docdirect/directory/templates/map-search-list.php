@@ -75,7 +75,7 @@ if (!empty($directory_type)) {
                 'compare' => '='
             ),
         );
-    } elseif ( !empty($division_id) && !empty($district_id)) {
+    } elseif (!empty($division_id) && !empty($district_id)) {
 
         $meta_query = array(
             'relation' => 'AND',
@@ -345,7 +345,6 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                 ?>
                                                 <div class="doc-featurelist"
                                                      class="user-<?php echo intval($user->ID); ?>">
-
                                                     <figure class="doc-featureimg">
                                                         <?php if (isset($featured_string['featured_till']) && $featured_string['featured_till'] > $current_string) { ?>
                                                             <?php docdirect_get_featured_tag(true, 'v2'); ?>
@@ -405,6 +404,8 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                                 </li>
                                                             <?php } ?>
 
+
+
                                                             <?php if (!empty($directories_array['email'])
                                                                 &&
                                                                 !empty($privacy['email'])
@@ -431,8 +432,50 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                                 <li>
                                                                     <i class="fa fa-calendar"></i><span>Last donation date: <?php echo get_user_meta($user->ID, 'last_donation_date')[0]; ?></span>
                                                                 </li>
+                                                                <li>
+
+                                                                </li>
 
                                                             <?php } ?>
+                                                            <li>
+                                                                <?php
+                                                                $author_profile = $user;
+                                                                do_action('enqueue_unyson_icon_css');
+                                                                foreach ($author_profile->user_profile_specialities as $key => $value) {
+                                                                    $get_speciality_term = get_term_by('slug', $key, 'specialities');
+                                                                    $speciality_title = '';
+                                                                    $term_id = '';
+                                                                    if (!empty($get_speciality_term)) {
+                                                                        $speciality_title = $get_speciality_term->name;
+                                                                        $term_id = $get_speciality_term->term_id;
+                                                                    }
+
+                                                                    $speciality_meta = array();
+                                                                    if (function_exists('fw_get_db_term_option')) {
+                                                                        $speciality_meta = fw_get_db_term_option($term_id, 'specialities');
+                                                                    }
+
+                                                                    $speciality_icon = array();
+                                                                    if (!empty($speciality_meta['icon']['icon-class'])) {
+                                                                        $speciality_icon = $speciality_meta['icon']['icon-class'];
+                                                                    } ?>
+                                                                    <?php if (isset($speciality_meta['icon']['type']) && $speciality_meta['icon']['type'] === 'icon-font') {
+                                                                        if (!empty($speciality_icon)) { ?>
+                                                                            <i class="<?php echo esc_attr($speciality_icon); ?>"></i>
+                                                                            <?php
+                                                                        }
+                                                                    } else if (isset($speciality_meta['icon']['type']) && $speciality_meta['icon']['type'] === 'custom-upload') {
+                                                                        if (!empty($speciality_meta['icon']['url'])) {
+                                                                            ?>
+                                                                            <img src="<?php echo esc_url($speciality_meta['icon']['url']); ?>">
+                                                                        <?php }
+                                                                    } ?>
+                                                                    </span>
+                                                                    <span><?php echo esc_attr($value); ?></span>
+
+                                                                <?php } ?>
+
+                                                            </li>
 
                                                             <?php
                                                             if (!empty($user->latitude) && !empty($user->longitude)) {
