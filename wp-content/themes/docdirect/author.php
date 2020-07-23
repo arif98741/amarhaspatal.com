@@ -97,7 +97,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                             <a class="nav-item nav-link selected" id="nav-about-me-tab"
                                                data-toggle="tab"
                                                href="#nav-about-me" role="tab" aria-controls="nav-about-me"
-                                               aria-selected="false">About Me</a>
+                                               aria-selected="false">About</a>
 
                                             <a class="nav-item nav-link" id="nav-specilities-honors-tab"
                                                data-toggle="tab"
@@ -115,143 +115,168 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                         </div>
                                     </nav>
                                     <br>
-                                    <div class="tab-content" id="nav-tabContent">
-                                        <div class="tab-pane fade active in" id="nav-about-me" role="tabpanel"
-                                             aria-labelledby="nav-about-me-tab">
-                                            <button type="button" class="btn btn-info btn-sm"
-                                                    style="display: block; width: 100%;    padding: 8px;"
-                                                    data-toggle="collapse"
-                                                    data-target="#about-me-btn-collapse">About Me
-                                            </button>
-                                            <div id="about-me-btn-collapse" class="collapse in">
-                                                <?php get_template_part('directory/provider-page/template-author-about'); ?>
-                                            </div>
-
-                                            <button type="button" class="btn btn-info btn-sm"
-                                                    style="display: block; width: 100%;    padding: 8px;"
-                                                    data-toggle="collapse"
-                                                    data-target="#about-me-btn-education">Education
-                                            </button>
-                                            <div id="about-me-btn-education" class="collapse ">
-                                                <?php get_template_part('directory/provider-page/template-author-education'); ?>
-                                            </div>
-
-                                            <button type="button" class="btn btn-info btn-sm"
-                                                    style="display: block; width: 100%;    padding: 8px;"
-                                                    data-toggle="collapse"
-                                                    data-target="#about-me-btn-experience">Experience
-                                            </button>
-                                            <div id="about-me-btn-experience" class="collapse">
-                                                <?php get_template_part('directory/provider-page/template-author-experience'); ?>
-                                            </div>
+                                    <div class="tab-content">
+                                        <div id="2020" class="tab-pane fade in active">
+                                            <div class="program-content-block">
+                                                <div class="panel-group" id="accordionMenu2020" role="tablist"
+                                                     aria-multiselectable="true">
+                                                    <div class="panel panel-default">
 
 
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-specilities-honors" role="tabpanel"
-                                             aria-labelledby="nav-specilities-honors-tab">
-                                            <?php get_template_part('directory/provider-page/template-author-specialities'); ?>
-                                            <?php get_template_part('directory/provider-page/template-author-awards'); ?>
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-schedule" role="tabpanel"
-                                             aria-labelledby="nav-schedule-tab">
+                                                        <div class="panel-heading  green " role="tab"
+                                                             id="headingUndergraduate2020">
+                                                            <h4 class="panel-title">
+                                                                <a role="button" data-toggle="collapse"
+                                                                   data-parent="#accordionMenu2020"
+                                                                   href="#Undergraduate2020" aria-expanded="false"
+                                                                   aria-controls="Undergraduate2020" class="collapsed">
+                                                                    About Me
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="Undergraduate2020" class="panel-collapse collapse"
+                                                             role="tabpanel" aria-labelledby="headingUndergraduate2020"
+                                                             aria-expanded="false" style="height: 0px;">
+                                                            <div class="panel-body">
+                                                                <?php get_template_part('directory/provider-page/template-author-about'); ?>
+                                                            </div>
+                                                        </div>
 
-                                            <?php if (!empty($slots)) {
+                                                        <div class="panel-heading  lightGreen " role="tab"
+                                                             id="headingGraduate2020">
+                                                            <h4 class="panel-title">
+                                                                <a role="button" data-toggle="collapse"
+                                                                   data-parent="#accordionMenu2020" href="#Graduate2020"
+                                                                   aria-expanded="false" aria-controls="Graduate2020"
+                                                                   class="collapsed">
+                                                                    Education
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="Graduate2020" class="panel-collapse collapse "
+                                                             role="tabpanel" aria-labelledby="headingGraduate2020"
+                                                             aria-expanded="false">
+                                                            <div class="panel-body">
+                                                                <?php get_template_part('directory/provider-page/template-author-education'); ?>
+                                                            </div>
+                                                        </div>
 
-
-                                                $modified_slots = [];
-                                                $week_array = docdirect_get_week_array();
-
-
-                                                if (!empty($privacy['opening_hours'])
-                                                    &&
-                                                    $privacy['opening_hours'] == 'on'
-                                                ) { ?>
-                                                    <div class="tg-userschedule">
-                                                        <?php if (!empty($time_zone)) { ?>
-                                                        <?php } ?>
-                                                        <ul>
-                                                            <?php
-                                                            $week_array = docdirect_get_week_array();
-
-                                                            $db_schedules = array();
-                                                            if (isset($author_profile->schedules) && !empty($author_profile->schedules)) {
-                                                                $db_schedules = $author_profile->schedules;
-                                                            }
-
-                                                            if (isset($schedule_time_format) && $schedule_time_format === '24hour') {
-                                                                $time_format = 'H:i';
-                                                            } else {
-                                                                $time_format = get_option('time_format');
-                                                                $time_format = !empty($time_format) ? $time_format : 'g:i A';
-                                                            }
-
-                                                            $date_prefix = date('D');
-
-
-                                                            if (isset($week_array) && !empty($week_array)) {
-                                                                $array_keys = array_keys($week_array);
-                                                                if (!empty($db_timezone)) {
-                                                                    $date = new DateTime("now", new DateTimeZone($db_timezone));
-                                                                    $current_time_date = $date->format('Y-m-d H:i:s');
-                                                                } else {
-                                                                    $current_time_date = current_time('mysql');
-                                                                }
-
-                                                                //Current Day
-                                                                $today_day = date('D', strtotime($current_time_date));
-                                                                $today_day = strtolower($today_day);
-
-
-                                                                foreach ($slots as $slot_key => $slot) {
-
-
-                                                                    if (!in_array($slot_key, $array_keys)) {
-                                                                        $active = '';
-                                                                        if ($today_day == $key) {
-                                                                            $active = 'current';
-                                                                        }
-
-                                                                        $day = str_replace('-details', '', $slot_key);
-                                                                        echo '<span type="button" data-toggle="collapse" data-target="#demo' . $day . '" style="font-weight: bold; display: block;border: 1px solid black; padding: 9px 15px; background: #bb96d0; color: #fff;" class="active">' . $week_array[$day] . '</span>';
+                                                        <div class="panel-heading  lighterGreen " role="tab"
+                                                             id="headingPharmacy2020">
+                                                            <h4 class="panel-title">
+                                                                <a role="button" data-toggle="collapse"
+                                                                   data-parent="#accordionMenu2020" href="#Pharmacy2020"
+                                                                   aria-expanded="false" aria-controls="Pharmacy2020"
+                                                                   class="collapsed">
+                                                                    Experience
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="Pharmacy2020" class="panel-collapse collapse "
+                                                             role="tabpanel" aria-labelledby="headingPharmacy2020"
+                                                             aria-expanded="false">
+                                                            <div class="panel-body">
+                                                                <?php get_template_part('directory/provider-page/template-author-experience'); ?>
+                                                            </div>
+                                                        </div>
 
 
-                                                                        $opened_slots = $slots[$slot_key];
-                                                                        echo '<div id="demo' . $day . '" class="collapse" style="margin-top: 3px;">';
-                                                                        echo '<table> <tr><th>Schedule Time</th><th>Chamber</th></tr>';
-                                                                        foreach ($opened_slots as $opened_slot_key => $opened_slot) {
-//
-                                                                            ?>
-                                                                            <tr>
-                                                                                <td style="text-align: left;"
-                                                                                    class="<?php echo sanitize_html_class($active); ?>">
-                                                                                    <?php echo $opened_slot_key; ?>
-                                                                                </td>
-                                                                                <td style="text-align: left;"
-                                                                                    class="<?php echo sanitize_html_class($active); ?>">
-                                                                                    <?php echo esc_attr($opened_slot['slot_title']); ?>
-                                                                                </td>
-                                                                            </tr>
-
-
-                                                                        <?php }
-                                                                        echo '</table></div>';
-
-                                                                    } else {
-
-                                                                        $day = str_replace('-details', '', $slot_key);
-
-
-                                                                    }
-
-
-                                                                    ?>
-
-                                                                <?php }
-                                                            } ?>
-                                                        </ul>
                                                     </div>
-                                                <?php }
-                                            } ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="2019" class="tab-pane fade in ">
+                                            <div class="program-content-block">
+                                                <div class="panel-group" id="accordionMenu2019" role="tablist"
+                                                     aria-multiselectable="true">
+                                                    <div class="panel panel-default">
+
+
+                                                        <div class="panel-heading  green " role="tab"
+                                                             id="headingUndergraduate2019">
+                                                            <h4 class="panel-title">
+                                                                <a role="button" data-toggle="collapse"
+                                                                   data-parent="#accordionMenu2019"
+                                                                   href="#Undergraduate2019" aria-expanded="false"
+                                                                   aria-controls="Undergraduate2019">
+                                                                    Undergraduate
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="Undergraduate2019" class="panel-collapse collapse "
+                                                             role="tabpanel" aria-labelledby="headingUndergraduate2019">
+                                                            <div class="panel-body">
+                                                                <ul class="nav-customcs">
+                                                                    <li><a href="/academic-calendar-details/2">Spring-2019</a>
+                                                                    </li>
+                                                                    <li><a href="/academic-calendar-details/3">Summer-2019
+                                                                            Exam Schedule</a></li>
+                                                                    <li><a href="/academic-calendar-details/4">Summer-2019</a>
+                                                                    </li>
+                                                                    <li><a href="/academic-calendar-details/10">Fall-2019</a>
+                                                                    </li>
+                                                                    <li><a href="/academic-calendar-details/11">Fall
+                                                                            2019 - Exam Schedule</a></li>
+                                                                    <li><a href="/academic-calendar-details/1">Spring-2019
+                                                                            Exam Schedule</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="panel-heading  lightGreen " role="tab"
+                                                             id="headingGraduate2019">
+                                                            <h4 class="panel-title">
+                                                                <a role="button" data-toggle="collapse"
+                                                                   data-parent="#accordionMenu2019" href="#Graduate2019"
+                                                                   aria-expanded="false" aria-controls="Graduate2019">
+                                                                    Graduate
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="Graduate2019" class="panel-collapse collapse "
+                                                             role="tabpanel" aria-labelledby="headingGraduate2019">
+                                                            <div class="panel-body">
+                                                                <ul class="nav-customcs">
+                                                                    <li><a href="/academic-calendar-details/9">Fall
+                                                                            2019</a></li>
+                                                                    <li><a href="/academic-calendar-details/6">Summer-2019</a>
+                                                                    </li>
+                                                                    <li><a href="/academic-calendar-details/5">Spring-2019</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="panel-heading  lighterGreen " role="tab"
+                                                             id="headingPharmacy2019">
+                                                            <h4 class="panel-title">
+                                                                <a role="button" data-toggle="collapse"
+                                                                   data-parent="#accordionMenu2019" href="#Pharmacy2019"
+                                                                   aria-expanded="false" aria-controls="Pharmacy2019">
+                                                                    Pharmacy
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="Pharmacy2019" class="panel-collapse collapse "
+                                                             role="tabpanel" aria-labelledby="headingPharmacy2019">
+                                                            <div class="panel-body">
+                                                                <ul class="nav-customcs">
+                                                                    <li><a href="/academic-calendar-details/13">M.
+                                                                            Pharm: Fall-2019</a></li>
+                                                                    <li><a href="/academic-calendar-details/8">B. Pharm:
+                                                                            Spring-2019</a></li>
+                                                                    <li><a href="/academic-calendar-details/7">M. Pharm:
+                                                                            Spring-2019</a></li>
+                                                                    <li><a href="/academic-calendar-details/12">B.
+                                                                            Pharm: Fall-2019</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -493,6 +518,51 @@ do_action('am_chat_modal', $author_profile->ID);
         font-size: 18px;
         border: 2px solid #000;
         margin-bottom: 20px !important;
+    }
+
+    .training-program-tap-wrap {
+        padding: 0 40px;
+        width: 100%;
+        margin: 0 auto;
+        height: 50px;
+        background-color: #d8d8d8;
+    }
+
+    .convocation .tab-content {
+        border: 1px solid #d3d3d3;
+    }
+
+    .tab-content > .active {
+        display: block;
+    }
+
+    .convocation .program-content-block {
+        padding: 30px;
+    }
+
+    .panel-group {
+        margin-bottom: 20px;
+    }
+
+    .panel-default > .panel-heading {
+        color: #fff;
+        background-color: #0078A4;
+        border-color: #e4e5e7;
+        padding: 15px 13px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border-bottom: 1px solid #ddd;
+        border-radius: 0;
+    }
+
+    .nav-customcs a {
+        color: #000 !important;
+    }
+
+    .crt-program .tab-content {
+        margin-top: 30px;
     }
 
     @media (min-width: 481px) and (max-width: 767px) {
