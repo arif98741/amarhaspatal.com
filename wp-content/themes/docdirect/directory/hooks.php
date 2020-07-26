@@ -1818,31 +1818,79 @@ if (!function_exists('docdirect_search_filters')) {
                     <fieldset>
 
                         <div class="form-group">
-                            <label for="city">Service</label>
-                            <select name="directory_type" id="directory_type_dropdown">
-                                <option value="0" selected>SELECT SERVICE</option>
-                                <option value="123">AMBULANCE</option>
-                                <option value="122">Blood Donor</option>
-                                <option value="121">Diagnostics</option>
-                                <option value="127">Doctor</option>
-                                <option value="126">Hospital</option>
+
+                            <select name="directory_type" id="directory_type_dropdown" class="select2">
+                                <option <?php if (isset($_GET['directory_type'])): ?> selected="" <?php endif; ?>
+                                        value="0" selected>SELECT SERVICE
+                                </option>
+                                <option <?php if (isset($_GET['directory_type']) && $_GET['directory_type'] == 123): ?> selected="" <?php endif; ?>
+                                        value="123">AMBULANCE
+                                </option>
+                                <option <?php if (isset($_GET['directory_type']) && $_GET['directory_type'] == 122): ?>
+                                        selected=""
+                                        <?php endif; ?>value="122">Blood
+                                    Donor
+                                </option>
+                                <option <?php if (isset($_GET['directory_type']) && $_GET['directory_type'] == 121): ?>
+                                        selected=""`
+                                        <?php endif; ?>value="121">
+                                    Diagnostics
+                                </option>
+                                <option <?php if (isset($_GET['directory_type']) && $_GET['directory_type'] == 127): ?>
+                                        selected=""
+                                        <?php endif; ?>value="127">Doctor
+                                </option>
+                                <option <?php if (isset($_GET['directory_type']) && $_GET['directory_type'] == 126): ?>
+                                        selected=""
+                                        <?php endif; ?>value="126">Hospital
+                                </option>
 
                             </select>
                         </div>
                         <?php if (isset($dir_keywords) && $dir_keywords === 'enable') { ?>
                             <div class="form-group">
-                                <label for="service">Speciality</label>
-                                <select id="speciality_dropdown_sidebar" class="form-control">
-                                    <option>SELECT SPECIALITY</option>
+                                <select id="speciality_dropdown" class="form-control select2">
+                                    <?php
+                                    if (isset($_GET['speciality'])) {
+                                        $terms = get_terms(array('taxonomy' => 'specialities', 'hide_empty' => false));
+                                        //     $terms = get_post_taxonomies();
+                                        $post = get_post_meta(esc_html($_GET['directory_type']));
+                                        $attached_specialities = unserialize($post['attached_specialities'][0]);
 
+                                        $term_list = [];
+
+                                        foreach ((array)$terms as $term) {
+
+                                            if (array_key_exists($term->term_id, $attached_specialities)) {
+                                                $term_list[$term->term_id] = $term->name;
+                                            }
+                                        }
+
+                                        $data = '<option value="">SELECT SPECIALITY</option>';
+
+                                        foreach ($term_list as $key => $value) { ?>
+
+                                            <option <?php if ($key == 167): ?>
+                                                selected <?php endif; ?>
+                                                    value="<?php echo $key; ?>"><?php echo $value; ?></option>';
+
+                                        <?php }
+                                        echo $data;
+                                    } else { ?>
+                                        ?>
+
+                                        <option>SELECT SPECIALITY</option>
+                                        <?php
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         <?php } ?>
 
                         <div class="form-group">
                             <div class="doc-select">
-                                <select name="division_id" id="division_id_temp" class="form-control">
-                                    <option>SELECT DISTRICT</option>
+                                <select name="division_id" id="division_id_temp" class="form-control select2">
+                                    <option>SELECT DIVISION</option>
                                     <?php
                                     global $wpdb;
                                     $divisionSql = "select id, title,title_en from loc_divisions where status='1'";
@@ -1850,7 +1898,8 @@ if (!function_exists('docdirect_search_filters')) {
                                     ?>
                                     <?php foreach ($divisions as $division) { ?>
 
-                                        <option value="<?= $division->id; ?>"><?= $division->title_en ?></option>
+                                        <option <?php if (isset($_GET['division_id']) && $_GET['division_id'] == $division->id): ?>  selected=""<?php endif; ?>
+                                                value="<?= $division->id; ?>"><?= $division->title_en ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -1860,27 +1909,7 @@ if (!function_exists('docdirect_search_filters')) {
                                     <div class="doc-widgetheading">
                                         <h2><?php esc_html_e('Filter By Specialities', 'docdirect'); ?></h2>
                                     </div>
-                                    <div class="doc-widgetcontent">
-                                        <#
-                                        var _option = '';
-                                        var browser_specialism = docdirectGetUrlParameter('speciality[]','yes');
-                                        if( !_.isEmpty(data['childrens']) ) {
-                                        _.each( data['childrens'] , function(element, index, attr) {
-                                        var _checked = '';
-                                        if(jQuery.inArray(index,browser_specialism) !== -1){
-                                        var _checked = 'checked';
-                                        }
-                                        #>
-                                        <div class="doc-checkbox">
-                                            <input type="checkbox" name="speciality[]" {{_checked}} value="{{index}}"
-                                                   id="speciality-{{index}}">
-                                            <label for="speciality-{{index}}">{{element}}</label>
-                                        </div>
-                                        <#
-                                        });
-                                        }
-                                        #>
-                                    </div>
+
                                     <input type="submit" class="doc-btn"
                                            value="<?php esc_html_e('Refine Search', 'docdirect'); ?>">
                                 </div>
@@ -1933,27 +1962,44 @@ if (!function_exists('docdirect_search_filters')) {
 
                         <div class="form-group">
                             <div class="tg-inputicon tg-geolocationicon tg-angledown">
-                                <select name="district_id" id="district_id_temp" class="form-control">
-                                    <option value="">SELECT DISTRICT</option>
+                                <select <?php if (isset($_GET['district_id']) && $_GET['district_id'] == 'test'): ?>  selected=""<?php endif; ?>
+                                        name="district_id" id="district_id_temp" class="form-control select2">
+
+                                    <?php if (isset($_GET['district_id'])) {
+                                        global $wpdb;
+                                        $districtSql = "select id, title,title_en from loc_districts where status='1'";
+                                        $districts = $wpdb->get_results($districtSql);
+                                        foreach ($districts as $district) { ?>
+
+                                            <option <?php if (isset($_GET['district_id']) && $_GET['district_id'] == $district->id): ?>  selected=""<?php endif; ?>
+                                                    value="<?= $district->id; ?>"><?= $district->title_en ?></option>
+                                        <?php }
+                                    } else { ?>
+                                        <option value="">SELECT DISTRICT</option>
+                                    <?php } ?>
+
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="tg-inputicon tg-geolocationicon tg-angledown">
-                                <select name="upazila_id" id="upazila_id_temp" class="form-control">
-                                    <option value="">SELECT UPAZILA</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div style="display: none" class="form-group">
-                            <div class="tg-inputicon tg-geolocationicon tg-angledown">
-                                <select name="union_id" id="union_id_temp" class="form-control">
-                                    <option value="">SELECT UNION</option>
-                                </select>
-                            </div>
-                        </div>
+                                <select name="upazila_id" id="upazila_id_temp" class="form-control select2">
+                                    <?php if (isset($_GET['district_id'])) {
+                                        global $wpdb;
+                                        $upazilaSql = "select id, title,title_en from loc_upazilas where status='1'";
+                                        $upazilas = $wpdb->get_results($upazilaSql);
+                                        foreach ($upazilas as $upazila) { ?>
 
+                                            <option <?php if (isset($_GET['upazila_id']) && $_GET['upazila_id'] == $upazila->id): ?>  selected=""<?php endif; ?>
+                                                    value="<?= $upazila->id; ?>"><?= $upazila->title_en ?></option>
+                                        <?php }
+                                    } else { ?>
+                                        <option value="">SELECT UPAZILA</option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
                         <?php if (isset($language_search) && $language_search === 'enable') { ?>
                             <?php if (isset($languages_array) && !empty($languages_array)) { ?>
                                 <div class="form-group">
@@ -2017,7 +2063,40 @@ if (!function_exists('docdirect_search_filters')) {
                         font-weight: bold;
                     }
 
+                    .select2-container--default .select2-selection--single {
+                        background-color: #fff;
+                        border: 1px solid #aaa;
+                        border-radius: 4px;
+                        height: 40px !important;
+                    }
+
+                    .select2-container--default .select2-selection--single .select2-selection__arrow b {
+                        border-color: #888 transparent transparent transparent;
+                        border-style: solid;
+                        border-width: 5px 4px 0 4px;
+                        height: 0;
+                        left: 50%;
+                        margin-left: -4px;
+                        margin-top: 6px !important;
+                        position: absolute;
+                        top: 50%;
+                        width: 0;
+                    }
+
+                    .select2-container--default .select2-selection--single .select2-selection__rendered {
+                        color: #444;
+                        line-height: 22px;
+                    }
+
                 </style>
+                <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css"
+                      rel="stylesheet"/>
+                <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+                <script>
+                    jQuery(document).ready(function () {
+                        jQuery('.select2').select2();
+                    });
+                </script>
             </div>
             <?php if (apply_filters('docdirect_get_theme_settings', 'sub_category') === 'enable') { ?>
                 <div class="subcategories-search-wrap"></div>

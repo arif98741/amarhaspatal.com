@@ -146,7 +146,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                              id="headingGraduate2020">
                                                             <h4 class="panel-title">
                                                                 <a role="button" data-toggle="collapse"
-                                                                   data-parent="#accordionMenu2020" href="#Graduate2020"
+                                                                //amarhaspatal.com/wp-content/uploads/2017/03/Blue_770-x-175.jpg                                                  data-parent="#accordionMenu2020" href="#Graduate2020"
                                                                    aria-expanded="false" aria-controls="Graduate2020"
                                                                    class="collapsed">
                                                                     Education

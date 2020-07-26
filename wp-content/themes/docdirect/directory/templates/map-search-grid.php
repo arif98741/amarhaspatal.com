@@ -28,9 +28,9 @@ $user_query = new WP_User_Query($query_args);
 $total_users = !empty($user_query->total_users) ? $user_query->total_users : 0;
 $found_title = docdirect_get_found_title($total_users, $directory_type);
 
-
 if (isset($search_page_map) && $search_page_map === 'enable') {
     ?>
+
     <div class="map-top">
         <div class="row tg-divheight">
             <div class="tg-mapbox">
@@ -80,16 +80,6 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                           <option value="ASC" <?php echo isset($_GET['order']) && $_GET['order'] == 'ASC' ? 'selected' : ''; ?>><?php esc_html_e('ASC', 'docdirect'); ?></option>
                           <option value="DESC" <?php echo isset($_GET['order']) && $_GET['order'] == 'DESC' ? 'selected' : ''; ?>><?php esc_html_e('DESC', 'docdirect'); ?></option>
                         </select>
-                      </span>
-                                        <span class="doc-select">
-                           <select name="per_page" class="per_page">
-                            <option value=""><?php esc_html_e('Per Page', 'docdirect'); ?></option>
-                            <option value="10" <?php echo isset($_GET['per_page']) && $_GET['per_page'] == '10' ? 'selected' : ''; ?>>10</option>
-                            <option value="20" <?php echo isset($_GET['per_page']) && $_GET['per_page'] == '20' ? 'selected' : ''; ?>>20</option>
-                            <option value="50" <?php echo isset($_GET['per_page']) && $_GET['per_page'] == '50' ? 'selected' : ''; ?>>50</option>
-                            <option value="70" <?php echo isset($_GET['per_page']) && $_GET['per_page'] == '70' ? 'selected' : ''; ?>>70</option>
-                            <option value="100" <?php echo isset($_GET['per_page']) && $_GET['per_page'] == '100' ? 'selected' : ''; ?>>100</option>
-                          </select>
                       </span>
                                     </div>
                                 </div>

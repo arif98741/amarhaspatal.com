@@ -632,38 +632,49 @@ jQuery(document).ready(function ($) {
      */
     jQuery('#directory_type_dropdown').on('change', function (event) {
         var directory_type = jQuery(this).val();
-        jQuery.ajax({
-            type: "POST",
-            url: scripts_vars.ajaxurl,
-            data: {
-                'action': 'get_specialities_bydirectorytype',
-                'directory_type': directory_type
-            },
-            dataType: "text",
-            success: function (response) {
-
-                $('#speciality_dropdown').html('<option value="">Select Speciality </option>');
-                if (response != '') {
-
-                    $('#speciality_dropdown').html(response);
-                    $('#speciality_dropdown').parent().parent().removeAttr('style');
-                } else {
-                    $('#speciality_dropdown').parent().parent().attr('style', 'display: none');
-                }
-                /*$.each(response, function (key, value) {
-                    console.log(typeof value);
-                    $('#speciality_dropdown')
-                        .append($("<option></option>")
-                            .attr("value", value.id)
-                            .text(value.title_en));
-                });
-                console.log('hello');
-                Object.entries(response).forEach(([key, value]) => {
-                    // console.log(`${key} ${value}`);
-                    console.log('<option value="' + key + '">ywa</option>');
-                });*/
+        if (directory_type == 122) {
+            var blood_groups = [
+                'A+',
+                'A-',
+                'B+',
+                'B-',
+                'O+',
+                'O-',
+                'AB+',
+                'AB-',
+            ];
+            var data = '<option selected value="">SELECT BLOOD GROUP </option>';
+            for (let i = 0; i < blood_groups.length; i++) {
+                data += '<option value="' + blood_groups[i] + '">' + blood_groups[i] + ' </option>';
             }
-        });
+            $('#speciality_dropdown').html(data);
+            $('#speciality_label').html('BLOOD GROUP');
+            //$('#speciality_dropdown').parent().parent().removeAttr('style');
+
+        } else {
+            jQuery.ajax({
+                type: "POST",
+                url: scripts_vars.ajaxurl,
+                data: {
+                    'action': 'get_specialities_bydirectorytype',
+                    'directory_type': directory_type
+                },
+                dataType: "text",
+                success: function (response) {
+
+                    $('#speciality_dropdown').html('<option value="">Select Speciality </option>');
+                    if (response != '') {
+
+                        $('#speciality_dropdown').html(response);
+                        $('#speciality_dropdown').parent().parent().removeAttr('style');
+                        $('#speciality_label').html('SPECIALITY');
+                    } else {
+                        $('#speciality_dropdown').parent().parent().attr('style', 'display: none');
+                    }
+
+                }
+            });
+        }
 
     });
 

@@ -144,11 +144,14 @@ if (!empty($directory_type)) {
     );
 }
 
+$order = 'ASC';
+if (isset($_GET)) {
+    $order = esc_html($_GET['order']);
+}
+
 $query_args = array(
-    //'role'       => 'professi',
-    //TODO:: need to work here
-    'number' => $show_users,
-    'order' => 'ASC',
+    'number' => 15,
+    'order' => $order,
     'orderby' => 'display_name',
     'meta_query' => $meta_query
 
@@ -213,16 +216,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                           <option value="DESC" <?php echo isset($_GET['order']) && $_GET['order'] == 'DESC' ? 'selected' : ''; ?>><?php esc_html_e('DESC', 'docdirect'); ?></option>
                         </select>
                       </span>
-                                        <span class="doc-select">
-                           <select name="per_page" class="per_page">
-                            <option value=""><?php esc_html_e('Per Page', 'docdirect'); ?></option>
-                            <option value="10" <?php echo isset($_GET['per_page']) && $_GET['per_page'] == '10' ? 'selected' : ''; ?>>10</option>
-                            <option value="20" <?php echo isset($_GET['per_page']) && $_GET['per_page'] == '20' ? 'selected' : ''; ?>>20</option>
-                            <option value="50" <?php echo isset($_GET['per_page']) && $_GET['per_page'] == '50' ? 'selected' : ''; ?>>50</option>
-                            <option value="70" <?php echo isset($_GET['per_page']) && $_GET['per_page'] == '70' ? 'selected' : ''; ?>>70</option>
-                            <option value="100" <?php echo isset($_GET['per_page']) && $_GET['per_page'] == '100' ? 'selected' : ''; ?>>100</option>
-                          </select>
-                      </span>
+
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>

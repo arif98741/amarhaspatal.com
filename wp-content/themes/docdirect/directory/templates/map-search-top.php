@@ -62,6 +62,7 @@ $total_users = !empty( $user_query->total_users ) ? $user_query->total_users : 0
 
 if( isset( $search_page_map ) && $search_page_map === 'enable' ){?>
 <div class="map-top">
+
     <div class="row tg-divheight">
         <div class="tg-mapbox">
             <div id="map_canvas" class="tg-location-map tg-haslayout"></div>
@@ -409,20 +410,7 @@ if( isset( $search_page_map ) && $search_page_map === 'enable' ){?>
                     </span> 
                    </div>
                 </div>
-                <div class="col-md-3 col-sm-12 col-xs-6">
-                  <div class="form-group"> 
-                    <span class="select">
-                        <select name="per_page" class="per_page">
-                            <option value=""><?php esc_html_e('Per Page','docdirect');?></option>
-                            <option value="10" <?php echo isset( $_GET['order'] ) && $_GET['order'] == '10' ? 'selected' : '';?>>10</option>
-                            <option value="20" <?php echo isset( $_GET['order'] ) && $_GET['order'] == '20' ? 'selected' : '';?>>20</option>
-                            <option value="50" <?php echo isset( $_GET['order'] ) && $_GET['order'] == '50' ? 'selected' : '';?>>50</option>
-                            <option value="70" <?php echo isset( $_GET['order'] ) && $_GET['order'] == '70' ? 'selected' : '';?>>70</option>
-                            <option value="100" <?php echo isset( $_GET['order'] ) && $_GET['order'] == '100' ? 'selected' : '';?>>100</option>
-                         </select>
-                    </span> 
-                   </div>
-                </div>
+
                 <div class="col-md-3 col-sm-12 col-xs-12">
                   <ul class="tg-listing-views">
                     <li class="<?php echo isset( $dir_search_view ) && $dir_search_view === 'grid' ? 'active' : '';?>"><a href="javascript:;" class="grid"><i class="fa fa-th-large"></i></a></li>
@@ -613,7 +601,7 @@ if( isset( $search_page_map ) && $search_page_map === 'enable' ){?>
                     <?php
 					}
 				 } else{?>
-					<div class="col-xs-12"><?php DoctorDirectory_NotificationsHelper::informations(esc_html__('No Result Found.','docdirect'));?></div>
+					<div class="col-xs-12"><?php DoctorDirectory_NotificationsHelper::informations(esc_html__('No Result Foundss.','docdirect'));?></div>
 				<?php }?>
                 <?php if( isset( $search_page_map ) && $search_page_map === 'enable' ){?>
 				<script>

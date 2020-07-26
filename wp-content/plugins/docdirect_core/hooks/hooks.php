@@ -499,55 +499,31 @@ if (!function_exists('get_specialities_bydirectorytype')) {
         global $wpdb;
 
         $json = [];
-        $directory_type = '';
-
         if (isset($_POST['directory_type'])) {
             $directory_type = esc_sql($_POST['directory_type']);
         }
 
-        if ($directory_type == 123 || $directory_type == 127) {
-            $users = get_users(array(
-                'meta_key' => 'directory_type',
-                'meta_value' => $directory_type,
-                'meta_compare' => '=',
-            ));
+        $terms = get_terms(array('taxonomy' => 'specialities', 'hide_empty' => false));
+        //     $terms = get_post_taxonomies();
+        $post = get_post_meta($directory_type);
+        $attached_specialities = unserialize($post['attached_specialities'][0]);
 
-            $specialities_list = docdirect_prepare_taxonomies('directory_type', 'specialities', 0, 'array');
-            $attached_specialities = get_post_meta($directory_type, 'attached_specialities', true);
-            echo '<pre>';
-            print_r($specialities_list); exit;
-           /* echo '<pre>';
-            print_r($specialities_list);
-            exit;
-            if (isset($specialities_list) && !empty($specialities_list)) {
-                $data = '<option value="" selected>Select Ambulance</option>';
-                foreach ($specialities_list as $key => $speciality) {
-                    //echo json_encode($speciality);
-                    $data .= '<option value="' . $speciality->term_id . '">' . $speciality->name . '</option>';
-/
-                }
-            }*/
-            //exit;
-//            echo '<pre>';
-//            print_r($attached_specialities);
-            $newArray = [];
-            foreach ($users as $key => $user) {
+        $term_list = [];
 
-                $userArray = get_user_meta($user->ID, 'user_profile_specialities');
+        foreach ((array)$terms as $term) {
 
-                if (array_key_exists('0', $userArray) && count($userArray[0]) > 0) {
-
-                    $newArray = $userArray[0];
-                }
+            if (array_key_exists($term->term_id, $attached_specialities)) {
+                $term_list[$term->term_id] = $term->name;
             }
-            $data = '<option value="" selected>Select Speciality</option>';
-
-            foreach ($newArray as $key => $value) {
-                $data .= '<option value="' . $value . '">' . $value . '</option>';
-            }
-
-            echo $data;
         }
+
+        $data = '<option value="" selected>SELECT SPECIALITY</option>';
+
+        foreach ($term_list as $key => $value) {
+            $data .= '<option value="' . $key . '">' . $value . '</option>';
+        }
+
+        echo $data;
         exit;
     }
 }
