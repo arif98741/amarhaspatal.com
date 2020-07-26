@@ -294,7 +294,9 @@ if (!class_exists('SC_Authentication')) {
                                                        value="<?php echo $author_profile->ID
                                                        ?>">
 
-                                                <select name="ambulance_type" style="text-transform: uppercase; font-weight: 700" class="input--style-6" required>
+                                                <select name="ambulance_type"
+                                                        style="text-transform: uppercase; font-weight: 700"
+                                                        class="input--style-6" required>
                                                     <option value="" selected disabled>Select Ambulance Type</option>
                                                     <option value="Ac">Ac Ambulance</option>
                                                     <option value="Non-Ac"> Non-Ac Ambulance</option>
@@ -377,7 +379,7 @@ if (!class_exists('SC_Authentication')) {
                             </div>
                         </div>
                         <style>
-                            .name{
+                            .name {
                                 font-weight: 700;
                             }
 
