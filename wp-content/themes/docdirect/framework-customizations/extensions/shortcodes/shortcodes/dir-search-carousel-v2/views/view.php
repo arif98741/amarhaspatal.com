@@ -77,7 +77,8 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
         margin-top: 83px;
         background: #0078A4;
         color: #fff;
-        border-radius: 3px;
+        border-radius: 4px;
+        border: 5px solid #fff;
 
     }
 
@@ -127,8 +128,9 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="country">DIVISIONss</label>
-                                            <select name="division_id" id="division_id_temp"
+                                            <label for="country">
+                                                DIVISION</label>
+                                            <select name="division_id" class="division_id_temp select2"
                                                     class="form-control ">
                                                 <option value="">SELECT DIVISION</option>
                                                 <?php
@@ -147,7 +149,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-6">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">DISTRICT</label>
-                                            <select name="district_id" id="district_id_temp"
+                                            <select name="district_id" class="district_id_temp select2"
                                                     class="form-control select2">
                                                 <option value="">SELECT DISTRICT</option>
 
@@ -157,7 +159,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-12">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">UPAZILA</label>
-                                            <select name="upazila_id" id="upazila_id_temp"
+                                            <select name="upazila_id" class="upazila_id_temp select2"
                                                     class="form-control  select2">
                                                 <option value="">SELECT UPAZILA</option>
                                             </select>
@@ -166,7 +168,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-12">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">SERVICE</label>
-                                            <select name="directory_type" class="select2" id="directory_type_dropdown"
+                                            <select name="directory_type" class="select2 directory_type_dropdown"
                                                     style="text-transform: uppercase !important;">
 
                                                 <option value="0" selected>SELECT SERVICE</option>
@@ -184,8 +186,9 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
 
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label for="service" id="speciality_label">SPECIALITY</label>
-                                            <select name="speciality" id="speciality_dropdown" class="form-control select2">
+                                            <label for="service" class="speciality_label">SPECIALITY</label>
+                                            <select name="speciality" class="speciality_dropdown"
+                                                    class="form-control select2">
                                                 <option value="">SELECT SPECIALITY</option>
                                             </select>
                                         </div>
@@ -210,16 +213,16 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
             }</style>
     <?php } ?>
     <style>
-        #division_id, #district_id, #upazila_id, #division_id_temp {
+        .division_id, .district_id, .upazila_id, .division_id_temp {
             text-transform: uppercase;
         }
 
-        #division_id_temp option,
-        #district_id_temp option,
-        #upazila_id_temp option,
-        #district_id_temp option,
-        #directory_type_dropdown option,
-        #speciality_dropdown option {
+        .division_id_temp option,
+        .district_id_temp option,
+        .upazila_id_temp option,
+        .district_id_temp option,
+        .directory_type_dropdown option,
+        .speciality_dropdown option {
             font-weight: bold;
         }
 

@@ -376,11 +376,11 @@ $bookings = $wpdb->get_results($sql);
                 <h1>Ambulance Report</h1>
                 <h3>
                     <?php
-                    if (isset($_GET['user_id']) && !empty($_GET['user_id'])) ?>
+                    if (isset($_GET['user_id']) && !empty($_GET['user_id'])): ?>
                         <?php
-
-                    echo get_user_meta($user_id)['first_name'][0];
-                    ?>
+                        echo get_user_meta($user_id)['first_name'][0];
+                        ?>
+                    <?php endif; ?>
 
                 </h3>
 
@@ -401,6 +401,9 @@ $bookings = $wpdb->get_results($sql);
             <th><?php esc_html_e('SL'); ?></th>
             <th><?php esc_html_e('Ambulance Type'); ?></th>
             <th><?php esc_html_e('Booking Date'); ?></th>
+            <?php if (isset($_GET['user_id']) && empty($_GET['user_id'])): ?>
+                <th>Ambulance</th>
+            <?php endif; ?>
             <th><?php esc_html_e('Start From'); ?></th>
             <th><?php esc_html_e('Destination'); ?></th>
             <th><?php esc_html_e('Trip Type'); ?></th>
@@ -427,6 +430,9 @@ $bookings = $wpdb->get_results($sql);
                     <td data-name="id"><?= $counter ?></td>
                     <td><?php echo esc_attr($book->ambulance_type); ?></td>
                     <td><?php echo esc_attr(date('d-m-Y', strtotime($book->booking_date))); ?></td>
+                    <?php if (isset($_GET['user_id']) && empty($_GET['user_id'])): ?>
+                        <td><?php echo get_user_meta($book->user_id)['first_name'][0]; ?></td>
+                    <?php endif; ?>
                     <td><?php echo esc_attr($book->start_from); ?></td>
                     <td><?php echo esc_attr($book->destination); ?></td>
                     <td><?php echo esc_attr($book->trip_type); ?></td>
@@ -453,14 +459,14 @@ $bookings = $wpdb->get_results($sql);
     </table>
     <br>
 
-    </div>
+</div>
 
-    <div class="footer-text">
-        <center>Technical Assistance: SoftBD Ltd | Generated on <?= date('d-m-Y h:i:sA') ?>
-            <center>
-    </div>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+<div class="footer-text">
+    <center>Technical Assistance: SoftBD Ltd | Generated on <?= date('d-m-Y h:i:sA') ?>
+        <center>
+</div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

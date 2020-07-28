@@ -441,7 +441,7 @@ jQuery(document).ready(function ($) {
      * Get Districts
      * ---------------------------------------------
      */
-    jQuery('#division_id').on('change', function (event) {
+    jQuery('.division_id').on('change', function (event) {
         var division_id = jQuery(this).val();
         jQuery.ajax({
             type: "POST",
@@ -452,10 +452,10 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#district_id').html('<option value="">SELECT DISTRICT</option>');
+                $('.district_id').html('<option value="">SELECT DISTRICT</option>');
                 $.each(response, function (key, value) {
 
-                    $('#district_id')
+                    $('.district_id')
                         .append($("<option></option>")
                             .attr("value", value.id)
                             .text(value.title_en));
@@ -469,7 +469,8 @@ jQuery(document).ready(function ($) {
      * Get Districts
      * ---------------------------------------------
      */
-    jQuery('#division_id_temp').on('change', function (event) {
+    jQuery('.division_id_temp').on('change', function (event) {
+
 
         var division_id = jQuery(this).val();
         jQuery.ajax({
@@ -481,10 +482,10 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#district_id_temp').html('<option value="">SELECT DISTRICT</option>');
+                $('.district_id_temp').html('<option value="">SELECT DISTRICT</option>');
                 $.each(response, function (key, value) {
 
-                    $('#district_id_temp')
+                    $('.district_id_temp')
                         .append($("<option></option>")
                             .attr("value", value.id)
                             .text(value.title_en));
@@ -500,7 +501,7 @@ jQuery(document).ready(function ($) {
      * Get Upazilas
      * ---------------------------------------------
      */
-    jQuery('#district_id').on('change', function (event) {
+    jQuery('.district_id').on('change', function (event) {
         var district_id = jQuery(this).val();
         jQuery.ajax({
             type: "POST",
@@ -511,10 +512,10 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#upazila_id').html('<option value="">SELECT UPAZILA</option>');
+                $('.upazila_id').html('<option value="">SELECT UPAZILA</option>');
                 $.each(response, function (key, value) {
 
-                    $('#upazila_id')
+                    $('.upazila_id')
                         .append($("<option></option>")
                             .attr("value", value.id)
                             .text(value.title_en));
@@ -529,7 +530,7 @@ jQuery(document).ready(function ($) {
      * Get Upazilas
      * ---------------------------------------------
      */
-    jQuery('#district_id_temp').on('change', function (event) {
+    jQuery('.district_id_temp').on('change', function (event) {
         var district_id = jQuery(this).val();
         jQuery.ajax({
             type: "POST",
@@ -540,10 +541,10 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#upazila_id_temp').html('<option value="">SELECT UPAZILA</option>');
+                $('.upazila_id_temp').html('<option value="">SELECT UPAZILA</option>');
                 $.each(response, function (key, value) {
 
-                    $('#upazila_id_temp')
+                    $('.upazila_id_temp')
                         .append($("<option></option>")
                             .attr("value", value.id)
                             .text(value.title_en));
@@ -559,7 +560,7 @@ jQuery(document).ready(function ($) {
      * Get Unions
      * ---------------------------------------------
      */
-    jQuery('#upazila_id').on('change', function (event) {
+    jQuery('.upazila_id').on('change', function (event) {
         var upazila_id = jQuery(this).val();
         jQuery.ajax({
             type: "POST",
@@ -570,10 +571,10 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#union_id').html('<option value="">SELECT UNION/option>');
+                $('.union_id').html('<option value="">SELECT UNION/option>');
                 $.each(response, function (key, value) {
 
-                    $('#union_id')
+                    $('.union_id')
                         .append($("<option></option>")
                             .attr("value", value.id)
                             .text(value.title_en));
@@ -588,7 +589,7 @@ jQuery(document).ready(function ($) {
      * Get Unions
      * ---------------------------------------------
      */
-    jQuery('#upazila_id_temp').on('change', function (event) {
+    jQuery('.upazila_id_temp').on('change', function (event) {
         var upazila_id = jQuery(this).val();
         jQuery.ajax({
             type: "POST",
@@ -599,10 +600,10 @@ jQuery(document).ready(function ($) {
             },
             dataType: "json",
             success: function (response) {
-                $('#union_id_temp').html('<option value="">SELECT UNION</option>');
+                $('.union_id_temp').html('<option value="">SELECT UNION</option>');
                 $.each(response, function (key, value) {
 
-                    $('#union_id_temp')
+                    $('.union_id_temp')
                         .append($("<option></option>")
                             .attr("value", value.id)
                             .text(value.title_en));
@@ -615,12 +616,12 @@ jQuery(document).ready(function ($) {
      * User type dropdown change
      * It will change user type in input according to type
      */
-    jQuery('#usertypedropdown').on('change', function () {
+    jQuery('.usertypedropdown').on('change', function () {
         var user_type = $(this).val();
         if (user_type == 122) {
-            $('#user_type').val('visitor');
+            $('.user_type').val('visitor');
         } else {
-            $('#user_type').val('professional');
+            $('.user_type').val('professional');
         }
     });
 
@@ -630,7 +631,7 @@ jQuery(document).ready(function ($) {
      * Get Unions
      * ---------------------------------------------
      */
-    jQuery('#directory_type_dropdown').on('change', function (event) {
+    jQuery('.directory_type_dropdown').on('change', function (event) {
         var directory_type = jQuery(this).val();
         if (directory_type == 122) {
             var blood_groups = [
@@ -647,8 +648,8 @@ jQuery(document).ready(function ($) {
             for (let i = 0; i < blood_groups.length; i++) {
                 data += '<option value="' + blood_groups[i] + '">' + blood_groups[i] + ' </option>';
             }
-            $('#speciality_dropdown').html(data);
-            $('#speciality_label').html('BLOOD GROUP');
+            $('.speciality_dropdown').html(data);
+            $('.speciality_label').html('BLOOD GROUP');
             //$('#speciality_dropdown').parent().parent().removeAttr('style');
 
         } else {
@@ -662,14 +663,14 @@ jQuery(document).ready(function ($) {
                 dataType: "text",
                 success: function (response) {
 
-                    $('#speciality_dropdown').html('<option value="">Select Speciality </option>');
+                    $('.speciality_dropdown').html('<option value="">Select Speciality </option>');
                     if (response != '') {
 
-                        $('#speciality_dropdown').html(response);
-                        $('#speciality_dropdown').parent().parent().removeAttr('style');
-                        $('#speciality_label').html('SPECIALITY');
+                        $('.speciality_dropdown').html(response);
+                        $('.speciality_dropdown').parent().parent().removeAttr('style');
+                        $('.speciality_label').html('SPECIALITY');
                     } else {
-                        $('#speciality_dropdown').parent().parent().attr('style', 'display: none');
+                        $('.speciality_dropdown').parent().parent().attr('style', 'display: none');
                     }
 
                 }

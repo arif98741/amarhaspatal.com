@@ -222,6 +222,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                 <div class="clearfix"></div>
                                 <div class="row">
 
+                                    Search for services
                                     <div class="col-sm-12">
                                         <?php
                                         $directories = array();

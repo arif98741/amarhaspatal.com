@@ -52,7 +52,7 @@ get_header();
 
                     </div>
                     <div class="form-group">
-                        <select name="division_id" id="division_id" class="form-control">
+                        <select name="division_id" class="form-control division_id">
                             <option>Select Division</option>
 
                             <option value="1">Barisal</option>
@@ -74,22 +74,15 @@ get_header();
                     </div>
 
                     <div class="form-group">
-                        <select name="district_id" id="district_id" class="form-control">
+                        <select name="district_id" class="form-control district_id">
                             <option value="">Select District</option>
 
                         </select>
                     </div>
                     <div class="form-group">
 
-                        <select name="upazila_id" id="upazila_id" class="form-control">
+                        <select name="upazila_id" class="form-control upazila_id">
                             <option>Select Upazila</option>
-                        </select>
-                    </div>
-
-                    <div style="display: none" class="form-group">
-                        <select name="union_id" id="union_id" class="form-control">
-                            <option value="">Select Union</option>
-                            <option>Dhaka</option>
                         </select>
                     </div>
 
