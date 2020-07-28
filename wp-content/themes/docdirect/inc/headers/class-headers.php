@@ -120,8 +120,8 @@ if (!class_exists('docdirect_headers')) {
 								<?php if( !empty( $header_type['header_v2']['social_icons'] ) ){?>
 									<ul class="tg-socialicon">
 									<?php if(!is_user_logged_in()): ?>
-									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target=".tg-user-modal">Login</li>
-									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target=".tg-user-modal">Registration</li>
+									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target="#login-modal-front">Login</li>
+									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target="#registration-modal-front">Registration</li>
 									<?php
 endif;
  ?>

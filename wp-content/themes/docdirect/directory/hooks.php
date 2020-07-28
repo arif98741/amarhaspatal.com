@@ -1819,7 +1819,7 @@ if (!function_exists('docdirect_search_filters')) {
 
                         <div class="form-group">
 
-                            <select name="directory_type" id="directory_type_dropdown" class="select2">
+                            <select name="directory_type" class="select2 directory_type_dropdown">
                                 <option <?php if (isset($_GET['directory_type'])): ?> selected="" <?php endif; ?>
                                         value="0" selected>SELECT SERVICE
                                 </option>
@@ -1832,7 +1832,7 @@ if (!function_exists('docdirect_search_filters')) {
                                     Donor
                                 </option>
                                 <option <?php if (isset($_GET['directory_type']) && $_GET['directory_type'] == 121): ?>
-                                        selected=""`
+                                        selected="" `
                                         <?php endif; ?>value="121">
                                     Diagnostics
                                 </option>
@@ -1849,13 +1849,32 @@ if (!function_exists('docdirect_search_filters')) {
                         </div>
                         <?php if (isset($dir_keywords) && $dir_keywords === 'enable') { ?>
                             <div class="form-group">
-                                <select id="speciality_dropdown" class="form-control select2">
+                                <select name="speciality" class="form-control speciality_dropdown select2">
                                     <?php
-                                    if (isset($_GET['speciality'])) {
+                                    if (isset($_GET['directory_type']) && $_GET['directory_type'] == 122) {
+                                        $blood_groups = [
+                                            'A+',
+                                            'A-',
+                                            'B+',
+                                            'B-',
+                                            'O+',
+                                            'O-',
+                                            'AB+',
+                                            'AB-',
+
+                                        ];
+                                        echo '<option value="">SELECT BLOOD GROUP</option>';
+                                        foreach ($blood_groups as $blood_key => $value) { ?>
+                                            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>';
+
+                                        <?php }
+
+                                    } elseif (isset($_GET['directory_type']) && isset($_GET['speciality'])) {
                                         $terms = get_terms(array('taxonomy' => 'specialities', 'hide_empty' => false));
-                                        //     $terms = get_post_taxonomies();
+
                                         $post = get_post_meta(esc_html($_GET['directory_type']));
                                         $attached_specialities = unserialize($post['attached_specialities'][0]);
+
 
                                         $term_list = [];
 
@@ -1870,26 +1889,50 @@ if (!function_exists('docdirect_search_filters')) {
 
                                         foreach ($term_list as $key => $value) { ?>
 
-                                            <option <?php if ($key == 167): ?>
+                                            <option <?php if ($key == esc_html($_GET['speciality'])): ?>
                                                 selected <?php endif; ?>
                                                     value="<?php echo $key; ?>"><?php echo $value; ?></option>';
 
                                         <?php }
                                         echo $data;
-                                    } else { ?>
+                                    } elseif (isset($_GET['directory_type'])) {
+
+                                        $terms = get_terms(array('taxonomy' => 'specialities', 'hide_empty' => false));
+
+                                        $post = get_post_meta(esc_html($_GET['directory_type']));
+                                        $attached_specialities = unserialize($post['attached_specialities'][0]);
+
+
+                                        $term_list = [];
+
+                                        foreach ((array)$terms as $term) {
+
+                                            if (array_key_exists($term->term_id, $attached_specialities)) {
+                                                $term_list[$term->term_id] = $term->name;
+                                            }
+                                        }
+
+                                        $data = '<option value="" selected>SELECT SPECIALITY</option>';
+                                        foreach ($term_list as $key => $value) { ?>
+                                            <?php
+                                            $data .= ' <option value="' . $key . '">' . $value . '</option>';
+                                            ?>
+
+                                        <?php }
+                                        echo $data;
+
                                         ?>
 
+                                    <?php } else { ?>
                                         <option>SELECT SPECIALITY</option>
-                                        <?php
-                                    }
-                                    ?>
+                                    <?php } ?>
                                 </select>
                             </div>
                         <?php } ?>
 
                         <div class="form-group">
                             <div class="doc-select">
-                                <select name="division_id" id="division_id_temp" class="form-control select2">
+                                <select name="division_id" class="form-control division_id select2">
                                     <option>SELECT DIVISION</option>
                                     <?php
                                     global $wpdb;
@@ -1963,7 +2006,7 @@ if (!function_exists('docdirect_search_filters')) {
                         <div class="form-group">
                             <div class="tg-inputicon tg-geolocationicon tg-angledown">
                                 <select <?php if (isset($_GET['district_id']) && $_GET['district_id'] == 'test'): ?>  selected=""<?php endif; ?>
-                                        name="district_id" id="district_id_temp" class="form-control select2">
+                                        name="district_id" class="form-control select2 district_id">
 
                                     <?php if (isset($_GET['district_id'])) {
                                         global $wpdb;
@@ -1984,7 +2027,7 @@ if (!function_exists('docdirect_search_filters')) {
 
                         <div class="form-group">
                             <div class="tg-inputicon tg-geolocationicon tg-angledown">
-                                <select name="upazila_id" id="upazila_id_temp" class="form-control select2">
+                                <select name="upazila_id" class="form-control select2 upazila_id">
                                     <?php if (isset($_GET['district_id'])) {
                                         global $wpdb;
                                         $upazilaSql = "select id, title,title_en from loc_upazilas where status='1'";
@@ -2050,16 +2093,16 @@ if (!function_exists('docdirect_search_filters')) {
                     </fieldset>
                 </div>
                 <style>
-                    #division_id, #district_id, #upazila_id, #division_id_temp {
-                        text-transform: uppercase;
+                    .division_id, .district_id, .upazila_id, .division_id_temp {
+                        text-transform: uppercase !important;
                     }
 
-                    #division_id_temp option,
-                    #district_id_temp option,
-                    #upazila_id_temp option,
-                    #district_id_temp option,
-                    #directory_type_dropdown option,
-                    #speciality_dropdown option {
+                    .division_id_temp option,
+                    .district_id_temp option,
+                    .upazila_id_temp option,
+                    .district_id_temp option,
+                    .directory_type_dropdown option,
+                    .speciality_dropdown option {
                         font-weight: bold;
                     }
 
@@ -2146,7 +2189,7 @@ if (!function_exists('docdirect_get_username')) {
     function docdirect_get_username($user_id = '')
     {
         if (empty($user_id)) {
-            return esc_html__('unnamed', 'docdirect');;
+            return esc_html__('unnamed', 'docdirect');
         }
 
         $userdata = get_userdata($user_id);
@@ -2802,7 +2845,7 @@ if (!function_exists('docdirect_get_timezone')) {
                 }
 
                 $timezone = new DateTimeZone($value); // Get default system timezone to create a new DateTimeZone object
-                $offset = $timezone->getOffset(new \DateTime($phpTime));
+                $offset = $timezone->getOffset(new DateTime($phpTime));
                 $offsetHours = round(abs($offset) / 3600);
                 $offsetString = ($offset < 0 ? '-' : '+');
                 if ($offsetHours == 1 or $offsetHours == -1) {

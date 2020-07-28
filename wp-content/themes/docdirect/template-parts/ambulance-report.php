@@ -8,11 +8,11 @@ $dir_obj = new DocDirect_Scripts();
 $user_identity = $current_user->ID;
 $query = $wpdb->get_results("select * from wp_users");
 $users = get_users(array(
-    'meta_key' => 'car_no',
+    'meta_key' => 'directory_type',
+    'meta_value' => '123'
 ));
-/*
 
-*/
+
 get_header();
 ?>
     <div class="container">
@@ -29,7 +29,7 @@ get_header();
 
 
                             <select name="user_id" class="form-control select2">
-                                <option>Select Ambulance</option>
+                                <option value="">Select Ambulance</option>
                                 <?php foreach ($users as $user) {
                                     $userMeta = get_user_meta($user->ID);
                                     ?>

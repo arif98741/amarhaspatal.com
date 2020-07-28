@@ -82,7 +82,7 @@ if (!class_exists('SC_Authentication')) {
                                             <div class="form-group tg-checkbox">
                                                 <label>
                                                     <input type="checkbox" class="form-control">
-                                                    <?php esc_html_e('sRemember Me', 'docdirect_core'); ?>
+                                                    <?php esc_html_e('Remember Me', 'docdirect_core'); ?>
                                                 </label>
                                                 <a class="tg-forgot-password" href="javascript:;">
                                                     <i><?php esc_html_e('Forgot Password', 'docdirect_core'); ?></i>
@@ -178,7 +178,7 @@ if (!class_exists('SC_Authentication')) {
 
                                             </div>
                                             <div class="form-group">
-                                                <select name="division_id" id="division_id" class="form-control">
+                                                <select name="division_id" ` class="form-control division_id">
                                                     <option>Selects Division</option>
                                                     <?php
                                                     global $wpdb;
@@ -195,20 +195,20 @@ if (!class_exists('SC_Authentication')) {
                                             </div>
 
                                             <div class="form-group">
-                                                <select name="district_id" id="district_id" class="form-control">
+                                                <select name="district_id" class="form-control district_id">
                                                     <option value="">Select District</option>
 
                                                 </select>
                                             </div>
                                             <div class="form-group">
 
-                                                <select name="upazila_id" id="upazila_id" class="form-control">
+                                                <select name="upazila_id" class="form-control upazila_id">
                                                     <option>Select Upazila</option>
                                                 </select>
                                             </div>
 
                                             <div style="display: none" class="form-group" style="display: none;">
-                                                <select name="union_id" id="union_id" class="form-control">
+                                                <select name="union_id" class="form-control union_id">
                                                     <option value="">Select Union</option>
                                                     <option>Dhaka</option>
                                                 </select>
@@ -250,6 +250,213 @@ if (!class_exists('SC_Authentication')) {
                     </div>
                 </div>
             </div>
+            <!--            Login Modal Start-->
+            <div id="login-modal-front" class="modal fade" role="dialog">
+
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content ">
+                        <h4 class="modal-title" style="margin-top: 20px; padding: 10px">Login Form</h4>
+
+                        <div class="modal-body">
+                            <form class="tg-form-modal tg-form-signin do-login-form">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input type="text" name="username"
+                                               value="<?php echo esc_attr($demo_username); ?>"
+                                               placeholder="<?php esc_html_e('User Name', 'docdirect_core'); ?>"
+                                               class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="password" name="password"
+                                               value="<?php echo esc_attr($demo_pass); ?>" class="form-control"
+                                               placeholder="<?php esc_html_e('Password', 'docdirect_core'); ?>">
+                                    </div>
+                                    <div class="form-group tg-checkbox">
+                                        <label>
+                                            <input type="checkbox" class="form-control">
+                                            <?php esc_html_e('Remember Me', 'docdirect_core'); ?>
+                                        </label>
+                                        <a class="tg-forgot-password" href="javascript:;">
+                                            <i><?php esc_html_e('Forgot Password', 'docdirect_core'); ?></i>
+                                            <i class="fa fa-question-circle"></i>
+                                        </a>
+                                    </div>
+                                    <?php
+                                    if (isset($captcha_settings)
+                                        && $captcha_settings === 'enable'
+                                    ) {
+                                        ?>
+                                        <div class="domain-captcha">
+                                            <div id="recaptcha_signin"></div>
+                                        </div>
+                                    <?php } ?>
+                                    <button class="tg-btn tg-btn-lg do-login-button"><?php esc_html_e('LOGIN now', 'docdirect_core'); ?></button>
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--            Login Modal End-->
+
+            <!--            Registration Modal Start-->
+            <div id="registration-modal-front" class="modal fade" role="dialog">
+
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content ">
+                        <h4 class="modal-title" style="margin-top: 20px; padding: 10px">Registration Form</h4>
+
+                        <div class="modal-body">
+                            <form class="tg-form-modal tg-form-signup do-registration-form">
+                                <fieldset>
+                                    <!--<div class="form-group">
+                                                <div class="tg-radiobox user-selection active-user-type">
+                                                    <input type="radio" checked="checked" name="user_type"
+                                                           value="professional" id="professional">
+                                                    <label for="professional"><?php //esc_html_e('Professional', 'docdirect_core');
+                                    ?></label>
+                                                </div>-->
+                                    <!--                                                TODO:: usertype should be visitor/professional-->
+                                    <!--                                                <div class="tg-radiobox user-selection active-user-type visitor-type">-->
+                                    <!--                                                    <input type="radio" name="user_type" value="visitor" id="visitor">-->
+                                    <!--                                                    <label for="visitor">-->
+                                    <?php //esc_html_e('Visitor', 'docdirect_core');
+                                    ?><!--</label>-->
+                                    <!--                                                </div>-->
+                                    <!--                                            </div>-->
+                                    <div class="form-group user-types">
+                                        <input type="hidden" name="user_type" value="professional"
+                                               class="user_type">
+                                        <select name="directory_type" class="usertypedropdown">
+                                            <option value="0">Select User Type</option>
+                                            <option value="122">Blood Donor</option>
+                                            <option value="121">Diagnostics</option>
+                                            <option value="127">Doctor</option>
+                                            <option value="126">Hospital</option>
+                                            <option value="122">Visitor</option>
+
+                                        </select>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="username" class="form-control"
+                                               placeholder="<?php esc_html_e('Username', 'docdirect_core'); ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="email" name="email" class="form-control"
+                                               placeholder="<?php esc_html_e('Email', 'docdirect_core'); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="first_name"
+                                               placeholder="<?php esc_html_e('First Name', 'docdirect_core'); ?>"
+                                               class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="last_name"
+                                               placeholder="<?php esc_html_e('Last Name', 'docdirect_core'); ?>"
+                                               class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="phone_number" class="form-control"
+                                               placeholder="<?php esc_html_e('Phone Number', 'docdirect_core'); ?>">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <input type="password" name="password" autocomplete="off"
+                                               class="form-control"
+                                               placeholder="<?php esc_html_e('Password', 'docdirect_core'); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="confirm_password" autocomplete="off"
+                                               class="form-control"
+                                               placeholder="<?php esc_html_e('Confirm Password', 'docdirect_core'); ?>">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="division_id" class="form-control division_id select2">
+                                            <option>Selects Division</option>
+                                            <?php
+                                            global $wpdb;
+                                            $divisionSql = "select id, title,title_en from loc_divisions where status='1'";
+                                            $divisions = $wpdb->get_results($divisionSql);
+
+                                            ?>
+                                            <?php foreach ($divisions as $division) { ?>
+
+                                                <option value="<?= $division->id; ?>"><?= $division->title_en ?></option>
+                                            <?php } ?>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <select name="district_id" class="form-control district_id select2">
+                                            <option value="">Select District</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <select name="upazila_id" class="form-control upazila_id select2">
+                                            <option>Select Upazila</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group tg-checkbox">
+                                        <input name="terms" type="hidden" value="0"/>
+                                        <label>
+                                            <input name="terms" class="form-control" type="checkbox">
+                                            <?php if (!empty($terms_link)) { ?>
+                                                <a target="_blank" href="<?php echo esc_url($terms_link); ?>"
+                                                   title="<?php esc_attr_e('Terms', 'docdirect_core'); ?>">
+                                                    <?php esc_html_e(' I agree with the terms and conditions', 'docdirect_core'); ?></a>
+                                            <?php } else { ?>
+                                                <?php esc_html_e(' I agree with the terms and conditions', 'docdirect_core'); ?>
+                                            <?php } ?>
+                                        </label>
+                                    </div>
+                                    <?php
+                                    if (isset($captcha_settings)
+                                        && $captcha_settings === 'enable'
+                                    ) {
+                                        ?>
+                                        <div class="domain-captcha">
+                                            <div id="recaptcha_signup"></div>
+                                        </div>
+                                    <?php } ?>
+
+                                    <button class="tg-btn tg-btn-lg  do-register-button"
+                                            type="button"><?php esc_html_e('Create an Account', 'docdirect_core'); ?></button>
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        <style>
+                            .select2 {
+                                width: 100% !important;
+                            }
+                        </style>
+                    </div>
+
+                </div>
+            </div>
+            <!--            Registration Modal End-->
+
+            <!--            Ambulance Booking  Popup Modal Start-->
             <div id="ambulance-booking-modal" class="modal fade" role="dialog">
                 <style>
                     .ambulance-booking-popup-body {
@@ -294,7 +501,9 @@ if (!class_exists('SC_Authentication')) {
                                                        value="<?php echo $author_profile->ID
                                                        ?>">
 
-                                                <select name="ambulance_type" style="text-transform: uppercase; font-weight: 700" class="input--style-6" required>
+                                                <select name="ambulance_type"
+                                                        style="text-transform: uppercase; font-weight: 700"
+                                                        class="input--style-6" required>
                                                     <option value="" selected disabled>Select Ambulance Type</option>
                                                     <option value="Ac">Ac Ambulance</option>
                                                     <option value="Non-Ac"> Non-Ac Ambulance</option>
@@ -361,7 +570,7 @@ if (!class_exists('SC_Authentication')) {
                                             <div class="value m-b-25">
                                                 <input class="input--style-6" type="text"
                                                        placeholder="Enter reference id if available"
-                                                       name="reference_id" required>
+                                                       name="reference_id">
                                             </div>
                                             <br>
                                             <div class="value m-b-25">
@@ -377,7 +586,7 @@ if (!class_exists('SC_Authentication')) {
                             </div>
                         </div>
                         <style>
-                            .name{
+                            .name {
                                 font-weight: 700;
                             }
 
@@ -416,6 +625,7 @@ if (!class_exists('SC_Authentication')) {
             $profile_page = isset($dir_profile_page[0]) ? $dir_profile_page[0] : '';
             ?>
             <div class="authentication-page-template">
+
                 <?php
                 if (is_user_logged_in()) {
                     global $current_user;
@@ -437,78 +647,8 @@ if (!class_exists('SC_Authentication')) {
                         </div>
                     </div>
                 <?php } else { ?>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
-                        <div class="Login-page-wrap tg-haslayout">
-                            <div class="doc-section-heading"><h2><?php esc_html_e('Sign In', 'docdirect_core'); ?></h2>
-                                <span><?php esc_html_e('Sign In with your username and password', 'docdirect_core'); ?></span>
-                            </div>
-                            <?php if ($enable_login == 'enable') {
-                                if (apply_filters('docdirect_is_user_logged_in', 'check_user') === false) {
-
-                                    //Demo Ready
-                                    $demo_username = '';
-                                    $demo_pass = '';
-                                    if (isset($_SERVER["SERVER_NAME"])
-                                        && $_SERVER["SERVER_NAME"] === 'themographics.com') {
-                                        $demo_username = 'demo';
-                                        $demo_pass = 'demo';
-                                    }
-
-                                    if (function_exists('fw_get_db_settings_option')) {
-                                        $site_key = fw_get_db_settings_option('site_key');
-                                    } else {
-                                        $site_key = '';
-                                    }
-
-                                    $forgot_passwrod = wp_lostpassword_url('/');
-
-                                    ?>
-                                    <form class="tg-form-modal tg-form-signin do-login-form">
-                                        <fieldset>
-                                            <div class="form-group">
-                                                <input type="text" name="username"
-                                                       value="<?php echo esc_attr($demo_username); ?>"
-                                                       placeholder="<?php esc_html_e('User Name', 'docdirect_core'); ?>"
-                                                       class="form-control">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <input type="password" name="password"
-                                                       value="<?php echo esc_attr($demo_pass); ?>" class="form-control"
-                                                       placeholder="<?php esc_html_e('Password', 'docdirect_core'); ?>">
-                                            </div>
-                                            <div class="form-group tg-checkbox">
-                                                <label>
-                                                    <input type="checkbox" class="form-control">
-                                                    <?php esc_html_e('Remember Me', 'docdirect_core'); ?>
-                                                </label>
-                                                <a class="tg-forgot-password" href="javascript:;">
-                                                    <i><?php esc_html_e('Forgot Password', 'docdirect_core'); ?></i>
-                                                    <i class="fa fa-question-circle"></i>
-                                                </a>
-                                            </div>
-                                            <?php
-                                            if (isset($captcha_settings)
-                                                && $captcha_settings === 'enable'
-                                            ) {
-                                                ?>
-                                                <div class="domain-captcha">
-                                                    <div id="recaptcha_signin"></div>
-                                                </div>
-                                            <?php } ?>
-                                            <button class="tg-btn tg-btn-lg do-login-button"><?php esc_html_e('LOGIN now', 'docdirect_core'); ?></button>
-                                        </fieldset>
-                                    </form>
-                                <?php }
-                            } else { ?>
-                                <div class="tg-form-modal">
-                                    <p class="alert alert-info theme-notification"><?php esc_html_e('Sign In is disabled by administrator', 'docdirect_core'); ?></p>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="registration-page-wrap tg-haslayout">
                             <div class="doc-section-heading"><h2><?php esc_html_e('Sign Up', 'docdirect_core'); ?></h2>
                                 <span><?php esc_html_e('Sign Up as Vistor or professional.', 'docdirect_core'); ?></span>
@@ -516,104 +656,108 @@ if (!class_exists('SC_Authentication')) {
                             <?php
                             if ($enable_resgistration == 'enable') {
                                 if (apply_filters('docdirect_is_user_logged_in', 'check_user') === false) { ?>
-                                    <form class="tg-form-modal tg-form-signup do-registration-form">
+                                    <form class="tg-form-modal tg-form-signup do-registration-form" autocomplete="off">
                                         <fieldset>
-                                            <div class="form-group">
-                                                <div class="tg-radiobox user-selection active-user-type">
-                                                    <input type="radio" checked="checked" name="user_type"
-                                                           value="professional" id="professional">
-                                                    <label for="professional"><?php esc_html_e('Professional', 'docdirect_core'); ?></label>
-                                                </div>
-                                                <div class="tg-radiobox user-selection active-user-type visitor-type">
-                                                    <input type="radio" name="user_type" value="visitor" id="visitor">
-                                                    <label for="visitor"><?php esc_html_e('Visitor', 'docdirect_core'); ?></label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group user-types">
-                                                <select id="user_type" onchange="myFunction()" name="directory_type">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group user-types">
+                                                        <select name="directory_type" class="usertypedropdown">
+                                                            <option value="0">Select User Type</option>
+                                                            <option value="122">Blood Donor</option>
+                                                            <option value="121">Diagnostics</option>
+                                                            <option value="127">Doctor</option>
+                                                            <option value="126">Hospital</option>
+                                                            <option value="122">Visitor</option>
 
-                                                    <option value="0">Select User Type</option>
-                                                    <option value="127">Doctor</option>
-                                                    <option value="126">Hospital</option>
-                                                    <option value="122">Blood Donor</option>
+                                                        </select>
+                                                        <input type="hidden" name="user_type" value="professional"
+                                                               class="user_type">
+                                                    </div>
 
-                                                </select>
-                                            </div>
-                                            <div class="form-group" id="bmdc_registration_number_block"
-                                                 style="display: none">
-                                                <input type="text" name="bmdc_registration_number" class="form-control"
-                                                       placeholder="Bmdc Registration number">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="username" class="form-control"
-                                                       placeholder="<?php esc_html_e('Username', 'docdirect_core'); ?>">
+                                                    <div class="form-group">
+                                                        <input type="text" name="first_name"
+                                                               placeholder="<?php esc_html_e('First Name', 'docdirect_core'); ?>"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name="last_name"
+                                                               placeholder="<?php esc_html_e('Last Name', 'docdirect_core'); ?>"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="form-group" id="bmdc_registration_number_block"
+                                                         style="display: none">
+                                                        <input type="text" name="bmdc_registration_number"
+                                                               class="form-control"
+                                                               placeholder="Bmdc Registration number">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name="username" class="form-control"
+                                                               placeholder="<?php esc_html_e('Username', 'docdirect_core'); ?>">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <input type="password" name="password" autocomplete="off"
+                                                               class="form-control"
+                                                               placeholder="<?php esc_html_e('Password', 'docdirect_core'); ?>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="password" name="confirm_password"
+                                                               autocomplete="off"
+                                                               class="form-control"
+                                                               placeholder="<?php esc_html_e('Confirm Password', 'docdirect_core'); ?>">
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="email" name="email" class="form-control"
+                                                               placeholder="<?php esc_html_e('Email', 'docdirect_core'); ?>">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <input type="text" name="phone_number" class="form-control"
+                                                               placeholder="<?php esc_html_e('Phone Number', 'docdirect_core'); ?>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select name="division_id" class="form-control division_id">
+                                                            <option>Select Division</option>
+                                                            <?php
+                                                            global $wpdb;
+                                                            $divisionSql = "select id, title,title_en from loc_divisions where status='1'";
+                                                            $divisions = $wpdb->get_results($divisionSql);
+
+                                                            ?>
+                                                            <?php foreach ($divisions as $division) { ?>
+
+                                                                <option value="<?= $division->id; ?>"><?= $division->title_en ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <select name="district_id" class="form-control district_id">
+                                                            <option value="">Select District</option>
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+
+                                                        <select name="upazila_id" class="form-control upazila_id">
+                                                            <option>Select Upazila</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group" style="display: none">
+                                                        <select name="union_id" class="form-control union_id">
+                                                            <option value="">Select Union</option>
+                                                            <option>Dhaka</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <!--                                            changes from here-->
-                                            <div class="form-group">
-                                                <input type="email" name="email" class="form-control"
-                                                       placeholder="<?php esc_html_e('Email', 'docdirect_core'); ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="first_name"
-                                                       placeholder="<?php esc_html_e('First Name', 'docdirect_core'); ?>"
-                                                       class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="last_name"
-                                                       placeholder="<?php esc_html_e('Last Name', 'docdirect_core'); ?>"
-                                                       class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="phone_number" class="form-control"
-                                                       placeholder="<?php esc_html_e('Phone Number', 'docdirect_core'); ?>">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <input type="password" name="password" autocomplete="off"
-                                                       class="form-control"
-                                                       placeholder="<?php esc_html_e('Password', 'docdirect_core'); ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password" name="confirm_password" autocomplete="off"
-                                                       class="form-control"
-                                                       placeholder="<?php esc_html_e('Confirm Password', 'docdirect_core'); ?>">
-
-                                            </div>
-                                            <div class="form-group">
-                                                <select name="division_id" id="division_id" class="form-control">
-                                                    <option>Select Division</option>
-                                                    <?php
-                                                    global $wpdb;
-                                                    $divisionSql = "select id, title,title_en from loc_divisions where status='1'";
-                                                    $divisions = $wpdb->get_results($divisionSql);
-
-                                                    ?>
-                                                    <?php foreach ($divisions as $division) { ?>
-
-                                                        <option value="<?= $division->id; ?>"><?= $division->title_en ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <select name="district_id" id="district_id" class="form-control">
-                                                    <option value="">Select District</option>
-
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-
-                                                <select name="upazila_id" id="upazila_id" class="form-control">
-                                                    <option>Select Upazila</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group" style="display: none">
-                                                <select name="union_id" id="union_id" class="form-control">
-                                                    <option value="">Select Union</option>
-                                                    <option>Dhaka</option>
-                                                </select>
-                                            </div>
 
 
                                             <div class="form-group tg-checkbox">
