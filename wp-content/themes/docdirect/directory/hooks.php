@@ -2097,10 +2097,10 @@ if (!function_exists('docdirect_search_filters')) {
                         text-transform: uppercase !important;
                     }
 
-                    .division_id_temp option,
-                    .district_id_temp option,
-                    .upazila_id_temp option,
-                    .district_id_temp option,
+                    .division_id option,
+                    .district_id option,
+                    .upazila_id option,
+                    .district_id option,
                     .directory_type_dropdown option,
                     .speciality_dropdown option {
                         font-weight: bold;

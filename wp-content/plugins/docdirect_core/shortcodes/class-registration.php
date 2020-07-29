@@ -256,10 +256,12 @@ if (!class_exists('SC_Authentication')) {
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content ">
-                        <h4 class="modal-title" style="margin-top: 20px; padding: 10px">Login Form</h4>
-
+                        <div class="modal-title">
+                            <h4 style="text-align: left; padding: 10px 30px">Login to Amarhaspatal</h4>
+                        </div>
                         <div class="modal-body">
                             <form class="tg-form-modal tg-form-signin do-login-form">
+
                                 <fieldset>
                                     <div class="form-group">
                                         <input type="text" name="username"
@@ -298,7 +300,6 @@ if (!class_exists('SC_Authentication')) {
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
 
@@ -309,10 +310,12 @@ if (!class_exists('SC_Authentication')) {
             <!--            Registration Modal Start-->
             <div id="registration-modal-front" class="modal fade" role="dialog">
 
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <!-- Modal content-->
                     <div class="modal-content ">
-                        <h4 class="modal-title" style="margin-top: 20px; padding: 10px">Registration Form</h4>
+                        <div class="modal-title">
+                            <h4>Registration Form </h4>
+                        </div>
 
                         <div class="modal-body">
                             <form class="tg-form-modal tg-form-signup do-registration-form">
@@ -363,6 +366,11 @@ if (!class_exists('SC_Authentication')) {
                                     <div class="form-group">
                                         <input type="text" name="last_name"
                                                placeholder="<?php esc_html_e('Last Name', 'docdirect_core'); ?>"
+                                               class="form-control">
+                                    </div>
+                                    <div class="form-group bmdc_registration_no" style="display: none;">
+                                        <input type="text" name="bmdc_registration_no"
+                                               placeholder="<?php esc_html_e('Bmdc registration no', 'docdirect_core'); ?>"
                                                class="form-control">
                                     </div>
                                     <div class="form-group">

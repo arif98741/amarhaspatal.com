@@ -618,11 +618,20 @@ jQuery(document).ready(function ($) {
      */
     jQuery('.usertypedropdown').on('change', function () {
         var user_type = $(this).val();
+
         if (user_type == 122) {
             $('.user_type').val('visitor');
         } else {
             $('.user_type').val('professional');
         }
+
+        if (user_type == 127) {
+            $('.bmdc_registration_no').removeAttr('style');
+        } else {
+            $('.bmdc_registration_no').attr('style','display:none');
+        }
+
+
     });
 
     /**

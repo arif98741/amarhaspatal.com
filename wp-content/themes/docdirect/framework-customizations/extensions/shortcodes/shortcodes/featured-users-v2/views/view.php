@@ -122,6 +122,7 @@ $flag = rand(1, 9999);
                             $directories_array['email'] = $user->user_email;
                             $directories_array['phone_number'] = $user->phone_number;
                             $directories_array['address'] = $user->user_address;
+                            $directories_array['car_no'] = $user->car_no;
                             $directories_array['group'] = $slug;
                             $current_string = strtotime($current_date);
                             $review_data = docdirect_get_everage_rating($user->ID);
@@ -145,7 +146,9 @@ $flag = rand(1, 9999);
                                         <?php docdirect_get_wishlist_button($user->ID, true, 'v2'); ?>
                                         <h2>
                                             <a href="<?php echo ($directory_type != 122) ? get_author_posts_url($user->ID) : '#'; ?>"
-                                               class="list-avatar"><?php echo($get_username); ?></a></h2>
+                                               class="list-avatar"><?php echo($get_username); ?>
+                                                <?php if ($directory_type == 127 && !empty($user->bmdc_registration_no)): ?>(<?= $user->bmdc_registration_no ?>)<?php endif; ?>
+                                            </a></h2>
                                         <?php if (!empty($user->tagline)) { ?>
                                             <span><?php echo esc_attr($user->tagline); ?></span>
                                         <?php } ?>
@@ -193,6 +196,8 @@ $flag = rand(1, 9999);
                                         <?php } else { ?>
                                             <li><i class="fa fa-envelope-o"></i><a
                                                         href="#">something@example.com</a>
+                                            </li>
+                                            <li><i class="fa fa-car"></i>Car no: <?= $directories_array['car_no'] ?>
                                             </li>
                                         <?php } ?>
                                         <?php if ($directory_type == 122): ?>

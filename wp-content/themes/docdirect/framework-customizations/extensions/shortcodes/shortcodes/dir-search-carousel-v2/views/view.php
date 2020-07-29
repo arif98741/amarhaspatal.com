@@ -73,7 +73,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
         margin-left: auto;
         min-height: 358px;
         padding: 10px;
-        height: 405px;
+        height: 456px;
         margin-top: 83px;
         background: #0078A4;
         color: #fff;
@@ -130,7 +130,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                         <div class="form-group">
                                             <label for="country">
                                                 DIVISION</label>
-                                            <select name="division_id" class="division_id_temp select2"
+                                            <select name="division_id" class="division_id select2"
                                                     class="form-control ">
                                                 <option value="">SELECT DIVISION</option>
                                                 <?php
@@ -149,7 +149,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-6">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">DISTRICT</label>
-                                            <select name="district_id" class="district_id_temp select2"
+                                            <select name="district_id" class="district_id select2"
                                                     class="form-control select2">
                                                 <option value="">SELECT DISTRICT</option>
 
@@ -159,7 +159,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-12">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">UPAZILA</label>
-                                            <select name="upazila_id" class="upazila_id_temp select2"
+                                            <select name="upazila_id" class="upazila_id select2"
                                                     class="form-control  select2">
                                                 <option value="">SELECT UPAZILA</option>
                                             </select>
@@ -171,7 +171,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                             <select name="directory_type" class="select2 directory_type_dropdown"
                                                     style="text-transform: uppercase !important;">
 
-                                                <option value="0" selected>SELECT SERVICE</option>
+                                                <option value="" selected>SELECT SERVICE</option>
                                                 <option value="123">AMBULANCE</option>
                                                 <option value="122">BLOOD DONOR</option>
                                                 <option value="121">DIAGONOSTICS</option>
@@ -197,7 +197,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
 
                                 <div class="col-sm-offset-5">
                                     <button type="submit"
-                                            class="btn btn-default">Search
+                                            class="btn btn-default search-btn-front">Search
                                     </button>
                                 </div>
                             </form>
@@ -213,14 +213,14 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
             }</style>
     <?php } ?>
     <style>
-        .division_id, .district_id, .upazila_id, .division_id_temp {
+        .division_id, .district_id, .upazila_id {
             text-transform: uppercase;
         }
 
-        .division_id_temp option,
-        .district_id_temp option,
-        .upazila_id_temp option,
-        .district_id_temp option,
+        .division_id option,
+        .district_id option,
+        .upazila_id option,
+        .district_id option,
         .directory_type_dropdown option,
         .speciality_dropdown option {
             font-weight: bold;

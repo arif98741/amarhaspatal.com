@@ -28,10 +28,12 @@ $avatar = apply_filters(
 ?>
 
 <div class="tg-usercontactinfo">
+
     <h3><?php (!$directory_type != 123) ? esc_html_e('Contact Details', 'docdirect') : ''; ?></h3>
     <ul class="tg-doccontactinfo">
         <?php if (!empty($author_profile->user_address)) { ?>
             <li><i class="fa fa-map-marker"></i>
+
                 <address><?php echo esc_attr($author_profile->user_address); ?></address>
             </li>
         <?php } ?>
@@ -66,8 +68,14 @@ $avatar = apply_filters(
                                              target="_blank"><?php echo docdirect_parse_url($author_profile->user_url); ?></a>
             </li>
         <?php } ?>
+        <?php if ($directory_type == 127) { ?>
+           <li> <hr></li>
+            <li>BMDC Registration Number: <?= $author_profile->bmdc_registration_no; ?>
+            </li>
+        <?php } ?>
     </ul>
     <?php if (!empty($social_links)) { ?>
+
         <ul class="tg-socialicon-v2">
             <?php
             foreach ($social_links as $key => $social) {

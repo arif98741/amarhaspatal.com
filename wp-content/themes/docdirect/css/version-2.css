@@ -153,7 +153,7 @@ button.doc-btn{background:none !important;}
 .doc-logo{float:left;padding:27px 0;}
 .doc-logo a,
 .doc-logo a img{display:block;}
-.doc-logo a img{width:100%;height:auto;}
+.doc-logo a img{width:100%;height:100%;}
 .doc-navigationarea{float:right;}
 .doc-nav{float:left;text-transform:uppercase;font:400 14px/20px 'Montserrat', Arial, Helvetica, sans-serif;}
 .doc-nav,
