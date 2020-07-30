@@ -67,49 +67,6 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
     $isadvance_filter = 'advance-filter-enabled';
 }
 ?>
-<style>
-    #search-div-carousal {
-        width: 42% !important;
-        margin-left: auto;
-        min-height: 358px;
-        padding: 10px;
-        height: 456px;
-        margin-top: 83px;
-        background: #0078A4;
-        color: #fff;
-        border-radius: 4px;
-        border: 5px solid #fff;
-
-    }
-
-    @media (min-width: 481px) and (max-width: 767px) {
-
-        #search-div-carousal {
-            width: 100% !important;
-            margin: 0 auto;
-            min-height: 398px;
-            background: #0078A4;
-            padding: 10px;
-            height: 490px;
-            border-radius: 3px;
-        }
-    }
-
-    @media (min-width: 320px) and (max-width: 480px) {
-
-        #search-div-carousal {
-            width: 100% !important;
-            margin: 0 auto;
-            min-height: 398px;
-            background: #0078A4;
-            padding: 10px;
-            height: 490px;
-            border-radius: 3px;
-        }
-    }
-
-
-</style>
 <div id="doc-homebannerslider-<?php echo esc_attr($uni_flag); ?>"
      class="doc-homebannerslider doc-haslayout <?php echo esc_attr($isadvance_filter); ?>">
     <figure class="doc-bannerimg">
@@ -130,7 +87,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                         <div class="form-group">
                                             <label for="country">
                                                 DIVISION</label>
-                                            <select name="division_id" class="division_id select2"
+                                            <select name="division_id" class="division_id "
                                                     class="form-control ">
                                                 <option value="">SELECT DIVISION</option>
                                                 <?php
@@ -149,7 +106,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-6">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">DISTRICT</label>
-                                            <select name="district_id" class="district_id select2"
+                                            <select name="district_id" class="district_id "
                                                     class="form-control select2">
                                                 <option value="">SELECT DISTRICT</option>
 
@@ -159,7 +116,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-12">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">UPAZILA</label>
-                                            <select name="upazila_id" class="upazila_id select2"
+                                            <select name="upazila_id" class="upazila_id "
                                                     class="form-control  select2">
                                                 <option value="">SELECT UPAZILA</option>
                                             </select>
@@ -168,7 +125,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
                                     <div class="col-sm-12">
                                         <div class="form-group" ng-init="city = '0'">
                                             <label for="city">SERVICE</label>
-                                            <select name="directory_type" class="select2 directory_type_dropdown"
+                                            <select name="directory_type" class=" directory_type_dropdown"
                                                     style="text-transform: uppercase !important;">
 
                                                 <option value="" selected>SELECT SERVICE</option>

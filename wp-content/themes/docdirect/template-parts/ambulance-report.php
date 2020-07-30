@@ -33,7 +33,7 @@ get_header();
                                 <?php foreach ($users as $user) {
                                     $userMeta = get_user_meta($user->ID);
                                     ?>
-                                    <option value="<?= $user->ID ?>"><?= $userMeta['first_name'][0] ?>
+                                    <option value="<?= $user->ID ?>"><?= $userMeta['first_name'][0] ?>(<?= $user->ID ?>)
                                     </option>
 
                                 <?php } ?>

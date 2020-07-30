@@ -13,3 +13,4 @@ git push && git checkout master && git push
 !/wp-content/plugins/docdirect_core/shortcodes/class-registration.php
 !/wp-content/themes/docdirect/js/docdirect_functions.js
 !/wp-includes/css/dist/block-library/style.min.css
+!/wp-content/plugins/docdirect_core/shortcodes/class-registration.php

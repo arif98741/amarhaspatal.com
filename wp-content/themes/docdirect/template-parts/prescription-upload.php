@@ -64,148 +64,157 @@ if (isset($_POST['prescription_upload'])) {
     }
 }
 ?>
-    <div class="container">
-        <h3>Prescription Upload </h3>
-        <div class="">
+<div class="container">
+    <h3>Prescription Upload </h3>
+    <div class="">
 
-            <?php
-            if (!empty($message))
-                echo $message;
-            ?>
+        <?php
+        if (!empty($message))
+            echo $message;
+        ?>
 
-            <?php
-            //            echo '<pre>';
-            //            print_r($errors); exit;
-            foreach ($errors as $error) {
-                echo $error; ?>
-            <?php } ?>
-            <form name="form-name" method="POST" action="<?php echo site_url('prescription-upload-page'); ?>"
-                  enctype="multipart/form-data">
-                <?php if (is_user_logged_in()) {
-                    $user = $current_user;
-                    $userdata = $user->data;
-                    $userMeta = get_user_meta($userdata->ID);
+        <?php
+        //            echo '<pre>';
+        //            print_r($errors); exit;
+        foreach ($errors as $error) {
+            echo $error; ?>
+        <?php } ?>
+        <form name="form-name" method="POST" action="<?php echo site_url('prescription-upload-page'); ?>"
+              enctype="multipart/form-data">
+            <?php if (is_user_logged_in()) {
+                $user = $current_user;
+                $userdata = $user->data;
+                $userMeta = get_user_meta($userdata->ID);
 
-                    ?>
+                ?>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Name Input</label>
-                                <input type="text" name="user_name"
-                                       value="<?php echo $userMeta['first_name'][0] . ' ' . $userMeta['last_name'][0] ?>"
-                                       class="form-control"
-                                       placeholder="Enter your full name"
-                                       required>
-                            </div>
-                            <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="text" name="user_email" value="<?php echo $userdata->user_email ?>"
-                                       class="form-control"
-                                       placeholder="Enter email address here"
-                                       required>
-                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <input type="text" value="<?php echo $userMeta['user_address'][0] ?>"
-                                       name="user_address" class="form-control"
-                                       placeholder="Enter address here" required>
-                            </div>
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Name Input</label>
+                            <input type="text" name="user_name"
+                                   value="<?php echo $userMeta['first_name'][0] . ' ' . $userMeta['last_name'][0] ?>"
+                                   class="form-control"
+                                   placeholder="Enter your full name"
+                                   required>
                         </div>
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-                                <label>Mobile</label>
-                                <input type="mobile" name="user_mobile" class="form-control"
-                                       value="<?php echo $userMeta['phone_number'][0] ?>" placeholder="01XXXXXXXXX"
-                                       required>
-                            </div>
-                            <div class="form-group">
-                                <label>Alternative Mobile</label>
-                                <input type="mobile" name="user_mobile_alternative" class="form-control"
-                                       placeholder="01XXXXXXXXX">
-                            </div>
-                            <div class="form-group">
-                                <label>Select Prescription File</label>
-                                <input type="file" name="prescription_file" required>
-                            </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="text" name="user_email" value="<?php echo $userdata->user_email ?>"
+                                   class="form-control"
+                                   placeholder="Enter email address here"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" value="<?php echo $userMeta['user_address'][0] ?>"
+                                   name="user_address" class="form-control"
+                                   placeholder="Enter address here" required>
                         </div>
 
-                        <div class="clearfix"></div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Note </label>
-                                <textarea name="user_note" cols="4" rows="4" class="form-control"
-                                          placeholder="Enter note text here"></textarea>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="col-md-6">
 
-                        <div class="clearfix"></div>
-                        <div class="col-md-3">
-                            <div class=""><button type="submit" name="prescription_upload" class="btn btn-primary">Submit</button></div>
+                        <div class="form-group">
+                            <label>Mobile</label>
+                            <input type="mobile" name="user_mobile" class="form-control"
+                                   value="<?php echo $userMeta['phone_number'][0] ?>" placeholder="01XXXXXXXXX"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label>Alternative Mobile</label>
+                            <input type="mobile" name="user_mobile_alternative" class="form-control"
+                                   placeholder="01XXXXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Select Prescription File</label>
+                            <input type="file" name="prescription_file" required>
                         </div>
                     </div>
-                    <?php
-                } else {
-                    ?>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="user_name" class="form-control"
-                                       placeholder="Enter your name"
-                                       required>
-                            </div>
 
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" name="user_email" class="form-control"
-                                       placeholder="Enter email address here"
-                                       required>
-                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <input type="test" name="user_address" class="form-control"
-                                       placeholder="Enter address here" required>
-                            </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Note </label>
+                            <textarea name="user_note" cols="4" rows="4" class="form-control"
+                                      placeholder="Enter note text here"></textarea>
+                        </div>
+                    </div>
 
-                        </div>
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-                                <label>Mobile</label>
-                                <input type="mobile" name="user_mobile" class="form-control" placeholder="01XXXXXXXXX"
-                                       required>
-                            </div>
-                            <div class="form-group">
-                                <label>Alternative Mobile</label>
-                                <input type="mobile" name="user_mobile_alternative" class="form-control"
-                                       placeholder="01XXXXXXXXX">
-                            </div>
-                            <div class="form-group">
-                                <label>Select Prescription File</label>
-                                <input type="file" name="prescription_file" required>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Note </label>
-                                <textarea name="user_note" cols="4" rows="4" class="form-control"
-                                          placeholder="Enter note text here"></textarea>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="col-md-3">
+                    <div class="clearfix"></div>
+                    <div class="col-md-3">
+                        <div class="">
                             <button type="submit" name="prescription_upload" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
-                <?php } ?>
-            </form>
-        </div>
+                </div>
+                <?php
+            } else {
+                ?>
+                <div class="card">
+                    <div class="card-body">
 
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" name="user_name" class="form-control"
+                                           placeholder="Enter your name"
+                                           required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" name="user_email" class="form-control"
+                                           placeholder="Enter email address here"
+                                           required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="test" name="user_address" class="form-control"
+                                           placeholder="Enter address here" required>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label>Mobile</label>
+                                    <input type="mobile" name="user_mobile" class="form-control"
+                                           placeholder="01XXXXXXXXX"
+                                           required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Alternative Mobile</label>
+                                    <input type="mobile" name="user_mobile_alternative" class="form-control"
+                                           placeholder="01XXXXXXXXX">
+                                </div>
+                                <div class="form-group">
+                                    <label>Select Prescription File</label>
+                                    <input type="file" name="prescription_file" required>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Note </label>
+                                    <textarea name="user_note" cols="4" rows="4" class="form-control"
+                                              placeholder="Enter note text here"></textarea>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-3">
+                                <button type="submit" name="prescription_upload" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </form>
     </div>
+
+</div>
 
 <?php
 get_footer();

@@ -2135,8 +2135,12 @@ p.wp-block-subhead {
 
 .current_page_item {
     text-decoration: underline;
-    font-size: 16px;
     font-weight: 700;
+}
+
+#menu-main-menu .current-page-item > a,
+#menu-main-menu .current_page_item > a {
+    color: #0078A4;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -2149,42 +2153,233 @@ p.wp-block-subhead {
     border: 1px solid #aaa !important;
     border-radius: 0px !important;
 }
-.search-btn-front{
+
+.search-btn-front {
     margin-top: 20px;
 }
 
-#login-modal-front .modal-content{
+#login-modal-front .modal-content {
     border-radius: 0px;
 }
-#login-modal-front .modal-body{
+
+#login-modal-front .modal-body {
     padding: 0px;
     margin: 0px;
 }
 
-#login-modal-front .modal-title{
+#login-modal-front .modal-title {
     padding: 7px 0px;
     background-color: #0078A4;
 }
-#login-modal-front .modal-title h4{
-    color:  #fff !important;
+
+#login-modal-front .modal-title h4 {
+    color: #fff !important;
 }
 
-#registration-modal-front .modal-content{
+#registration-modal-front .modal-content {
     border-radius: 0px;
     width: 100%;
 }
 
 
-#registration-modal-front .modal-body{
+#registration-modal-front .modal-body {
     padding: 0px;
     margin: 0px;
 }
 
-#registration-modal-front .modal-title{
-    padding: 7px 0px;
+#registration-modal-front .modal-title {
+    padding: 9px 0px;
     background-color: #0078A4;
 }
 
-#registration-modal-front .modal-title h4{
-    color:  #fff !important;
+#registration-modal-front .modal-title h4 {
+    color: #fff !important;
+    padding: 12px 28px;
+    font-size: 19px;
+}
+
+#registration-modal-front .modal-title p {
+    color: #fff !important;
+    padding: 0px 28px;
+    margin: 0px;
+}
+
+#doc-footer {
+    box-shadow: 0px 1px 10px 2px #4c4747;
+}
+
+/*search div carousal front page*/
+#search-div-carousal {
+    width: 42% !important;
+    margin-left: auto;
+    min-height: 358px;
+    padding: 10px;
+    height: 456px;
+    margin-top: 83px;
+    background: #0078A4;
+    color: #fff;
+    border-radius: 4px;
+    border: 5px solid #fff;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    #search-div-carousal {
+        width: 100% !important;
+        margin: 0 auto;
+        background: #0078A4;
+        padding: 10px;
+        height: 536px;
+        border-radius: 3px;
+    }
+
+    .search-btn-front {
+        width: 104px;
+        display: block;
+        margin: 22px auto 0;
+
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    #search-div-carousal {
+        width: 100% !important;
+        margin: 0 auto;
+        background: #0078A4;
+        padding: 10px;
+        height: 535px;
+        border-radius: 3px;
+    }
+
+    .search-btn-front {
+        width: 104px;
+        display: block;
+        margin: 22px auto 0;
+
+    }
+
+    .owl-carousel .owl-item img.feature-listing-image {
+        width: 100% !important;
+    }
+
+    .doc-featurelist img {
+        width: 100%;
+    }
+
+}
+
+/**search div carousal end */
+
+/*ambulance booking popup start*/
+.make-appointment-btn {
+    cursor: pointer;
+}
+
+#ambulance-booking-modal .ambulance-booking-popup-body {
+    border-radius: 0px;
+}
+
+#ambulance-booking-modal .modal-header {
+    background-color: #0f71bc;
+}
+
+#ambulance-booking-modal .modal-header h4 {
+    color: #fff;
+    text-align: left;
+    padding: 3px 30px;
+}
+
+#ambulance-booking-modal .ambulance-booking-popup-body .name {
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#ambulance-booking-modal .ambulance-booking-popup-body .ambulance-submit-btn {
+    border-radius: 0px;
+    padding-right: 10px;
+}
+
+#ambulance-booking-modal .ambulance-booking-popup-body label {
+    text-transform: uppercase;
+}
+
+#ambulance-booking-modal option {
+    text-transform: uppercase;
+}
+
+/*ambulance booking popup end*/
+/*shop page css start*/
+.search-form {
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.input-submit {
+    position: relative;
+    border: none;
+    outline: none;
+    text-align: left;
+}
+
+.search-input {
+    border-radius: 0px;
+    margin-top: 1px;
+    padding: 10px 10px;
+    width: 80px;
+    border: 0px;
+    background: #007AA5;
+    color: #fff;
+}
+
+.search-image {
+    width: 30px;
+    height: 30px;
+    left: 15% !important;
+}
+
+.container .upload-prescription-btn {
+    margin-top: 24px !important;
+    border-radius: 0px;
+    display: block;
+}
+
+/*shop page css end*/
+
+
+/*faq page start*/
+#accordionExample .card-header {
+    border: 2px solid #0078A4;
+    margin-top: 5px;
+}
+
+#accordionExample .card-header p {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 6px 15px;
+}
+
+#accordionExample .card-header p:hover {
+}
+
+
+#accordionExample button {
+    border: 0px;
+    text-display: none;
+    display: block;
+}
+
+/*faq page end*/
+#menu-main-menu #menu-item-14:hover a,
+#menu-main-menu #menu-item-3923:hover a,
+#menu-main-menu #menu-item-13:hover a,
+#menu-main-menu #menu-item-20:hover a,
+#menu-main-menu #menu-item-4224:hover a
+{
+    border: 1px solid #fff;
+    background-color: #0078A4;
+    color: #fff;
+    border-radius: 3px;
+    padding: 10px 4px;
 }

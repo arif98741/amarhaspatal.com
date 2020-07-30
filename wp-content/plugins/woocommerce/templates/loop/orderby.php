@@ -33,39 +33,19 @@ if (!defined('ABSPATH')) {
 
 </style>
 
-<div class="container-fluid" style="margin-bottom: 5px">
+<div class="container" style="width: 100% !important;">
+
+
     <div class="row" style="margin-top: 80px;">
-        <div class="col-md-7 pull-left" style="position: absolute">
-            <style>
-                .search-form {
-                    max-width: 600px;
-                    margin-top: 20px;
-                }
+        <div class="col-md-6 pull-left">
 
-                .input-submit {
-                    position: relative;
-                    border: none;
-                    outline: none;
-                    text-align: left;
-                }
+            <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right upload-prescription-btn">Upload
+                Prescription</a>
 
-                .search-input {
-                    border-radius: 0px;
-                    margin-top: 1px;
-                    padding: 10px 10px;
-                    width: 80px;
-                    border: 0px;
-                    background: #007AA5;
-                    color: #fff;
-                }
 
-                .search-image {
-                    width: 30px;
-                    height: 30px;
-                    left: 15% !important;
-                }
+        </div>
+        <div class="col-md-4 pull-right">
 
-            </style>
             <form action="<?= site_url('shop'); ?>" class="search-form" method="get">
                 <input class="search-input" value="Search"
                        type="submit" style="float: right"/>
@@ -75,19 +55,11 @@ if (!defined('ABSPATH')) {
                 </div>
                 ​
                 <input type="hidden" name="paged" value="1"/>
-                <?php //wc_query_string_form_fields(null, array('orderby', 'submit', 'paged', 'product-page')); ?>
-                <br>
 
             </form>
 
         </div>
-        <div class="col-md-5 pull-right" style="position:relative;">
-            <div class="form-group pull-right">
-                <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right">Upload
-                    Prescription</a>
-            </div>
 
-        </div>
 
     </div>
     <br>

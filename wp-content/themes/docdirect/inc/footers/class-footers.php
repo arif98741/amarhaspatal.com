@@ -150,7 +150,7 @@ if (!class_exists('docdirect_footers')) {
             }
 
             ?>
-            <footer id="doc-footer" style="box-shadow: 1px 0px 1px 1px #00000026;"
+            <footer id="doc-footer"
                     class="doc-footer doc-haslayout footer-v2">
                 <?php if (!empty($footer_type['footer_v2']['newsletter']) && $footer_type['footer_v2']['newsletter'] === 'enable') { ?>
                     <div class="doc-newsletter" style="display: none">

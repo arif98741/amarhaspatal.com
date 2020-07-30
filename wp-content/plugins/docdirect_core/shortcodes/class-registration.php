@@ -315,10 +315,13 @@ if (!class_exists('SC_Authentication')) {
                     <div class="modal-content ">
                         <div class="modal-title">
                             <h4>Registration Form </h4>
+                            <p>Please fillup the form and give proper details to complete registration at
+                                amarhaspatal.com </p>
                         </div>
 
                         <div class="modal-body">
                             <form class="tg-form-modal tg-form-signup do-registration-form">
+
                                 <fieldset>
                                     <!--<div class="form-group">
                                                 <div class="tg-radiobox user-selection active-user-type">
@@ -335,89 +338,99 @@ if (!class_exists('SC_Authentication')) {
                                     ?><!--</label>-->
                                     <!--                                                </div>-->
                                     <!--                                            </div>-->
-                                    <div class="form-group user-types">
-                                        <input type="hidden" name="user_type" value="professional"
-                                               class="user_type">
-                                        <select name="directory_type" class="usertypedropdown">
-                                            <option value="0">Select User Type</option>
-                                            <option value="122">Blood Donor</option>
-                                            <option value="121">Diagnostics</option>
-                                            <option value="127">Doctor</option>
-                                            <option value="126">Hospital</option>
-                                            <option value="122">Visitor</option>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group user-types">
+                                                <input type="hidden" name="user_type" value="professional"
+                                                       class="user_type">
+                                                <select name="directory_type" class="usertypedropdown">
+                                                    <option value="0">Select User Type</option>
+                                                    <option value="122">Blood Donor</option>
+                                                    <option value="121">Diagnostics</option>
+                                                    <option value="127">Doctor</option>
+                                                    <option value="126">Hospital</option>
+                                                    <option value="122">Visitor</option>
 
-                                        </select>
+                                                </select>
 
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="username" class="form-control"
-                                               placeholder="<?php esc_html_e('Username', 'docdirect_core'); ?>">
-                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="username" class="form-control"
+                                                       placeholder="<?php esc_html_e('Username', 'docdirect_core'); ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="password" autocomplete="off"
+                                                       class="form-control"
+                                                       placeholder="<?php esc_html_e('Password', 'docdirect_core'); ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="confirm_password" autocomplete="off"
+                                                       class="form-control"
+                                                       placeholder="<?php esc_html_e('Confirm Password', 'docdirect_core'); ?>">
 
-                                    <div class="form-group">
-                                        <input type="email" name="email" class="form-control"
-                                               placeholder="<?php esc_html_e('Email', 'docdirect_core'); ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="first_name"
-                                               placeholder="<?php esc_html_e('First Name', 'docdirect_core'); ?>"
-                                               class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="last_name"
-                                               placeholder="<?php esc_html_e('Last Name', 'docdirect_core'); ?>"
-                                               class="form-control">
-                                    </div>
-                                    <div class="form-group bmdc_registration_no" style="display: none;">
-                                        <input type="text" name="bmdc_registration_no"
-                                               placeholder="<?php esc_html_e('Bmdc registration no', 'docdirect_core'); ?>"
-                                               class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="phone_number" class="form-control"
-                                               placeholder="<?php esc_html_e('Phone Number', 'docdirect_core'); ?>">
-                                    </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="email" name="email" class="form-control"
+                                                       placeholder="<?php esc_html_e('Email', 'docdirect_core'); ?>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" name="phone_number" class="form-control"
+                                                       placeholder="<?php esc_html_e('Phone Number', 'docdirect_core'); ?>">
+                                            </div>
 
 
-                                    <div class="form-group">
-                                        <input type="password" name="password" autocomplete="off"
-                                               class="form-control"
-                                               placeholder="<?php esc_html_e('Password', 'docdirect_core'); ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="confirm_password" autocomplete="off"
-                                               class="form-control"
-                                               placeholder="<?php esc_html_e('Confirm Password', 'docdirect_core'); ?>">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group bmdc_registration_no" style="display: none;">
+                                                <input type="text" name="bmdc_registration_no"
+                                                       placeholder="<?php esc_html_e('Bmdc registration no', 'docdirect_core'); ?>"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="first_name"
+                                                       placeholder="<?php esc_html_e('First Name', 'docdirect_core'); ?>"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="last_name"
+                                                       placeholder="<?php esc_html_e('Last Name', 'docdirect_core'); ?>"
+                                                       class="form-control">
+                                            </div>
 
-                                    </div>
-                                    <div class="form-group">
-                                        <select name="division_id" class="form-control division_id select2">
-                                            <option>Selects Division</option>
-                                            <?php
-                                            global $wpdb;
-                                            $divisionSql = "select id, title,title_en from loc_divisions where status='1'";
-                                            $divisions = $wpdb->get_results($divisionSql);
 
-                                            ?>
-                                            <?php foreach ($divisions as $division) { ?>
+                                            <div class="form-group">
+                                                <select name="division_id" class="form-control division_id select2">
+                                                    <option>Selects Division</option>
+                                                    <?php
+                                                    global $wpdb;
+                                                    $divisionSql = "select id, title,title_en from loc_divisions where status='1'";
+                                                    $divisions = $wpdb->get_results($divisionSql);
 
-                                                <option value="<?= $division->id; ?>"><?= $division->title_en ?></option>
-                                            <?php } ?>
-                                        </select>
+                                                    ?>
+                                                    <?php foreach ($divisions as $division) { ?>
 
-                                    </div>
+                                                        <option value="<?= $division->id; ?>"><?= $division->title_en ?></option>
+                                                    <?php } ?>
+                                                </select>
 
-                                    <div class="form-group">
-                                        <select name="district_id" class="form-control district_id select2">
-                                            <option value="">Select District</option>
+                                            </div>
 
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
+                                            <div class="form-group">
+                                                <select name="district_id" class="form-control district_id select2">
+                                                    <option value="">Select District</option>
 
-                                        <select name="upazila_id" class="form-control upazila_id select2">
-                                            <option>Select Upazila</option>
-                                        </select>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <select name="upazila_id" class="form-control upazila_id select2">
+                                                    <option>Select Upazila</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
                                     </div>
 
 
@@ -451,7 +464,6 @@ if (!class_exists('SC_Authentication')) {
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                         <style>
                             .select2 {
@@ -466,49 +478,28 @@ if (!class_exists('SC_Authentication')) {
 
             <!--            Ambulance Booking  Popup Modal Start-->
             <div id="ambulance-booking-modal" class="modal fade" role="dialog">
-                <style>
-                    .ambulance-booking-popup-body {
-                        background: #007AA5;
-                        color: #fff;
-                    }
 
-                    h1.ambulance-booking-popup-body {
-                        color: #fff !important;
-                    }
-                </style>
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content  ambulance-booking-popup-body">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title ambulance-booking-popup-heading">Ambulance Booking</h4>
+                            <div class="modal-title">
+                                <h4 style="text-align: left; padding: 10px 30px">Book Ambulance</h4>
+                            </div>
                         </div>
                         <div class="modal-body">
-                            <div class="card card-6">
+                            <form method="POST" action="<?= site_url('ambulance-booking') ?>">
 
-                                <div class="card-body">
-                                    <?php if (isset($message)): ?>
-                                        <?php
-                                        echo $message;
-                                        //global $wp_query, $current_user;
-                                        //$author_profile = $wp_query->get_queried_object();
-                                        ?>
                                     <?php
-                                    endif;
+                                    global $author_profile;
                                     ?>
-                                    <form method="POST" action="<?= site_url('ambulance-booking') ?>">
-
-                                        <div class="form-row">
-                                            <div class="name">Ambulance Type</div>
-                                            <?php
-                                            global $author_profile;
-
-                                            ?>
-                                            <div class="value m-b-25">
-                                                <input type="hidden" name="user_id"
-                                                       value="<?php echo $author_profile->ID
-                                                       ?>">
-
+                                    <input type="hidden" name="user_id"
+                                           value="<?php echo $author_profile->ID
+                                           ?>">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label>Ambulance Type</label>
                                                 <select name="ambulance_type"
                                                         style="text-transform: uppercase; font-weight: 700"
                                                         class="input--style-6" required>
@@ -520,31 +511,30 @@ if (!class_exists('SC_Authentication')) {
                                                     <option value="Freezer Van"> Freezer Van Ambulance</option>
                                                     <option value="Air"> Air Ambulance</option>
                                                 </select>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Full name</label>
+                                                <input class="form-control" type="text"
+                                                       name="full_name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input class="form-control" type="text"
+                                                       name="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Contact No.</label>
+                                                <input class="form-control" type="text"
+                                                       name="contact no" required>
                                             </div>
 
-                                            <div class="name">Departing Date</div>
-                                            <div class="value m-b-25">
-                                                <input class="input--style-6" type="date" name="booking_date" required>
-                                            </div>
 
-                                            <div class="name">Start from</div>
-                                            <div class="value m-b-25">
-                                                <input class="input--style-6" type="text"
-                                                       placeholder="Enter starting location"
-                                                       name="start_from" required>
-                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
 
-
-                                            <div class="name">Destination</div>
-                                            <div class="value m-b-25">
-                                                <input class="input--style-6" type="text"
-                                                       placeholder="Enter destination location"
-                                                       name="destination" required>
-                                            </div>
-
-                                            <div class="name">Select Trip Type</div>
-                                            <div class="value m-b-25">
-
+                                                <label>Trip Type</label>
                                                 <select name="trip_type" class="input--style-6" id="sel1" required>
                                                     <option value="" selected disabled>Select Type</option>
                                                     <option value="Single Trip">Single Trip</option>
@@ -553,55 +543,43 @@ if (!class_exists('SC_Authentication')) {
                                                 </select>
                                             </div>
 
-                                            <div class="name">Name</div>
-                                            <div class="value m-b-25">
-                                                <input class="input--style-6" type="text"
-                                                       placeholder="Enter your full name"
-                                                       name="full_name" required>
+                                            <div class="form-group">
+                                                <label>Booking Date</label>
+                                                <input class="from-control" type="date" name="booking_date" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Start from</label>
+                                                <input class="from-control" type="text" name="start_from" required>
                                             </div>
 
-                                            <div class="name">Email</div>
-                                            <div class="value m-b-25">
-                                                <input class="input--style-6" type="text"
-                                                       placeholder="Enter your email here"
-                                                       name="email" required>
+                                            <div class="form-group">
+                                                <label>Destination</label>
+                                                <input class="from-control" type="text" name="destination" required>
                                             </div>
 
-                                            <div class="name">Contact No</div>
-                                            <div class="value m-b-25">
-                                                <input class="input--style-6 m-b-25" type="text"
-                                                       placeholder="Contact No"
-                                                       name="contact_no" required>
-                                            </div>
-
-                                            <div class="name">Reference ID</div>
-                                            <div class="value m-b-25">
-                                                <input class="input--style-6" type="text"
-                                                       placeholder="Enter reference id if available"
-                                                       name="reference_id">
-                                            </div>
-                                            <br>
-                                            <div class="value m-b-25">
-                                                <button class="btn btn--radius-2 btn--blue-2 btn btn-primary"
-                                                        id="ambulanceBookingbtn"
-                                                        type="submit">Submit
+                                        </div>
+                                    </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Reference no.</label>
+                                            <input class="form-control" type="text" name="reference_id">
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <button class="btn btn-primary ambulance-submit-btn" type="submit">
+                                                    Submit
                                                 </button>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
 
-                            </div>
+                            </form>
                         </div>
-                        <style>
-                            .name {
-                                font-weight: 700;
-                            }
 
-                        </style>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
                     </div>
 
                 </div>
