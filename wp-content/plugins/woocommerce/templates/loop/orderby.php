@@ -36,7 +36,7 @@ if (!defined('ABSPATH')) {
 <div class="container" style="width: 100% !important;">
 
 
-    <div class="row" style="margin-top: 80px;">
+    <div class="row" style="margin-top: 45px; margin-bottom: 50px;">
         <div class="col-md-6 pull-left">
 
             <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right upload-prescription-btn">Upload

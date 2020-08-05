@@ -78,7 +78,7 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
         <figcaption class="<?php echo esc_attr($banner_class); ?>">
             <div class="container">
                 <div class="row" id="search-div-carousal">
-                    <div class="col-sm-12 col-xs-offset-0 col-xs-12" style="padding: 25px;">
+                    <div class="col-sm-12 col-xs-offset-0 col-xs-12">
                         <div class="search_box" style="height: 400px;margin-bottom: 50px;">
                             <form ng-controller="searchCtrl" action="<?php echo site_url('dir-search') ?>"
                                   class="avd_search ng-scope ng-pristine ng-valid ng-valid-required" method="GET">
