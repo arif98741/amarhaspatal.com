@@ -105,7 +105,7 @@ if (!class_exists('TG_Address_Widget')) {
 			?>
 			<?php if (!empty($image)) { ?>
 				<strong class="logo">
-					<img src="<?php echo esc_url($image); ?>" alt="<?php esc_attr_e('logo','docdirect');?>">
+					<img src="https://amarhaspatal.com/wp-content/uploads/2020/08/hsp-150x30-1.png<?php //echo esc_url($image); ?>" alt="<?php esc_attr_e('logo','docdirect');?>">
 				</strong>
 			<?php }?>
 			<?php if(isset($description) && !empty($description)){?>

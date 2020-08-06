@@ -68,7 +68,7 @@ $cust_query = get_posts($args);
                         <div class="doc-hoverbg">
                             <h3><?php echo esc_attr($title); ?></h3>
                         </div>
-                        <a href="<?php echo esc_url($search_page); ?>?directory_type=<?php echo esc_attr($dir->ID); ?>">
+                        <a href="<?php echo site_url('dir-search'); ?>?directory_type=<?php echo esc_attr($dir->ID); ?>">
                             <img src="<?php echo esc_url($banner); ?>" alt="<?php echo esc_attr($title); ?>">
                         </a>
                         <figcaption class="doc-imghover">
