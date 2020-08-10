@@ -213,6 +213,7 @@ if (!class_exists('docdirect_footers')) {
                         </div>
                     </div>
                 <?php } ?>
+
                 <div class="doc-footerbottombar" style="background-color: #0078A4">
                     <div class="container">
                         <p style="color: #fff !important;">Designed and Developed by <a

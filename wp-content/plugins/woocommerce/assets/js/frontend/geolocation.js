@@ -1,88 +1,95 @@
 /*global wc_geolocation_params */
-jQuery( function( $ ) {
 
-	var this_page = window.location.toString();
+/*jQuery(function ($) {
 
-	var $append_hashes = function() {
-		if ( wc_geolocation_params.hash ) {
-			$( 'a[href^="' + wc_geolocation_params.home_url + '"]:not(a[href*="v="]), a[href^="/"]:not(a[href*="v="])' ).each( function() {
-				var $this      = $( this ),
-					href       = $this.attr( 'href' ),
-					href_parts = href.split( '#' );
+    var this_page = window.location.toString();
 
-				href = href_parts[0];
+    var $append_hashes = function () {
+        if (wc_geolocation_params.hash) {
+            $('a[href^="' + wc_geolocation_params.home_url + '"]:not(a[href*="v="]), a[href^="/"]:not(a[href*="v="])').each(function () {
+                var $this = $(this),
+                    href = $this.attr('href'),
+                    href_parts = href.split('#');
 
-				if ( href.indexOf( '?' ) > 0 ) {
-					href = href + '&v=' + wc_geolocation_params.hash;
-				} else {
-					href = href + '?v=' + wc_geolocation_params.hash;
-				}
+                href = href_parts[0];
 
-				if ( typeof href_parts[1] !== 'undefined' && href_parts[1] !== null ) {
-					href = href + '#' + href_parts[1];
-				}
+                if (href.indexOf('?') > 0) {
+                    href = href + '&v=' + wc_geolocation_params.hash;
+                } else {
+                    href = href + '?v=' + wc_geolocation_params.hash;
+                }
 
-				$this.attr( 'href', href );
-			});
-		}
-	};
+                if (typeof href_parts[1] !== 'undefined' && href_parts[1] !== null) {
+                    href = href + '#' + href_parts[1];
+                }
 
-	var $geolocation_redirect = function( hash ) {
-		if ( this_page.indexOf( '?v=' ) > 0 || this_page.indexOf( '&v=' ) > 0 ) {
-			this_page = this_page.replace( /v=[^&]+/, 'v=' + hash );
-		} else if ( this_page.indexOf( '?' ) > 0 ) {
-			this_page = this_page + '&v=' + hash;
-		} else {
-			this_page = this_page + '?v=' + hash;
-		}
+                $this.attr('href', href);
+            });
+        }
+    };
 
-		window.location = this_page;
-	};
+    var $geolocation_redirect = function (hash) {
+        if (this_page.indexOf('?v=') > 0 || this_page.indexOf('&v=') > 0) {
+            this_page = this_page.replace(/v=[^&]+/, 'v=' + hash);
+        } else if (this_page.indexOf('?') > 0) {
+            this_page = this_page + '&v=' + hash;
+        } else {
+            this_page = this_page + '?v=' + hash;
+        }
 
-	var $geolocate_customer = {
-		url: wc_geolocation_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'get_customer_location' ),
-		type: 'GET',
-		success: function( response ) {
-			if ( response.success && response.data.hash && response.data.hash !== wc_geolocation_params.hash ) {
-				$geolocation_redirect( response.data.hash );
-			}
-		}
-	};
+        window.location = this_page;
+    };
 
-	if ( '1' === wc_geolocation_params.is_available ) {
-		$.ajax( $geolocate_customer );
+    var $geolocate_customer = {
+        url: wc_geolocation_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'get_customer_location' ),
+        type: 'GET',
+        success: function( response ) {
+            if ( response.success && response.data.hash && response.data.hash !== wc_geolocation_params.hash ) {
+                $geolocation_redirect( response.data.hash );
+            }
+        }
 
-		// Support form elements
-		$( 'form' ).each( function() {
-			var $this  = $( this );
-			var method = $this.attr( 'method' );
-			var hasField = $this.find('input[name="v"]').length > 0;
 
-			if ( method && 'get' === method.toLowerCase() && !hasField ) {
-				$this.append( '<input type="hidden" name="v" value="' + wc_geolocation_params.hash + '" />' );
-			} else {
-				var href = $this.attr( 'action' );
-				if ( href ) {
-					if ( href.indexOf( '?' ) > 0 ) {
-						$this.attr( 'action', href + '&v=' + wc_geolocation_params.hash );
-					} else {
-						$this.attr( 'action', href + '?v=' + wc_geolocation_params.hash );
-					}
-				}
-			}
-		});
+    };
 
-		// Append hashes on load
-		$append_hashes();
-	}
+    /* if ('1' === wc_geolocation_params.is_available) {
 
-	$( document.body ).on( 'added_to_cart', function() {
-		$append_hashes();
-	});
-	
-	// Enable user to trigger manual append hashes on AJAX operations
-	$( document.body ).on( 'woocommerce_append_geo_hashes', function() {
-		$append_hashes();
-	});
+         $.ajax($geolocate_customer);
+
+         // Support form elements
+         $('form').each(function () {
+             var $this = $(this);
+             var method = $this.attr('method');
+             var hasField = $this.find('input[name="v"]').length > 0;
+
+             if (method && 'get' === method.toLowerCase() && !hasField) {
+                 $this.append('<input type="hidden" name="v" value="' + wc_geolocation_params.hash + '" />');
+             } else {
+                 var href = $this.attr('action');
+                 if (href) {
+                     if (href.indexOf('?') > 0) {
+                         $this.attr('action', href + '&v=' + wc_geolocation_params.hash);
+                     } else {
+                         $this.attr('action', href + '?v=' + wc_geolocation_params.hash);
+                     }
+                 }
+             }
+         });
+
+
+
+         // Append hashes on load
+         $append_hashes();
+     }
+
+    $(document.body).on('added_to_cart', function () {
+        $append_hashes();
+    });
+
+    // Enable user to trigger manual append hashes on AJAX operations
+    $(document.body).on('woocommerce_append_geo_hashes', function () {
+        $append_hashes();
+    });
 
 });
+*/

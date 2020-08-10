@@ -108,10 +108,6 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                data-toggle="tab"
                                                href="#nav-schedule" role="tab" aria-controls="nav-schedule"
                                                aria-selected="false">Schedule</a>
-                                            <!--
-                                           <a class="nav-item nav-link" id="nav-experience-tab" data-toggle="tab"
-                                              href="#nav-experience" role="tab" aria-controls="nav-experience"
-                                              aria-selected="false">Experience</a>-->
                                         </div>
                                     </nav>
                                     <br>
@@ -121,7 +117,6 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                 <div class="panel-group" id="accordionMenu2020" role="tablist"
                                                      aria-multiselectable="true">
                                                     <div class="panel panel-default">
-
 
                                                         <div class="panel-heading  green " role="tab"
                                                              id="headingUndergraduate2020">
@@ -146,10 +141,11 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                              id="headingGraduate2020">
                                                             <h4 class="panel-title">
                                                                 <a role="button" data-toggle="collapse"
-                                                                //amarhaspatal.com/wp-content/uploads/2017/03/Blue_770-x-175.jpg                                                  data-parent="#accordionMenu2020" href="#Graduate2020"
-                                                                   aria-expanded="false" aria-controls="Graduate2020"
-                                                                   class="collapsed">
-                                                                    Education
+                                                                //amarhaspatal.com/wp-content/uploads/2017/03/Blue_770-x-175.jpg
+                                                                data-parent="#accordionMenu2020" href="#Graduate2020"
+                                                                aria-expanded="false" aria-controls="Graduate2020"
+                                                                class="collapsed">
+                                                                Education
                                                                 </a>
                                                             </h4>
                                                         </div>
@@ -187,14 +183,59 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                         </div>
                                         <div class="tab-pane fade" id="nav-specilities-honors" role="tabpanel"
                                              aria-labelledby="nav-specilities-honors-tab">
-                                            <?php get_template_part('directory/provider-page/template-author-specialities'); ?>
-                                            <?php get_template_part('directory/provider-page/template-author-awards'); ?>
+
+                                            <div class="program-content-block">
+                                                <div class="panel-group" id="specialityMenu2020" role="tablist"
+                                                     aria-multiselectable="true">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading  green " role="tab"
+                                                             id="headingSpecialiTy">
+                                                            <h4 class="panel-title">
+                                                                <a role="button" data-toggle="collapse"
+                                                                   data-parent="#specialityMenu2020" href="#SpecialiTy"
+                                                                   aria-expanded="true" aria-controls="SpecialiTy"
+                                                                   class="">
+                                                                    Speciality
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="SpecialiTy" class="panel-collapse collapse in"
+                                                             role="tabpanel" aria-labelledby="headingSpecialiTy"
+                                                             aria-expanded="true">
+                                                            <div class="panel-body">
+                                                                <?php get_template_part('directory/provider-page/template-author-specialities'); ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-heading  lightGreen " role="tab"
+                                                             id="headingAwards">
+                                                            <h4 class="panel-title">
+                                                                <a role="button" data-toggle="collapse"
+                                                                   data-parent="#specialityMenu2020" href="#Awards"
+                                                                   aria-expanded="false" aria-controls="Awards"
+                                                                   class="collapsed">
+                                                                    Honors & Awards
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="Awards" class="panel-collapse collapse" role="tabpanel"
+                                                             aria-labelledby="headingAwards" aria-expanded="false"
+                                                             style="height: 0px;">
+                                                            <div class="panel-body">
+                                                                <?php get_template_part('directory/provider-page/template-author-awards'); ?>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <?php //get_template_part('directory/provider-page/template-author-specialities'); ?>
+                                            <?php //get_template_part('directory/provider-page/template-author-awards'); ?>
                                         </div>
                                         <div class="tab-pane fade" id="nav-schedule" role="tabpanel"
                                              aria-labelledby="nav-schedule-tab">
 
                                             <?php if (!empty($slots)) {
-
 
                                                 $modified_slots = [];
                                                 $week_array = docdirect_get_week_array();

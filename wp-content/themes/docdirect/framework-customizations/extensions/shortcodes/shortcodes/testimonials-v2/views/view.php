@@ -7,6 +7,19 @@ if (!defined('FW'))
 $uniq_flag = fw_unique_increment();
 $autoplay = !empty($atts['auto']) ? $atts['auto'] : 'false';
 
+$query_args = array(
+    'meta_query' => array(
+        'relation' => 'AND',
+        array(
+            'key' => 'directory_type',
+            'value' => 127,
+            'compare' => '='
+        )
+    )
+);
+$user_query = new WP_User_Query($query_args);
+
+
 ?>
 <div class="builder-items">
     <div class="col-xs-12 col-md-12 builder-column ">
@@ -20,7 +33,7 @@ $autoplay = !empty($atts['auto']) ? $atts['auto'] : 'false';
                             <div class="tg-contentbox">
                                 <div class="tg-heading-border">
                                         <span class="timer" data-from="0" data-to="12977" data-speed="1000"
-                                              data-refresh-interval="50">12977</span>
+                                              data-refresh-interval="50">3</span>
                                     <p></p>
                                     <h3>SATISFIED CLIENT</h3>
                                     <p></p></div>
@@ -34,7 +47,7 @@ $autoplay = !empty($atts['auto']) ? $atts['auto'] : 'false';
                             <div class="tg-contentbox">
                                 <div class="tg-heading-border">
                                         <span class="timer" data-from="0" data-to="12977" data-speed="1000"
-                                              data-refresh-interval="50">12977</span>
+                                              data-refresh-interval="50">7</span>
                                     <p></p>
                                     <h3>SERVED TO PEOPLE</h3>
                                     <p></p></div>
@@ -48,7 +61,7 @@ $autoplay = !empty($atts['auto']) ? $atts['auto'] : 'false';
                             <div class="tg-contentbox">
                                 <div class="tg-heading-border">
                                         <span class="timer" data-from="0" data-to="12977" data-speed="1000"
-                                              data-refresh-interval="50">12977</span>
+                                              data-refresh-interval="50">2</span>
                                     <p></p>
                                     <h3>HOSPITAL SIGN UP</h3>
                                     <p></p></div>
@@ -62,7 +75,7 @@ $autoplay = !empty($atts['auto']) ? $atts['auto'] : 'false';
                             <div class="tg-contentbox">
                                 <div class="tg-heading-border">
                                         <span class="timer" data-from="0" data-to="977" data-speed="1000"
-                                              data-refresh-interval="50">977</span>
+                                              data-refresh-interval="50">6</span>
                                     <p></p>
                                     <h3>DOCTORS REGISTER</h3>
                                     <p></p></div>

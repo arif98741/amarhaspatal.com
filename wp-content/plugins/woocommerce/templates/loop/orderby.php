@@ -36,15 +36,14 @@ if (!defined('ABSPATH')) {
 <div class="container" style="width: 100% !important;">
 
 
-    <div class="row" style="margin-top: 45px; margin-bottom: 50px;">
-        <div class="col-md-6 pull-left">
+    <div class="row" style="margin-top: 45px; margin-bottom: 0px;">
+        <div class="col-md-4 col-xs-5 pull-left ">
 
-            <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right upload-prescription-btn">Upload
-                Prescription</a>
+            <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right upload-prescription-btn">Upload Prescription</a>
 
 
         </div>
-        <div class="col-md-4 pull-right">
+        <div class="col-md-8 col-xs-7 pull-right">
 
             <form action="<?= site_url('shop'); ?>" class="search-form" method="get">
                 <input class="search-input" value="Search"
