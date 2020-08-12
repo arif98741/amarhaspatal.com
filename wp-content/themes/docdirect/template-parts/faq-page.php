@@ -11,14 +11,14 @@ get_header();
     <div class="container">
         <div class="accordion" id="accordionExample">
             <div class="card">
+                <h3 class="faq-heading">FAQ/NEED HELP</h3>
+                <p class="faq-intro">
 
-                <h3>
-                    <span><u>FAQ/NEED HELP</u></span><br>
                     Please check the FAQs (Frequently Asked Questions) to get familiar with the functions of our
                     platform. If you are not satisfied with the answers, then please call us on +8801734500971 or write
                     to us at <a href="">support@amarhaspatal.com</a> between 9 am – 6 pm every day to get our immediate
                     help.
-                </h3>
+                </p>
                 <br>
 
                 <div class="card-header" id="headingOne">

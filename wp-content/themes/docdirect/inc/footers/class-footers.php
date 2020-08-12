@@ -214,11 +214,24 @@ if (!class_exists('docdirect_footers')) {
                     </div>
                 <?php } ?>
 
-                <div class="doc-footerbottombar" style="background-color: #0078A4">
-                    <div class="container">
-                        <p style="color: #fff !important;">Designed and Developed by <a
-                                    href="https://softbdltd.com/"><img src="https://softbdltd.com/images/logo.png"> </a>
-                        </p>
+                <div class="doc-footerbottombar">
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="copyright-text">&copy;Copyright: amarhaspatal.com - 2020</p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <p style="color: #fff !important; text-align: right" class="copyright-text">Designed and Developed by <a
+                                            style="color: #fff"
+                                            href="https://softbdltd.com/"
+                                            target="_blank">SOFTBDLTD</a>
+                                </p>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </footer>
