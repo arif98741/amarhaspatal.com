@@ -257,7 +257,12 @@ if (!class_exists('SC_Authentication')) {
                     <!-- Modal content-->
                     <div class="modal-content ">
                         <div class="modal-title">
-                            <h4 style="text-align: left; padding: 10px 30px">Login to Amarhaspatal</h4>
+                            <h4 style="text-align: left; padding: 10px 30px">Login to Amarhaspatal <span
+                                        style="display: block;text-align: right;margin-bottom: 0px;cursor: pointer;"
+                                        type="button"
+                                        data-dismiss="modal">X</span>
+                            </h4>
+
                         </div>
                         <div class="modal-body">
                             <form class="tg-form-modal tg-form-signin do-login-form">
@@ -314,7 +319,10 @@ if (!class_exists('SC_Authentication')) {
                     <!-- Modal content-->
                     <div class="modal-content ">
                         <div class="modal-title">
-                            <h4>Registration Form </h4>
+                            <h4>Registration Form <span
+                                        style="display: block;text-align: right;margin-bottom: 0px;cursor: pointer;"
+                                        type="button"
+                                        data-dismiss="modal">X</span></h4>
                             <p>Please fillup the form and give proper details to complete registration at
                                 amarhaspatal.com </p>
                         </div>
@@ -490,75 +498,75 @@ if (!class_exists('SC_Authentication')) {
                         <div class="modal-body">
                             <form method="POST" action="<?= site_url('ambulance-booking') ?>">
 
-                                    <?php
-                                    global $author_profile;
-                                    ?>
-                                    <input type="hidden" name="user_id"
-                                           value="<?php echo $author_profile->ID
-                                           ?>">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group ">
-                                                <label>Ambulance Type</label>
-                                                <select name="ambulance_type"
-                                                        style="text-transform: uppercase; font-weight: 700"
-                                                        class="input--style-6" required>
-                                                    <option value="" selected disabled>Select Ambulance Type</option>
-                                                    <option value="Ac">Ac Ambulance</option>
-                                                    <option value="Non-Ac"> Non-Ac Ambulance</option>
-                                                    <option value="ICU"> ICU Ambulance</option>
-                                                    <option value="NICU"> NICU Ambulance</option>
-                                                    <option value="Freezer Van"> Freezer Van Ambulance</option>
-                                                    <option value="Air"> Air Ambulance</option>
-                                                </select>
-
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Full name</label>
-                                                <input class="form-control" type="text"
-                                                       name="full_name" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <input class="form-control" type="text"
-                                                       name="email" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Contact No.</label>
-                                                <input class="form-control" type="text"
-                                                       name="contact no" required>
-                                            </div>
-
+                                <?php
+                                global $author_profile;
+                                ?>
+                                <input type="hidden" name="user_id"
+                                       value="<?php echo $author_profile->ID
+                                       ?>">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group ">
+                                            <label>Ambulance Type</label>
+                                            <select name="ambulance_type"
+                                                    style="text-transform: uppercase; font-weight: 700"
+                                                    class="input--style-6" required>
+                                                <option value="" selected disabled>Select Ambulance Type</option>
+                                                <option value="Ac">Ac Ambulance</option>
+                                                <option value="Non-Ac"> Non-Ac Ambulance</option>
+                                                <option value="ICU"> ICU Ambulance</option>
+                                                <option value="NICU"> NICU Ambulance</option>
+                                                <option value="Freezer Van"> Freezer Van Ambulance</option>
+                                                <option value="Air"> Air Ambulance</option>
+                                            </select>
 
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-
-                                                <label>Trip Type</label>
-                                                <select name="trip_type" class="input--style-6" id="sel1" required>
-                                                    <option value="" selected disabled>Select Type</option>
-                                                    <option value="Single Trip">Single Trip</option>
-                                                    <option value="Round Trip">Round Trip</option>
-
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Booking Date</label>
-                                                <input class="from-control" type="date" name="booking_date" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Start from</label>
-                                                <input class="from-control" type="text" name="start_from" required>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Destination</label>
-                                                <input class="from-control" type="text" name="destination" required>
-                                            </div>
-
+                                        <div class="form-group">
+                                            <label>Full name</label>
+                                            <input class="form-control" type="text"
+                                                   name="full_name" required>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input class="form-control" type="text"
+                                                   name="email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Contact No.</label>
+                                            <input class="form-control" type="text"
+                                                   name="contact no" required>
+                                        </div>
+
+
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+
+                                            <label>Trip Type</label>
+                                            <select name="trip_type" class="input--style-6" id="sel1" required>
+                                                <option value="" selected disabled>Select Type</option>
+                                                <option value="Single Trip">Single Trip</option>
+                                                <option value="Round Trip">Round Trip</option>
+
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Booking Date</label>
+                                            <input class="from-control" type="date" name="booking_date" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Start from</label>
+                                            <input class="from-control" type="text" name="start_from" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Destination</label>
+                                            <input class="from-control" type="text" name="destination" required>
+                                        </div>
+
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -567,15 +575,15 @@ if (!class_exists('SC_Authentication')) {
                                         </div>
                                     </div>
                                 </div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <div class="col-md-2">
-                                                <button class="btn btn-primary ambulance-submit-btn" type="submit">
-                                                    Submit
-                                                </button>
-                                            </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-2">
+                                            <button class="btn btn-primary ambulance-submit-btn" type="submit">
+                                                Submit
+                                            </button>
                                         </div>
                                     </div>
+                                </div>
 
                             </form>
                         </div>

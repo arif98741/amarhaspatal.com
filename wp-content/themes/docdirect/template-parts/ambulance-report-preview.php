@@ -13,7 +13,7 @@ $user_id = '';
 $sql = "SELECT * FROM ambulance_booking where created_at >= '$start' and created_at <='$end'";
 if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
     $user_id = esc_html($_GET['user_id']);
-    $sql = "SELECT * FROM ambulance_booking where created_at >= '$start' and created_at <='$end' and user_id='$user_id'";
+    $sql = "SELECT * FROM ambulance_booking where user_id='$user_id'";
 }
 
 $start = $start . ' 00:00:00';
@@ -22,7 +22,6 @@ $end = $end . ' 23:59:59';
 global $wpdb;
 
 $bookings = $wpdb->get_results($sql);
-
 
 ?>
 <!DOCTYPE html>

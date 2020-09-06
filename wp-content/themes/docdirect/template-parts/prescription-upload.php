@@ -103,7 +103,7 @@ if (isset($_POST['prescription_upload'])) {
                             <input type="text" name="user_email" value="<?php echo $userdata->user_email ?>"
                                    class="form-control"
                                    placeholder="Enter email address here"
-                                   required>
+                            >
                         </div>
                         <div class="form-group">
                             <label>Address</label>

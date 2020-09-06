@@ -25,7 +25,7 @@ get_header();
                     <h2 class="mb-0">
                         <p data-toggle="collapse" data-target="#collapseOne"
                            aria-expanded="true" aria-controls="collapseOne">
-                            What is Amar Hospital.com?
+                            What is <A>AMARHASPATAL.COM</A>?
                         </p>
                     </h2>
                 </div>
@@ -33,7 +33,7 @@ get_header();
                 <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
                      data-parent="#accordionExample">
                     <div class="card-body">
-                        AMAR HOSPITAL is an online platform for integrated medical services in Bangladesh. The service
+                        AMARHASPATAL is an online platform for integrated medical services in Bangladesh. The service
                         is free of
                         cost and accessible to all kinds of people to get all sorts of health service online.
                     </div>
@@ -44,7 +44,7 @@ get_header();
                     <h2 class="mb-0">
                         <p class="collapsed" data-toggle="collapse"
                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            What services do AMAR HOSPITAL provides? </p>
+                            What services do AMARHASPITAL provides? </p>
                     </h2>
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
@@ -77,7 +77,7 @@ get_header();
                     <h2 class="mb-0">
                         <p class="collapsed" data-toggle="collapse"
                            data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            What languages Amar Hospital.com supports? </p>
+                            What languages AMARHASPATAL.COM supports? </p>
                     </h2>
                 </div>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
@@ -92,7 +92,7 @@ get_header();
                     <h2 class="mb-0">
                         <p class="collapsed" data-toggle="collapse"
                            data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Does Amar Hospital.com has any legal affiliation with the health service providers? </p>
+                            Does AMARHASPATAL.COM has any legal affiliation with the health service providers? </p>
                     </h2>
                 </div>
                 <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
@@ -171,12 +171,12 @@ get_header();
                     <h2 class="mb-0">
                         <p class="collapsed" data-toggle="collapse"
                            data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                            Is it free to join Amar Hospital.com as a health service provider?</p>
+                            Is it free to join AMARHASPATAL.COM as a health service provider?</p>
                     </h2>
                 </div>
                 <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
                     <div class="card-body">
-                        Yes. Joining Amar Hospital.com is free for all.
+                        Yes. Joining AMARHASPATAL.COM is free for all.
                     </div>
                 </div>
             </div>
@@ -494,9 +494,9 @@ get_header();
                 <div id="collapseTwentyeight" class="collapse" aria-labelledby="headingTwentyeight"
                      data-parent="#accordionExample">
                     <div class="card-body">
-                        AMAR HOSPITAL currently provides the ground ambulance only. According to the needs of our
+                        AMARHASPATAL is currently providing` the ground ambulance only. According to the needs of our
                         patients, there are Basic life support ambulances, critical care transport ambulances. <br>
-                        >> AC Ambulance<br>
+                        >> AC Ambulance<br>l
                         >> Non- AC Ambulance<br>
                         >> Freezer Van<br>
                         >> ICU Ambulance<br>

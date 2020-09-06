@@ -205,7 +205,36 @@ if (!class_exists('docdirect_footers')) {
                                     <?php } ?>
                                     <?php if (is_active_sidebar('footer-column-3')) { ?>
                                         <div class="col-sm-4 col-xs-12">
-                                            <div class="doc-fcol"><?php dynamic_sidebar('footer-column-3'); ?></div>
+                                            <div class="doc-fcol">
+                                                <div id="nav_menu-2" class="widget_nav_menu tg-widget">
+                                                    <div class="tg-heading-border tg-small">
+                                                        <h4>USEFUL LINKS</h4>
+                                                    </div>
+                                                    <div class="menu-userfull-links-container">
+                                                        <ul id="menu-userfull-links" class="menu">
+                                                            <li id="menu-item-143"
+                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-143">
+                                                                <a href="<?php echo site_url(); ?>/contact-us">Contact
+                                                                    Us</a></li>
+                                                            <li id="menu-item-3921"
+                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3921">
+                                                                <a href="<?php echo site_url(); ?>/about-us/">About
+                                                                    Us</a></li>
+                                                            <li id="menu-item-4222"
+                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4222">
+                                                                <a href="<?php echo site_url(); ?>/faq/">Faq</a></li>
+                                                            <li id="menu-item-4222"
+                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4222">
+                                                                <a href="<?php echo site_url(); ?>/apps">Apps</a></li>
+
+                                                            <li id="menu-item-3063"
+                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3063">
+                                                                <a href="<?php echo site_url(); ?>/privacy-policy">Privacy
+                                                                    Policy</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     <?php } ?>
                                 </div>
@@ -223,7 +252,8 @@ if (!class_exists('docdirect_footers')) {
                             </div>
 
                             <div class="col-md-6">
-                                <p style="color: #fff !important; text-align: right" class="copyright-text">Designed and Developed by <a
+                                <p style="color: #fff !important; text-align: right" class="copyright-text">Designed and
+                                    Developed by <a
                                             style="color: #fff"
                                             href="https://softbdltd.com/"
                                             target="_blank">SOFTBDLTD</a>

@@ -72,8 +72,9 @@ if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
     <figure class="doc-bannerimg">
         <?php if (!empty($atts['bg']['url'])) { ?>
 
-            <img src="<?php echo esc_url($atts['bg']['url']); ?>"
-                 alt="<?php esc_html_e('Search Filters', 'docdirect'); ?>">
+
+            <?php echo do_shortcode('[rev_slider Amarhaspatal]'); // change slider alias here ?>
+
         <?php } ?>
         <figcaption class="<?php echo esc_attr($banner_class); ?>">
             <div class="container">

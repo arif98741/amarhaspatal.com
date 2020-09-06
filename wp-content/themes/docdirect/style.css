@@ -2647,7 +2647,7 @@ body.author .user-ad-top{text-align:center;}
 .sub-menu.mega-menu-row>li ul li a,.sub-menu.mega-menu-row>li ul li+li a{border:0;line-height:inherit}
 .theme-main-navigation ul li a{font-family:'Montserrat',Arial,Helvetica,sans-serif}
 .sub-menu.mega-menu-row>li:hover:after{display:none}
-.theme-main-navigation>ul>li.menu-item-has-icon>a,.sub-menu-has-icons>.menu-item-has-icon>a{position:relative;padding:0 0 0 20px!important;font-family:'Montserrat',Arial,Helvetica,sans-serif}
+.theme-main-navigation>ul>li.menu-item-has-icon>a,.sub-menu-has-icons>.menu-item-has-icon>a{position:relative;font-family:'Montserrat',Arial,Helvetica,sans-serif}
 .theme-main-navigation ul li.menu-item-has-icon a:before{top:0;left:0;position:absolute;font-family:'FontAwesome'}
 .mega-menu .mega-menu-row>.mega-menu-col+.mega-menu-col{border-left:1px solid #eaeaea!important}
 .mega-menu .sub-menu+.sub-menu{border-top:1px solid #eaeaea!important}

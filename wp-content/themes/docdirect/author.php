@@ -491,12 +491,17 @@ do_action('am_chat_modal', $author_profile->ID);
 
     }
 
+    .nav-tabs {
+        border-bottom: 0px solid #ddd !important;
+        margin-bottom: 17px;
+    }
+
     div#nav-tab a {
         padding: 11px 12px;
         font-size: 18px;
         border: 2px solid #000;
         margin-bottom: 20px !important;
-        background: #807293;
+        background: #253e7f;
         color: #fff;
 
     }
@@ -515,7 +520,7 @@ do_action('am_chat_modal', $author_profile->ID);
         font-size: 18px;
         border: 2px solid #000;
         margin-bottom: 20px !important;
-        background: #3c2d2d !important;
+        background: #4da34a !important;
         color: #fff;
     }
 
@@ -600,7 +605,7 @@ do_action('am_chat_modal', $author_profile->ID);
 
     .panel-default > .panel-heading {
         color: #fff;
-        background-color: #0078A4;
+        background-color: #253e7f;
         border-color: #e4e5e7;
         padding: 15px 13px;
         -webkit-user-select: none;
@@ -648,7 +653,7 @@ do_action('am_chat_modal', $author_profile->ID);
             font-size: 18px;
             border: 2px solid #000;
             margin-bottom: 20px !important;
-            background: #3c2d2d !important;
+            background: #4da34a !important;
             color: #fff;
         }
 

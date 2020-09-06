@@ -32,3 +32,32 @@ function linkedurl_function()
 
 add_action('admin_menu', 'linkedurl_function');
 
+/**
+ * Slideshow start
+ */
+function create_mainslideshow_post_type()
+{
+    register_post_type('mainslideshow',
+        array(
+            'labels' => array(
+                'name' => __('Homepage Slideshow'),
+                'singular_name' => __('mainslideshow')
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'supports' => array(
+                'title',
+//                'excerpt',
+                'thumbnail',
+            )
+        )
+    );
+
+}
+
+add_action('init', 'create_mainslideshow_post_type');
+/**
+ * Slideshow end
+ */
+
+

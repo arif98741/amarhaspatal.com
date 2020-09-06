@@ -177,17 +177,43 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
         </div>
     </div>
 <?php } ?>
-<?php if (have_posts()) { ?>
-    <div class="container">
-        <div class="row">
-            <?php
-            while (have_posts()) : the_post();
-                the_content();
-            endwhile;
-            ?>
-        </div>
+<?php if ($directory_type == 127): ?>
+    <div class="map-top" style="background-image: url(https://amarhaspatal.com/wp-content/uploads/2020/09/doctor-service-3-1024x298.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center !important;
+">
     </div>
-<?php } ?>
+<?php elseif ($directory_type == 123): ?>
+    <div class="map-top" style="background-image: url(https://amarhaspatal.com/wp-content/uploads/2020/09/Ambulance-2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center !important;
+">
+    </div>
+<?php elseif ($directory_type == 122): ?>
+    <div class="map-top" style="background-image: url(https://amarhaspatal.com/wp-content/uploads/2020/09/Blood-Donor-2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center !important;
+">
+    </div>
+<?php elseif ($directory_type == 121): ?>
+    <div class="map-top" style="background-image: url(https://amarhaspatal.com/wp-content/uploads/2020/09/Diagonostics-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center !important;
+">
+    </div>
+<?php elseif ($directory_type == 126): ?>
+    <div class="map-top" style="background-image: url(https://amarhaspatal.com/wp-content/uploads/2020/09/Hospital-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center !important;
+">
+    </div>
+<?php endif; ?>
+
     <div class="container">
         <div id="doc-twocolumns" class="doc-twocolumns doc-listview">
             <?php if (!empty($found_title)) { ?>
@@ -359,19 +385,19 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                         <div class="doc-featurehead">
 
                                                             <?php docdirect_get_wishlist_button($user->ID, true, 'v2'); ?>
-                                                            <h2>
+                                                            <h2 class="doc-degree">
                                                                 <a href="<?php echo ($directory_type != 122) ? get_author_posts_url($user->ID) : '#'; ?>"
                                                                    class="list-avatar"><?php echo($get_username); ?>
 
-                                                                    <?php if ($directory_type== 127 && !empty($user->bmdc_registration_no)): ?>
-                                                                    (<?php echo $user->bmdc_registration_no ?>)
+                                                                    <?php if ($directory_type == 127 && !empty($user->bmdc_registration_no)): ?>
+                                                                        (<?php echo $user->bmdc_registration_no ?>)
                                                                     <?php endif; ?>
 
 
                                                                 </a>
                                                             </h2>
                                                             <?php if (!empty($user->tagline)) { ?>
-                                                                <span><?php echo esc_attr($user->tagline); ?></span>
+                                                                <span class="doc-tagline"><?php echo esc_attr($user->tagline); ?></span>
                                                             <?php } ?>
                                                             <ul class="doc-matadata">
 
