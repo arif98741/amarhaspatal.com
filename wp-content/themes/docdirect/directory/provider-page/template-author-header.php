@@ -39,13 +39,16 @@ if (!empty($banner)) {
                         <span><?php echo esc_attr($author_profile->tagline); ?></span>
                     <?php } ?>
                     <ul class="tg-likestars">
+
+
+
+
                         <?php if (isset($reviews_switch) && $reviews_switch === 'enable') { ?>
                             <li><?php docdirect_get_rating_stars($review_data, 'echo'); ?></li>
                         <?php } ?>
                         <li><?php docdirect_get_wishlist_button($author_profile->ID, true); ?></li>
                         <li>
-                            <span><?php echo intval(docdirect_get_user_views($author_profile->ID)); ?>&nbsp;<?php esc_html_e('view(s)', 'docdirect'); ?></span>
-                        </li>
+                            <span><?php echo intval(docdirect_get_user_views($author_profile->ID)); ?>&nbsp;<?php esc_html_e('view(s)', 'docdirect'); ?> </span></li>
                     </ul>
                     <?php
                     if (apply_filters('docdirect_is_setting_enabled', $author_profile->ID, 'appointments') === true) {
