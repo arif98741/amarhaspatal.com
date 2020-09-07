@@ -1626,4 +1626,7 @@ $.fn.serializeObject = function () {
         return !$.cookie(key);
     };
 
+    //add custom class to service-list menu
+    $('.sub-menu-has-icons').addClass('custom-service-list-menu');
+
 }));
