@@ -65,7 +65,16 @@ if (!class_exists('docdirect_headers')) {
                      <?php do_action('docdirect_prepare_headers');?>
                 </header>
                 <?php do_action('docdirect_prepare_subheaders');?>
-             	<main id="main" class="tg-page-wrapper tg-haslayout">
+             	<main id="main" class="<?php if(!is_shop()): ?>tg-page-wrapper<?php endif; ?> tg-haslayout">
+
+             	   <?php if(is_shop()): ?>
+             	    <div class="container" style="min-height:150px;background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center !important;; background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/pharmacy.png)">
+
+
+</div>
+             	   <?php endif; ?>
             <?php
 		}
 		
@@ -81,8 +90,6 @@ if (!class_exists('docdirect_headers')) {
 			$lang			= '';
 			$res_table_title	= '';
 			$res_link			= '';
-
-
 
 			$message_class	= '';
 			if( is_user_logged_in() ) {

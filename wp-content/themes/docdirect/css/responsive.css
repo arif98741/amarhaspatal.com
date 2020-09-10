@@ -13,7 +13,7 @@
 .wt-titlemessages .wt-back{display: block;}
 .wt-chat-head .wt-dashboardboxtitle.wt-titlemessages {display: none;}
 .wt-chat-head .wt-dashboardboxtitle {border:0;width: 100% !important;}
-.wt-openmsg .wt-offersmessages ul li:nth-child(2) {display: block;}	
+.wt-openmsg .wt-offersmessages ul li:nth-child(2) {display: block;}
 .wt-openmsg .wt-offersmessages ul li:first-child {display: none;}
 .wt-messages-holder .wt-offersmessages ul li {
     border: 0;
@@ -598,7 +598,15 @@ body.doc-home .doc-featurelist{margin:15px 0;}
 .navbar-toggle{background:#363636;}
 .navbar-toggle .icon-bar{background:#fff;}
 .doc-nav{padding:4px 0 0;}
-.doc-nav ul li span.doc-dropdowarrow{display:block;}
+.doc-nav ul li span.doc-dropdowarrow{display:block; margin-top: 19px}
+ul.sub-menu.sub-menu-has-icons.custom-service-list-menu{
+	float: left;
+	display: block;
+	clear: both;
+	width: 100%;
+	float: left;
+	margin-left: 42px !important;
+}
 .doc-navigation{top:100%;right:0;margin:0;border:0;padding:0;z-index:99;background:#fff;text-align:left;position:absolute; overflow:hidden;}
 .doc-nav ul li ul li,
 .doc-navigation ul li{width:100%;padding:0 !important;}

@@ -41,12 +41,12 @@ if (!empty($banner)) {
                     <ul class="tg-likestars">
 
 
-
-
                         <?php if (isset($reviews_switch) && $reviews_switch === 'enable') { ?>
                             <li><?php docdirect_get_rating_stars($review_data, 'echo'); ?></li>
                         <?php } ?>
+                        <li style="color: #fff;">/</li>
                         <li><?php docdirect_get_wishlist_button($author_profile->ID, true); ?></li>
+                        <li style="color: #fff;">/</li>
                         <li>
                             <span><?php echo intval(docdirect_get_user_views($author_profile->ID)); ?>&nbsp;<?php esc_html_e('view(s)', 'docdirect'); ?> </span></li>
                     </ul>

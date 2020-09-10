@@ -683,7 +683,6 @@ plupload.addFileFilter('max_file_size', function(maxSize, file, cb) {
 	var undef;
 
 	maxSize = plupload.parseSize(maxSize);
-
 	// Invalid file size
 	if (file.size !== undef && maxSize && file.size > maxSize) {
 		this.trigger('Error', {

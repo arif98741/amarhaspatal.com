@@ -36,7 +36,7 @@ if (!defined('ABSPATH')) {
 <div class="container" style="width: 100% !important;">
 
 
-    <div class="row" style="margin-top: 45px; margin-bottom: 0px;">
+    <div class="row" style="margin-bottom: 0px;">
         <div class="col-md-4 col-xs-5 pull-left ">
 
             <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right upload-prescription-btn">Upload Prescription</a>
@@ -52,7 +52,7 @@ if (!defined('ABSPATH')) {
                     <input name="search_key" placeholder="Enter search keyword here" class="input-submit" type="text"
                            style="width: 100%;"/>
                 </div>
-                ​
+
                 <input type="hidden" name="paged" value="1"/>
 
             </form>

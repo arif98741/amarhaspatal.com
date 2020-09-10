@@ -9,8 +9,7 @@
  *
  * @package Doctor Directory
  */
-
-get_header(); 
+get_header();
 $tg_sidebar	 	 = 'full';
 $section_width	 = 'col-xs-12';
 if (function_exists('fw_ext_sidebars_get_current_position')) {
@@ -20,6 +19,7 @@ if (function_exists('fw_ext_sidebars_get_current_position')) {
 		$section_width	= 'col-lg-9 col-md-8 col-sm-8 col-xs-12';
 	}
 }
+
 
 if( isset( $tg_sidebar ) && ( $tg_sidebar == 'full' ) ){
 		while ( have_posts() ) : the_post();?>

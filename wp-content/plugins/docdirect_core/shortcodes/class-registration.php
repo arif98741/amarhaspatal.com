@@ -393,7 +393,7 @@ if (!class_exists('SC_Authentication')) {
                                         <div class="col-md-6">
                                             <div class="form-group bmdc_registration_no" style="display: none;">
                                                 <input type="text" name="bmdc_registration_no"
-                                                       placeholder="<?php esc_html_e('Bmdc registration no', 'docdirect_core'); ?>"
+                                                       placeholder="<?php esc_html_e('BMDC No.', 'docdirect_core'); ?>"
                                                        class="form-control">
                                             </div>
                                             <div class="form-group">
@@ -682,7 +682,7 @@ if (!class_exists('SC_Authentication')) {
                                                          style="display: none">
                                                         <input type="text" name="bmdc_registration_number"
                                                                class="form-control"
-                                                               placeholder="Bmdc Registration number">
+                                                               placeholder="BMDC No">
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" name="username" class="form-control"

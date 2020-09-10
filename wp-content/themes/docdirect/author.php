@@ -82,13 +82,31 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
         if (isset($is_profile_visible) && $is_profile_visible === 'yes') { ?>
             <?php get_template_part('directory/provider-page/template-author', 'header'); ?>
             <div class="container">
-                dfd
                 <div class="row">
-
                     <div class="tg-userdetail <?php echo sanitize_html_class($apointmentClass); ?>">
                         <?php get_template_part('directory/provider-page/template-author', 'sidebar'); ?>
                         <?php if ($directory_type == 127) { ?>
-                            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-header">
+                                                Data
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-header">
+                                                Base
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 
                                 <div class="col-md-12">
                                     <nav style="width: 100%;">
@@ -99,11 +117,11 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                href="#nav-about-me" role="tab" aria-controls="nav-about-me"
                                                aria-selected="false">About</a>
 
-                                            <a class="nav-item nav-link" id="nav-specilities-honors-tab"
-                                               data-toggle="tab"
-                                               href="#nav-specilities-honors" role="tab"
-                                               aria-controls="nav-specilities-honors"
-                                               aria-selected="false">Specialities</a>
+<!--                                            <a class="nav-item nav-link" id="nav-specilities-honors-tab"-->
+<!--                                               data-toggle="tab"-->
+<!--                                               href="#nav-specilities-honors" role="tab"-->
+<!--                                               aria-controls="nav-specilities-honors"-->
+<!--                                               aria-selected="false">Specialities</a>-->
                                             <a class="nav-item nav-link" id="nav-schednav-schedule-tabule-tab"
                                                data-toggle="tab"
                                                href="#nav-schedule" role="tab" aria-controls="nav-schedule"
@@ -355,7 +373,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     get_template_part('directory/provider-page/template-author-ads-prices');
                                     get_template_part('directory/provider-page/template-author-ads-video');
                                     get_template_part('directory/provider-page/template-author-ads-gallery');
-                                    get_template_part('directory/provider-page/template-author-map');
+                          //          get_template_part('directory/provider-page/template-author-map');
                                     get_template_part('directory/provider-page/template-author-more-info-tabs');
                                     //get_template_part('directory/provider-page/template-author-reviews');
 
@@ -383,7 +401,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     get_template_part('directory/provider-page/template-author-ads-prices');
                                     get_template_part('directory/provider-page/template-author-ads-video');
                                     get_template_part('directory/provider-page/template-author-ads-gallery');
-                                    get_template_part('directory/provider-page/template-author-map');
+                                  //  get_template_part('directory/provider-page/template-author-map');
                                     get_template_part('directory/provider-page/template-author-more-info-tabs');
                                     // get_template_part('directory/provider-page/template-author-reviews');
 
@@ -396,6 +414,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                             </div>
 
                         <?php } ?>
+
                     </div>
 
                 </div>

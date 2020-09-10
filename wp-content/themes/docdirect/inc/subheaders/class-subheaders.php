@@ -212,6 +212,7 @@ if (!class_exists('docdirect_subheaders')) {
             $is_opacity = 'opacity-true'; ?>
             <div class="tg-haslayout tg-subheader-banner" <?php echo($parallax_data_attr); ?><?php echo($background_image); ?> <?php echo($bg_color); ?>>
         <?php } ?>
+
             <div class="tg-pagebar tg-haslayout <?php echo esc_attr($is_opacity); ?>">
                 <div class="container">
                     <div class="row">

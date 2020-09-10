@@ -70,7 +70,7 @@ $avatar = apply_filters(
         <?php } ?>
         <?php if ($directory_type == 127) { ?>
            <li> <hr></li>
-            <li>BMDC Registration Number: <?= $author_profile->bmdc_registration_no; ?>
+            <li>BMDC No: <?= $author_profile->bmdc_registration_no; ?>
             </li>
         <?php } ?>
     </ul>

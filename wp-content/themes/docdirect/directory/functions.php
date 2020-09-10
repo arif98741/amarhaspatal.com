@@ -3208,4 +3208,5 @@ if (!function_exists('docdirect_get_user_featured_date')) {
 
         return $featured_data;
     }
+
 }

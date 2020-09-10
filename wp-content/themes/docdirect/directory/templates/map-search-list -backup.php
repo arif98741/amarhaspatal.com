@@ -411,17 +411,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                                 ?>
 
                                                             </ul>
-
-                                                        </div>
-                                                        <?php if (!empty($directories_array['description'])) { ?>
-                                                            <div class="doc-description">
-                                                                <p><?php echo substr($directories_array['description'], 0, 147); ?></p>
-                                                            </div>
-                                                        <?php } ?>
-                                                        <ul class="doc-addressinfo">
-
-                                                            <li>
-
+                                                            <li style="list-style: none">
                                                                 <?php
                                                                 $author_profile = $user;
                                                                 do_action('enqueue_unyson_icon_css');
@@ -460,23 +450,39 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                                 <?php } ?>
 
                                                             </li>
+                                                        </div>
+                                                        <?php if (!empty($directories_array['description'])) { ?>
+                                                            <div class="doc-description">
+                                                                <p><?php echo substr($directories_array['description'], 0, 147); ?></p>
+                                                            </div>
+                                                        <?php } ?>
+                                                        <ul class="doc-addressinfo">
 
                                                             <?php if (!empty($directories_array['address'])) { ?>
                                                                 <li><i class="fa fa-map-marker"></i>
                                                                     <address><?php echo esc_attr($directories_array['address']); ?></address>
                                                                 </li>
                                                             <?php } ?>
-                                                            <?php if ( $directory_type == 122) { ?>
+                                                            <?php if (!empty($directories_array['phone_number'])
+                                                                &&
+                                                                !empty($privacy['phone'])
+                                                                &&
+                                                                $privacy['phone'] == 'on' && $directory_type != 123
+                                                            ) { ?>
                                                                 <li>
                                                                     <i class="fa fa-phone"></i><span><?php echo esc_attr($directories_array['phone_number']); ?></span>
                                                                 </li>
-                                                            <?php }  { ?>
+                                                            <?php } else { ?>
+                                                                <li>
+                                                                    <i class="fa fa-phone"></i><span>01XXXXXXXX</span>
+                                                                </li>
+                                                                <li>
 
-<!--                                                                <li>-->
-<!---->
-<!--                                                                    <i class="fa fa-car"></i><span>Car No: --><?//= esc_attr($directories_array['car_no']) ?><!--</span>-->
-<!--                                                                </li>-->
+                                                                    <i class="fa fa-car"></i><span>Car No: <?= esc_attr($directories_array['car_no']) ?></span>
+                                                                </li>
                                                             <?php } ?>
+
+
 
                                                             <?php if (!empty($directories_array['email'])
                                                                 &&
@@ -503,6 +509,9 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                                 </li>
                                                                 <li>
                                                                     <i class="fa fa-calendar"></i><span>Last donation date: <?php echo get_user_meta($user->ID, 'last_donation_date')[0]; ?></span>
+                                                                </li>
+                                                                <li>
+
                                                                 </li>
 
                                                             <?php } ?>

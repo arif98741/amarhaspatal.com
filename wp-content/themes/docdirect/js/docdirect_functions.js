@@ -1628,5 +1628,8 @@ $.fn.serializeObject = function () {
 
     //add custom class to service-list menu
     $('.sub-menu-has-icons').addClass('custom-service-list-menu');
+    $('#menu-item-13 .sub-menu').addClass('custom-service-list-menu');
+    $('pre').remove();
+    jQuery ('.woocommerce-result-count').remove();
 
 }));

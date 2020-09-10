@@ -168,7 +168,7 @@ if (isset($_POST['prescription_upload'])) {
                                     <label>Email</label>
                                     <input type="email" name="user_email" class="form-control"
                                            placeholder="Enter email address here"
-                                           required>
+                                           >
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>

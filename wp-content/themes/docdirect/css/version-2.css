@@ -150,7 +150,7 @@ button.doc-btn{background:none !important;}
 #doc-languages-button i{display:inline-block;vertical-align:middle;}
 #doc-languages-button img{margin:0 6px 0 0;}
 #doc-languages-button i{padding:0 0 0 15px;color:#fff;}
-.doc-logo{float:left;padding:27px 0;}
+.doc-logo{float:left;padding:10px 0;}
 .doc-logo a,
 .doc-logo a img{display:block;}
 .doc-logo a img{width:100%;height:100%;}
@@ -161,7 +161,7 @@ button.doc-btn{background:none !important;}
 #doc-navigation{width:100%;padding:0;float:left;}
 #doc-navigation > ul{width:100%;float:left;}
 .doc-nav > ul{width:100%;float:left;list-style:none;line-height:inherit;}
-.doc-nav ul li{float:left;padding:27px 16px;position:relative;line-height:inherit;list-style-type:none;}
+.doc-nav ul li{float:left;padding:5px 0px;position:relative;line-height:inherit;list-style-type:none;}
 .doc-nav ul li span{display:none;}
 .doc-nav #doc-navigation > ul > li:last-child{padding-right:0;}
 .doc-nav ul li a{display:block;color:#363636;line-height:inherit;position:relative;}
@@ -308,7 +308,7 @@ rgba(255,255,255,0.7) 100%);filter:progid:DXImageTransform.Microsoft.gradient(st
 .sc-featured-users-v2 .doc-featurelist{margin:0;border:0;padding:15px;}
 .doc-featurelist{width:100%;float:left;margin:15px 0;}
 .doc-featureimg{width:100%;float:left;margin:0 0 20px;overflow:hidden;}
-.doc-featureimg img{width:auto !important; max-width:100%;height:auto;display:block;}
+.doc-featureimg img{width:250px !important; height: 250px !important; max-width:100%;height:auto;display:block;}
 .doc-featureimg figcaption{left:0;top:0;width:100%;height:100%;visibility:hidden;opacity:0;position:absolute;background:-moz-linear-gradient(top,
 rgba(54,54,54,0.7) 0%,
 rgba(54,54,54,0.7) 100%);background:-webkit-linear-gradient(top,
@@ -320,9 +320,9 @@ rgba(54,54,54,0.7) 100%);filter:progid:DXImageTransform.Microsoft.gradient(start
 .sc-featured-users-v2 .doc-featurelist .doc-featurecontent{width:100%;float:left;}
 .doc-featurecontent,
 .doc-featurehead{width:100%;float:left;position:relative;}
-.doc-featurehead{margin:0 0 25px;}
+/*.doc-featurehead{margin:0 0 25px;}*/
 .doc-featurehead h2{margin:0 0 7px;font-size:14px;line-height:16px;color:#363636;padding:0 50px 0 0;}
-.doc-featurehead h2 a{color:#363636;display:block;width:100%;}
+.doc-featurehead h2 a{color:#363636;display:block;width:100%; font-size: 20px !important; text-transform: capitalize}
 .doc-featurehead > span{margin:0 0 7px;display:block;font-size:13px;line-height:15px;}
 .doc-matadata{width:100%;float:left;list-style:none;}
 .doc-matadata li{float:left;padding:0 12px;line-height:normal;list-style-type:none;position:relative;}
@@ -340,8 +340,8 @@ rgba(54,54,54,0.7) 100%);filter:progid:DXImageTransform.Microsoft.gradient(start
 .doc-addressinfo li i,
 .doc-addressinfo li address,
 .doc-addressinfo li span,
-.doc-addressinfo li a{display:inline-block;vertical-align:middle;color:#363636;font-size:13px;line-height:15px;}
-.doc-addressinfo li i{margin:0 10px 0 0;}
+.doc-addressinfo li a{display:inline-block;vertical-align:middle;color:#363636;font-size:15px;line-height:15px;}
+.doc-addressinfo li i{margin:0 10px 0 0; font-size: 18px}
 .doc-addressinfo li address{margin:0;font-style:normal;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:90%;}
 .doc-featuredicon{z-index:3;left:0;top:15px;min-width:80px;height:20px;padding:0 9px;display:block;font-size:11px;line-height:20px;text-align:center;border-radius:0 0 0 4px;color:#fff;position:absolute;}
 .doc-featuredicon:hover,
@@ -479,7 +479,7 @@ blockquote q{quotes:none;font-size:20px;line-height:30px;}
 .doc-widgetlistingslider.owl-theme .owl-controls{margin:0;}
 .doc-widgetlistingslider.owl-theme .owl-controls .owl-buttons div:hover{color:#fff;}
 .doc-doctorlisting{width:100%;float:left;}
-.doc-doctorlisting .doc-featurelist .doc-addressinfo li{line-height:14px;padding:3px 0;}
+.doc-doctorlisting .doc-featurelist .doc-addressinfo li{line-height:20px;padding:3px 0;}
 .doc-detailpage .doc-featurelist{margin:0 0 30px;}
 .doc-detailpage .doc-btntext{width:auto !important;padding:0 0 0 10px;display:inline-block !important;text-transform:capitalize;}
 .doc-socialshare{width:100%;float:left;}
