@@ -86,220 +86,23 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                     <div class="tg-userdetail <?php echo sanitize_html_class($apointmentClass); ?>">
                         <?php get_template_part('directory/provider-page/template-author', 'sidebar'); ?>
                         <?php if ($directory_type == 127) { ?>
-                            <div class="row">
 
-                                <div class="col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="card-header">
-                                                <h2>Info</h2>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
 
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="card-header">
-                                                <h2>Schedule</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-
-                                <div class="col-md-11">
-                                    <br>
-                                    <div class="tab-content">
-                                        <div id="nav-about-me" class="tab-pane fade in active">
-                                            <div class="program-content-block">
-
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-specilities-honors" role="tabpanel"
-                                             aria-labelledby="nav-specilities-honors-tab">
-
-                                            <div class="program-content-block">
-                                                <div class="panel-group" id="specialityMenu2020" role="tablist"
-                                                     aria-multiselectable="true">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading  green " role="tab"
-                                                             id="headingSpecialiTy">
-                                                            <h4 class="panel-title">
-                                                                <a role="button" data-toggle="collapse"
-                                                                   data-parent="#specialityMenu2020" href="#SpecialiTy"
-                                                                   aria-expanded="true" aria-controls="SpecialiTy"
-                                                                   class="">
-                                                                    Speciality
-                                                                </a>
-                                                            </h4>
-                                                        </div>
-                                                        <div id="SpecialiTy" class="panel-collapse collapse in"
-                                                             role="tabpanel" aria-labelledby="headingSpecialiTy"
-                                                             aria-expanded="true">
-                                                            <div class="panel-body">
-                                                                <?php get_template_part('directory/provider-page/template-author-specialities'); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="panel-heading  lightGreen " role="tab"
-                                                             id="headingAwards">
-                                                            <h4 class="panel-title">
-                                                                <a role="button" data-toggle="collapse"
-                                                                   data-parent="#specialityMenu2020" href="#Awards"
-                                                                   aria-expanded="false" aria-controls="Awards"
-                                                                   class="collapsed">
-                                                                    Honors & Awards
-                                                                </a>
-                                                            </h4>
-                                                        </div>
-                                                        <div id="Awards" class="panel-collapse collapse" role="tabpanel"
-                                                             aria-labelledby="headingAwards" aria-expanded="false"
-                                                             style="height: 0px;">
-                                                            <div class="panel-body">
-                                                                <?php get_template_part('directory/provider-page/template-author-awards'); ?>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <?php //get_template_part('directory/provider-page/template-author-specialities'); ?>
-                                            <?php //get_template_part('directory/provider-page/template-author-awards'); ?>
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-schedule" role="tabpanel"
-                                             aria-labelledby="nav-schedule-tab">
-
-                                            <?php if (!empty($slots)) {
-
-                                                $modified_slots = [];
-                                                $week_array = docdirect_get_week_array();
-
-
-                                                if (!empty($privacy['opening_hours'])
-                                                    &&
-                                                    $privacy['opening_hours'] == 'on'
-                                                ) { ?>
-                                                    <div class="tg-userschedule">
-                                                        <?php if (!empty($time_zone)) { ?>
-                                                        <?php } ?>
-                                                        <ul>
-                                                            <?php
-                                                            $week_array = docdirect_get_week_array();
-
-                                                            $db_schedules = array();
-                                                            if (isset($author_profile->schedules) && !empty($author_profile->schedules)) {
-                                                                $db_schedules = $author_profile->schedules;
-                                                            }
-
-                                                            if (isset($schedule_time_format) && $schedule_time_format === '24hour') {
-                                                                $time_format = 'H:i';
-                                                            } else {
-                                                                $time_format = get_option('time_format');
-                                                                $time_format = !empty($time_format) ? $time_format : 'g:i A';
-                                                            }
-
-                                                            $date_prefix = date('D');
-
-
-                                                            if (isset($week_array) && !empty($week_array)) {
-                                                                $array_keys = array_keys($week_array);
-                                                                if (!empty($db_timezone)) {
-                                                                    $date = new DateTime("now", new DateTimeZone($db_timezone));
-                                                                    $current_time_date = $date->format('Y-m-d H:i:s');
-                                                                } else {
-                                                                    $current_time_date = current_time('mysql');
-                                                                }
-
-                                                                //Current Day
-                                                                $today_day = date('D', strtotime($current_time_date));
-                                                                $today_day = strtolower($today_day);
-
-
-                                                                foreach ($slots as $slot_key => $slot) {
-
-
-                                                                    if (!in_array($slot_key, $array_keys)) {
-                                                                        $active = '';
-                                                                        if ($today_day == $key) {
-                                                                            $active = 'current';
-                                                                        }
-
-                                                                        $day = str_replace('-details', '', $slot_key);
-                                                                        echo '<span type="button" data-toggle="collapse" data-target="#demo' . $day . '" style="font-weight: bold; display: block;border: 1px solid black; padding: 9px 15px; background: #bb96d0; color: #fff;" class="active">' . $week_array[$day] . '</span>';
-
-
-                                                                        $opened_slots = $slots[$slot_key];
-                                                                        echo '<div id="demo' . $day . '" class="collapse" style="margin-top: 3px;">';
-                                                                        echo '<table> <tr><th>Schedule Time</th><th>Chamber</th></tr>';
-                                                                        foreach ($opened_slots as $opened_slot_key => $opened_slot) {
-//
-                                                                            ?>
-                                                                            <tr>
-                                                                                <td style="text-align: left;"
-                                                                                    class="<?php echo sanitize_html_class($active); ?>">
-                                                                                    <?php echo $opened_slot_key; ?>
-                                                                                </td>
-                                                                                <td style="text-align: left;"
-                                                                                    class="<?php echo sanitize_html_class($active); ?>">
-                                                                                    <?php echo esc_attr($opened_slot['slot_title']); ?>
-                                                                                </td>
-                                                                            </tr>
-
-
-                                                                        <?php }
-                                                                        echo '</table></div>';
-
-                                                                    } else {
-
-                                                                        $day = str_replace('-details', '', $slot_key);
-
-
-                                                                    }
-
-
-                                                                    ?>
-
-                                                                <?php }
-                                                            } ?>
-                                                        </ul>
-                                                    </div>
-                                                <?php }
-                                            } ?>
-                                        </div>
-                                    </div>
-
-                                </div>
                                 <div class="tg-haslayout provider-sections">
+
                                     <?php
-                                    /*echo '<pre>';
-                                    print_r($display_settings); exit;
-                                    foreach ($display_settings as $key => $value) {
-                                        if ($directory_type == 127 && ($key == 'map' || $key == 'reviews' || $key == 'specialities'
-                                                || $key == 'experience' || $key == 'awards' || $key == 'education')) {
-                                            continue;
-                                        }
-                                        get_template_part('directory/provider-page/template-author', $key);
 
-                                    }
-                                    */
-
-                                    //get_template_part('directory/provider-page/template-author-about');
+                                    get_template_part('directory/provider-page/template-author-about');
                                     get_template_part('directory/provider-page/template-author-ads-area');
                                     get_template_part('directory/provider-page/template-author-ads-languages');
                                     get_template_part('directory/provider-page/template-author-ads-prices');
                                     get_template_part('directory/provider-page/template-author-ads-video');
                                     get_template_part('directory/provider-page/template-author-ads-gallery');
-                                    //          get_template_part('directory/provider-page/template-author-map');
+                                    get_template_part('directory/provider-page/template-author-map');
                                     get_template_part('directory/provider-page/template-author-more-info-tabs');
                                     //get_template_part('directory/provider-page/template-author-reviews');
-
                                     ?>
-
                                 </div>
                             </div>
                         <?php } else { ?>
