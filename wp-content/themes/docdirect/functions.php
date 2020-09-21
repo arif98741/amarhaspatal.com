@@ -35,12 +35,3 @@ require_once(get_template_directory() . '/inc/class-woocommerce.php'); //woocomm
 require_once(get_template_directory() . '/directory/woo-hooks.php'); //woocommerce hooks
 require_once(get_template_directory() . '/inc/class-chat-system.php'); //Chat System Class
 //add_filter('nav_menu_css_class', 'special_nav_class', 10, 2);
-
-//function special_nav_class($classes, $item)
-//{
-//    if (in_array('current-menu-item', $classes)) {
-//        $classes[] = 'current-menu-item-data';
-//    }
-//    return $classes;
-//}
-//add_action('init','special_nav_class');

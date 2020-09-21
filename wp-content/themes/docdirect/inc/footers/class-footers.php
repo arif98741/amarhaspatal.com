@@ -264,6 +264,198 @@ if (!class_exists('docdirect_footers')) {
 
                     </div>
                 </div>
+                <!-- sidebar menu start -->
+                <style>
+                    .sidenav {
+                        display: none;
+                        height: 100%;
+                        width: 325px;
+                        position: fixed;
+                        z-index: 9999999;
+                        top: 0;
+                        right: 0;
+                        background-color: #f3f3f3;
+                        overflow-x: hidden;
+                        padding-top: 60px;
+                        padding: 20px;
+                    }
+
+                    .sidenav a {
+                        padding: 8px 8px 8px 32px;
+                        text-decoration: none;
+                        font-size: 18px;
+                        color: #818181;
+                        display: block;
+                    }
+
+                    .sidenav a:hover {
+                        color: #818181;
+                    }
+
+                    .sidenav .closebtn {
+                        position: absolute;
+                        top: 0;
+                        right: 25px;
+                        font-size: 36px;
+                        margin-left: 50px;
+                    }
+
+                    #contact-section ul {
+                        margin-top: 10px;
+                    }
+
+                    #contact-section ul li {
+                        list-style: none;
+                        padding: 2px 8px;
+                        color: #6b5e5e;
+                    }
+
+                    li.custom-sidebar-menu-icon.menu-item a:before {
+                        color: #000 !important;
+                    }
+
+                    @media only screen and (max-width: 600px) {
+                        i.fa.fa-bars.menu-item-4406 {
+                            float: right;
+                            margin: 30px 0px 0px 0px;
+                            font-size: 30px;
+                        }
+                    }
+
+                    @media (min-width: 768px) {
+                        .hidden-md-up {
+                            display: none !important;
+                        }
+                    }
+                    nav.animated.bounceInDown ul li a {
+                        font-size: 14px;
+                        padding: 5px 10px;
+                    }
+
+
+                    nav.animated.bounceInDown ul li {
+                        line-height: 15px;
+                        list-style: none;
+                    }
+
+                    nav#sidebarNav {
+                        position: relative;
+                        margin: 50px;
+                        width: 360px;
+                    }
+
+                    nav#sidebarNav ul {
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    nav#sidebarNav ul li a {
+                        display: block;
+                        background: #ebebeb;
+                        padding: 10px 15px;
+                        color: #333;
+                        text-decoration: none;
+                        -webkit-transition: 0.2s linear;
+                        -moz-transition: 0.2s linear;
+                        -ms-transition: 0.2s linear;
+                        -o-transition: 0.2s linear;
+                        transition: 0.2s linear;
+                    }
+
+                    nav#sidebarNav ul li a:hover {
+                        background: #f8f8f8;
+                        color: #515151;
+                    }
+
+                    nav#sidebarNav ul li a .fa {
+                        width: 16px;
+                        text-align: center;
+                        margin-right: 5px;
+                        float: right;
+                    }
+
+                    nav#sidebarNav ul ul {
+                        background-color: #ebebeb;
+                    }
+
+                    nav#sidebarNav ul li ul li a {
+                        background: #f8f8f8;
+                        border-left: 4px solid transparent;
+                        padding: 10px 20px;
+                    }
+
+                    nav#sidebarNav ul li ul li a:hover {
+                        background: #ebebeb;
+                        border-left: 4px solid #3498db;
+                    }
+                </style>
+                <div id="mySidenav" class="sidenav">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <img src="<?php echo site_url(); ?>/wp-content/uploads/2020/08/hsp-150x30-1.png" alt="">
+                    <br>
+                    <br>
+
+                    <nav class='animated bounceInDown'>
+                        <ul>
+                            <li><a href="<?php echo site_url(); ?>">Home</a></li>
+                            <li><a href="<?php echo site_url(); ?>/about-us">About Us</a></li>
+                            <li class='sub-menu'><a href='#settings'>Services
+                                    <div class='fa fa-caret-down right'></div>
+                                </a>
+                                <ul>
+                                    <li><a href="<?php echo site_url(); ?>/shop">Pharmacy</a></li>
+                                    <li><a href="<?php echo site_url(); ?>/dir-search/?directory_type=127">Doctors</a>
+                                    </li>
+                                    <li><a href="<?php echo site_url(); ?>/dir-search/?directory_type=123">Ambulance</a>
+                                    </li>
+                                    <li><a href="<?php echo site_url(); ?>/dir-search/?directory_type=122">Blood
+                                            Donor</a></li>
+                                    <li>
+                                        <a href="<?php echo site_url(); ?>/dir-search/?directory_type=121">Diagnostics</a>
+                                    </li>
+                                    <li><a href="<?php echo site_url(); ?>/dir-search/?directory_type=126">Hospitals</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class='sub-menu'><a href="#message">Blog
+                                    <div class='fa fa-caret-down right'></div>
+                                </a>
+                                <ul>
+                                    <li><a href="https://amarhaspatal.com/category/male-health/">Male Health</a></li>
+                                    <li><a href="https://amarhaspatal.com/category/female-health/">Female Health</a>
+                                    </li>
+                                    <li><a href="https://amarhaspatal.com/category/baby-health/">Baby Health</a></li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+
+                    <a href="javascript:void(0)" class="closebtn" id="closeSidebarbtn"">&times;</a>
+
+                    <div id="contact-section">
+                        <ul>
+                            <li>Support: Ambulance: <i class="fa fa-phone text-theme-colored"></i>&nbsp;01734-500971
+                            </li>
+                            <li>Doctor: <i class="fa fa-phone text-theme-colored"></i>&nbsp;01711-226820</li>
+                            <li><i class="fa fa-clock-o text-theme-colored"></i>&nbsp;24h x 365 Days</li>
+                            <li><i class="fa fa-envelope-o text-theme-colored"></i>&nbsp;support@amarhaspatal.com</li>
+                        </ul>
+
+                    </div>
+                    <p class="copyright-text" style="margin-top: 40px;">&copy;Copyright: amarhaspatal.com - 2020</p>
+
+                </div>
+                </div>
+
+                <!-- sidebar menu end -->
+
             </footer>
             <?php
             //Account Verifications Model

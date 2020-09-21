@@ -10,3 +10,4 @@ git add . && git commit -m  "add schedule tab to dr profile" &&
 git checkout production && git merge master &&
 git push && git checkout master && git push
 
+!/wp-content/themes/docdirect/inc/footers/class-footers.php

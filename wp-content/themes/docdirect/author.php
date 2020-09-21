@@ -87,116 +87,37 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         <?php get_template_part('directory/provider-page/template-author', 'sidebar'); ?>
                         <?php if ($directory_type == 127) { ?>
                             <div class="row">
-                                <div class="col-lg-6">
+
+                                <div class="col-md-6">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="card-header">
-                                                Data
+                                                <h2>Info</h2>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-md-6">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="card-header">
-                                                Base
+                                                <h2>Schedule</h2>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
+
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 
-                                <div class="col-md-12">
-                                    <nav style="width: 100%;">
-                                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-
-                                            <a class="nav-item nav-link selected" id="nav-about-me-tab"
-                                               data-toggle="tab"
-                                               href="#nav-about-me" role="tab" aria-controls="nav-about-me"
-                                               aria-selected="false">About</a>
-
-<!--                                            <a class="nav-item nav-link" id="nav-specilities-honors-tab"-->
-<!--                                               data-toggle="tab"-->
-<!--                                               href="#nav-specilities-honors" role="tab"-->
-<!--                                               aria-controls="nav-specilities-honors"-->
-<!--                                               aria-selected="false">Specialities</a>-->
-                                            <a class="nav-item nav-link" id="nav-schednav-schedule-tabule-tab"
-                                               data-toggle="tab"
-                                               href="#nav-schedule" role="tab" aria-controls="nav-schedule"
-                                               aria-selected="false">Schedule</a>
-                                        </div>
-                                    </nav>
+                                <div class="col-md-11">
                                     <br>
                                     <div class="tab-content">
                                         <div id="nav-about-me" class="tab-pane fade in active">
                                             <div class="program-content-block">
-                                                <div class="panel-group" id="accordionMenu2020" role="tablist"
-                                                     aria-multiselectable="true">
-                                                    <div class="panel panel-default">
 
-                                                        <div class="panel-heading  green " role="tab"
-                                                             id="headingUndergraduate2020">
-                                                            <h4 class="panel-title">
-                                                                <a role="button" data-toggle="collapse"
-                                                                   data-parent="#accordionMenu2020"
-                                                                   href="#Undergraduate2020" aria-expanded="false"
-                                                                   aria-controls="Undergraduate2020" class="collapsed">
-                                                                    About Me
-                                                                </a>
-                                                            </h4>
-                                                        </div>
-                                                        <div id="Undergraduate2020" class="panel-collapse collapse"
-                                                             role="tabpanel" aria-labelledby="headingUndergraduate2020"
-                                                             aria-expanded="false" style="height: 0px;">
-                                                            <div class="panel-body">
-                                                                <?php get_template_part('directory/provider-page/template-author-about'); ?>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="panel-heading  lightGreen " role="tab"
-                                                             id="headingGraduate2020">
-                                                            <h4 class="panel-title">
-                                                                <a role="button" data-toggle="collapse"
-                                                                //amarhaspatal.com/wp-content/uploads/2017/03/Blue_770-x-175.jpg
-                                                                data-parent="#accordionMenu2020" href="#Graduate2020"
-                                                                aria-expanded="false" aria-controls="Graduate2020"
-                                                                class="collapsed">
-                                                                Education
-                                                                </a>
-                                                            </h4>
-                                                        </div>
-                                                        <div id="Graduate2020" class="panel-collapse collapse "
-                                                             role="tabpanel" aria-labelledby="headingGraduate2020"
-                                                             aria-expanded="false">
-                                                            <div class="panel-body">
-                                                                <?php get_template_part('directory/provider-page/template-author-education'); ?>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="panel-heading  lighterGreen " role="tab"
-                                                             id="headingPharmacy2020">
-                                                            <h4 class="panel-title">
-                                                                <a role="button" data-toggle="collapse"
-                                                                   data-parent="#accordionMenu2020" href="#Pharmacy2020"
-                                                                   aria-expanded="false" aria-controls="Pharmacy2020"
-                                                                   class="collapsed">
-                                                                    Experience
-                                                                </a>
-                                                            </h4>
-                                                        </div>
-                                                        <div id="Pharmacy2020" class="panel-collapse collapse "
-                                                             role="tabpanel" aria-labelledby="headingPharmacy2020"
-                                                             aria-expanded="false">
-                                                            <div class="panel-body">
-                                                                <?php get_template_part('directory/provider-page/template-author-experience'); ?>
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-specilities-honors" role="tabpanel"
@@ -373,7 +294,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     get_template_part('directory/provider-page/template-author-ads-prices');
                                     get_template_part('directory/provider-page/template-author-ads-video');
                                     get_template_part('directory/provider-page/template-author-ads-gallery');
-                          //          get_template_part('directory/provider-page/template-author-map');
+                                    //          get_template_part('directory/provider-page/template-author-map');
                                     get_template_part('directory/provider-page/template-author-more-info-tabs');
                                     //get_template_part('directory/provider-page/template-author-reviews');
 
@@ -401,7 +322,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     get_template_part('directory/provider-page/template-author-ads-prices');
                                     get_template_part('directory/provider-page/template-author-ads-video');
                                     get_template_part('directory/provider-page/template-author-ads-gallery');
-                                  //  get_template_part('directory/provider-page/template-author-map');
+                                    //  get_template_part('directory/provider-page/template-author-map');
                                     get_template_part('directory/provider-page/template-author-more-info-tabs');
                                     // get_template_part('directory/provider-page/template-author-reviews');
 

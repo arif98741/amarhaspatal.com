@@ -165,7 +165,11 @@ endif;
             <?php }?>
 			<div class="container">
               <div class="row">
-                <div class="col-xs-12"> 
+                <div class="col-xs-12">
+
+                   <i class="fa fa-bars menu-item-4406 mobileOnlySitebarbtn hidden-md-up"></i>
+
+
                   <strong class="doc-logo"><?php $this->docdirect_prepare_logo($logo,'','');?></strong>
                   <div class="doc-navigationarea">
                     <nav id="doc-nav" class="doc-nav">
@@ -248,6 +252,7 @@ endif;
                                 </div>
                                 <div class="collapse navbar-collapse theme-main-navigation" id="tg-navigation">
                                     <?php $this->docdirect_prepare_navigation('main-menu', '', '', '0'); ?>
+
                                 </div>
                             </nav>
                             <div class="doc-menu">

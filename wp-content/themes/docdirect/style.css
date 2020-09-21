@@ -14306,7 +14306,8 @@ body.author .user-ad-top {
 
 .theme-main-navigation > ul > li.menu-item-has-icon > a, .sub-menu-has-icons > .menu-item-has-icon > a {
     position: relative;
-    font-family: 'Montserrat', Arial, Helvetica, sans-serif
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-weight: lighter;
 }
 
 .theme-main-navigation ul li.menu-item-has-icon a:before {
@@ -16634,3 +16635,5 @@ figure.doc-featureimg img {
         transform: translate(-59%, 0%);
     }
 }
+
+
