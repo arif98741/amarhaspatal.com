@@ -320,13 +320,26 @@ if (!class_exists('docdirect_footers')) {
                             margin: 30px 0px 0px 0px;
                             font-size: 30px;
                         }
+
                     }
 
                     @media (min-width: 768px) {
                         .hidden-md-up {
                             display: none !important;
                         }
+
+                        nav.animated.bounceInDown ul {
+                            display: block ;
+                        }
                     }
+
+                    @media (max-width: 767px) {
+                        .nav.animated.bounceInDown, .sub-menu {
+
+                            display: block !important;
+                        }
+                    }
+
                     nav.animated.bounceInDown ul li a {
                         font-size: 14px;
                         padding: 5px 10px;

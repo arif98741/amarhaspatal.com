@@ -82,27 +82,51 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
         if (isset($is_profile_visible) && $is_profile_visible === 'yes') { ?>
             <?php get_template_part('directory/provider-page/template-author', 'header'); ?>
             <div class="container">
+
                 <div class="row">
+
                     <div class="tg-userdetail <?php echo sanitize_html_class($apointmentClass); ?>">
                         <?php get_template_part('directory/provider-page/template-author', 'sidebar'); ?>
                         <?php if ($directory_type == 127) { ?>
-
                             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h3 class="doctor-profile-page-header">Info</h3>
+                                        <?php get_template_part('directory/provider-page/template-author-about'); ?>
+                                        <?php get_template_part('directory/provider-page/template-author-education'); ?>
+                                        <?php get_template_part('directory/provider-page/template-author-experience'); ?>
+                                    </div>
 
+                                    <div class="col-md-6">
+                                        <h3 class="doctor-profile-page-header">Schedule</h3>
+                                    </div>
+                                </div>
                                 <div class="tg-haslayout provider-sections">
-
                                     <?php
+                                    /*echo '<pre>';
+                                    print_r($display_settings); exit;
+                                    foreach ($display_settings as $key => $value) {
+                                        if ($directory_type == 127 && ($key == 'map' || $key == 'reviews' || $key == 'specialities'
+                                                || $key == 'experience' || $key == 'awards' || $key == 'education')) {
+                                            continue;
+                                        }
+                                        get_template_part('directory/provider-page/template-author', $key);
+
+                                    }
+                                    */
 
                                     get_template_part('directory/provider-page/template-author-about');
-                                    get_template_part('directory/provider-page/template-author-ads-area');
+                                 //   get_template_part('directory/provider-page/template-author-ads-area');
                                     get_template_part('directory/provider-page/template-author-ads-languages');
                                     get_template_part('directory/provider-page/template-author-ads-prices');
                                     get_template_part('directory/provider-page/template-author-ads-video');
-                                    get_template_part('directory/provider-page/template-author-ads-gallery');
-                                    get_template_part('directory/provider-page/template-author-map');
+                                   // get_template_part('directory/provider-page/template-author-ads-gallery');
+                                   // get_template_part('directory/provider-page/template-author-map');
                                     get_template_part('directory/provider-page/template-author-more-info-tabs');
                                     //get_template_part('directory/provider-page/template-author-reviews');
+
                                     ?>
+
                                 </div>
                             </div>
                         <?php } else { ?>
@@ -120,12 +144,12 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
 
                                     }*/
                                     get_template_part('directory/provider-page/template-author-about');
-                                    get_template_part('directory/provider-page/template-author-ads-area');
+                                   // get_template_part('directory/provider-page/template-author-ads-area');
                                     get_template_part('directory/provider-page/template-author-ads-languages');
                                     get_template_part('directory/provider-page/template-author-ads-prices');
                                     get_template_part('directory/provider-page/template-author-ads-video');
                                     get_template_part('directory/provider-page/template-author-ads-gallery');
-                                    //  get_template_part('directory/provider-page/template-author-map');
+                                   // get_template_part('directory/provider-page/template-author-map');
                                     get_template_part('directory/provider-page/template-author-more-info-tabs');
                                     // get_template_part('directory/provider-page/template-author-reviews');
 
@@ -138,7 +162,18 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                             </div>
 
                         <?php } ?>
+                    </div>
+                    <div class="tg-userdetail  <?php echo sanitize_html_class($apointmentClass); ?>">
+                        <?php if ($directory_type == 127) { ?>
+                        <div class="col-lg-12 col-md-12 col-sm-8 col-xs-12">
+                            <div class="row">
+                                <?php
+                                get_template_part('directory/provider-page/template-author-map');
 
+                                ?>
+                            </div>
+                        </div>
+                <?php } ?>
                     </div>
 
                 </div>
@@ -209,9 +244,9 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     <div class="tab-pane step-four-contents" id="four"></div>
                                     <div class="tab-pane step-five-contents" id="five"></div>
                                     <div class="tg-btnbox booking-step-button">
-                                        <button type="button" style="color: #fff !important;"
+                                        <button type="button"
                                                 class="tg-btn bk-step-prev"><?php esc_html_e('Previous', 'docdirect'); ?></button>
-                                        <button type="button" style="color: #fff !important;"
+                                        <button type="button"
                                                 class="tg-btn bk-step-next"><?php esc_html_e('next', 'docdirect'); ?></button>
                                     </div>
                                 </div>
@@ -234,17 +269,12 @@ do_action('am_chat_modal', $author_profile->ID);
 
     }
 
-    .nav-tabs {
-        border-bottom: 0px solid #ddd !important;
-        margin-bottom: 17px;
-    }
-
     div#nav-tab a {
         padding: 11px 12px;
         font-size: 18px;
         border: 2px solid #000;
         margin-bottom: 20px !important;
-        background: #253e7f;
+        background: #807293;
         color: #fff;
 
     }
@@ -263,7 +293,7 @@ do_action('am_chat_modal', $author_profile->ID);
         font-size: 18px;
         border: 2px solid #000;
         margin-bottom: 20px !important;
-        background: #4da34a !important;
+        background: #3c2d2d !important;
         color: #fff;
     }
 
@@ -322,51 +352,6 @@ do_action('am_chat_modal', $author_profile->ID);
         margin-bottom: 20px !important;
     }
 
-    .training-program-tap-wrap {
-        padding: 0 40px;
-        width: 100%;
-        margin: 0 auto;
-        height: 50px;
-        background-color: #d8d8d8;
-    }
-
-    .convocation .tab-content {
-        border: 1px solid #d3d3d3;
-    }
-
-    .tab-content > .active {
-        display: block;
-    }
-
-    .convocation .program-content-block {
-        padding: 30px;
-    }
-
-    .panel-group {
-        margin-bottom: 20px;
-    }
-
-    .panel-default > .panel-heading {
-        color: #fff;
-        background-color: #253e7f;
-        border-color: #e4e5e7;
-        padding: 15px 13px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        border-bottom: 1px solid #ddd;
-        border-radius: 0;
-    }
-
-    .nav-customcs a {
-        color: #000 !important;
-    }
-
-    .crt-program .tab-content {
-        margin-top: 30px;
-    }
-
     @media (min-width: 481px) and (max-width: 767px) {
 
         .nav-tab {
@@ -396,7 +381,7 @@ do_action('am_chat_modal', $author_profile->ID);
             font-size: 18px;
             border: 2px solid #000;
             margin-bottom: 20px !important;
-            background: #4da34a !important;
+            background: #3c2d2d !important;
             color: #fff;
         }
 

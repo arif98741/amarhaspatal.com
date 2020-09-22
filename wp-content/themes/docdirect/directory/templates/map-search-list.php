@@ -387,6 +387,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 
                                                             <?php docdirect_get_wishlist_button($user->ID, true, 'v2'); ?>
                                                             <h2 class="doc-degree">
+
                                                                 <a href="<?php echo ($directory_type != 122) ? get_author_posts_url($user->ID) : '#'; ?>"
                                                                    class="list-avatar"><?php echo($get_username); ?>
 
@@ -394,24 +395,11 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                                                         (<?php echo $user->bmdc_registration_no ?>)
                                                                     <?php endif; ?>
 
-
                                                                 </a>
                                                             </h2>
                                                             <?php if (!empty($user->tagline)) { ?>
-                                                                <span class="doc-tagline"><?php echo esc_attr($user->tagline); ?></span>
+                                                                <span class="doc-tagline"><i class="fa fa-graduation-cap"></i>&nbsp;<?php echo esc_attr($user->tagline); ?></span>
                                                             <?php } ?>
-                                                            <ul class="doc-matadata">
-
-                                                                <li><?php docdirect_get_likes_button($user->ID); ?></li>
-
-                                                                <?php
-                                                                if (isset($reviews_switch) && $reviews_switch === 'enable' && $directory_type != 122) {
-                                                                    docdirect_get_rating_stars_v2($review_data, 'echo');
-                                                                }
-                                                                ?>
-
-                                                            </ul>
-
                                                         </div>
                                                         <?php if (!empty($directories_array['description'])) { ?>
                                                             <div class="doc-description">

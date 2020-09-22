@@ -322,7 +322,7 @@ rgba(54,54,54,0.7) 100%);filter:progid:DXImageTransform.Microsoft.gradient(start
 .doc-featurehead{width:100%;float:left;position:relative;}
 /*.doc-featurehead{margin:0 0 25px;}*/
 .doc-featurehead h2{margin:0 0 7px;font-size:14px;line-height:16px;color:#363636;padding:0 50px 0 0;}
-.doc-featurehead h2 a{color:#363636;display:block;width:100%; font-size: 20px !important; text-transform: capitalize}
+.doc-featurehead h2 a{color:#363636;display:block;width:100%; font-size: 14px !important; text-transform: capitalize}
 .doc-featurehead > span{margin:0 0 7px;display:block;font-size:13px;line-height:15px;}
 .doc-matadata{width:100%;float:left;list-style:none;}
 .doc-matadata li{float:left;padding:0 12px;line-height:normal;list-style-type:none;position:relative;}
