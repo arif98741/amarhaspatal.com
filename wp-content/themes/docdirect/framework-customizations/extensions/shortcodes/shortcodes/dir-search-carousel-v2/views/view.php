@@ -66,6 +66,7 @@ $isadvance_filter = 'advance-filter-disabled';
 if (!empty($atts['advance_filters']) && $atts['advance_filters'] === 'enable') {
     $isadvance_filter = 'advance-filter-enabled';
 }
+
 ?>
 <div id="doc-homebannerslider-<?php echo esc_attr($uni_flag); ?>"
      class="doc-homebannerslider doc-haslayout <?php echo esc_attr($isadvance_filter); ?>">
