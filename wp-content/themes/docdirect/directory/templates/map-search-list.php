@@ -24,25 +24,6 @@ docdirect_enque_map_library();//init Map
 $direction = docdirect_get_location_lat_long();
 $show_users = !empty($atts['show_users']) ? $atts['show_users'] : 10;
 
-/*$query_args = array(
-    'role' => 'professional',
-    'count_total' => true,
-    'order' => 'ASC',
-    'number' => $show_users,
-    'meta_query' => array(
-        'relation' => 'AND',
-        array(
-            'key' => 'loc_division_id',
-            'value' => '5',
-            'compare' => '='
-        ),
-        array(
-            'key' => 'loc_district_id',
-            'value' => 58,
-            'compare' => '='
-        )
-    )
-);*/
 $directory_type = esc_html($_GET['directory_type']);
 $search_key = esc_html($_GET['search_key']);
 $division_id = esc_html($_GET['division_id']);
@@ -173,7 +154,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 
 
     <!-- mostafiz -->
-    <div class="main-content container">
+    <div class="main-content container-fluid" style="padding: 2px 48px;">
         <div style="border: 1px solid #eee; padding: 8px;">
             <div style="background-image: url(https://amarhaspatal.com/wp-content/uploads/directory-list-banner/doctor.png);
     background-repeat: no-repeat;
@@ -193,33 +174,89 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                             data-target="#myModal">Search Doctor
                     </button>
                 </div>
-                <div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;">
-                    <div class="col-md-3">
-                        <a href="https://hasbd.com/doctors/dr-merana-sultana/"> <img
-                                    src="https://hasbd.com/wp-content/themes/hasbd/images/doctor-female.jpg"
-                                    alt=""/></a>
-                    </div>
-                    <div class="col-md-9 iiiii">
-                        <a href="https://hasbd.com/doctors/dr-merana-sultana/"><h3>Dr. Merana Sultana</h3></a>
-                        <p>
-                            <i class="fa fa-graduation-cap fa-lg"
-                               style="margin-right: 12px; display: inline-block;"></i> <span
-                                    style="color: #16518c;"><strong
-                                        style="display: inline-flex;">MBBS (DU), DMU (Dhaka)</strong></span>
-                        </p>
-                        <p><i class="fa fa-certificate fa-lg" style="margin-right: 20px;"></i>Family Medicine</p>
-                        <p><i class="fa fa-hospital-o fa-lg" style="margin-right: 20px;"></i><span
-                                    style="display: inline-flex;">Health AID Service</span></p>
-                        <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>730/C, NG- 11, Shahid Baki
-                            Sarak, Khilgoan, Opposite of Sonali Bank</p>
-                        <p><i class="fa fa-money fa-lg" style="margin-right: 16px;"></i>New patient 500 BDT &amp; Old&nbsp;patient
-                            300 BDT</p>
 
-                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
-                             data-a2a-url="https://hasbd.com/doctors/dr-merana-sultana/"
-                             data-a2a-title="Dr. Merana Sultana" style="line-height: 32px;">
-                            <a class="a2a_dd"
-                               href="https://www.addtoany.com/share#url=https%3A%2F%2Fhasbd.com%2Fdoctors%2Fdr-merana-sultana%2F&amp;title=Dr.%20Merana%20Sultana">
+
+                <?php
+                foreach ($user_query->results as $key => $user) {
+
+                    $directory_type = get_user_meta($user->ID, 'directory_type', true);
+                    $dir_map_marker = fw_get_db_post_option($directory_type, 'dir_map_marker', true);
+                    $reviews_switch = fw_get_db_post_option($directory_type, 'reviews', true);
+                    $current_date = date('Y-m-d H:i:s');
+                    $avatar = apply_filters(
+                        'docdirect_get_user_avatar_filter',
+                        docdirect_get_user_avatar(array('width' => 270, 'height' => 270), $user->ID),
+                        array('width' => 270, 'height' => 270) //size width,height
+                    );
+
+
+                    $privacy = docdirect_get_privacy_settings($user->ID); //Privacy settin
+
+                    $directories_array['latitude'] = $latitude;
+                    $directories_array['longitude'] = $longitude;
+                    $directories_array['fax'] = $user->fax;
+                    $directories_array['description'] = $user->description;
+                    $directories_array['title'] = $user->display_name;
+                    $directories_array['name'] = $user->first_name . ' ' . $user->last_name;
+                    $directories_array['email'] = $user->user_email;
+                    $directories_array['phone_number'] = $user->phone_number;
+                    $directories_array['address'] = $user->user_address;
+                    $directories_array['car_no'] = $user->car_no;
+                    $featured_string = docdirect_get_user_featured_date($user->ID);
+                    $current_string = strtotime($current_date);
+                    $review_data = docdirect_get_everage_rating($user->ID);
+                    $get_username = docdirect_get_username($user->ID);
+
+                    if (isset($dir_map_marker['url']) && !empty($dir_map_marker['url'])) {
+                        $directories_array['icon'] = $dir_map_marker['url'];
+                    } else {
+                        if (!empty($dir_map_marker_default['url'])) {
+                            $directories_array['icon'] = $dir_map_marker_default['url'];
+                        } else {
+                            $directories_array['icon'] = get_template_directory_uri() . '/images/map-marker.png';
+                        }
+                    }
+
+                    ?>
+
+                    <div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;">
+                        <div class="col-md-3 user-profile-dir-list">
+                            <?php if (empty($avatar)): ?>
+                                <a href="#"> <img
+                                            src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg"
+                                            alt="<?= $directories_array['title'] . ' - ' . site_url(); ?>"/></a>
+                            <?php else: ?>
+                                <a href="#"> <img
+                                            src="<?= $avatar ?>"
+                                            alt="<?= $directories_array['name'] . ' - ' . site_url(); ?>"/></a>
+                            <?php endif; ?>
+
+                        </div>
+                        <div class="col-md-9 iiiii">
+                            <a href="<?php echo site_url(); ?>/doctors/dr-merana-sultana/">
+                                <h3><?= $directories_array['title']; ?></h3>
+                            </a>
+                            <p>
+                                <i class="fa fa-graduation-cap fa-lg"
+                                   style="margin-right: 12px; display: inline-block;"></i> <span
+                                        style="color: #16518c;"><strong
+                                            style="display: inline-flex;">MBBS (DU), DMU (Dhaka)</strong></span>
+                            </p>
+                            <p><i class="fa fa-certificate fa-lg" style="margin-right: 20px;"></i>Family Medicine</p>
+                            <p><i class="fa fa-hospital-o fa-lg" style="margin-right: 20px;"></i><span
+                                        style="display: inline-flex;">Health AID Service</span></p>
+                            <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i><?=
+                                $directories_array['address'];
+                                ?></p>
+                            <p><i class="fa fa-money fa-lg" style="margin-right: 16px;"></i>New patient 500 BDT &amp;
+                                Old&nbsp;patient
+                                300 BDT</p>
+
+                            <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+                                 data-a2a-url="<?php echo site_url(); ?>/doctors/dr-merana-sultana/"
+                                 data-a2a-title="Dr. Merana Sultana" style="line-height: 32px;">
+                                <a class="a2a_dd"
+                                   href="https://www.addtoany.com/share#url=https%3A%2F%2Fhasbd.com%2Fdoctors%2Fdr-merana-sultana%2F&amp;title=Dr.%20Merana%20Sultana">
                             <span class="a2a_svg a2a_s__default a2a_s_a2a" style="background-color: rgb(1, 102, 255);">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 32 32">
@@ -229,9 +266,10 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     </g>
                                 </svg>
                             </span>
-                                <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
-                            </a>
-                            <a class="a2a_button_facebook" target="_blank" href="/#facebook" rel="nofollow noopener">
+                                    <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
+                                </a>
+                                <a class="a2a_button_facebook" target="_blank" href="/#facebook"
+                                   rel="nofollow noopener">
                             <span class="a2a_svg a2a_s__default a2a_s_facebook"
                                   style="background-color: rgb(24, 119, 242);">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -242,9 +280,9 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     ></path>
                                 </svg>
                             </span>
-                                <span class="a2a_label">Facebook</span>
-                            </a>
-                            <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
+                                    <span class="a2a_label">Facebook</span>
+                                </a>
+                                <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
                             <span class="a2a_svg a2a_s__default a2a_s_twitter"
                                   style="background-color: rgb(85, 172, 238);">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -255,33 +293,45 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     ></path>
                                 </svg>
                             </span>
-                                <span class="a2a_label">Twitter</span>
-                            </a>
-                            <a class="a2a_button_google_plus"></a>
-                            <div style="clear: both;"></div>
-                        </div>
-                        <script async="" src="https://static.addtoany.com/menu/page.js"></script>
+                                    <span class="a2a_label">Twitter</span>
+                                </a>
+                                <a class="a2a_button_google_plus"></a>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <script async="" src="https://static.addtoany.com/menu/page.js"></script>
 
-                        <br/>
-                        <a href="https://hasbd.com/doctors/dr-merana-sultana/" class="btn btn-default btn-flat bt-new">View
-                            Profile</a>
+                            <br/>
+                            <a href="<?php echo site_url(); ?>/doctors/dr-merana-sultana/"
+                               class="btn btn-default btn-flat bt-new">View Profile</a>
+                        </div>
                     </div>
-                </div>
+                    <?php
+//
+//                    echo '<pre>';
+//                    print_r($directories_array);
+//                    echo '</pre>';
+//                    exit;
+
+
+                } ?>
 
                 <nav>
                     <ul class="pagination theme-colored">
-                        <li class="active"><a href="https://hasbd.com/doctors/">1</a></li>
-                        <li><a href="https://hasbd.com/doctors/page/2/">2</a></li>
-                        <li><a href="https://hasbd.com/doctors/page/3/">3</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
                         <li><a href="#">...</a></li>
-                        <li><a href="https://hasbd.com/doctors/page/356/">356</a></li>
+                        <li><a href="#">356</a></li>
                         <li>
-                            <a href="https://hasbd.com/doctors/page/2/"> <span aria-hidden="true">»</span> </a>
+                            <a href="#"> <span aria-hidden="true">»</span> </a>
                         </li>
                     </ul>
                 </nav>
             </section>
         </main>
+
+
+        <!--        modal for search start-->
 
         <div class="modal fade ng-scope" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true" ng-controller="searchCtrl">
@@ -296,7 +346,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                     <div class="modal-body">
                         <div class="search_box"
                              style="position: relative; width: 100%; margin-bottom: 0; height: auto;">
-                            <form action="https://hasbd.com/doctors"
+                            <form action="<?php echo site_url(); ?>/doctors"
                                   class="avd_search ng-pristine ng-valid ng-valid-required" method="GET">
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -607,10 +657,10 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                     </div>
                 </div>
             </div>
-        </div>
-        <div
-                id="searchLoader"
-                style="position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: url(https://hasbd.com/wp-content/themes/hasbd/images/loading.gif) no-repeat center center; background-color: rgba(0, 0, 0, 0.56); display: none;"
+        </div><!--        modal for search end-->
+
+        <div id="searchLoader"
+             style="position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: url(<?php echo site_url(); ?>/wp-content/themes/hasbd/images/loading.gif) no-repeat center center; background-color: rgba(0, 0, 0, 0.56); display: none;"
         ></div>
         <div class="text-center"></div>
     </div>
