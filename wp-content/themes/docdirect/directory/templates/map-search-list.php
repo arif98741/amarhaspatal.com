@@ -216,7 +216,6 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                             $directories_array['icon'] = get_template_directory_uri() . '/images/map-marker.png';
                         }
                     }
-
                     ?>
 
                     <div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;">
@@ -234,7 +233,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                         </div>
                         <div class="col-md-9 iiiii">
                             <a href="<?php echo site_url(); ?>/doctors/dr-merana-sultana/">
-                                <h3><?= $directories_array['title']; ?></h3>
+                                <h3><?= ucfirst($directories_array['name']); ?></h3>
                             </a>
                             <p>
                                 <i class="fa fa-graduation-cap fa-lg"
