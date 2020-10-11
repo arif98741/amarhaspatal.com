@@ -34,4 +34,6 @@ require_once(get_template_directory() . '/directory/data-importer/importer.php')
 require_once(get_template_directory() . '/inc/class-woocommerce.php'); //woocommerce class
 require_once(get_template_directory() . '/directory/woo-hooks.php'); //woocommerce hooks
 require_once(get_template_directory() . '/inc/class-chat-system.php'); //Chat System Class
+require_once(get_template_directory() . '/customization/library/helper-functions.php'); //Chat System Class
+
 //add_filter('nav_menu_css_class', 'special_nav_class', 10, 2);

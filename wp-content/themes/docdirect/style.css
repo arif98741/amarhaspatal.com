@@ -38,7 +38,8 @@ body {
     color: #5d5955;
     background: #fff;
     overflow-x: hidden;
-    font: 400 14px/20px 'Open Sans', Arial, Helvetica, sans-serif;
+    font: 400 15px/20px 'Open Sans', Arial, Helvetica, sans-serif;
+    line-height: 1.7;
 }
 
 body h1,
@@ -16694,6 +16695,7 @@ figure.doc-featureimg img {
 }
 section.tg-main-section.haslayout {
     margin-top: -10px !important;
+    margin-bottom: 30px;
 }
 
 .info {
@@ -16703,7 +16705,8 @@ section.tg-main-section.haslayout {
     width: 50%;
 }
 .iiiii h3 {
-    color: #dc143c;
+    color: #253e7f;
+    font-weight: 600;
 }
 .h1, .h2, .h3, h1, h2, h3 {
     margin-bottom: 10px;
@@ -16717,4 +16720,31 @@ section.tg-main-section.haslayout {
 }
 .h3, h3 {
     font-size: 24px;
+}
+
+
+.user-profile-dir-list img {
+    width: 318px;
+    height: 300px;
+    border: 1px solid #eee;
+    padding: 5px;
+}
+.fa-lg {
+    font-size: 1.33333333em;
+    line-height: .75em;
+    vertical-align: -15%;
+    font-weight: 900;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #253e7f;
+}
+.btn-default:hover{color: #fff;
+    background-color: #253e7f;
+    border-color: #253e7f;}
+
+.fusion-column-wrapper strong {
+    color: #253e7f !important;
 }

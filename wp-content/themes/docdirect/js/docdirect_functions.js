@@ -1676,5 +1676,4 @@ $.fn.serializeObject = function () {
     $('pre').remove();
     jQuery('.woocommerce-result-count').remove();
 
-
 }));
