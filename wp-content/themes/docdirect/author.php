@@ -8,6 +8,19 @@
  */
 global $wp_query, $current_user;
 $author_profile = $wp_query->get_queried_object();
+
+$userMeta = get_user_meta($author_profile->ID);
+$name = $userMeta['first_name'][0].' '.$userMeta['last_name'][0];
+$address = $userMeta['user_address'][0];
+$tagline = $userMeta['tagline'][0];
+$phone = $userMeta['phone_number'][0];
+$address = $userMeta['user_address'][0];
+$experiences = unserializeData($userMeta['experience'][0]);
+$specialities = unserializeData($userMeta['user_profile_specialities'][0]);
+$schedules = unserializeData($userMeta['schedules'][0]);
+$default_slots = unserializeData($userMeta['default_slots'][0]);
+
+
 do_action('docdirect_update_profile_hits', $author_profile->ID); //Update Profile Hits
 docdirect_set_user_views($author_profile->ID); //Update profile views
 get_header();//Include Headers
@@ -121,11 +134,11 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 <div style="padding-top: 12%; float: right;">
                                     <h3 style="font-weight: bold; font-family: Georgia; text-transform: uppercase; font-size: 32px; text-align: right; margin: 0;"
                                         data-fontsize="26" data-lineheight="39">
-                                        <span style="color: #076b9c; text-shadow: -1px -1px 2px;"><strong><?php echo $firstName[0]; ?></strong></span>
+                                        <span style="color: #076b9c; text-shadow: -1px -1px 2px;"><strong><?php echo $name; ?></strong></span>
                                     </h3>
                                     <div style="text-align: right; margin: 0;" data-fontsize="18" data-lineheight="30">
-                                        <span style="color: #5e5357; font-size: 18px;">MBBS, MD (Nephrology)</span><br/>
-                                        <strong><span style="color: #253e7f;">Nephrologist</span></strong><br/>
+                                        <span style="color: #5e5357; font-size: 18px;"><?php echo $tagline; ?></span><br/>
+                                        <strong><span style="color: #253e7f;1">Nephrologist</span></strong><br/>
                                         <span style="color: #5e5357;">
                             Assistant Professor of Nephrology Department <br/>
                             NATIONAL INSTITUTE OF KIDNEY DISEASE, DHAKA
@@ -169,18 +182,16 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     Info</h3>
                             </div>
                             <div class="">
-                                <p></p>
+                                <?php foreach($experiences as $experience){ ?>
+
                                 <p style="text-align: center;">
-                                    Assistant Professor of Nephrology Department<br/>
-                                    NATIONAL INSTITUTE OF KIDNEY DISEASE, DHAKA
+                                    <?php echo $experience['title']; ?><br/>
+                                    <?php echo strtoupper($experience['company']); ?>
                                 </p>
+
+
                                 <hr/>
-                                <p style="text-align: center;">
-                                    He is a&nbsp;specialist of Nephrology Dept.<br/>
-                                    (Kidney, Ureter, Urinary Bladder related problem)<br/>
-                                    POPULAR DIAGNOSTIC CENTRE LTD | UTTARA BRANCH-02
-                                </p>
-                                <hr/>
+                                <?php } ?>
                                 <p style="text-align: center;">
                                     <strong>Consultation Fee:<br/> </strong>New Appointment Patient : Will Be Published
                                     Soon<strong><br/> </strong>
@@ -249,7 +260,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 <hr/>
                                 <strong>Address:</strong>
                                 <hr/>
-                                House # 25, Road # 7, Sector # 4, Jashim Uddin Moar, Uttara, Dhaka.<br/>
+                                <?php echo $address; ?><br/>
                                 <hr/>
                                 <strong>Available Day &amp; Time</strong><br/>
                                 <hr/>
@@ -257,7 +268,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 <hr/>
                                 <strong>Appointment Contact</strong><br/>
                                 <hr/>
-                                +880 9613787805
+                             <?php echo $phone; ?>
                             </div>
                         </div>
                     </div>
@@ -918,6 +929,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 //user loop
                                 foreach ($users as $key => $user) {
 
+
                                     $directories_array['fax'] = $user->fax;
                                     $directories_array['description'] = $user->description;
                                     $directories_array['title'] = $user->display_name;
@@ -956,11 +968,11 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                     <?php endif; ?>
                                                 </div>
                                                 <div style="flex: 2;">
-                                                    <a href="https://hasbd.com/doctors/prof-dr-brig-gen-md-moklesur-rahman/"
+                                                    <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
                                                        style="text-decoration: none;">
                                                         <h5><?php echo ucfirst($directories_array['name']); ?></h5></a>
                                                     <p style="font-size: 12px; color: #253e7f; font-weight: bold;">
-                                                        MBBS(DHAKA), FCPS(MEDICINE)</p>
+                                                        MBBS(DHAKA)`, FCPS(MEDICINE)</p>
                                                 </div>
                                             </div>
                                             <p>POPULAR DIAGNOSTIC CENTRE LTD. | MIRPUR BRANCH</p>

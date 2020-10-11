@@ -128,7 +128,7 @@ define('WP_CACHE_KEY_SALT', 'J~sKgYx7eaJATR7D|>`Ml+R-;[8q22Z.Ow?Jf^`.sXS`cEbY/eM
 
 $table_prefix = 'wp_';
 
-define('WP_DEBUG', false);
+define('WP_DEBUG', true);
 
 define('WP_DEBUG_LOG', true);
 

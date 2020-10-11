@@ -26,6 +26,7 @@ $show_users = !empty($atts['show_users']) ? $atts['show_users'] : 10;
 
 $directory_type = esc_html($_GET['directory_type']);
 
+
 /*
 $division_id = esc_html($_GET['division_id']);
 $district_id = esc_html($_GET['district_id']);
@@ -90,6 +91,7 @@ if (!empty($directory_type)) {
             )
         );
     } else {
+
         $meta_query = array(
             'relation' => 'AND',
             array(
@@ -137,7 +139,7 @@ $order = 'ASC';
 if (isset($_GET)) {
     $order = esc_html($_GET['order']);
 }*/
-$paginationData = searchPagination($meta_query, 3);
+$paginationData = searchPagination($meta_query, 10);
 
 
 $query_args = array(
@@ -148,9 +150,18 @@ $query_args = array(
     'offset' => $paginationData['offset'],
 );
 
+
 $user_query = new WP_User_Query($query_args);
 $total_users = !empty($user_query->total_users) ? $user_query->total_users : 0;
 $found_title = docdirect_get_found_title($total_users, $directory_type);
+foreach ($user_query->results as $key => $user) {
+    $meta = get_user_meta($user->ID);
+    echo '<pre>';
+    print_r($meta);
+    echo '</pre>';
+
+
+}
 
 if (isset($search_page_map) && $search_page_map === 'enable') {
     ?>
@@ -357,7 +368,8 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 
     <!--        modal for search start-->
 
-    <div class="modal fade ng-scope search-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade ng-scope search-modal" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel"
          aria-hidden="true" ng-controller="searchCtrl">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
