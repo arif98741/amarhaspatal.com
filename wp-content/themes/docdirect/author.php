@@ -18,7 +18,11 @@ $address = $userMeta['user_address'][0];
 $experiences = unserializeData($userMeta['experience'][0]);
 $specialities = unserializeData($userMeta['user_profile_specialities'][0]);
 $schedules = unserializeData($userMeta['schedules'][0]);
-$default_slots = unserializeData($userMeta['default_slots'][0]);
+//echo '<pre>';
+//print_r($userMeta);
+//echo '</pre>';
+//exit;
+
 
 
 do_action('docdirect_update_profile_hits', $author_profile->ID); //Update Profile Hits
@@ -131,18 +135,20 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     class="fusion-column-wrapper"
                                     style="background-position: left top; background-repeat: no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;"
                                     data-bg-url="">
-                                <div style="padding-top: 12%; float: right;">
+                                <div style="padding-top: 3%; float: right;">
                                     <h3 style="font-weight: bold; font-family: Georgia; text-transform: uppercase; font-size: 32px; text-align: right; margin: 0;"
                                         data-fontsize="26" data-lineheight="39">
                                         <span style="color: #076b9c; text-shadow: -1px -1px 2px;"><strong><?php echo $name; ?></strong></span>
                                     </h3>
-                                    <div style="text-align: right; margin: 0;" data-fontsize="18" data-lineheight="30">
+                                    <div style="text-align: right; margin: 0; border: 0px solid red;" data-fontsize="18" data-lineheight="30">
                                         <span style="color: #5e5357; font-size: 18px;"><?php echo $tagline; ?></span><br/>
                                         <strong><span style="color: #253e7f;1">Nephrologist</span></strong><br/>
                                         <span style="color: #5e5357;">
                             Assistant Professor of Nephrology Department <br/>
                             NATIONAL INSTITUTE OF KIDNEY DISEASE, DHAKA
                         </span>
+                        <br/>
+                        <button class="tg-btn-lg make-appointment-btn" type="button" data-toggle="modal" data-target=".tg-appointmentpopup">MAKE AN APPOINTMENT!</button>
                                     </div>
                                 </div>
                                 <div class="fusion-clearfix"></div>

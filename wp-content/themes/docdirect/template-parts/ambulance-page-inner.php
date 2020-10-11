@@ -9,6 +9,104 @@ get_header();
 
 <!-- mostafiz start -->
 
+<!-- Slider -->
+<div style="border: 0px solid red;" class="main-content container-fluid mslc">
+                <!-- <h1>Mostafizur</h1> -->
+
+                <main id="main" class="site-main" role="main">
+                    <!-- TESTIMONIALS -->
+            <?php
+
+            $meta_query = array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'directory_type',
+                    'value' => '127',
+                    'compare' => '='
+                )
+            );
+
+            $query_args = array(
+                'order' => 'asc',
+                'orderby' => 'id',
+                'meta_query' => $meta_query,
+                'posts_per_page' => 3,
+
+            );
+
+            $user_query = new WP_User_Query($query_args);
+            $users = $user_query->get_results();
+            ?>
+            
+            <section style="margin-bottom: 30px;">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="page-header">
+                            <h1 style="text-align: center;">Ambulance Images</h1>
+
+                        </div>
+                        <div class="col-sm-12">
+                            <div id="customers-testimonials" class="owl-carousel mostafizz">
+                                <!--TESTIMONIAL 1 -->
+                                <?php
+                                //user loop
+                                foreach ($users as $key => $user) {
+
+                                    $directories_array['fax'] = $user->fax;
+                                    $directories_array['description'] = $user->description;
+                                    $directories_array['title'] = $user->display_name;
+                                    $directories_array['name'] = $user->first_name . ' ' . $user->last_name;
+                                    $directories_array['user_nicename'] = $user->data->user_nicename;
+                                    $directories_array['email'] = $user->user_email;
+                                    $directories_array['phone_number'] = $user->phone_number;
+                                    $directories_array['address'] = $user->user_address;
+                                    $directories_array['car_no'] = $user->car_no;
+                                    $avatar = apply_filters(
+                                        'docdirect_get_user_avatar_filter',
+                                        docdirect_get_user_avatar(array('width' => 270, 'height' => 270), $user->ID),
+                                        array('width' => 270, 'height' => 270)
+                                    );
+
+
+                                    ?>
+                                    <div class="item ambulance-img" style="border: 0px solid red;">
+                                        <div>
+                                            
+                                            <div style="display: flex;">
+                                                <div style="    border: 1px solid #ddd;
+    margin: 10px;
+    flex: 1;
+    height: fit-content;
+    padding: 5px;
+    ">
+                                                    <?php if (empty($avatar)): ?>
+
+                                                            <img src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg"
+                                                                 alt="<?= $directories_array['title'] . ' - ' . site_url(); ?>"/>
+                                                    <?php else: ?>
+
+                                                            <img src="<?= $avatar ?>"
+                                                                 alt="<?= $directories_array['name'] . ' - ' . site_url(); ?>"/>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php wp_reset_query();
+                                } ?>
+
+                                <!--END OF TESTIMONIAL 1 -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END OF TESTIMONIALS -->
+                </main>
+</div>
+<!-- Slider -->
 
 <div style="border: 0px solid red;" class="main-content container-fluid mslc">
                 <!-- <h1>Mostafizur</h1> -->
@@ -42,13 +140,15 @@ get_header();
                 <div class="container">
 
 
+
+
                     <div class="row">
                         <div class="page-header">
                             <h1 style="text-align: center;">Related Hospitals</h1>
 
                         </div>
                         <div class="col-sm-12">
-                            <div id="customers-testimonials" class="owl-carousel mostafiz">
+                            <div id="customers-testimonialss" class="owl-carousel mostafiz">
                                 <!--TESTIMONIAL 1 -->
                                 <?php
                                 //user loop
@@ -402,6 +502,17 @@ get_header();
         margin-left: -70px;
     }
 
+    .mostafizz > .owl-nav .owl-next {
+        background-color: #253e7f42;
+        margin-right: -70px;
+            margin-top: 20px;
+    }
+    .mostafizz > .owl-nav .owl-prev {
+        background-color: #253e7f42;
+        margin-left: -70px;
+            margin-top: 20px;
+    }
+
     .mostafiz > .owl-nav .owl-next {
         background-color: #253e7f42;
         margin-right: -70px;
@@ -427,6 +538,30 @@ get_header();
     jQuery(document).ready(function ($) {
         "use strict";
         $('#customers-testimonials').owlCarousel({
+            loop: true,
+            center: true,
+            items: 5,
+            margin: 30,
+            autoplay: true,
+            dots: false,
+            nav: true,
+            autoplayTimeout: 8500,
+            smartSpeed: 450,
+            navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 2
+                },
+                1170: {
+                    items: 3
+                }
+            }
+        });
+
+        $('#customers-testimonialss').owlCarousel({
             loop: true,
             center: true,
             items: 3,
@@ -470,6 +605,9 @@ get_header();
     .mslc {
         padding: 2px 48px;
     }
+    .ambulance-img img {
+    height: 200px;
+}
 </style>
 
 <!-- mostafiz end -->

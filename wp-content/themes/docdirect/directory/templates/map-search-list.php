@@ -160,7 +160,6 @@ foreach ($user_query->results as $key => $user) {
     print_r($meta);
     echo '</pre>';
 
-
 }
 
 if (isset($search_page_map) && $search_page_map === 'enable') {
