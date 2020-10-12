@@ -11883,14 +11883,11 @@ select option:disabled {
 
 .make-appointment-btn {
     font-size: 14px;
-    width: 224px;
-    padding: 0 15px;
+    width: 180px;
     margin-top: 20px;
     color: #FFF !important;
-    background: #7dbb00 !important;
     border-radius: 2px;
-    height: 50px;
-    line-height: 47px;
+    line-height: 40px;
 }
 
 .user-section-style {

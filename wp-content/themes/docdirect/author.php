@@ -15,15 +15,15 @@ $address = $userMeta['user_address'][0];
 $tagline = $userMeta['tagline'][0];
 $phone = $userMeta['phone_number'][0];
 $address = $userMeta['user_address'][0];
+$bmdc_registration_no = $userMeta['bmdc_registration_no'][0];
 $experiences = unserializeData($userMeta['experience'][0]);
 $specialities = unserializeData($userMeta['user_profile_specialities'][0]);
 $schedules = unserializeData($userMeta['schedules'][0]);
-//echo '<pre>';
-//print_r($userMeta);
-//echo '</pre>';
-//exit;
-
-
+$avatar = apply_filters(
+    'docdirect_get_user_avatar_filter',
+    docdirect_get_user_avatar(array('width' => 270, 'height' => 270), $author_profile->ID),
+    array('width' => 270, 'height' => 270) //size width,height
+);
 
 do_action('docdirect_update_profile_hits', $author_profile->ID); //Update Profile Hits
 docdirect_set_user_views($author_profile->ID); //Update profile views
@@ -34,8 +34,8 @@ $schedule_time_format = isset($author_profile->time_format) ? $author_profile->t
 $privacy = docdirect_get_privacy_settings($author_profile->ID); //Privacy settings
 $db_timezone = get_user_meta($author_profile->ID, 'default_timezone', true);
 $time_zone = get_user_meta($author_profile->ID, 'default_timezone', true);
-$slots = get_user_meta($author_profile->ID, 'default_slots')[0];
 
+$slots = get_user_meta($author_profile->ID, 'default_slots')[0];
 
 if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && function_exists('fw_get_db_settings_option')) {
     if (apply_filters('docdirect_is_visitor', $author_profile->ID) === false) {
@@ -121,9 +121,17 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                             data-animationduration="0.9"
                             data-animationoffset="100%"
                     >
-                        <img src="https://hasbd.com/wp-content/themes/hasbd/images/doctor.jpg" width=""
-                             style="height: 300px; border-radius: 100%; width: 320px;" height="250" alt="" title=""
-                             class="img-responsive"/>
+
+
+                         <?php if (empty($avatar)): ?>
+
+                                    <img class="img-responsive" src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg"
+                                         alt="<?= $name . ' - ' . site_url(); ?>"  style="height: 300px; border-radius: 100%; width: 320px; margin: 0 auto;" height="250" title="<?php echo $name ?> - <?php echo site_url(); ?>"/>
+                         <?php else: ?>
+
+                                    <img class="img-responsive" src="<?= $avatar ?>"
+                                         alt="<?= $name . ' - ' . site_url(); ?>" style="height: 300px; border-radius: 100%; width: 320px;" height="250" title="<?php echo $name ?> - <?php echo site_url(); ?>"/>
+                         <?php endif; ?>
                     </span>
                                 </div>
                                 <div class="fusion-clearfix"></div>
@@ -148,7 +156,8 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                             NATIONAL INSTITUTE OF KIDNEY DISEASE, DHAKA
                         </span>
                         <br/>
-                        <button class="tg-btn-lg make-appointment-btn" type="button" data-toggle="modal" data-target=".tg-appointmentpopup">MAKE AN APPOINTMENT!</button>
+                                        <p>BMDC Registration No: <span><strong><?php echo $bmdc_registration_no; ?></strong></span></p>
+                        <button class="tg-btn-lg make-appointment-btn" type="button" data-toggle="modal" data-target=".tg-appointmentpopup" title="<?php if(is_user_logged_in() == false): ?> Please login first to make appointment <?php endif; ?>">Make an Appointment!</button>
                                     </div>
                                 </div>
                                 <div class="fusion-clearfix"></div>
@@ -269,6 +278,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 <?php echo $address; ?><br/>
                                 <hr/>
                                 <strong>Available Day &amp; Time</strong><br/>
+
                                 <hr/>
                                 6:00 PM to 9:00 PM [Except Friday]
                                 <hr/>
@@ -312,8 +322,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                             <div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div>
                                             <div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;">
                                                 <div style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0; left: -14px; top: -40px; z-index: 3;">
-                                                    <img
-                                                            alt=""
+                                                    <img  alt=""
                                                             src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png"
                                                             draggable="false"
                                                             usemap="#gmimap0"
@@ -342,9 +351,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                     </map>
                                                 </div>
                                                 <div style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0; left: -15px; top: -16px; z-index: 27;">
-                                                    <img
-                                                            alt=""
-                                                            src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png"
+                                                    <img  alt="" src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png"
                                                             draggable="false"
                                                             usemap="#gmimap2"
                                                             style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"
@@ -852,7 +859,36 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                     <script async="" defer=""
                             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0PT_dg83oIexTOYRwnDziZlbqQlZmYVo&amp;callback=initMap"></script>
             </div>
-            <div id="shareThisStory"
+            
+
+
+            <!-- TESTIMONIALS -->
+            <?php
+
+            $meta_query = array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'directory_type',
+                    'value' => '127',
+                    'compare' => '='
+                )
+            );
+
+            $query_args = array(
+                'order' => 'asc',
+                'orderby' => 'id',
+                'meta_query' => $meta_query,
+                'posts_per_page' => 3,
+
+            );
+
+            $user_query = new WP_User_Query($query_args);
+            $users = $user_query->get_results();
+            ?>
+            <section style="margin-bottom: 30px;">
+                <div class="container-fluid mslc">
+
+                    <div id="shareThisStory"
                  style="background: #f4f4f4; height: 62px; display: block; position: relative; overflow: hidden; width: 100%; margin-top: 30px; margin-bottom: 20px; padding: 16px 8px;">
                 <h3 style="margin: 0; float: left;">Share This Story, Choose Your Platform!</h3>
 
@@ -894,42 +930,14 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                 </div>
                 <script async="" src="https://static.addtoany.com/menu/page.js"></script>
             </div>
-
-
-            <!-- TESTIMONIALS -->
-            <?php
-
-            $meta_query = array(
-                'relation' => 'AND',
-                array(
-                    'key' => 'directory_type',
-                    'value' => '127',
-                    'compare' => '='
-                )
-            );
-
-            $query_args = array(
-                'order' => 'asc',
-                'orderby' => 'id',
-                'meta_query' => $meta_query,
-                'posts_per_page' => 3,
-
-            );
-
-            $user_query = new WP_User_Query($query_args);
-            $users = $user_query->get_results();
-            ?>
-            <section style="margin-bottom: 30px;">
-                <div class="container">
-
-
+            
                     <div class="row">
                         <div class="page-header">
                             <h1 style="text-align: center;">Related Specialized Doctors</h1>
 
                         </div>
                         <div class="col-sm-12">
-                            <div id="customers-testimonials" class="owl-carousel mostafiz">
+                            <div id="customers-testimonials" class="owl-carousel mostafizd">
                                 <!--TESTIMONIAL 1 -->
                                 <?php
                                 //user loop
@@ -1014,13 +1022,13 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
             </div>
 
         <?php } else { ?>
-            <div class="container">
+            <div class="container-fluid mslc">
                 <?php DoctorDirectory_NotificationsHelper::informations(esc_html__('You are not allowed to view this page. This users has expired or didn\'t subscribed to any package', 'docdirect')); ?>
             </div>
         <?php } ?>
 
     <?php } else { ?>
-        <div class="container">
+        <div class="container-fluid mslc">
             <?php DoctorDirectory_NotificationsHelper::informations(esc_html__('Oops! you are not allowed to access this page.', 'docdirect')); ?>
         </div>
     <?php } ?>
@@ -1367,14 +1375,14 @@ do_action('am_chat_modal', $author_profile->ID);
         overflow: visible !important;
     }
 
-    .mostafiz > .owl-nav .owl-prev {
+    .mostafizd > .owl-nav .owl-prev {
         background-color: #253e7f42;
-        margin-left: -70px;
+        margin-left: 70px;
     }
 
-    .mostafiz > .owl-nav .owl-next {
+    .mostafizd > .owl-nav .owl-next {
         background-color: #253e7f42;
-        margin-right: -70px;
+        margin-right: 70px;
     }
 
     .mostafiz > .owl-stage-outer > .owl-stage .owl-item {
@@ -1435,11 +1443,91 @@ do_action('am_chat_modal', $author_profile->ID);
             border: 1px solid #eee;
             padding: 5px;
         }
+        .info{width: 95%;     margin: 10px !important;}
+        .chamber{width: 95%;     margin: 10px;}
+        div#customers-testimonials {margin: 10px;
+}
+
     }
 
     .mslc {
         padding: 2px 48px;
     }
+    @media screen and (max-width: 480px) {
+    #hospitalsCalculator table {
+        width: 100%;
+        display: block;
+        overflow: scroll;
+    }
+    #registerContainer,
+    #loginContainer {
+        width: 90% !important;
+    }
+    #home-consultation-form {
+        height: 600px !important;
+    }
+}
+@media screen and (max-width: 900px) {
+    .menu-menu-container,
+    .showhide,
+    #homeSlider {
+        display: none !important;
+    }
+    #mobileSearch {
+        display: block !important;
+        position: relative !important;
+        width: 100%;
+    }
+    .widget .menu-menu-container {
+        display: block !important;
+    }
+    .fusion-layout-column {
+        width: 100% !important;
+    }
+    div#second-row {
+        display: block !important;
+    }
+    div#shareThisStory {
+        height: auto !important;
+    }
+    #main {
+        padding: 0 !important;
+    }
+    #ambulance {
+        height: 200px !important;
+        background-size: 100% 200px !important;
+    }
+    .modal-body,
+    .modal-body > .search-box {
+        height: auto !important;
+    }
+    .latestPostDate,
+    .latestPostTitle {
+        margin-left: 0 !important;
+    }
+    .postsRow > .col-md-3 {
+        width: 90% !important;
+        margin-bottom: 15px;
+    }
+    .postInfo {
+        margin-top: 33px !important;
+    }
+    #home-consultation-form {
+        height: 600px !important;
+    }
+    #proflie-info {
+        width: 100% !important;
+        height: auto !important;
+        margin-left: -15px !important;
+    }
+}
+
+
+
+
+
+
+
 </style>
 
 
