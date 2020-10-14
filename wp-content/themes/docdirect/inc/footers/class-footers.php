@@ -248,7 +248,10 @@ if (!class_exists('docdirect_footers')) {
 
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="copyright-text">&copy;Copyright: amarhaspatal.com - 2020</p>
+
+
+
+                                <p class="copyright-text">Copyright ©<?= date('Y') ?> AMARHASPATAL.COM. All Rights Reserved</p>
                             </div>
 
                             <div class="col-md-6">

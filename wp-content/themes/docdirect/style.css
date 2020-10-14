@@ -16745,3 +16745,21 @@ section.tg-main-section.haslayout {
 .fusion-column-wrapper strong {
     color: #253e7f !important;
 }
+
+.scrollToTop {
+    background: rgba(0, 0, 0, .1);
+    bottom: 15px;
+    display: none;
+    height: 50px;
+    padding: 2px;
+    position: fixed;
+    right: 15px;
+    text-align: center;
+    text-decoration: none;
+    width: 50px;
+    z-index: 99999;
+}
+.scrollToTop i {
+    color: #fff;
+    font-size: 42px;
+}
