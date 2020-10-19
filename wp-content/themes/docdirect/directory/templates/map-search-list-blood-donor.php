@@ -172,12 +172,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 
                 foreach ($user_query->results as $key => $user) {
 
-
                     $directory_type = get_user_meta($user->ID, 'directory_type', true);
-//                    echo '<pre>';
-//                    print_r(get_user_meta($user->ID ));
-//                    echo '</pre>';
-//                    exit;
                     $dir_map_marker = fw_get_db_post_option($directory_type, 'dir_map_marker', true);
                     $reviews_switch = fw_get_db_post_option($directory_type, 'reviews', true);
                     $current_date = date('Y-m-d H:i:s');

@@ -56,3 +56,61 @@ if (!function_exists('custom_override_checkout_fields')) {
 
     add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields');
 }
+
+/**
+ * Get Category
+ * @param $taxonomy
+ * @param string $order
+ * @return array
+ */
+if (!function_exists('getPostTermCategory')) {
+
+    function getPostTermCategory($taxonomy, $order = 'asc')
+    {
+        $term_query = new WP_Term_Query([
+            'taxonomy' => $taxonomy,
+            'order' => $order,
+            'hide_empty' => false,
+            'parent' => 0
+        ]);
+        $categories = [];
+        foreach ($term_query->terms as $term) {
+            $categories[] = $term;
+        }
+        return $categories;
+    }
+}
+
+/**
+ * Get Child Categories of Parent
+ * @param $taxonomy
+ * @param $parentId
+ * @param string $order
+ * @return array
+ */
+if (!function_exists('getPostTermChildCategory')) {
+
+    function getPostTermChildCategory($taxonomy, $parentId, $order = 'asc')
+    {
+        $term_query = new WP_Term_Query([
+            'taxonomy' => $taxonomy,
+            'order' => $order,
+            'hide_empty' => false,
+            'parent' => $parentId
+        ]);
+        $categories = [];
+        foreach ($term_query->terms as $term) {
+            $categories[] = $term;
+        }
+        return $categories;
+    }
+}
+
+if (!function_exists('session_store_custom')) {
+    function session_store_custom()
+    {
+        global  $wp_session;
+        $wp_session  = WP_Session_Tokens::get_instance();
+
+    }
+}

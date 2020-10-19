@@ -41,6 +41,7 @@ if (!defined('ABSPATH')) {
 
             <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary upload-prescription-btn">Upload
                 Prescription</a>
+            <br>
 
 
         </div>
@@ -92,8 +93,57 @@ if (!defined('ABSPATH')) {
             </style>
         </div>
     </div>
+    <div class="row" style="margin: 0; padding: 0">
+        <div class="col-md-4">
+            <?php
+            session_store_custom();
+
+
+          /*  function register_session_new(){
+                if( ! session_id() ) {
+                    session_start();
+                }
+            }
+            add_action('init', 'register_session_new');
+
+            if (isset($_POST['location']) && !empty($_POST['location'])) {
+
+                function new_session_register(){
+                    if( ! session_id() ) {
+                        session_start();
+                    }
+                }
+                add_action('init', 'new_session_register');
+                $_SESSION['menu_lang'] = "english";
+            }
+*/
+            ?>
+            <form action="<?php echo site_url(); ?>/shop" method="post">
+                <?php
+                $districts = getPostTermChildCategory('product_cat', 184);
+                ?>
+                <select name="location" required>
+                    <option value="">Select District</option>
+                    <?php foreach ($districts as $district) { ?>
+                        <option value="<?= $district->slug; ?>" <?php if (isset($_SESSION['location']) && $district->slug == $_SESSION['location']): ?> selected <?php endif; ?>><?= $district->name ?></option>
+                    <?php } ?>
+                </select>
+                <button class="btn btn-sm btn-primary" style="margin-top: 3px" type="submit">Select</button>
+            </form>
+            <?php echo $_SESSION['menu_lang']; ?>
+        </div>
+    </div>
     <br>
 </div>
+</div>
+
+<!--popup modal for showing location selection-->
+<?php
+//echo $_SESSION['menu_lang']; exit;
+?>
+
+<!--popup modal for showing location selection-->
+
 
 
 
