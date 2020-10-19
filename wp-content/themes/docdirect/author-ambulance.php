@@ -10,11 +10,14 @@ global $wp_query, $current_user;
 $author_profile = $wp_query->get_queried_object();
 
 $userMeta = get_user_meta($author_profile->ID);
+
 $name = $userMeta['first_name'][0] . ' ' . $userMeta['last_name'][0];
 $address = $userMeta['user_address'][0];
 $tagline = $userMeta['tagline'][0];
 $phone = $userMeta['phone_number'][0];
+$email = $userMeta['billing_email'][0];
 $address = $userMeta['user_address'][0];
+
 $experiences = unserializeData($userMeta['experience'][0]);
 $specialities = unserializeData($userMeta['user_profile_specialities'][0]);
 $schedules = unserializeData($userMeta['schedules'][0]);
@@ -152,8 +155,9 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     <div style="text-align: right; margin: 0; border: 0px solid red;" data-fontsize="18" data-lineheight="30">
                                         <span style="color: #5e5357; font-size: 18px;"><?php echo $tagline; ?></span><br/>
                                         <br/>
-                                        <p>Phone: <strong><?php echo (!empty($phone)) ? $phone : 'N/A'; ?></strong></p>
-                                        <p>Address: <?php echo (!empty($address)) ? $address : 'N/A'; ?></p>
+                                        <p><i class="fa fa-phone"></i>Phone: <strong><?php echo (!empty($phone)) ? $phone : 'N/A'; ?></strong></p>
+                                        <p><i class="fa fa-envelope"></i> Email: <strong><?php echo (!empty($email)) ? $email : 'N/A'; ?></strong></p>
+                                        <p><i class="fa fa-map-marker fa-lg"></i>Address: <?php echo (!empty($address)) ? $address : 'N/A'; ?></p>
                                         <button onclick="window.location='<?php echo site_url(); ?>/ambulance-booking'" class="tg-btn-lg make-appointment-btn"  type="button">
                                             Book Ambulance
                                         </button>
@@ -207,87 +211,16 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     <hr/>
                                 <?php } ?>
                                 <p style="text-align: center;">
-                                    <strong>Specialities:<br/> </strong>New Appointment Patient : Will Be Published
-                                    Soon<strong><br/> </strong>
+                                    <strong>Specialities:<br/> </strong>
                                 </p>
-                                <p></p>
+                               <?php
+                               foreach ($specialities as $item) {
+                                   echo '<p>'.$item.',</p>';
+                                }
+                               ?>
                             </div>
                         </div>
-                        <div class="chamber"
-                             style="background: #f0f1f3; color: black; border: 1px solid #f2dedf; padding: 0px; border-radius: 5px;">
-                            <div class="page-header bg-primary"
-                                 style="background: #253e7f; text-align: center; margin-top: 0px; padding: 0px; margin-bottom: 0px;">
-                                <h3 style="color: white; margin-top: 0px; padding-top: 10px; text-transform: uppercase; font-size: 16px;">
-                                    Chamber and Schedule</h3>
-                            </div>
-                            <style>
-                                .collapse hr {
-                                    margin: 0px;
-                                    border-top: 1px solid #ccc;
-                                }
 
-                                a.hospital-title-button {
-                                    background: #6b6b6b;
-                                    font-family: Agency FB, serif;
-                                    font-size: 20px;
-                                    font-weight: bold;
-                                    color: white !important;
-                                    border: 0px;
-                                    width: 100%;
-                                    padding: 10px 0px;
-                                    border-bottom: 1px solid #e5e5e5;
-                                    line-height: inherit;
-                                    border-radius: 0 !important;
-                                }
-
-                                a.hospital-title-button:hover,
-                                a.hospital-title-button:visited,
-                                a.hospital-title-button:active,
-                                a.hospital-title-button:focus {
-                                    color: white !important;
-                                }
-
-                                .blink {
-                                    animation: blinker 3000ms linear infinite;
-                                }
-
-                                @keyframes blinker {
-                                    10% {
-                                        color: #6b6b6b;
-                                    }
-                                    70% {
-                                        color: white;
-                                    }
-                                }
-                            </style>
-                            <a class="btn btn-block hospital-title-button blink"
-                               href="https://hasbd.com/diagnostics/popular-diagnostic-centre-ltd-uttara-branch-02/"
-                               data-toggle="collapse" data-target="#chamber1" style="">
-                                POPULAR DIAGNOSTIC CENTRE LTD | UTTARA BRANCH-02
-                            </a>
-                            <div id="chamber1" class="collapse in" style="padding: 0px 5px;">
-                                <p>
-                                    <strong>Department: </strong> Nephrology Department <br/>
-                                    He is a specialist of Nephrology Dept. (Kidney, Ureter, Urinary Bladder related
-                                    problem)
-                                </p>
-                                <hr/>
-                                <strong>Address:</strong>
-                                <hr/>
-                                <?php echo $address; ?><br/>
-                                <hr/>
-                                <strong>Available Day &amp; Time</strong><br/>
-
-                                <hr/>
-                                6:00 PM to 9:00 PM [Except Friday]
-                                <hr/>
-                                <strong>Appointment Contact</strong><br/>
-                                <hr/>
-                                <?php echo $phone; ?>
-                            </div>
-
-                           
-                        </div>
                     </div>
                     <hr/>
 
