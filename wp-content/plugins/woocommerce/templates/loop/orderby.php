@@ -24,7 +24,8 @@ if (!defined('ABSPATH')) {
 
 
     @media only screen and (max-width: 768px) {
-        .woocommerce ul.products[class*=columns-] li.product, .woocommerce-page ul.products[class*=columns-] li.product {
+        .woocommerce ul.products[class*=columns-] li.product,
+        .woocommerce-page ul.products[class*=columns-] li.product {
             padding: 4px 5px;
 
         }
@@ -39,8 +40,7 @@ if (!defined('ABSPATH')) {
     <div class="row">
         <div class="col-md-2 col-xs-5 pull-left prescription-block">
 
-            <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary upload-prescription-btn">Upload
-                Prescription</a>
+            <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary upload-prescription-btn">Upload Prescription</a>
             <br>
 
 
@@ -96,27 +96,7 @@ if (!defined('ABSPATH')) {
     <div class="row" style="margin: 0; padding: 0">
         <div class="col-md-4">
             <?php
-            session_store_custom();
-
-
-          /*  function register_session_new(){
-                if( ! session_id() ) {
-                    session_start();
-                }
-            }
-            add_action('init', 'register_session_new');
-
-            if (isset($_POST['location']) && !empty($_POST['location'])) {
-
-                function new_session_register(){
-                    if( ! session_id() ) {
-                        session_start();
-                    }
-                }
-                add_action('init', 'new_session_register');
-                $_SESSION['menu_lang'] = "english";
-            }
-*/
+    
             ?>
             <form action="<?php echo site_url(); ?>/shop" method="post">
                 <?php
@@ -130,7 +110,7 @@ if (!defined('ABSPATH')) {
                 </select>
                 <button class="btn btn-sm btn-primary" style="margin-top: 3px" type="submit">Select</button>
             </form>
-            <?php echo $_SESSION['menu_lang']; ?>
+            <?php //echo $_SESSION['menu_lang']; ?>
         </div>
     </div>
     <br>
@@ -143,6 +123,16 @@ if (!defined('ABSPATH')) {
 ?>
 
 <!--popup modal for showing location selection-->
+
+<!--owl carousel-->
+<link href="<?php echo get_template_directory_uri() ?>/css/owl.carousel.min.css" rel="stylesheet">
+<script src="<?php echo get_template_directory_uri() ?>/js/owl.carousel.min.js"></script>
+<script>
+    jQuery(document).ready(function () {
+
+    });
+</script>
+<!--owl carousel-->
 
 
 

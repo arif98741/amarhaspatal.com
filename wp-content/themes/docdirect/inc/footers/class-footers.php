@@ -475,10 +475,10 @@ if (!class_exists('docdirect_footers')) {
                                     <div class='fa fa-caret-down right'></div>
                                 </a>
                                 <ul>
-                                    <li><a href="https://amarhaspatal.com/category/male-health/">Male Health</a></li>
-                                    <li><a href="https://amarhaspatal.com/category/female-health/">Female Health</a>
+                                    <li><a href="<?php echo site_url(); ?>/category/male-health/">Male Health</a></li>
+                                    <li><a href="<?php echo site_url(); ?>/category/female-health/">Female Health</a>
                                     </li>
-                                    <li><a href="https://amarhaspatal.com/category/baby-health/">Baby Health</a></li>
+                                    <li><a href="<?php echo site_url(); ?>/category/baby-health/">Baby Health</a></li>
 
                                 </ul>
                             </li>

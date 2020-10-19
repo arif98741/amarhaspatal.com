@@ -1,3 +1,4 @@
+
 <?php
 /*
 Template Name: Ambulence Booking
@@ -748,14 +749,6 @@ if (isset($_POST['ambulance_type'])) {
     </style>
     <div class="container">
         <div class="wrapper wrapper--w900">
-
-            <?php if ($message != ''): ?>
-                <?php
-                echo $message;
-                ?>
-            <?php
-            endif;
-            ?>
 
             <button class="button blue" onclick="goBack()">Back</button>
             <script>

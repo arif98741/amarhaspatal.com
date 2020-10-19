@@ -180,35 +180,35 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 <?php } ?>
     <div class="container">
         <?php if ($directory_type == 127): ?>
-            <div class="map-top" style="background-image: url(https://amarhaspatal.com/wp-content/uploads/directory-list-banner/doctor.png);
+            <div class="map-top" style="background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/doctor.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center !important;
 ">
             </div>
         <?php elseif ($directory_type == 123): ?>
-            <div class="map-top" style="background-image: url(https://amarhaspatal.com/wp-content/uploads/directory-list-banner/ambulance.png);
+            <div class="map-top" style="background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/ambulance.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center !important;
 ">
             </div>
         <?php elseif ($directory_type == 122): ?>
-            <div class="map-top" style="background-image: url(https://amarhaspatal.com/wp-content/uploads/directory-list-banner/blood.png);
+            <div class="map-top" style="background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/blood.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center !important;
 ">
             </div>
         <?php elseif ($directory_type == 121): ?>
-            <div class="map-top" style="background-image: url(https://amarhaspatal.com/wp-content/uploads/directory-list-banner/diagnostics.png);
+            <div class="map-top" style="background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/diagnostics.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center !important;
 ">
             </div>
         <?php elseif ($directory_type == 126): ?>
-            <div class="map-top" style="background-image: url(https://amarhaspatal.com/wp-content/uploads/directory-list-banner/hospital.png);
+            <div class="map-top" style="background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/hospital.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center !important;
