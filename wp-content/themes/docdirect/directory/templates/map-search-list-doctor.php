@@ -26,22 +26,9 @@ $show_users = !empty($atts['show_users']) ? $atts['show_users'] : 10;
 
 $directory_type = esc_html($_GET['directory_type']);
 
-
 $division_id = isset($_GET['division_id']) ? esc_html($_GET['division_id']) : '';
 $district_id = isset($_GET['district_id']) ? esc_html($_GET['district_id']) : '';
 $upazila_id = isset($_GET['upazila_id']) ? esc_html($_GET['upazila_id']) : '';
-if ($directory_type == 127) {
-    $Type = 'Doctor';
-} else if ($directory_type == 123) {
-    $Type = 'Ambulance';
-} else if ($directory_type == 126) {
-    $Type = 'Hospital';
-} else if ($directory_type == 122) {
-    $Type = 'Blood Donor';
-} else if ($directory_type == 121) {
-    $Type = 'Diagonostics';
-}
-
 
 if (!empty($directory_type)) {
 
@@ -147,10 +134,13 @@ $query_args = array(
 
 
 $user_query = new WP_User_Query($query_args);
-
+//echo '<pre>';
+//print_r($user_query->get_results());
+//echo '</pre>';
+//exit;
 $total_users = !empty($user_query->total_users) ? $user_query->total_users : 0;
 $found_title = docdirect_get_found_title($total_users, $directory_type);
-
+global $Type;
 if (isset($search_page_map) && $search_page_map === 'enable') {
     ?>
 
@@ -158,22 +148,8 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 
 
 <!-- mostafiz -->
-<?php
-if ($directory_type == 127)
-{
-    //for doctor
-     get_template_part('/directory/templates/map-search-list-doctor');
-}
 
-if ($directory_type == 122)
-{
-    //for blood donor
-    get_template_part('/directory/templates/map-search-list-blood-donor');
-}
-
-?>
-
-<div class="main-content container-fluid mslc" style="display: none">
+<div class="main-content container-fluid mslc">
     <div style="border: 1px solid #eee; padding: 8px;">
         <div style="background-image: url(https://amarhaspatal.com/wp-content/uploads/directory-list-banner/doctor.png);
     background-repeat: no-repeat;
@@ -189,7 +165,7 @@ if ($directory_type == 122)
 
             <div class="row text-center row-c">
                 <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
-                        data-target="#myModal">Search Doctor
+                        data-target="#myModal">Search <?= $Type ?>
                 </button>
             </div>
             <?php

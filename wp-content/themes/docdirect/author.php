@@ -10,7 +10,7 @@ global $wp_query, $current_user;
 $author_profile = $wp_query->get_queried_object();
 
 $userMeta = get_user_meta($author_profile->ID);
-$name = $userMeta['first_name'][0].' '.$userMeta['last_name'][0];
+$name = $userMeta['first_name'][0] . ' ' . $userMeta['last_name'][0];
 $address = $userMeta['user_address'][0];
 $tagline = $userMeta['tagline'][0];
 $phone = $userMeta['phone_number'][0];
@@ -125,12 +125,17 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
 
                          <?php if (empty($avatar)): ?>
 
-                                    <img class="img-responsive" src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg"
-                                         alt="<?= $name . ' - ' . site_url(); ?>"  style="height: 300px; border-radius: 100%; width: 320px; margin: 0 auto;" height="250" title="<?php echo $name ?> - <?php echo site_url(); ?>"/>
+                             <img class="img-responsive"
+                                  src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg"
+                                  alt="<?= $name . ' - ' . site_url(); ?>"
+                                  style="height: 300px; border-radius: 100%; width: 320px; margin: 0 auto; border: 2px solid #eee !important; padding: 5px"
+                                  title="<?php echo $name ?> - <?php echo site_url(); ?>"/>
                          <?php else: ?>
 
-                                    <img class="img-responsive" src="<?= $avatar ?>"
-                                         alt="<?= $name . ' - ' . site_url(); ?>" style="height: 300px; border-radius: 100%; width: 320px;" height="250" title="<?php echo $name ?> - <?php echo site_url(); ?>"/>
+                             <img class="img-responsive" src="<?= $avatar ?>"
+                                  alt="<?= $name . ' - ' . site_url(); ?>"
+                                  style="height: 300px; border-radius: 100%; width: 320px; margin: 0 auto; border: 2px solid #eee !important; padding: 5px"
+                                  title="<?php echo $name ?> - <?php echo site_url(); ?>"/>
                          <?php endif; ?>
                     </span>
                                 </div>
@@ -148,16 +153,24 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                         data-fontsize="26" data-lineheight="39">
                                         <span style="color: #076b9c; text-shadow: -1px -1px 2px;"><strong><?php echo $name; ?></strong></span>
                                     </h3>
-                                    <div style="text-align: right; margin: 0; border: 0px solid red;" data-fontsize="18" data-lineheight="30">
+                                    <div style="text-align: right; margin: 0; border: 0px solid red;" data-fontsize="18"
+                                         data-lineheight="30">
                                         <span style="color: #5e5357; font-size: 18px;"><?php echo $tagline; ?></span><br/>
                                         <strong><span style="color: #253e7f;1">Nephrologist</span></strong><br/>
                                         <span style="color: #5e5357;">
                             Assistant Professor of Nephrology Department <br/>
                             NATIONAL INSTITUTE OF KIDNEY DISEASE, DHAKA
                         </span>
-                        <br/>
-                                        <p>BMDC Registration No: <span><strong><?php echo $bmdc_registration_no; ?></strong></span></p>
-                        <button class="tg-btn-lg make-appointment-btn" type="button" data-toggle="modal" data-target=".tg-appointmentpopup" title="<?php if(is_user_logged_in() == false): ?> Please login first to make appointment <?php endif; ?>">Make an Appointment!</button>
+                                        <br/>
+                                        <p>BMDC Registration No:
+                                            <span><strong><?php echo $bmdc_registration_no; ?></strong></span></p>
+                                        <button class="tg-btn-lg make-appointment-btn"
+                                                <?php if (!is_user_logged_in()): ?>data-toggle="modal"
+                                                data-target="#login-modal-front" <?php endif; ?> type="button"
+                                                data-toggle="modal" data-target=".tg-appointmentpopup"
+                                                title="<?php if (is_user_logged_in() == false): ?> Please login first to make appointment <?php endif; ?>">
+                                            Make an Appointment!
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="fusion-clearfix"></div>
@@ -197,15 +210,15 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     Info</h3>
                             </div>
                             <div class="">
-                                <?php foreach($experiences as $experience){ ?>
+                                <?php foreach ($experiences as $experience) { ?>
 
-                                <p style="text-align: center;">
-                                    <?php echo $experience['title']; ?><br/>
-                                    <?php echo strtoupper($experience['company']); ?>
-                                </p>
+                                    <p style="text-align: center;">
+                                        <?php echo $experience['title']; ?><br/>
+                                        <?php echo strtoupper($experience['company']); ?>
+                                    </p>
 
 
-                                <hr/>
+                                    <hr/>
                                 <?php } ?>
                                 <p style="text-align: center;">
                                     <strong>Consultation Fee:<br/> </strong>New Appointment Patient : Will Be Published
@@ -284,7 +297,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 <hr/>
                                 <strong>Appointment Contact</strong><br/>
                                 <hr/>
-                             <?php echo $phone; ?>
+                                <?php echo $phone; ?>
                             </div>
                         </div>
                     </div>
@@ -322,11 +335,11 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                             <div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div>
                                             <div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;">
                                                 <div style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0; left: -14px; top: -40px; z-index: 3;">
-                                                    <img  alt=""
-                                                            src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png"
-                                                            draggable="false"
-                                                            usemap="#gmimap0"
-                                                            style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"
+                                                    <img alt=""
+                                                         src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png"
+                                                         draggable="false"
+                                                         usemap="#gmimap0"
+                                                         style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"
                                                     />
                                                     <map name="gmimap0" id="gmimap0">
                                                         <area log="miw"
@@ -351,10 +364,11 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                     </map>
                                                 </div>
                                                 <div style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0; left: -15px; top: -16px; z-index: 27;">
-                                                    <img  alt="" src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png"
-                                                            draggable="false"
-                                                            usemap="#gmimap2"
-                                                            style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"
+                                                    <img alt=""
+                                                         src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png"
+                                                         draggable="false"
+                                                         usemap="#gmimap2"
+                                                         style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"
                                                     />
                                                     <map name="gmimap2" id="gmimap2">
                                                         <area log="miw"
@@ -859,7 +873,6 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                     <script async="" defer=""
                             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0PT_dg83oIexTOYRwnDziZlbqQlZmYVo&amp;callback=initMap"></script>
             </div>
-            
 
 
             <!-- TESTIMONIALS -->
@@ -889,12 +902,12 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                 <div class="container-fluid mslc">
 
                     <div id="shareThisStory"
-                 style="background: #f4f4f4; height: 62px; display: block; position: relative; overflow: hidden; width: 100%; margin-top: 30px; margin-bottom: 20px; padding: 16px 8px;">
-                <h3 style="margin: 0; float: left;">Share This Story, Choose Your Platform!</h3>
+                         style="background: #f4f4f4; height: 62px; display: block; position: relative; overflow: hidden; width: 100%; margin-top: 30px; margin-bottom: 20px; padding: 16px 8px;">
+                        <h3 style="margin: 0; float: left;">Share This Story, Choose Your Platform!</h3>
 
-                <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="float: right; line-height: 32px;">
-                    <a class="a2a_dd"
-                       href="https://www.addtoany.com/share#url=https%3A%2F%2Fhasbd.com%2Fdoctors%2Fassist-prof-dr-md-rashed-anwar%2F&amp;title=ASSIST.%20PROF.%20DR.%20MD.%20RASHED%20ANWAR%20-%20HASBD">
+                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="float: right; line-height: 32px;">
+                            <a class="a2a_dd"
+                               href="https://www.addtoany.com/share#url=https%3A%2F%2Fhasbd.com%2Fdoctors%2Fassist-prof-dr-md-rashed-anwar%2F&amp;title=ASSIST.%20PROF.%20DR.%20MD.%20RASHED%20ANWAR%20-%20HASBD">
                 <span class="a2a_svg a2a_s__default a2a_s_a2a" style="background-color:#253e7f;">
                     <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                         <g fill="#FFF">
@@ -903,18 +916,18 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         </g>
                     </svg>
                 </span>
-                        <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
-                    </a>
-                    <a class="a2a_button_facebook" target="_blank" href="/#facebook" rel="nofollow noopener">
+                                <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
+                            </a>
+                            <a class="a2a_button_facebook" target="_blank" href="/#facebook" rel="nofollow noopener">
                 <span class="a2a_svg a2a_s__default a2a_s_facebook" style="background-color: #253e7f">
                     <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                         <path fill="#FFF"
                               d="M17.78 27.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99 2.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123 0-5.26 1.905-5.26 5.405v3.016h-3.53v4.09h3.53V27.5h4.223z"></path>
                     </svg>
                 </span>
-                        <span class="a2a_label">Facebook</span>
-                    </a>
-                    <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
+                                <span class="a2a_label">Facebook</span>
+                            </a>
+                            <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
                 <span class="a2a_svg a2a_s__default a2a_s_twitter" style="background-color: #253e7f">
                     <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                         <path
@@ -923,14 +936,14 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         ></path>
                     </svg>
                 </span>
-                        <span class="a2a_label">Twitter</span>
-                    </a>
-                    <a class="a2a_button_google_plus"></a>
-                    <div style="clear: both;"></div>
-                </div>
-                <script async="" src="https://static.addtoany.com/menu/page.js"></script>
-            </div>
-            
+                                <span class="a2a_label">Twitter</span>
+                            </a>
+                            <a class="a2a_button_google_plus"></a>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <script async="" src="https://static.addtoany.com/menu/page.js"></script>
+                    </div>
+
                     <div class="row">
                         <div class="page-header">
                             <h1 style="text-align: center;">Related Specialized Doctors</h1>
@@ -1443,89 +1456,111 @@ do_action('am_chat_modal', $author_profile->ID);
             border: 1px solid #eee;
             padding: 5px;
         }
-        .info{width: 95%;     margin: 10px !important;}
-        .chamber{width: 95%;     margin: 10px;}
-        div#customers-testimonials {margin: 10px;
-}
+
+        .info {
+            width: 95%;
+            margin: 10px !important;
+        }
+
+        .chamber {
+            width: 95%;
+            margin: 10px;
+        }
+
+        div#customers-testimonials {
+            margin: 10px;
+        }
 
     }
 
     .mslc {
         padding: 2px 48px;
     }
+
     @media screen and (max-width: 480px) {
-    #hospitalsCalculator table {
-        width: 100%;
-        display: block;
-        overflow: scroll;
-    }
-    #registerContainer,
-    #loginContainer {
-        width: 90% !important;
-    }
-    #home-consultation-form {
-        height: 600px !important;
-    }
-}
-@media screen and (max-width: 900px) {
-    .menu-menu-container,
-    .showhide,
-    #homeSlider {
-        display: none !important;
-    }
-    #mobileSearch {
-        display: block !important;
-        position: relative !important;
-        width: 100%;
-    }
-    .widget .menu-menu-container {
-        display: block !important;
-    }
-    .fusion-layout-column {
-        width: 100% !important;
-    }
-    div#second-row {
-        display: block !important;
-    }
-    div#shareThisStory {
-        height: auto !important;
-    }
-    #main {
-        padding: 0 !important;
-    }
-    #ambulance {
-        height: 200px !important;
-        background-size: 100% 200px !important;
-    }
-    .modal-body,
-    .modal-body > .search-box {
-        height: auto !important;
-    }
-    .latestPostDate,
-    .latestPostTitle {
-        margin-left: 0 !important;
-    }
-    .postsRow > .col-md-3 {
-        width: 90% !important;
-        margin-bottom: 15px;
-    }
-    .postInfo {
-        margin-top: 33px !important;
-    }
-    #home-consultation-form {
-        height: 600px !important;
-    }
-    #proflie-info {
-        width: 100% !important;
-        height: auto !important;
-        margin-left: -15px !important;
-    }
-}
+        #hospitalsCalculator table {
+            width: 100%;
+            display: block;
+            overflow: scroll;
+        }
 
+        #registerContainer,
+        #loginContainer {
+            width: 90% !important;
+        }
 
+        #home-consultation-form {
+            height: 600px !important;
+        }
+    }
 
+    @media screen and (max-width: 900px) {
+        .menu-menu-container,
+        .showhide,
+        #homeSlider {
+            display: none !important;
+        }
 
+        #mobileSearch {
+            display: block !important;
+            position: relative !important;
+            width: 100%;
+        }
 
+        .widget .menu-menu-container {
+            display: block !important;
+        }
+
+        .fusion-layout-column {
+            width: 100% !important;
+        }
+
+        div#second-row {
+            display: block !important;
+        }
+
+        div#shareThisStory {
+            height: auto !important;
+        }
+
+        #main {
+            padding: 0 !important;
+        }
+
+        #ambulance {
+            height: 200px !important;
+            background-size: 100% 200px !important;
+        }
+
+        .modal-body,
+        .modal-body > .search-box {
+            height: auto !important;
+        }
+
+        .latestPostDate,
+        .latestPostTitle {
+            margin-left: 0 !important;
+        }
+
+        .postsRow > .col-md-3 {
+            width: 90% !important;
+            margin-bottom: 15px;
+        }
+
+        .postInfo {
+            margin-top: 33px !important;
+        }
+
+        #home-consultation-form {
+            height: 600px !important;
+        }
+
+        #proflie-info {
+            width: 100% !important;
+            height: auto !important;
+            margin-left: -15px !important;
+        }
+    }
 
 
 </style>

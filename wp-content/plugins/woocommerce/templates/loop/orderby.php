@@ -33,33 +33,64 @@ if (!defined('ABSPATH')) {
 
 </style>
 
-<div class="container" style="width: 100% !important;">
+<div class="container">
 
 
-    <div class="row" style="margin-bottom: 0px;">
-        <div class="col-md-4 col-xs-5 pull-left ">
+    <div class="row">
+        <div class="col-md-2 col-xs-5 pull-left prescription-block">
 
-            <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary pull-right upload-prescription-btn">Upload Prescription</a>
+            <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary upload-prescription-btn">Upload
+                Prescription</a>
 
 
         </div>
-        <div class="col-md-8 col-xs-7 pull-right">
+        <div class="col-md-offset-3">
 
-            <form action="<?= site_url('shop'); ?>" class="search-form" method="get">
-                <input class="search-input" value="Search"
-                       type="submit" style="float: right"/>
-                <div style="overflow: hidden; padding-right: .5em;">
-                    <input name="search_key" placeholder="Enter search keyword here" class="input-submit" type="text"
-                           style="width: 100%;"/>
-                </div>
+        </div>
+        <div class="col-md-7 col-xs-7 col-xs-push-2 pull-right">
 
-                <input type="hidden" name="paged" value="1"/>
-
+            <form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
+                <input type="text" placeholder="Search.." name="search2">
+                <button type="submit"><i class="fa fa-search"></i></button>
             </form>
 
+            <style>
+                * {
+                    box-sizing: border-box;
+                }
+
+                form.example input[type=text] {
+                    padding: 10px;
+                    font-size: 17px;
+                    border: 1px solid grey;
+                    float: left;
+                    width: 80%;
+                    background: #f1f1f1;
+                }
+
+                form.example button {
+                    float: left;
+                    width: 20%;
+                    padding: 10px;
+                    background: #2196F3;
+                    color: white;
+                    font-size: 17px;
+                    border: 1px solid grey;
+                    border-left: none;
+                    cursor: pointer;
+                }
+
+                form.example button:hover {
+                    background: #0b7dda;
+                }
+
+                form.example::after {
+                    content: "";
+                    clear: both;
+                    display: table;
+                }
+            </style>
         </div>
-
-
     </div>
     <br>
 </div>

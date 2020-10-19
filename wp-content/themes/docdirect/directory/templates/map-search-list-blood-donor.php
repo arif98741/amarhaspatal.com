@@ -30,17 +30,6 @@ $directory_type = esc_html($_GET['directory_type']);
 $division_id = isset($_GET['division_id']) ? esc_html($_GET['division_id']) : '';
 $district_id = isset($_GET['district_id']) ? esc_html($_GET['district_id']) : '';
 $upazila_id = isset($_GET['upazila_id']) ? esc_html($_GET['upazila_id']) : '';
-if ($directory_type == 127) {
-    $Type = 'Doctor';
-} else if ($directory_type == 123) {
-    $Type = 'Ambulance';
-} else if ($directory_type == 126) {
-    $Type = 'Hospital';
-} else if ($directory_type == 122) {
-    $Type = 'Blood Donor';
-} else if ($directory_type == 121) {
-    $Type = 'Diagonostics';
-}
 
 
 if (!empty($directory_type)) {
@@ -150,7 +139,7 @@ $user_query = new WP_User_Query($query_args);
 
 $total_users = !empty($user_query->total_users) ? $user_query->total_users : 0;
 $found_title = docdirect_get_found_title($total_users, $directory_type);
-
+global $Type;
 if (isset($search_page_map) && $search_page_map === 'enable') {
     ?>
 
@@ -158,24 +147,10 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 
 
 <!-- mostafiz -->
-<?php
-if ($directory_type == 127)
-{
-    //for doctor
-     get_template_part('/directory/templates/map-search-list-doctor');
-}
 
-if ($directory_type == 122)
-{
-    //for blood donor
-    get_template_part('/directory/templates/map-search-list-blood-donor');
-}
-
-?>
-
-<div class="main-content container-fluid mslc" style="display: none">
+<div class="main-content container-fluid mslc">
     <div style="border: 1px solid #eee; padding: 8px;">
-        <div style="background-image: url(https://amarhaspatal.com/wp-content/uploads/directory-list-banner/doctor.png);
+        <div style="background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/blood-banner.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center !important;
@@ -189,7 +164,7 @@ if ($directory_type == 122)
 
             <div class="row text-center row-c">
                 <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
-                        data-target="#myModal">Search Doctor
+                        data-target="#myModal">Search <?= $Type; ?>
                 </button>
             </div>
             <?php
@@ -199,6 +174,10 @@ if ($directory_type == 122)
 
 
                     $directory_type = get_user_meta($user->ID, 'directory_type', true);
+//                    echo '<pre>';
+//                    print_r(get_user_meta($user->ID ));
+//                    echo '</pre>';
+//                    exit;
                     $dir_map_marker = fw_get_db_post_option($directory_type, 'dir_map_marker', true);
                     $reviews_switch = fw_get_db_post_option($directory_type, 'reviews', true);
                     $current_date = date('Y-m-d H:i:s');
@@ -210,8 +189,8 @@ if ($directory_type == 122)
 
 
                     $privacy = docdirect_get_privacy_settings($user->ID); //Privacy setting
-
-                    $directories_array['fax'] = $user->fax;
+                    $directories_array['blood_group'] = $user->blood_group;
+                    $directories_array['last_donation_date'] = $user->last_donation_date;
                     $directories_array['description'] = $user->description;
                     $directories_array['title'] = $user->display_name;
                     $directories_array['name'] = $user->first_name . ' ' . $user->last_name;
@@ -219,12 +198,10 @@ if ($directory_type == 122)
                     $directories_array['email'] = $user->user_email;
                     $directories_array['phone_number'] = $user->phone_number;
                     $directories_array['address'] = $user->user_address;
-                    $directories_array['car_no'] = $user->car_no;
                     $featured_string = docdirect_get_user_featured_date($user->ID);
                     $current_string = strtotime($current_date);
                     $review_data = docdirect_get_everage_rating($user->ID);
                     $get_username = docdirect_get_username($user->ID);
-
 
                     if (isset($dir_map_marker['url']) && !empty($dir_map_marker['url'])) {
                         $directories_array['icon'] = $dir_map_marker['url'];
@@ -242,11 +219,11 @@ if ($directory_type == 122)
                         <div class="col-md-3 user-profile-dir-list">
 
                             <?php if (empty($avatar)): ?>
-                                <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
+                                <a href="#">
                                     <img src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg"
                                          alt="<?= $directories_array['title'] . ' - ' . site_url(); ?>"/></a>
                             <?php else: ?>
-                                <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
+                                <a href="#">
                                     <img src="<?= $avatar ?>"
                                          alt="<?= $directories_array['name'] . ' - ' . site_url(); ?>"/></a>
                             <?php endif; ?>
@@ -257,26 +234,19 @@ if ($directory_type == 122)
                             <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
                                 <h3><?= ucfirst($directories_array['name']); ?></h3>
                             </a>
-                            <p>
-                                <i class="fa fa-graduation-cap fa-lg"
-                                   style="margin-right: 12px; display: inline-block;"></i> <span
-                                        style="color: #16518c;"><strong
-                                            style="display: inline-flex;">
 
-                                        MBBS (DU), DMU (Dhaka)</strong></span>
-                            </p>
-                            <p><i class="fa fa-certificate fa-lg" style="margin-right: 20px;"></i>Family Medicine</p>
-                            <p><i class="fa fa-hospital-o fa-lg" style="margin-right: 20px;"></i><span
-                                        style="display: inline-flex;">Health AID Service</span></p>
-                            <p><i class="fa fa-money fa-lg" style="margin-right: 16px;"></i>New patient 500 BDT &amp;
-                                Old&nbsp;patient
-                                300 BDT</p>
+                            <p><i class="fa fa-tint fa-lg" style="margin-right: 20px;"></i>Blood Group: <?= (!empty($directories_array['blood_group'])) ? $directories_array['blood_group']: 'N/A'; ?></p>
+                            <p><i class="fa fa-calendar fa-lg" style="margin-right: 20px;"></i>Last Donation Date: <?= (!empty($directories_array['last_donation_date'])) ? $directories_array['last_donation_date']: 'N/A'; ?></p>
+                            <p><i class="fa fa-phone fa-lg" style="margin-right: 20px;"></i>Phone: <?= (!empty($directories_array['phone_number'])) ? $directories_array['phone_number']: 'N/A'; ?></p>
+
+
+                            <p><i class="fa fa-envelope fa-lg" style="margin-right: 20px;"></i>Email: <?= (!empty($directories_array['email'])) ? $directories_array['email']: 'N/A'; ?></p>
                             <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>
                                 <?= (!empty($directories_array['address'])) ? ucfirst($directories_array['address']) : 'N/A'; ?>
                             </p>
 
                             <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
-                                 data-a2a-url="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
+                                 data-a2a-url="#"
                                  data-a2a-title="<?= ucfirst($directories_array['name']); ?>"
                                  style="line-height: 32px;">
                                 <a class="a2a_dd"
@@ -325,7 +295,7 @@ if ($directory_type == 122)
                             <script async="" src="https://static.addtoany.com/menu/page.js"></script>
 
                             <br/>
-                            <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
+                            <a href="#"
                                class="btn btn-default btn-flat bt-new">View Profile</a>
                         </div>
                     </div>
@@ -702,8 +672,6 @@ if ($directory_type == 122)
     ></div>
     <div class="text-center"></div>
 </div>
-
-
 
 
 <!-- mostafiz -->

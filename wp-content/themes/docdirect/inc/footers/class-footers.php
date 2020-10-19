@@ -247,14 +247,47 @@ if (!class_exists('docdirect_footers')) {
                     <div class="container-fluid">
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
 
+                                <p class="copyright-text">Copyright ©<?= date('Y') ?> AMARHASPATAL.COM. All Rights
+                                    Reserved</p>
+                            </div>
+                            <div class="col-md-4 footer-social-icon-div">
 
+                                <ul class="tg-socialicon">
+                                    <?php
+                                    if (function_exists('fw_get_db_settings_option')) {
+                                        $header_type = fw_get_db_settings_option('header_type');
 
-                                <p class="copyright-text">Copyright ©<?= date('Y') ?> AMARHASPATAL.COM. All Rights Reserved</p>
+                                    }
+                                    $social_icons = $header_type['header_v2']['social_icons'];
+                                    if (isset($social_icons) && !empty($social_icons)) {
+                                        foreach ($social_icons as $social) {
+                                            ?>
+                                            <li>
+                                                <?php
+                                                $url = '';
+                                                if (isset($social['social_url']) && !empty($social['social_url'])) {
+                                                    $url = 'href="' . esc_url($social['social_url']) . '"';
+                                                } else {
+                                                    $url = 'href="#"';
+                                                }
+                                                ?>
+                                                <a target="_blank" <?php echo($url); ?>>
+                                                    <?php if (isset($social['social_icons_list']) && !empty($social['social_icons_list'])) { ?>
+                                                        <i class="<?php echo esc_attr($social['social_icons_list']); ?>"></i>
+                                                    <?php } ?>
+                                                </a>
+                                            </li>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </ul>
+
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <p style="color: #fff !important; text-align: right" class="copyright-text">Designed and
                                     Developed by <a
                                             style="color: #fff"
@@ -332,7 +365,7 @@ if (!class_exists('docdirect_footers')) {
                         }
 
                         nav.animated.bounceInDown ul {
-                            display: block ;
+                            display: block;
                         }
                     }
 

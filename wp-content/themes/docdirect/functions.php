@@ -37,5 +37,3 @@ require_once(get_template_directory() . '/inc/class-chat-system.php'); //Chat Sy
 require_once(get_template_directory() . '/customization/library/helper-functions.php');
 require_once(get_template_directory() . '/customization/library/functions/custom-functions.php');
 
-
-//add_filter('nav_menu_css_class', 'special_nav_class', 10, 2);

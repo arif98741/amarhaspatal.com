@@ -27,7 +27,7 @@ $user_query = new WP_User_Query($query_args);
 <!-- mostafiz -->
 <section
     class="divider parallax layer-overlay overlay-theme-colored-9"
-    data-bg-img="https://hasbd.com/wp-content/themes/hasbd/images/bg/bg2.jpg"
+    data-bg-img="#"
     data-parallax-ratio="0.7"
      background-position: 50% 21px;"
 >
@@ -36,7 +36,7 @@ $user_query = new WP_User_Query($query_args);
             <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                 <div class="funfact text-center">
                     <i class="fa fa-smile-o" aria-hidden="true" style="color: #253e7f;"></i>
-                    <h2 data-animation-duration="2000" data-value="12977" class="animate-number text-white font-42 font-weight-500 appeared">12,977</h2>
+                    <h2 data-animation-duration="2000" data-value="12977" class="animate-number text-white font-42 font-weight-500 appeared">8585</h2>
                     <h5 class="text-white text-uppercase font-weight-600">Satisfied Client</h5>
                 </div>
             </div>

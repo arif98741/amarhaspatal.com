@@ -68,12 +68,13 @@ if (!class_exists('docdirect_headers')) {
              	<main id="main" class="<?php if(!is_shop()): ?>tg-page-wrapper<?php endif; ?> tg-haslayout">
 
              	   <?php if(is_shop()): ?>
-             	    <div class="container" style="min-height:150px;background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center !important;; background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/pharmacy.png)">
 
 
-</div>
+
+             	    <div class="container" style="min-height:150px;background-repeat: no-repeat; background-size: cover; background-position: center center !important;; background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/pharmacy.pnggg)">
+             	    </div>
+
+
              	   <?php endif; ?>
             <?php
 		}
@@ -129,31 +130,8 @@ if (!class_exists('docdirect_headers')) {
 									<?php if(!is_user_logged_in()): ?>
 									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target="#login-modal-front">Login</li>
 									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target="#registration-modal-front">Registration</li>
-									<?php
-endif;
- ?>
-										<?php
-											$social_icons	= $header_type['header_v2']['social_icons'];
-											if(isset($social_icons) && !empty($social_icons)){
-												foreach($social_icons as $social){
-													$url = '';
-													if(isset($social['social_url']) && !empty($social['social_url'])){
-														$url = 'href="'.esc_url( $social['social_url'] ).'"';
-													}else{
-														$url = 'href="#"';
-													} 
-													?>
-													<li>
-														<a <?php echo ($url); ?>>
-															<?php if(isset($social['social_icons_list']) && !empty($social['social_icons_list'])) { ?>
-															<i class="<?php echo esc_attr($social['social_icons_list']); ?>"></i>
-															<?php } ?>
-														</a>
-													</li>
-													<?php
-												}
-											}
-										?>  
+									<?php endif;?>
+
 									 </ul>
 								<?php }?>
 							</div>
@@ -204,6 +182,7 @@ endif;
                          <div class="doc-languages">
 
                          	<ul class="tg-socialicon">
+                         	Hello
 								<?php 
 									$social_icons	= $header_type['header_v1']['social_icons'];
 									if(isset($social_icons) && !empty($social_icons)){
@@ -218,7 +197,7 @@ endif;
 													$url = 'href="#"';
 												} 
 												?>
-												<a target="_blank" <?php echo ($url); ?>>
+												<a target="_blank" <?php echo ($url); ?>> dsljfdk
 													<?php if(isset($social['social_icons_list']) && !empty($social['social_icons_list'])) { ?>
 													<i class="<?php echo esc_attr($social['social_icons_list']); ?>"></i>
 													<?php } ?>

@@ -500,6 +500,7 @@ input[type="submit"].tg-btn {
     overflow: hidden;
     color: #505050;
     border: 1px solid #505050;
+    border-radius: 3px;
 }
 
 .tg-socialicon li a i {
@@ -11885,6 +11886,7 @@ select option:disabled {
     font-size: 14px;
     width: 180px;
     margin-top: 20px;
+    margin-bottom: 15px;
     color: #FFF !important;
     border-radius: 2px;
     line-height: 40px;
@@ -16672,6 +16674,7 @@ figure.doc-featureimg img {
 .doc-addressinfo {
     line-height: 25px !important;
 }
+
 .doc-fcols {
     padding: 60px 0px 0px 0px !important;
 }
@@ -16679,17 +16682,21 @@ figure.doc-featureimg img {
 #search-div-carousal {
     opacity: .9 !important;
 }
+
 .row-c {
     height: 100px;
     margin-top: 12px;
     background: #ededed;
 }
+
 .row-c button {
     margin-top: 30px;
 }
+
 .funfact i {
     font-size: 45px;
 }
+
 section.tg-main-section.haslayout {
     margin-top: -10px !important;
     margin-bottom: 30px;
@@ -16698,23 +16705,28 @@ section.tg-main-section.haslayout {
 .info {
     width: 50%;
 }
-.chamber{
+
+.chamber {
     width: 50%;
 }
+
 .iiiii h3 {
     color: #253e7f;
     font-weight: 600;
 }
+
 .h1, .h2, .h3, h1, h2, h3 {
     margin-bottom: 10px;
     margin-top: 15px;
 }
+
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-    font-family: 'droid serif',sans-serif;
+    font-family: 'droid serif', sans-serif;
     font-weight: 700;
     line-height: 1.42857143;
     color: #111;
 }
+
 .h3, h3 {
     font-size: 24px;
 }
@@ -16726,6 +16738,7 @@ section.tg-main-section.haslayout {
     border: 1px solid #eee;
     padding: 5px;
 }
+
 .fa-lg {
     font-size: 1.33333333em;
     line-height: .75em;
@@ -16738,9 +16751,12 @@ section.tg-main-section.haslayout {
     background-color: #fff;
     border-color: #253e7f;
 }
-.btn-default:hover{color: #fff;
+
+.btn-default:hover {
+    color: #fff;
     background-color: #253e7f;
-    border-color: #253e7f;}
+    border-color: #253e7f;
+}
 
 .fusion-column-wrapper strong {
     color: #253e7f !important;
@@ -16759,7 +16775,19 @@ section.tg-main-section.haslayout {
     width: 50px;
     z-index: 99999;
 }
+
 .scrollToTop i {
     color: #fff;
     font-size: 42px;
+}
+
+.main-page-wrapper .builder-items {
+    margin-top: 22px;
+}
+
+.doc-footerbottombar .footer-social-icon-div {
+    margin-top: 12px;
+}
+.prescription-block{
+    padding: 0;
 }

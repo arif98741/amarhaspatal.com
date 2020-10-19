@@ -71,8 +71,8 @@ if (!class_exists('docdirect_headers')) {
              	    <div class="container" style="min-height:150px;background-repeat: no-repeat;
     background-size: cover;
     background-position: center center !important;; background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/pharmacy.png)">
-
-
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+             	    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" ></script>
 </div>
              	   <?php endif; ?>
             <?php
@@ -80,8 +80,8 @@ if (!class_exists('docdirect_headers')) {
 		
 	    /**
          * @Prepare Header Data
-         * @return {}
-         */
+* @return void {}
+*/
         public function docdirect_prepare_header() {
             global $post, $woocommerce;
 
@@ -129,31 +129,7 @@ if (!class_exists('docdirect_headers')) {
 									<?php if(!is_user_logged_in()): ?>
 									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target="#login-modal-front">Login</li>
 									<li style="color: #fff; cursor: pointer;" data-toggle="modal" data-target="#registration-modal-front">Registration</li>
-									<?php
-endif;
- ?>
-										<?php
-											$social_icons	= $header_type['header_v2']['social_icons'];
-											if(isset($social_icons) && !empty($social_icons)){
-												foreach($social_icons as $social){
-													$url = '';
-													if(isset($social['social_url']) && !empty($social['social_url'])){
-														$url = 'href="'.esc_url( $social['social_url'] ).'"';
-													}else{
-														$url = 'href="#"';
-													} 
-													?>
-													<li>
-														<a <?php echo ($url); ?>>
-															<?php if(isset($social['social_icons_list']) && !empty($social['social_icons_list'])) { ?>
-															<i class="<?php echo esc_attr($social['social_icons_list']); ?>"></i>
-															<?php } ?>
-														</a>
-													</li>
-													<?php
-												}
-											}
-										?>  
+									<?php endif; ?>
 									 </ul>
 								<?php }?>
 							</div>
@@ -166,9 +142,7 @@ endif;
 			<div class="container">
               <div class="row">
                 <div class="col-xs-12">
-
                    <i class="fa fa-bars menu-item-4406 mobileOnlySitebarbtn hidden-md-up"></i>
-
 
                   <strong class="doc-logo"><?php $this->docdirect_prepare_logo($logo,'','');?></strong>
                   <div class="doc-navigationarea">
@@ -270,8 +244,8 @@ endif;
 		
 		/**
          * @Main Logo
-         * @return {}
-         */
+* @return void {}
+*/
         public function docdirect_prepare_registration() {
 			global $current_user, $wp_roles,$userdata,$post;
 			
