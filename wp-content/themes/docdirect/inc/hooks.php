@@ -130,7 +130,7 @@ if ( ! function_exists( 'docdirect_user_social_mehthods' ) ) {
 		
 		if( !empty( $user_id ) ) {
 			$user = new WP_User( $user_id );
-			if ( ! empty( $user->roles ) && ( is_array( $user->roles ) && in_array( 'professional', $user->roles ) ) || $user->roles === 'professional' ) {
+			if ( (!empty($user->roles) && (is_array($user->roles) && in_array('professional', $user->roles))) || $user->roles === 'professional' ) {
 				$userfields['secondary_email']		= esc_html__('Secondary Email','docdirect');
 			}
 		}

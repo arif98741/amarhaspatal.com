@@ -15,15 +15,8 @@ $address = $userMeta['user_address'][0];
 $tagline = $userMeta['tagline'][0];
 $phone = $userMeta['phone_number'][0];
 $address = $userMeta['user_address'][0];
-if (array_key_exists('experience ', $userMeta)) {
-    $experiences = unserializeData($userMeta['experience'][0]);
-
-}
-if (array_key_exists('user_profile_specialities ', $userMeta)) {
-
-    $specialities = unserializeData($userMeta['user_profile_specialities'][0]);
-}
-
+$experiences = unserializeData($userMeta['experience'][0]);
+$specialities = unserializeData($userMeta['user_profile_specialities'][0]);
 $schedules = unserializeData($userMeta['schedules'][0]);
 $avatar = apply_filters(
     'docdirect_get_user_avatar_filter',
@@ -41,31 +34,12 @@ $privacy = docdirect_get_privacy_settings($author_profile->ID); //Privacy settin
 $db_timezone = get_user_meta($author_profile->ID, 'default_timezone', true);
 $time_zone = get_user_meta($author_profile->ID, 'default_timezone', true);
 
-if (array_key_exists('default_slots ', $userMeta)) {
-
-    //$specialities = unserializeData($userMeta['user_profile_specialities'][0]);
 $slots = get_user_meta($author_profile->ID, 'default_slots')[0];
-}
 
+if ($directory_type== 123)
+{
 
-if ($directory_type == 123) {
-    //ambulance
     get_template_part('author-ambulance');
-
-}
-if ($directory_type == 127) {
-    //doctor
-    get_template_part('author-doctor');
-
-}
-if ($directory_type == 126) {
-    //hospital
-    get_template_part('author-hospital');
-
-}
-if ($directory_type == 121) {
-    //hospital
-    get_template_part('author-diagnostics');
 
 }
 
@@ -519,4 +493,4 @@ if ($directory_type == 121) {
 
 
 
-     
+

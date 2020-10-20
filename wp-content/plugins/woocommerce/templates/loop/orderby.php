@@ -50,9 +50,9 @@ if (!defined('ABSPATH')) {
         </div>
         <div class="col-md-7 col-xs-7 col-xs-push-2 pull-right">
 
-            <form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
-                <input type="text" placeholder="Search.." name="search2">
-                <button type="submit"><i class="fa fa-search"></i></button>
+            <form class="example" action="/action_page.php" style="margin:auto;max-width:300px; margin-top: 18px">
+                <input type="text" placeholder="Search.." name="search2" style="border-radius: 5px 0px 0px 5px;">
+                <button type="submit" style="height: 40px; border-radius: 0 4px 4px 0px;"><i class="fa fa-search"></i></button>
             </form>
 
             <style>
@@ -110,7 +110,6 @@ if (!defined('ABSPATH')) {
                 </select>
                 <button class="btn btn-sm btn-primary" style="margin-top: 3px" type="submit">Select</button>
             </form>
-            <?php //echo $_SESSION['menu_lang']; ?>
         </div>
     </div>
     <br>
@@ -118,9 +117,6 @@ if (!defined('ABSPATH')) {
 </div>
 
 <!--popup modal for showing location selection-->
-<?php
-//echo $_SESSION['menu_lang']; exit;
-?>
 
 <!--popup modal for showing location selection-->
 

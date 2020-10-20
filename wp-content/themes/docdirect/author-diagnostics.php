@@ -15,10 +15,14 @@ $name = $userMeta['first_name'][0] . ' ' . $userMeta['last_name'][0];
 $address = $userMeta['user_address'][0];
 $tagline = $userMeta['tagline'][0];
 $phone = $userMeta['phone_number'][0];
-$email = $userMeta['billing_email'][0];
 $address = $userMeta['user_address'][0];
+$servicePrices = $userMeta['prices_list'][0];
 
-$experiences = unserializeData($userMeta['experience'][0]);
+//echo '<pre>';
+//print_r($userMeta);
+//echo '</pre>';
+//exit;
+
 $specialities = unserializeData($userMeta['user_profile_specialities'][0]);
 $schedules = unserializeData($userMeta['schedules'][0]);
 $avatar = apply_filters(
@@ -37,7 +41,6 @@ $privacy = docdirect_get_privacy_settings($author_profile->ID); //Privacy settin
 $db_timezone = get_user_meta($author_profile->ID, 'default_timezone', true);
 $time_zone = get_user_meta($author_profile->ID, 'default_timezone', true);
 
-$slots = get_user_meta($author_profile->ID, 'default_slots')[0];
 
 if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && function_exists('fw_get_db_settings_option')) {
     if (apply_filters('docdirect_is_visitor', $author_profile->ID) === false) {
@@ -152,15 +155,18 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                         data-fontsize="26" data-lineheight="39">
                                         <span style="color: #076b9c; text-shadow: -1px -1px 2px;"><strong><?php echo $name; ?></strong></span>
                                     </h3>
-                                    <div style="text-align: right; margin: 0; border: 0px solid red;" data-fontsize="18" data-lineheight="30">
+                                    <div style="text-align: right; margin: 0; border: 0px solid red;" data-fontsize="18"
+                                         data-lineheight="30">
                                         <span style="color: #5e5357; font-size: 18px;"><?php echo $tagline; ?></span><br/>
                                         <br/>
-                                        <p><i class="fa fa-phone"></i>Phone: <strong><?php echo (!empty($phone)) ? $phone : 'N/A'; ?></strong></p>
-                                        <p><i class="fa fa-envelope"></i> Email: <strong><?php echo (!empty($email)) ? $email : 'N/A'; ?></strong></p>
-                                        <p><i class="fa fa-map-marker fa-lg"></i>Address: <?php echo (!empty($address)) ? $address : 'N/A'; ?></p>
-                                        <button onclick="window.location='<?php echo site_url(); ?>/ambulance-booking'" class="tg-btn-lg make-appointment-btn"  type="button">
-                                            Book Ambulance
-                                        </button>
+                                        <p><i class="fa fa-phone"></i>Phone:
+                                            <strong><?php echo (!empty($phone)) ? $phone : 'N/A'; ?></strong></p>
+                                        <p><i class="fa fa-envelope"></i> Email:
+                                            <strong><?php echo (!empty($email)) ? $email : 'N/A'; ?></strong></p>
+                                        <p>
+                                            <i class="fa fa-map-marker fa-lg"></i>Address: <?php echo (!empty($address)) ? $address : 'N/A'; ?>
+                                        </p>
+
                                     </div>
                                 </div>
                                 <div class="fusion-clearfix"></div>
@@ -199,72 +205,80 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 <h3 style="color: white; margin-top: 0px; padding-top: 10px; text-transform: uppercase; font-size: 16px;">
                                     Info</h3>
                             </div>
-                            <div class="">
-                                <?php foreach ($experiences as $experience) { ?>
+                            <table>
+                                <thead>
+                                <th>SL</th>
+                                <th>Mission</th>
+                                </thead>
+                                <tbody class="text-left">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad alias ipsa laborum modi
+                                        officia possimus quae recusandae ut voluptatum. Asperiores commodi dignissimos earum,
+                                        facilis, ipsam maxime nostrum nulla omnis perspiciatis quae repellat, sed voluptas
+                                        voluptatibus? At, consequatur dignissimos dolores ea, eveniet fuga illum in libero nobis
+                                        perferendis perspiciatis quae ullam veritatis, voluptas voluptatem. Asperiores
+                                        aspernatur illo illum impedit quidem repellendus voluptatibus. Animi, aspernatur
+                                        delectus deleniti error ex excepturi, explicabo ipsam minima nulla sed sunt unde
+                                        voluptates? Consequuntur dignissimos dolorum expedita hic id ipsam minima nihil nulla
+                                        perferendis, sequi suscipit, vel voluptas voluptatibus? Alias asperiores consequatur ex
+                                        excepturi itaque voluptates.
+                                    </td>
 
-                                    <p style="text-align: center;">
-                                        <?php echo $experience['title']; ?><br/>
-                                        <?php echo strtoupper($experience['company']); ?>
-                                    </p>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>Vision</th>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad alias ipsa laborum modi
+                                        officia possimus quae recusandae ut voluptatum. Asperiores commodi dignissimos earum,
+                                        facilis, ipsam maxime nostrum nulla omnis perspiciatis quae repellat, sed voluptas
+                                        voluptatibus? At, consequatur dignissimos dolores ea, eveniet fuga illum in libero nobis
+                                        perferendis perspiciatis quae ullam veritatis, voluptas voluptatem. Asperiores
+                                        aspernatur illo illum impedit quidem repellendus voluptatibus. Animi, aspernatur
+                                        delectus deleniti error ex excepturi, explicabo ipsam minima nulla sed sunt unde
+                                        voluptates? Consequuntur dignissimos dolorum expedita hic id ipsam minima nihil nulla
+                                        perferendis, sequi suscipit, vel voluptas voluptatibus? Alias asperiores consequatur ex
+                                        excepturi itaque voluptates.
+                                    </td>
 
+                                </tr>
 
-                                    <hr/>
-                                <?php } ?>
-                                <p style="text-align: center;">
-                                    <strong>Specialities:<br/> </strong>
-                                </p>
+                                </tbody>
+                            </table>
+                            <br>
 
-                               <?php
-                               foreach ($specialities as $item) {
-                                   echo '<p>'.$item.',</p>';
-                                }
-                               ?>
-                            </div>
-                            <div>
-                                <div class="tg-editprofile tg-haslayout">
-                                    <div class="col-md-12 col-sm-12 col-xs-12 tg-expectwidth">
-                                        <div class="row">
-                                            <div class="tg-otherphotos">
-                                                <div class="tg-heading-border tg-small">
-                                                    <h3>Gallery</h3>
-
-                                                </div>
-
-                                                <div id="tg-photoscroll" class="tg-photoscroll">
-                                                    <div class="form-group">
-                                                        <ul class="tg-otherimg doc-user-gallery" id="gallery-sortable-container">
-                                                            <?php
-                                                            $user_gallery = get_user_meta($author_profile->ID, 'user_gallery', true);
-//
-                                                            $counter = 0;
-                                                            if (isset($user_gallery) && !empty($user_gallery)) {
-                                                                foreach ($user_gallery as $key => $value) {
-                                                                    ?>
-                                                                    <li class="gallery-item gallery-thumb-item data-gallery-wrap">
-                                                                        <figure>
-                                                                            <a href="<?php echo esc_attr($value['url']); ?>"><img width="100" height="100"
-                                                                                                        src="<?php echo esc_attr($value['url']); ?>"
-                                                                                                        alt="<?php esc_attr_e('Gallery', 'docdirect'); ?>"></a>
-                                                                            </a>
-
-                                                                        </figure>
-
-                                                                    </li>
-                                                                <?php }
-                                                            } ?>
-
-                                                        </ul>
-
-                                                    </div>
-                                                </div>
-                                                <div id="errors-log-gallery"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
+                    </div>
+                    <div class="container-fluid">
+                        <div class="page-header">
+                            <h3 style="color: white; margin-top: 0px; padding-top: 10px; text-transform: uppercase; font-size: 16px;">
+                                Our Services </h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr style="background: #253e7f; color: #fff;">
+                                    <th>SL</th>
+                                    <th>Service Name</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach (unserialize($servicePrices) as $key=> $servicePrice){ ?>
+
+                                    <tr>
+                                        <td><?php echo ++$key; ?></td>
+                                        <td class="text-left"><?php echo $servicePrice['title']; ?></td>
+                                        <td class="text-center"><?php echo $servicePrice['price']; ?></td>
+                                        <td class="text-left"><?php echo $servicePrice['description']; ?></td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <hr/>
 
@@ -315,6 +329,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0PT_dg83oIexTOYRwnDziZlbqQlZmYVo&amp;callback=initMap"></script>
             </div>
 
+
             <!-- TESTIMONIALS -->
             <?php
 
@@ -322,7 +337,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                 'relation' => 'AND',
                 array(
                     'key' => 'directory_type',
-                    'value' => 123,
+                    'value' => 121,
                     'compare' => '='
                 )
             );
@@ -386,8 +401,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
 
                     <div class="row">
                         <div class="page-header">
-                            <h1 style="text-align: center;">Related Ambulances</h1>
-
+                            <h1 style="text-align: center;">Related Diagonostics</h1>
                         </div>
                         <div class="col-sm-12">
                             <div id="customers-testimonials" class="owl-carousel mostafizd">
@@ -434,8 +448,8 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                        style="text-decoration: none;">
                                                         <h5><?php echo ucfirst($directories_array['name']); ?></h5></a>
                                                     <p style="font-size: 12px; color: #253e7f; font-weight: bold;">
-                                                       Phone: <?php echo $directories_array['phone_number']; ?></p>
-                                                       Address: <?php echo (!empty($directories_array['address'])) ? $directories_array['address']: 'N/A'; ?></p>
+                                                        Phone: <?php echo $directories_array['phone_number']; ?></p>
+                                                    Address: <?php echo (!empty($directories_array['address'])) ? $directories_array['address'] : 'N/A'; ?></p>
                                                 </div>
                                             </div>
 
@@ -453,13 +467,14 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
             </section>
 
             <!-- END OF TESTIMONIALS -->
-<!--            START MAP-->
+            <!--            START MAP-->
             <div id="third-row row" style="width: 100%;">
                 <div class="page-header">
-                    <h2 style="text-align: center;">FIND AMBULANCES ON GOOGLE MAP</h2>
+                    <h2 style="text-align: center;">FIND Hospital ON GOOGLE MAP</h2>
+
                 </div>
                 <div id="map" style="height: 300px; width: 100%; position: relative; overflow: hidden;">
-                    <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
+                    <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">Honors & Awards
                         <div class="gm-style"
                              style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;">
                             <div
@@ -979,7 +994,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                 </div>
 
             </div>
-<!--            END MAP-->
+            <!--            END MAP-->
 
 
             </main>
