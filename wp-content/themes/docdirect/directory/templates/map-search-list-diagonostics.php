@@ -163,7 +163,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
     <main id="main" class="site-main" role="main">
         <section class="divider">
 
-            <div class="row text-center row-c">
+            <div class="row text-left row-c" style="padding-left: 40px;">
                 <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
                         data-target="#myModal">Search <?= $Type ?>
                 </button>
@@ -227,7 +227,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                         <div class="col-md-9 iiiii">
 
                             <a href="<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>">
-                                <h3><?= ucfirst($directories_array['name']); ?></h3>
+                                <h3><?= ucwords($directories_array['name']); ?></h3>
                             </a>
 
                             <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>
@@ -342,7 +342,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Search Doctor</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Search Diagnostics</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

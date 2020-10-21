@@ -163,7 +163,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
     <main id="main" class="site-main" role="main">
         <section class="divider">
 
-            <div class="row text-center row-c">
+            <div class="row text-left row-c" style="padding-left: 40px;">
                 <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
                         data-target="#myModal">Search <?= $Type ?>
                 </button>

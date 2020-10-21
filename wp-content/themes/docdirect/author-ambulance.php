@@ -152,13 +152,19 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                         data-fontsize="26" data-lineheight="39">
                                         <span style="color: #076b9c; text-shadow: -1px -1px 2px;"><strong><?php echo $name; ?></strong></span>
                                     </h3>
-                                    <div style="text-align: right; margin: 0; border: 0px solid red;" data-fontsize="18" data-lineheight="30">
+                                    <div style="text-align: right; margin: 0; border: 0px solid red;" data-fontsize="18"
+                                         data-lineheight="30">
                                         <span style="color: #5e5357; font-size: 18px;"><?php echo $tagline; ?></span><br/>
                                         <br/>
-                                        <p><i class="fa fa-phone"></i>Phone: <strong><?php echo (!empty($phone)) ? $phone : 'N/A'; ?></strong></p>
-                                        <p><i class="fa fa-envelope"></i> Email: <strong><?php echo (!empty($email)) ? $email : 'N/A'; ?></strong></p>
-                                        <p><i class="fa fa-map-marker fa-lg"></i>Address: <?php echo (!empty($address)) ? $address : 'N/A'; ?></p>
-                                        <button onclick="window.location='<?php echo site_url(); ?>/ambulance-booking'" class="tg-btn-lg make-appointment-btn"  type="button">
+                                        <p><i class="fa fa-phone"></i>Phone:
+                                            <strong><?php echo (!empty($phone)) ? $phone : 'N/A'; ?></strong></p>
+                                        <p><i class="fa fa-envelope"></i> Email:
+                                            <strong><?php echo (!empty($email)) ? $email : 'N/A'; ?></strong></p>
+                                        <p>
+                                            <i class="fa fa-map-marker fa-lg"></i>Address: <?php echo (!empty($address)) ? $address : 'N/A'; ?>
+                                        </p>
+                                        <button onclick="window.location='<?php echo site_url(); ?>/ambulance-booking'"
+                                                class="tg-btn-lg make-appointment-btn" type="button">
                                             Book Ambulance
                                         </button>
                                     </div>
@@ -214,11 +220,11 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     <strong>Specialities:<br/> </strong>
                                 </p>
 
-                               <?php
-                               foreach ($specialities as $item) {
-                                   echo '<p>'.$item.',</p>';
+                                <?php
+                                foreach ($specialities as $item) {
+                                    echo '<p>' . $item . ',</p>';
                                 }
-                               ?>
+                                ?>
                             </div>
                             <div>
                                 <div class="tg-editprofile tg-haslayout">
@@ -232,19 +238,21 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
 
                                                 <div id="tg-photoscroll" class="tg-photoscroll">
                                                     <div class="form-group">
-                                                        <ul class="tg-otherimg doc-user-gallery" id="gallery-sortable-container">
+                                                        <ul class="tg-otherimg doc-user-gallery"
+                                                            id="gallery-sortable-container">
                                                             <?php
                                                             $user_gallery = get_user_meta($author_profile->ID, 'user_gallery', true);
-//
+                                                            //
                                                             $counter = 0;
                                                             if (isset($user_gallery) && !empty($user_gallery)) {
                                                                 foreach ($user_gallery as $key => $value) {
                                                                     ?>
                                                                     <li class="gallery-item gallery-thumb-item data-gallery-wrap">
                                                                         <figure>
-                                                                            <a href="<?php echo esc_attr($value['url']); ?>"><img width="100" height="100"
-                                                                                                        src="<?php echo esc_attr($value['url']); ?>"
-                                                                                                        alt="<?php esc_attr_e('Gallery', 'docdirect'); ?>"></a>
+                                                                            <a href="<?php echo esc_attr($value['url']); ?>"><img
+                                                                                        width="100" height="100"
+                                                                                        src="<?php echo esc_attr($value['url']); ?>"
+                                                                                        alt="<?php esc_attr_e('Gallery', 'docdirect'); ?>"></a>
                                                                             </a>
 
                                                                         </figure>
@@ -341,13 +349,16 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
             <section style="margin-bottom: 30px;">
                 <div class="container-fluid mslc">
 
-                    <div id="shareThisStory"
-                         style="background: #f4f4f4; height: 62px; display: block; position: relative; overflow: hidden; width: 100%; margin-top: 30px; margin-bottom: 20px; padding: 16px 8px;">
-                        <h3 style="margin: 0; float: left;">Share This Story, Choose Your Platform!</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="shareThisStory"
+                                 style="background: #f4f4f4; height: 62px; display: block; position: relative; overflow: hidden; width: 100%; margin-top: 30px; margin-bottom: 20px; padding: 16px 8px;">
+                                <h3 style="margin: 0; float: left;">Share This Story, Choose Your Platform!</h3>
 
-                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="float: right; line-height: 32px;">
-                            <a class="a2a_dd"
-                               href="https://www.addtoany.com/share#url=https%3A%2F%2Fhasbd.com%2Fdoctors%2Fassist-prof-dr-md-rashed-anwar%2F&amp;title=ASSIST.%20PROF.%20DR.%20MD.%20RASHED%20ANWAR%20-%20HASBD">
+                                <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+                                     style="float: right; line-height: 32px;">
+                                    <a class="a2a_dd"
+                                       href="https://www.addtoany.com/share#url=https%3A%2F%2Fhasbd.com%2Fdoctors%2Fassist-prof-dr-md-rashed-anwar%2F&amp;title=ASSIST.%20PROF.%20DR.%20MD.%20RASHED%20ANWAR%20-%20HASBD">
                 <span class="a2a_svg a2a_s__default a2a_s_a2a" style="background-color:#253e7f;">
                     <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                         <g fill="#FFF">
@@ -356,18 +367,21 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         </g>
                     </svg>
                 </span>
-                                <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
-                            </a>
-                            <a class="a2a_button_facebook" target="_blank" href="/#facebook" rel="nofollow noopener">
+                                        <span class="a2a_label a2a_localize"
+                                              data-a2a-localize="inner,Share">Share</span>
+                                    </a>
+                                    <a class="a2a_button_facebook" target="_blank" href="/#facebook"
+                                       rel="nofollow noopener">
                 <span class="a2a_svg a2a_s__default a2a_s_facebook" style="background-color: #253e7f">
                     <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                         <path fill="#FFF"
                               d="M17.78 27.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99 2.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123 0-5.26 1.905-5.26 5.405v3.016h-3.53v4.09h3.53V27.5h4.223z"></path>
                     </svg>
                 </span>
-                                <span class="a2a_label">Facebook</span>
-                            </a>
-                            <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
+                                        <span class="a2a_label">Facebook</span>
+                                    </a>
+                                    <a class="a2a_button_twitter" target="_blank" href="/#twitter"
+                                       rel="nofollow noopener">
                 <span class="a2a_svg a2a_s__default a2a_s_twitter" style="background-color: #253e7f">
                     <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                         <path
@@ -376,12 +390,20 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         ></path>
                     </svg>
                 </span>
-                                <span class="a2a_label">Twitter</span>
-                            </a>
-                            <a class="a2a_button_google_plus"></a>
-                            <div style="clear: both;"></div>
+                                        <span class="a2a_label">Twitter</span>
+                                    </a>
+                                    <a class="a2a_button_google_plus"></a>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <script async="" src="https://static.addtoany.com/menu/page.js"></script>
+                            </div>
                         </div>
-                        <script async="" src="https://static.addtoany.com/menu/page.js"></script>
+                        <div class="col-md-6">
+                            hello
+                            <?php
+                            get_template_part('directory/provider-page/template-author-specialities');
+                            ?>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -434,8 +456,8 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                                        style="text-decoration: none;">
                                                         <h5><?php echo ucfirst($directories_array['name']); ?></h5></a>
                                                     <p style="font-size: 12px; color: #253e7f; font-weight: bold;">
-                                                       Phone: <?php echo $directories_array['phone_number']; ?></p>
-                                                       Address: <?php echo (!empty($directories_array['address'])) ? $directories_array['address']: 'N/A'; ?></p>
+                                                        Phone: <?php echo $directories_array['phone_number']; ?></p>
+                                                    Address: <?php echo (!empty($directories_array['address'])) ? $directories_array['address'] : 'N/A'; ?></p>
                                                 </div>
                                             </div>
 
@@ -453,8 +475,9 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
             </section>
 
             <!-- END OF TESTIMONIALS -->
-<!--            START MAP-->
-            <div id="third-row row" style="width: 100%;">
+            <!--            START MAP-->
+
+            <div id="container mslc" style="margin: 0 auto; width: 96%;">
                 <div class="page-header">
                     <h2 style="text-align: center;">FIND AMBULANCES ON GOOGLE MAP</h2>
                 </div>
@@ -979,7 +1002,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                 </div>
 
             </div>
-<!--            END MAP-->
+            <!--            END MAP-->
 
 
             </main>

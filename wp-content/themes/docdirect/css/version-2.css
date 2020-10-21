@@ -428,7 +428,7 @@ blockquote q{quotes:none;font-size:20px;line-height:30px;}
 .doc-widgetsmartphone .doc-widgetcontent figure img{border-radius:0;}
 .doc-widgetsmartphone .doc-widgetcontent ul li{line-height:12px;list-style-type:n}
 .doc-widgetsmartphone .doc-widgetcontent ul li span{display:block;font-size:12px;color:#363636;line-height:inherit;}
-.doc-footerbottombar{width:100%;float:left;padding:20px 0;background:#434343;}
+.doc-footerbottombar{width:100%;float:left;padding:20px 0;background:#434343; margin-top: 10px !important;}
 .doc-copyrights{float:left;margin:0;font-size:12px;line-height:12px;color:#fff;}
 .doc-footernav{float:right;}
 .doc-footernav ul{width:100%;float:left;font-size:13px;line-height:13px;color:#aeaeae;text-transform:capitalize;font-family:'Montserrat', Arial, Helvetica, sans-serif;list-style:none;}

@@ -206,44 +206,22 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     Info</h3>
                             </div>
                             <table>
-                                <thead>
-                                <th>SL</th>
-                                <th>Mission</th>
-                                </thead>
+
                                 <tbody class="text-left">
                                 <tr>
-                                    <td>1</td>
-                                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad alias ipsa laborum modi
-                                        officia possimus quae recusandae ut voluptatum. Asperiores commodi dignissimos earum,
-                                        facilis, ipsam maxime nostrum nulla omnis perspiciatis quae repellat, sed voluptas
-                                        voluptatibus? At, consequatur dignissimos dolores ea, eveniet fuga illum in libero nobis
-                                        perferendis perspiciatis quae ullam veritatis, voluptas voluptatem. Asperiores
-                                        aspernatur illo illum impedit quidem repellendus voluptatibus. Animi, aspernatur
-                                        delectus deleniti error ex excepturi, explicabo ipsam minima nulla sed sunt unde
-                                        voluptates? Consequuntur dignissimos dolorum expedita hic id ipsam minima nihil nulla
-                                        perferendis, sequi suscipit, vel voluptas voluptatibus? Alias asperiores consequatur ex
-                                        excepturi itaque voluptates.
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <th></th>
+                                    <th>Mission</th>
                                     <th>Vision</th>
+
                                 </tr>
                                 <tr>
-                                    <td>2</td>
-                                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad alias ipsa laborum modi
-                                        officia possimus quae recusandae ut voluptatum. Asperiores commodi dignissimos earum,
-                                        facilis, ipsam maxime nostrum nulla omnis perspiciatis quae repellat, sed voluptas
-                                        voluptatibus? At, consequatur dignissimos dolores ea, eveniet fuga illum in libero nobis
-                                        perferendis perspiciatis quae ullam veritatis, voluptas voluptatem. Asperiores
-                                        aspernatur illo illum impedit quidem repellendus voluptatibus. Animi, aspernatur
-                                        delectus deleniti error ex excepturi, explicabo ipsam minima nulla sed sunt unde
-                                        voluptates? Consequuntur dignissimos dolorum expedita hic id ipsam minima nihil nulla
-                                        perferendis, sequi suscipit, vel voluptas voluptatibus? Alias asperiores consequatur ex
-                                        excepturi itaque voluptates.
+                                    <td><?php
+                                        echo get_user_meta($current_user->ID,'mission',true);
+                                        ?></td>
+                                    <td>
+                                        <?php
+                                        echo get_user_meta($current_user->ID,'vision',true);
+                                        ?>
                                     </td>
-
                                 </tr>
 
                                 </tbody>
@@ -254,9 +232,19 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
 
                     </div>
                     <div class="container-fluid">
-                        <div class="page-header">
-                            <h3 style="color: white; margin-top: 0px; padding-top: 10px; text-transform: uppercase; font-size: 16px;">
-                                Our Services </h3>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="bg-primary"
+                             style="padding: 10px; background: #253e7f; text-align: center; margin-top: 0px; padding: 0px;">
+                            <h3 style="margin-top: 0px;
+                                text-align: center;
+                                padding-top: 10px;
+                                color: #fff;
+                                text-transform: uppercase;
+                                font-size: 16px;
+                                font-size: 18px;"> Our Services</h3>
+                        </div>
                             <table class="table table-bordered">
                                 <thead>
                                 <tr style="background: #253e7f; color: #fff;">

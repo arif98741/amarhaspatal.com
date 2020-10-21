@@ -324,6 +324,157 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         </div>
                     </div>
                     <hr/>
+                      </div>
+
+
+            <!-- TESTIMONIALS -->
+            <?php
+
+            $meta_query = array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'directory_type',
+                    'value' => '127',
+                    'compare' => '='
+                )
+            );
+
+            $query_args = array(
+                'order' => 'asc',
+                'orderby' => 'id',
+                'meta_query' => $meta_query,
+                'posts_per_page' => 3,
+
+            );
+
+            $user_query = new WP_User_Query($query_args);
+            $users = $user_query->get_results();
+            ?>
+            <section style="margin-bottom: 30px;">
+                <div class="container-fluid mslc">
+
+                    <div id="shareThisStory"
+                         style="background: #f4f4f4; height: 62px; display: block; position: relative; overflow: hidden; width: 100%; margin-top: 30px; margin-bottom: 20px; padding: 16px 8px;">
+                        <h3 style="margin: 0; float: left;">Share This Story, Choose Your Platform!</h3>
+
+                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="float: right; line-height: 32px;">
+                            <a class="a2a_dd"
+                               href="https://www.addtoany.com/share#url=https%3A%2F%2Fhasbd.com%2Fdoctors%2Fassist-prof-dr-md-rashed-anwar%2F&amp;title=ASSIST.%20PROF.%20DR.%20MD.%20RASHED%20ANWAR%20-%20HASBD">
+                <span class="a2a_svg a2a_s__default a2a_s_a2a" style="background-color:#253e7f;">
+                    <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                        <g fill="#FFF">
+                            <path d="M14 7h4v18h-4z"></path>
+                            <path d="M7 14h18v4H7z"></path>
+                        </g>
+                    </svg>
+                </span>
+                                <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
+                            </a>
+                            <a class="a2a_button_facebook" target="_blank" href="/#facebook" rel="nofollow noopener">
+                <span class="a2a_svg a2a_s__default a2a_s_facebook" style="background-color: #253e7f">
+                    <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                        <path fill="#FFF"
+                              d="M17.78 27.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99 2.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123 0-5.26 1.905-5.26 5.405v3.016h-3.53v4.09h3.53V27.5h4.223z"></path>
+                    </svg>
+                </span>
+                                <span class="a2a_label">Facebook</span>
+                            </a>
+                            <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
+                <span class="a2a_svg a2a_s__default a2a_s_twitter" style="background-color: #253e7f">
+                    <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                        <path
+                                fill="#FFF"
+                                d="M28 8.557a9.913 9.913 0 0 1-2.828.775 4.93 4.93 0 0 0 2.166-2.725 9.738 9.738 0 0 1-3.13 1.194 4.92 4.92 0 0 0-3.593-1.55 4.924 4.924 0 0 0-4.794 6.049c-4.09-.21-7.72-2.17-10.15-5.15a4.942 4.942 0 0 0-.665 2.477c0 1.71.87 3.214 2.19 4.1a4.968 4.968 0 0 1-2.23-.616v.06c0 2.39 1.7 4.38 3.952 4.83-.414.115-.85.174-1.297.174-.318 0-.626-.03-.928-.086a4.935 4.935 0 0 0 4.6 3.42 9.893 9.893 0 0 1-6.114 2.107c-.398 0-.79-.023-1.175-.068a13.953 13.953 0 0 0 7.55 2.213c9.056 0 14.01-7.507 14.01-14.013 0-.213-.005-.426-.015-.637.96-.695 1.795-1.56 2.455-2.55z"
+                        ></path>
+                    </svg>
+                </span>
+                                <span class="a2a_label">Twitter</span>
+                            </a>
+                            <a class="a2a_button_google_plus"></a>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <script async="" src="https://static.addtoany.com/menu/page.js"></script>
+                    </div>
+
+                    <div class="row">
+                        <div class="page-header">
+                            <h1 style="text-align: center;">Related Specialized Doctors</h1>
+
+                        </div>
+                        <div class="col-sm-12">
+                            <div id="customers-testimonials" class="owl-carousel mostafizd">
+                                <!--TESTIMONIAL 1 -->
+                                <?php
+                                //user loop
+                                foreach ($users as $key => $user) {
+
+
+                                    $directories_array['fax'] = $user->fax;
+                                    $directories_array['description'] = $user->description;
+                                    $directories_array['title'] = $user->display_name;
+                                    $directories_array['name'] = $user->first_name . ' ' . $user->last_name;
+                                    $directories_array['user_nicename'] = $user->data->user_nicename;
+                                    $directories_array['email'] = $user->user_email;
+                                    $directories_array['phone_number'] = $user->phone_number;
+                                    $directories_array['address'] = $user->user_address;
+                                    $directories_array['car_no'] = $user->car_no;
+                                    $avatar = apply_filters(
+                                        'docdirect_get_user_avatar_filter',
+                                        docdirect_get_user_avatar(array('width' => 270, 'height' => 270), $user->ID),
+                                        array('width' => 270, 'height' => 270)
+                                    );
+
+
+                                    ?>
+                                    <div class="item">
+                                        <div>
+                                            <p>Professor of&nbsp;Gastroenterology Department ARMED FORCES MEDICAL
+                                                COLLEGE Specialist in Gastroenterology Department (Int...</p>
+                                            <div style="display: flex;">
+                                                <div style="border: 2px solid #ddd; margin: 10px 15px 10px 0; flex: 1; height: fit-content;">
+
+                                                    <?php if (empty($avatar)): ?>
+
+                                                        <img src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg"
+                                                             alt="<?= $directories_array['title'] . ' - ' . site_url(); ?>"/>
+                                                    <?php else: ?>
+
+                                                        <img src="<?= $avatar ?>"
+                                                             alt="<?= $directories_array['name'] . ' - ' . site_url(); ?>"/>
+                                                    <?php endif; ?>
+                                                </div>
+                                                <div style="flex: 2;">
+                                                    <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
+                                                       style="text-decoration: none;">
+                                                        <h5><?php echo ucfirst($directories_array['name']); ?></h5></a>
+                                                    <p style="font-size: 12px; color: #253e7f; font-weight: bold;">
+                                                        MBBS(DHAKA)`, FCPS(MEDICINE)</p>
+                                                </div>
+                                            </div>
+                                            <p>POPULAR DIAGNOSTIC CENTRE LTD. | MIRPUR BRANCH</p>
+                                            <p>
+                                                <?php if (!empty($directories_array['address'])): ?>
+
+                                                    <span style="background: #253e7f;
+    display: inline-block;
+    padding: 6px 4px;
+    margin-top: 3px;">
+                                    <span style="color: white; border: 1px solid white; padding: 2px;"><?php echo $directories_array['address']; ?></span>
+                                </span>
+                                                <?php endif; ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <?php wp_reset_query();
+                                } ?>
+
+                                <!--END OF TESTIMONIAL 1 -->
+
+                            </div>
+                        </div>
+                    </div>
+
+<!--                    paste here-->
                     <div id="third-row row" style="width: 100%;">
                         <div class="page-header">
                             <h2 style="text-align: center;">FIND DOCTOR'S CHAMBER ON GOOGLE MAP</h2>
@@ -894,158 +1045,9 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                     </script>
                     <script async="" defer=""
                             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0PT_dg83oIexTOYRwnDziZlbqQlZmYVo&amp;callback=initMap"></script>
-            </div>
 
 
-            <!-- TESTIMONIALS -->
-            <?php
-
-            $meta_query = array(
-                'relation' => 'AND',
-                array(
-                    'key' => 'directory_type',
-                    'value' => '127',
-                    'compare' => '='
-                )
-            );
-
-            $query_args = array(
-                'order' => 'asc',
-                'orderby' => 'id',
-                'meta_query' => $meta_query,
-                'posts_per_page' => 3,
-
-            );
-
-            $user_query = new WP_User_Query($query_args);
-            $users = $user_query->get_results();
-            ?>
-            <section style="margin-bottom: 30px;">
-                <div class="container-fluid mslc">
-
-                    <div id="shareThisStory"
-                         style="background: #f4f4f4; height: 62px; display: block; position: relative; overflow: hidden; width: 100%; margin-top: 30px; margin-bottom: 20px; padding: 16px 8px;">
-                        <h3 style="margin: 0; float: left;">Share This Story, Choose Your Platform!</h3>
-
-                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="float: right; line-height: 32px;">
-                            <a class="a2a_dd"
-                               href="https://www.addtoany.com/share#url=https%3A%2F%2Fhasbd.com%2Fdoctors%2Fassist-prof-dr-md-rashed-anwar%2F&amp;title=ASSIST.%20PROF.%20DR.%20MD.%20RASHED%20ANWAR%20-%20HASBD">
-                <span class="a2a_svg a2a_s__default a2a_s_a2a" style="background-color:#253e7f;">
-                    <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                        <g fill="#FFF">
-                            <path d="M14 7h4v18h-4z"></path>
-                            <path d="M7 14h18v4H7z"></path>
-                        </g>
-                    </svg>
-                </span>
-                                <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
-                            </a>
-                            <a class="a2a_button_facebook" target="_blank" href="/#facebook" rel="nofollow noopener">
-                <span class="a2a_svg a2a_s__default a2a_s_facebook" style="background-color: #253e7f">
-                    <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                        <path fill="#FFF"
-                              d="M17.78 27.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99 2.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123 0-5.26 1.905-5.26 5.405v3.016h-3.53v4.09h3.53V27.5h4.223z"></path>
-                    </svg>
-                </span>
-                                <span class="a2a_label">Facebook</span>
-                            </a>
-                            <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
-                <span class="a2a_svg a2a_s__default a2a_s_twitter" style="background-color: #253e7f">
-                    <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                        <path
-                                fill="#FFF"
-                                d="M28 8.557a9.913 9.913 0 0 1-2.828.775 4.93 4.93 0 0 0 2.166-2.725 9.738 9.738 0 0 1-3.13 1.194 4.92 4.92 0 0 0-3.593-1.55 4.924 4.924 0 0 0-4.794 6.049c-4.09-.21-7.72-2.17-10.15-5.15a4.942 4.942 0 0 0-.665 2.477c0 1.71.87 3.214 2.19 4.1a4.968 4.968 0 0 1-2.23-.616v.06c0 2.39 1.7 4.38 3.952 4.83-.414.115-.85.174-1.297.174-.318 0-.626-.03-.928-.086a4.935 4.935 0 0 0 4.6 3.42 9.893 9.893 0 0 1-6.114 2.107c-.398 0-.79-.023-1.175-.068a13.953 13.953 0 0 0 7.55 2.213c9.056 0 14.01-7.507 14.01-14.013 0-.213-.005-.426-.015-.637.96-.695 1.795-1.56 2.455-2.55z"
-                        ></path>
-                    </svg>
-                </span>
-                                <span class="a2a_label">Twitter</span>
-                            </a>
-                            <a class="a2a_button_google_plus"></a>
-                            <div style="clear: both;"></div>
-                        </div>
-                        <script async="" src="https://static.addtoany.com/menu/page.js"></script>
-                    </div>
-
-                    <div class="row">
-                        <div class="page-header">
-                            <h1 style="text-align: center;">Related Specialized Doctors</h1>
-
-                        </div>
-                        <div class="col-sm-12">
-                            <div id="customers-testimonials" class="owl-carousel mostafizd">
-                                <!--TESTIMONIAL 1 -->
-                                <?php
-                                //user loop
-                                foreach ($users as $key => $user) {
-
-
-                                    $directories_array['fax'] = $user->fax;
-                                    $directories_array['description'] = $user->description;
-                                    $directories_array['title'] = $user->display_name;
-                                    $directories_array['name'] = $user->first_name . ' ' . $user->last_name;
-                                    $directories_array['user_nicename'] = $user->data->user_nicename;
-                                    $directories_array['email'] = $user->user_email;
-                                    $directories_array['phone_number'] = $user->phone_number;
-                                    $directories_array['address'] = $user->user_address;
-                                    $directories_array['car_no'] = $user->car_no;
-                                    $avatar = apply_filters(
-                                        'docdirect_get_user_avatar_filter',
-                                        docdirect_get_user_avatar(array('width' => 270, 'height' => 270), $user->ID),
-                                        array('width' => 270, 'height' => 270)
-                                    );
-
-
-                                    ?>
-                                    <div class="item">
-                                        <div>
-                                            <p>Professor of&nbsp;Gastroenterology Department ARMED FORCES MEDICAL
-                                                COLLEGE Specialist in Gastroenterology Department (Int...</p>
-                                            <div style="display: flex;">
-                                                <div style="border: 2px solid #ddd; margin: 10px 15px 10px 0; flex: 1; height: fit-content;">
-                                                    <!--                                                    <img src="https://hasbd.com/wp-content/themes/hasbd/images/doctor.jpg"-->
-                                                    <!--                                                         style="width: 100%; padding: 2px;"/>-->
-
-
-                                                    <?php if (empty($avatar)): ?>
-
-                                                        <img src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg"
-                                                             alt="<?= $directories_array['title'] . ' - ' . site_url(); ?>"/>
-                                                    <?php else: ?>
-
-                                                        <img src="<?= $avatar ?>"
-                                                             alt="<?= $directories_array['name'] . ' - ' . site_url(); ?>"/>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <div style="flex: 2;">
-                                                    <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
-                                                       style="text-decoration: none;">
-                                                        <h5><?php echo ucfirst($directories_array['name']); ?></h5></a>
-                                                    <p style="font-size: 12px; color: #253e7f; font-weight: bold;">
-                                                        MBBS(DHAKA)`, FCPS(MEDICINE)</p>
-                                                </div>
-                                            </div>
-                                            <p>POPULAR DIAGNOSTIC CENTRE LTD. | MIRPUR BRANCH</p>
-                                            <p>
-                                                <?php if (!empty($directories_array['address'])): ?>
-
-                                                    <span style="background: #253e7f;
-    display: inline-block;
-    padding: 6px 4px;
-    margin-top: 3px;">
-                                    <span style="color: white; border: 1px solid white; padding: 2px;"><?php echo $directories_array['address']; ?></span>
-                                </span>
-                                                <?php endif; ?>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <?php wp_reset_query();
-                                } ?>
-
-                                <!--END OF TESTIMONIAL 1 -->
-
-                            </div>
-                        </div>
-                    </div>
+                    <!--                    paste here-->
                 </div>
             </section>
             <!-- END OF TESTIMONIALS -->

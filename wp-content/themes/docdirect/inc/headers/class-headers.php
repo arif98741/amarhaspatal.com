@@ -68,11 +68,9 @@ if (!class_exists('docdirect_headers')) {
              	<main id="main" class="<?php if(!is_shop()): ?>tg-page-wrapper<?php endif; ?> tg-haslayout">
 
              	   <?php if(is_shop()): ?>
-             	    <div class="container" style="min-height:150px;background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center !important;; background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/pharmacy.png)">
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-             	    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" ></script>
+             	    <div class="container">
+             	    <?php echo do_shortcode("[rev_slider alias='pharmacy-slider']"); ?>
+
 </div>
              	   <?php endif; ?>
             <?php

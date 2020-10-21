@@ -114,3 +114,6 @@ if (!function_exists('session_store_custom')) {
 
     }
 }
+
+//shop page customization
+add_filter( 'woocommerce_product_subcategories_hide_empty', '__return_false' );

@@ -63,42 +63,42 @@ if (apply_filters('docdirect_do_check_user_type', $user_identity) === true) {
     </div>
     <?php
     $directory_type = get_user_meta($current_user->ID, 'directory_type', true);
-    $vision = get_user_meta($current_user->ID, 'directory_type', true);
+    $vision = get_user_meta($current_user->ID, 'vision', true);
+    $mission = get_user_meta($current_user->ID, 'mission', true);
+    $vision = get_user_meta($current_user->ID, 'vision', true);
+
 
     if ($directory_type == 126 || $directory_type == 121) { ?>
 
 
         <div class="tg-editprofile tg-haslayout">
-        <div class="col-md-12 col-sm-12 col-xs-12 tg-expectwidth">
-            <div class="row">
-                <div class="tg-bordertop tg-haslayout">
-                    <div class="tg-formsection">
-                        <div class="tg-heading-border tg-small">
-                            <h3>Mission and Vision</h3>
-                        </div>
-                        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 tg-expectwidth">
+                <div class="row">
+                    <div class="tg-bordertop tg-haslayout">
+                        <div class="tg-formsection">
+                            <div class="tg-heading-border tg-small">
+                                <h3>Mission and Vision</h3>
+                            </div>
                             <div class="row">
-                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
                                     <textarea class="form-control" name="basics[mission]"
-                                              placeholder="Enter Mission"></textarea>
+                                              placeholder="Enter Mission"><?php echo $mission; ?></textarea>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
+                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
                                     <textarea class="form-control" name="basics[vision]"
-                                              placeholder="Enter Vision"></textarea>
+                                              placeholder="Enter Vision"> <?php echo $vision; ?></textarea>
+                                        </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
     <?php }

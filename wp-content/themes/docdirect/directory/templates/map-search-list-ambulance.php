@@ -158,7 +158,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
     <main id="main" class="site-main" role="main">
         <section class="divider">
 
-            <div class="row text-center row-c">
+            <div class="row text-left row-c" style="padding-left: 40px;">
                 <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
                         data-target="#myModal">Search <?= $Type ?>
                 </button>
@@ -222,17 +222,19 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                         <div class="col-md-9 iiiii">
 
                             <a href="<?php echo site_url(); ?>/ambulance/<?php echo $directories_array['user_nicename']; ?>">
-                                <h3><?= ucfirst($directories_array['name']); ?></h3>
+                                <h3><?= ucwords($directories_array['name']); ?></h3>
                             </a>
 
-                            <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>
-                                <?= (!empty($directories_array['address'])) ? ucfirst($directories_array['address']) : 'N/A'; ?>
-                            </p>
+
                             <p><i class="fa fa-phone fa-lg"
                                   style="margin-right: 20px;"></i>Phone: <?= (!empty($directories_array['phone_number'])) ? $directories_array['phone_number'] : 'N/A'; ?>
                             </p>
+
                             <p><i class="fa fa-envelope fa-lg"
                                   style="margin-right: 20px;"></i>Email: <?= (!empty($directories_array['email'])) ? $directories_array['email'] : 'N/A'; ?>
+                            </p>
+                            <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>
+                                <?= (!empty($directories_array['address'])) ? ucfirst($directories_array['address']) : 'N/A'; ?>
                             </p>
 
                             <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
@@ -330,14 +332,13 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 
 
     <!--        modal for search start-->
-
     <div class="modal fade ng-scope search-modal" id="myModal" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel"
          aria-hidden="true" ng-controller="searchCtrl">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Search Doctor</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Search Ambulance</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

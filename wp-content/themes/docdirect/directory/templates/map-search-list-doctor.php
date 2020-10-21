@@ -160,11 +160,8 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
     <main id="main" class="site-main" role="main">
         <section class="divider">
 
-            <div class="row text-center row-c">
-                <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
-                        data-target="#myModal">Search <?= $Type ?>
-                </button>
-            </div>
+
+
             <?php
             if ($paginationData['total_pages'] > 0) {
 
@@ -211,49 +208,57 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                     ?>
 
                     <div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;">
+                        <div class="col-md-2 user-profile-dir-list">
 
-                        <div class="col-md-3 user-profile-dir-list">
-
-                            <?php if (empty($avatar)): ?>
-                                <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
-                                    <img src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg"
-                                         alt="<?= $directories_array['title'] . ' - ' . site_url(); ?>"/></a>
-                            <?php else: ?>
-                                <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
-                                    <img src="<?= $avatar ?>"
-                                         alt="<?= $directories_array['name'] . ' - ' . site_url(); ?>"/></a>
-                            <?php endif; ?>
+                            <div class="row text-left row-c" style="padding-left: 40px;">
+                                <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
+                                        data-target="#myModal" >Search <?= $Type ?>
+                                </button>
+                            </div>
 
                         </div>
                         <div class="col-md-9 iiiii">
 
-                            <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
-                                <h3><?= ucfirst($directories_array['name']); ?></h3>
-                            </a>
-                            <p>
-                                <i class="fa fa-graduation-cap fa-lg"
-                                   style="margin-right: 12px; display: inline-block;"></i> <span
-                                        style="color: #16518c;"><strong
-                                            style="display: inline-flex;">
+                            <div class="col-md-4">
+                                <?php if (empty($avatar)): ?>
+                                    <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
+                                        <img src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg" style="width: 100%; height: 285px"
+                                             alt="<?= $directories_array['title'] . ' - ' . site_url(); ?>"/></a>
+                                <?php else: ?>
+                                    <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
+                                        <img src="<?= $avatar ?>" style="width: 100%; height: 285px"
+                                             alt="<?= $directories_array['name'] . ' - ' . site_url(); ?>"/></a>
+                                <?php endif; ?>
+                            </div>
+                            <div class="col-md-8">
+
+                                <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
+                                    <h3><?= ucwords($directories_array['name']); ?></h3>
+                                </a>
+                                <p>
+                                    <i class="fa fa-graduation-cap fa-lg"
+                                       style="margin-right: 12px; display: inline-block;"></i> <span
+                                            style="color: #16518c;"><strong
+                                                style="display: inline-flex;">
 
                                         MBBS (DU), DMU (Dhaka)</strong></span>
-                            </p>
-                            <p><i class="fa fa-certificate fa-lg" style="margin-right: 20px;"></i>Family Medicine</p>
-                            <p><i class="fa fa-hospital-o fa-lg" style="margin-right: 20px;"></i><span
-                                        style="display: inline-flex;">Health AID Service</span></p>
-                            <p><i class="fa fa-money fa-lg" style="margin-right: 16px;"></i>New patient 500 BDT &amp;
-                                Old&nbsp;patient
-                                300 BDT</p>
-                            <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>
-                                <?= (!empty($directories_array['address'])) ? ucfirst($directories_array['address']) : 'N/A'; ?>
-                            </p>
+                                </p>
+                                <p><i class="fa fa-certificate fa-lg" style="margin-right: 20px;"></i>Family Medicine</p>
+                                <p><i class="fa fa-hospital-o fa-lg" style="margin-right: 20px;"></i><span
+                                            style="display: inline-flex;">Health AID Service</span></p>
+                                <p><i class="fa fa-money fa-lg" style="margin-right: 16px;"></i>New patient 500 BDT &amp;
+                                    Old&nbsp;patient
+                                    300 BDT</p>
+                                <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>
+                                    <?= (!empty($directories_array['address'])) ? ucfirst($directories_array['address']) : 'N/A'; ?>
+                                </p>
 
-                            <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
-                                 data-a2a-url="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
-                                 data-a2a-title="<?= ucfirst($directories_array['name']); ?>"
-                                 style="line-height: 32px;">
-                                <a class="a2a_dd"
-                                   href="https://www.addtoany.com/share#url=<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
+                                <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+                                     data-a2a-url="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
+                                     data-a2a-title="<?= ucfirst($directories_array['name']); ?>"
+                                     style="line-height: 32px;">
+                                    <a class="a2a_dd"
+                                       href="https://www.addtoany.com/share#url=<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
                             <span class="a2a_svg a2a_s__default a2a_s_a2a" style="background-color: #253e7f">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 32 32">
@@ -263,10 +268,10 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     </g>
                                 </svg>
                             </span>
-                                    <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
-                                </a>
-                                <a class="a2a_button_facebook" target="_blank" href="/#facebook"
-                                   rel="nofollow noopener">
+                                        <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
+                                    </a>
+                                    <a class="a2a_button_facebook" target="_blank" href="/#facebook"
+                                       rel="nofollow noopener">
                             <span class="a2a_svg a2a_s__default a2a_s_facebook"
                                   style="background-color: #253e7f">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -277,9 +282,9 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     ></path>
                                 </svg>
                             </span>
-                                    <span class="a2a_label">Facebook</span>
-                                </a>
-                                <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
+                                        <span class="a2a_label">Facebook</span>
+                                    </a>
+                                    <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
                             <span class="a2a_svg a2a_s__default a2a_s_twitter"
                                   style="background-color: #253e7f">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -290,19 +295,22 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     ></path>
                                 </svg>
                             </span>
-                                    <span class="a2a_label">Twitter</span>
-                                </a>
-                                <a class="a2a_button_google_plus"></a>
-                                <div style="clear: both;"></div>
-                            </div>
-                            <script async="" src="https://static.addtoany.com/menu/page.js"></script>
+                                        <span class="a2a_label">Twitter</span>
+                                    </a>
+                                    <a class="a2a_button_google_plus"></a>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <script async="" src="https://static.addtoany.com/menu/page.js"></script>
 
-                            <br/>
-                            <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
-                               class="btn btn-default btn-flat bt-new">View Profile</a>
+                                <br/>
+                                <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
+                                   class="btn btn-default btn-flat bt-new">View Profile</a>
+
+<!--                                loop-->
+                            </div>
+
                         </div>
                     </div>
-
 
                 <?php } ?>
                 <nav>

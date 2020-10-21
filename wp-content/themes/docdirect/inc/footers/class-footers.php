@@ -200,7 +200,96 @@ if (!class_exists('docdirect_footers')) {
                                     <?php } ?>
                                     <?php if (is_active_sidebar('footer-column-2')) { ?>
                                         <div class="col-sm-4 col-xs-12">
-                                            <div class="doc-fcol"><?php dynamic_sidebar('footer-column-2'); ?></div>
+                                            <div class="doc-fcol">
+                                                <div id="doc_widgetdoctorlisting-2"
+                                                     class="doc-widget doc-widgetdoctorlisting tg-widget">
+                                                    <div class="tg-heading-border tg-small"><h4>Latest Listings</h4>
+                                                    </div>
+                                                    <div class="doc-widgetcontent">
+                                                        <ul>
+
+                                                            <?php
+                                                            $args = array(
+                                                                'orderby' => 'registered', // registered date
+                                                                'order' => 'DESC', // last registered goes first
+                                                                'number' => 6, // limit to the last one, not required,
+                                                                'offset' => 2
+                                                            );
+
+                                                            $users = get_users($args);
+                                                            foreach ($users as $user) {
+                                                                $userMeta = get_user_meta($user->ID);
+//                                                                echo '<pre>';
+//                                                                print_r($userMeta);
+//                                                                echo '</pre>';
+
+                                                                $userType = get_user_meta($user->id, 'directory_type', true);
+                                                                $firstName = get_user_meta($user->id, 'first_name', true);
+                                                                $lastName = get_user_meta($user->id, 'last_name', true);
+                                                                $userNicename = get_user_meta($user->id, 'user_nicename', true);
+                                                                $avatar = apply_filters(
+                                                                    'docdirect_get_user_avatar_filter',
+                                                                    docdirect_get_user_avatar(array('width' => 270, 'height' => 270), $user->ID),
+                                                                    array('width' => 270, 'height' => 270) //size width,height
+                                                                );
+                                                                if (empty($userType))
+                                                                    continue;
+
+                                                                ?>
+
+                                                                <li>
+                                                                    <figure>
+
+                                                                        <?php if ($userType == 127 && empty($avatar)): ?>
+                                                                            <a href="<?php echo site_url(); ?>/hospital/<?php echo $userNicename; ?>">
+                                                                                <img src="<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/ambulance_default.png"
+                                                                                     alt="<?= $firstName . ' - ' . site_url(); ?>"/></a>
+                                                                        <?php else: ?>
+                                                                            <a href="<?php echo site_url(); ?>/hospital/<?php echo $userNicename; ?>">
+                                                                                <img src="<?= $avatar ?>"
+                                                                                     alt="<?= $firstName. ' - ' . site_url(); ?>"/></a>
+                                                                        <?php endif; ?>
+
+                                                                    </figure>
+                                                                    <div class="doc-doctorname">
+
+                                                                        <h3>
+                                                                            <?php
+                                                                            if ($userType == 126) { ?>
+
+                                                                                <a href="<?php echo site_url(); ?>/hospital/<?php echo $userNicename; ?>"><?php echo $firstName . ' ' . $lastName; ?></a>
+                                                                            <?php } ?>
+                                                                            <?php
+                                                                            if ($userType == 127) { ?>
+
+                                                                                <a href="<?php echo site_url(); ?>/doctor/<?php echo $userNicename; ?>"><?php echo $firstName . ' ' . $lastName; ?></a>
+                                                                            <?php } ?>
+                                                                            <?php
+                                                                            if ($userType == 123) { ?>
+
+                                                                                <a href="<?php echo site_url(); ?>/ambulance/<?php echo $userNicename; ?>"><?php echo $firstName . ' ' . $lastName; ?></a>
+                                                                            <?php } ?>
+                                                                            <?php
+                                                                            if ($userType == 121) { ?>
+
+                                                                                <a href="<?php echo site_url(); ?>/dianostics/<?php echo $userNicename; ?>"><?php echo $firstName . ' ' . $lastName; ?></a>
+                                                                            <?php } ?>
+                                                                            <?php
+                                                                            if ($userType == 122) { ?>
+
+                                                                                <a href="<?php echo site_url(); ?>/blood-donor/<?php echo $userNicename; ?>"><?php echo $firstName . ' ' . $lastName; ?></a>
+                                                                            <?php } ?>
+
+
+                                                                        </h3>
+                                                                    </div>
+                                                                </li>
+                                                            <?php } ?>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     <?php } ?>
                                     <?php if (is_active_sidebar('footer-column-3')) { ?>
@@ -243,7 +332,7 @@ if (!class_exists('docdirect_footers')) {
                     </div>
                 <?php } ?>
 
-                <div class="doc-footerbottombar">
+                <div class="doc-footerbottombar" style="margin-top: 10px;">
                     <div class="container-fluid">
 
                         <div class="row">
@@ -284,20 +373,17 @@ if (!class_exists('docdirect_footers')) {
                                     }
                                     ?>
                                 </ul>
-
                             </div>
-
                             <div class="col-md-4">
                                 <p style="color: #fff !important; text-align: right" class="copyright-text">Designed and
                                     Developed by <a
                                             style="color: #fff"
                                             href="https://softbdltd.com/"
-                                            target="_blank">SOFTBDLTD</a>
+                                            target="_blank"><img
+                                                src="<?php echo site_url(); ?>/wp-content/uploads/softbdltd.png" alt=""></a>
                                 </p>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
                 <!-- sidebar menu start -->

@@ -36,21 +36,35 @@ if (!defined('ABSPATH')) {
 
 
     <div class="row">
-        <div class="col-md-2 col-xs-5 pull-left prescription-block">
+        <div class="col-md-4 prescription-block">
 
-            <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary upload-prescription-btn">Upload
+            <a href="<?= site_url('prescription-upload') ?>" style="margin-left: 14px;
+    border-radius: 4px;" class="btn btn-primary upload-prescription-btn">Upload
                 Prescription</a>
             <br>
         </div>
-        <div class="col-md-offset-3">
+
+        <div class="col-md-4">
+
+            <form class="location" action="<?php echo site_url(); ?>/shop" method="post">
+                <?php
+                $districts = getPostTermChildCategory('product_cat', 184);
+                ?>
+                <select name="location" required>
+                    <option value="">Select District</option>
+                    <?php foreach ($districts as $district) { ?>
+                        <option value="<?= $district->slug; ?>" <?php if (isset($_SESSION['location']) && $district->slug == $_SESSION['location']): ?> selected <?php endif; ?>><?= $district->name ?></option>
+                    <?php } ?>
+                </select>
+            </form>
 
         </div>
-        <div class="col-md-7 col-xs-7 col-xs-push-2 pull-right">
+        <div class="col-md-4">
 
-            <form class="example" action="/action_page.php" style="margin:auto;max-width:300px; margin-top: 18px">
-                <input type="text" placeholder="Search.." name="search2" style="border-radius: 5px 0px 0px 5px;">
-                <button type="submit" style="height: 40px; border-radius: 0 4px 4px 0px;"><i class="fa fa-search"></i>
-                </button>
+            <form class="example" action="<?php echo site_url() ?>/shop/?search_key" style="margin:auto; margin-top: 18px">
+                <input type="text" placeholder="Search Here" name="search_key" style="border-radius: 5px 0px 0px 5px;">
+                <button style="submit"><i class="fa fa-search"></i></button>
+
             </form>
 
             <style>
@@ -60,17 +74,14 @@ if (!defined('ABSPATH')) {
 
                 form.example input[type=text] {
                     padding: 10px;
-                    font-size: 17px;
-                    border: 1px solid grey;
                     float: left;
                     width: 80%;
-                    background: #f1f1f1;
                 }
 
                 form.example button {
                     float: left;
                     width: 20%;
-                    padding: 10px;
+                    padding: 5px;
                     background: #2196F3;
                     color: white;
                     font-size: 17px;
@@ -88,28 +99,14 @@ if (!defined('ABSPATH')) {
                     clear: both;
                     display: table;
                 }
+
+                form.location{
+                    margin-top: 18px;
+                }
             </style>
         </div>
     </div>
-    <div class="row" style="margin: 0; padding: 0">
-        <div class="col-md-4">
-            <?php
 
-            ?>
-            <form action="<?php echo site_url(); ?>/shop" method="post">
-                <?php
-                $districts = getPostTermChildCategory('product_cat', 184);
-                ?>
-                <select name="location" required>
-                    <option value="">Select District</option>
-                    <?php foreach ($districts as $district) { ?>
-                        <option value="<?= $district->slug; ?>" <?php if (isset($_SESSION['location']) && $district->slug == $_SESSION['location']): ?> selected <?php endif; ?>><?= $district->name ?></option>
-                    <?php } ?>
-                </select>
-                <button class="btn btn-sm btn-primary" style="margin-top: 3px" type="submit">Select</button>
-            </form>
-        </div>
-    </div>
     <br>
 </div>
 </div>

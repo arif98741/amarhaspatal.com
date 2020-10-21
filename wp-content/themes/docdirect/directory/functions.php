@@ -94,6 +94,17 @@ if (!function_exists('docdirect_account_settings')) {
             update_user_meta($user_identity, 'professional_statements', $professional_statements);
         }
 
+        //update mission vision
+        if (isset($_POST['basics']['mission'])) {
+            $mission = esc_html($_POST['basics']['mission']);
+            update_user_meta($user_identity, 'mission', $mission);
+        }
+        if (isset($_POST['basics']['vision'])) {
+            $vision = esc_html($_POST['basics']['vision']);
+            update_user_meta($user_identity, 'vision', $vision);
+        }
+
+
         //update username
         $full_name = docdirect_get_username($user_identity);
         update_user_meta($user_identity, 'full_name', esc_attr($full_name));

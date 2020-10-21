@@ -16,7 +16,7 @@ $color = isset($atts['color']) && $atts['color'] != '' ? $atts['color'] : '#5d59
     </div>
     <?php if (!empty($atts['cta_button_text'])) { ?>
         <div class="doc-rightarea">
-            <a class="doc-btn" href="<?php echo esc_attr($atts['cta_button_link']); ?>">Sign up now</a>
+            <a class="doc-btn" href="#" data-toggle="modal" data-target="#registration-modal-front">Sign up now</a>
         </div>
     <?php } ?>
 </div>
