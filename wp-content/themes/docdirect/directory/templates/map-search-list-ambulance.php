@@ -131,13 +131,8 @@ $query_args = array(
     'number' => $paginationData['per_page'],
     'offset' => $paginationData['offset'],
 );
-
-
 $user_query = new WP_User_Query($query_args);
-//echo '<pre>';
-//print_r($user_query->get_results());
-//echo '</pre>';
-//exit;
+
 $total_users = !empty($user_query->total_users) ? $user_query->total_users : 0;
 $found_title = docdirect_get_found_title($total_users, $directory_type);
 global $Type;

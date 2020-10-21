@@ -24,7 +24,7 @@ if (array_key_exists('user_profile_specialities ', $userMeta)) {
     $specialities = unserializeData($userMeta['user_profile_specialities'][0]);
 }
 
-$schedules = unserializeData($userMeta['schedules'][0]);
+//$schedules = unserializeData($userMeta['schedules'][0]);
 $avatar = apply_filters(
     'docdirect_get_user_avatar_filter',
     docdirect_get_user_avatar(array('width' => 270, 'height' => 270), $author_profile->ID),
@@ -66,7 +66,6 @@ if ($directory_type == 126) {
 if ($directory_type == 121) {
     //hospital
     get_template_part('author-diagnostics');
-
 }
 
 

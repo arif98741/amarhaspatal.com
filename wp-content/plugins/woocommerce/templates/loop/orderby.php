@@ -21,8 +21,6 @@ if (!defined('ABSPATH')) {
 
 ?>
 <style>
-
-
     @media only screen and (max-width: 768px) {
         .woocommerce ul.products[class*=columns-] li.product,
         .woocommerce-page ul.products[class*=columns-] li.product {
@@ -40,10 +38,9 @@ if (!defined('ABSPATH')) {
     <div class="row">
         <div class="col-md-2 col-xs-5 pull-left prescription-block">
 
-            <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary upload-prescription-btn">Upload Prescription</a>
+            <a href="<?= site_url('prescription-upload') ?>" class="btn btn-primary upload-prescription-btn">Upload
+                Prescription</a>
             <br>
-
-
         </div>
         <div class="col-md-offset-3">
 
@@ -52,7 +49,8 @@ if (!defined('ABSPATH')) {
 
             <form class="example" action="/action_page.php" style="margin:auto;max-width:300px; margin-top: 18px">
                 <input type="text" placeholder="Search.." name="search2" style="border-radius: 5px 0px 0px 5px;">
-                <button type="submit" style="height: 40px; border-radius: 0 4px 4px 0px;"><i class="fa fa-search"></i></button>
+                <button type="submit" style="height: 40px; border-radius: 0 4px 4px 0px;"><i class="fa fa-search"></i>
+                </button>
             </form>
 
             <style>
@@ -96,7 +94,7 @@ if (!defined('ABSPATH')) {
     <div class="row" style="margin: 0; padding: 0">
         <div class="col-md-4">
             <?php
-    
+
             ?>
             <form action="<?php echo site_url(); ?>/shop" method="post">
                 <?php
@@ -129,9 +127,3 @@ if (!defined('ABSPATH')) {
     });
 </script>
 <!--owl carousel-->
-
-
-
-
-
-

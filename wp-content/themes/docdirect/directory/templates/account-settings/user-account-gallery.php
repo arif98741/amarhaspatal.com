@@ -63,7 +63,7 @@ if (apply_filters('docdirect_do_check_user_type', $user_identity) === true) {
     </div>
     <?php
     $directory_type = get_user_meta($current_user->ID, 'directory_type', true);
-    $vision = get_user_meta($current_user->ID, 'directory_type', ID);
+    $vision = get_user_meta($current_user->ID, 'directory_type', true);
 
     if ($directory_type == 126 || $directory_type == 121) { ?>
 

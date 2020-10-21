@@ -161,26 +161,26 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 <?php
 if ($directory_type == 127) {
     //for doctor
-    get_template_part('/directory/templates/map-search-list-doctor');
+    get_template_part('directory/templates/map-search-list-doctor');
 }
 
 if ($directory_type == 122) {
     //for blood donor
-    get_template_part('/directory/templates/map-search-list-blood-donor');
+    get_template_part('directory/templates/map-search-list-blood-donor');
 }
 
 if ($directory_type == 123) {
     //for ambulance
-    get_template_part('/directory/templates/map-search-list-ambulance');
+    get_template_part('directory/templates/map-search-list-ambulance');
 }
 if ($directory_type == 121) {
     //for ambulance
-    get_template_part('/directory/templates/map-search-list-diagonostics');
+    get_template_part('directory/templates/map-search-list-diagonostics');
 }
 
 if ($directory_type == 126) {
-    //for ambulance
-    get_template_part('/directory/templates/map-search-list-hospital');
+    //for hospital
+    get_template_part('directory/templates/map-search-list-hospital');
 }
 
 ?>

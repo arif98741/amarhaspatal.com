@@ -21,7 +21,7 @@ $prescriptions = $wpdb->get_results("SELECT * FROM prescriptions where created_a
 <html>
 <head>
     <meta charset="utf-8">
-    <title>::: Prescription Sumission Report :::</title>
+    <title>::: Prescription Submission Report :::</title>
     <link rel="stylesheet " href="<?= site_url('wp-admin') ?>">
     <style>
 

@@ -134,10 +134,7 @@ $query_args = array(
 
 
 $user_query = new WP_User_Query($query_args);
-//echo '<pre>';
-//print_r($user_query->get_results());
-//echo '</pre>';
-//exit;
+
 $total_users = !empty($user_query->total_users) ? $user_query->total_users : 0;
 $found_title = docdirect_get_found_title($total_users, $directory_type);
 global $Type;
@@ -151,7 +148,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 
 <div class="main-content container-fluid mslc">
     <div style="border: 1px solid #eee; padding: 8px;">
-        <div style="background-image: url(https://amarhaspatal.com/wp-content/uploads/directory-list-banner/doctor.png);
+        <div style="background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/doctor.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center !important;
