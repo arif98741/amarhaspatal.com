@@ -156,12 +156,12 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                          data-lineheight="30">
                                         <span style="color: #5e5357; font-size: 18px;"><?php echo $tagline; ?></span><br/>
                                         <br/>
-                                        <p><i class="fa fa-phone"></i>Phone:
+                                        <p>Phone:
                                             <strong><?php echo (!empty($phone)) ? $phone : 'N/A'; ?></strong></p>
-                                        <p><i class="fa fa-envelope"></i> Email:
+                                        <p>Email:
                                             <strong><?php echo (!empty($email)) ? $email : 'N/A'; ?></strong></p>
                                         <p>
-                                            <i class="fa fa-map-marker fa-lg"></i>Address: <?php echo (!empty($address)) ? $address : 'N/A'; ?>
+                                            Address: <strong><?php echo (!empty($address)) ? $address : 'N/A'; ?></strong>
                                         </p>
                                         <button onclick="window.location='<?php echo site_url(); ?>/ambulance-booking'"
                                                 class="tg-btn-lg make-appointment-btn" type="button">
@@ -399,9 +399,10 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                             </div>
                         </div>
                         <div class="col-md-6">
-                            hello
+                            <h3 style="margin: 0; float: left;">Reviews and Comment</h3>
+
                             <?php
-                            get_template_part('directory/provider-page/template-author-specialities');
+                            get_template_part('directory/provider-page/template-author-reviews');
                             ?>
                         </div>
                     </div>

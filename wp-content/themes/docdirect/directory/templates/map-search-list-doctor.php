@@ -149,11 +149,11 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 <div class="main-content container-fluid mslc">
     <div style="border: 1px solid #eee; padding: 8px;">
         <div style="background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/doctor.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center !important;
-    height: 150px;
-">
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center !important;
+                height: 150px;
+                ">
         </div>
     </div>
     <div class="text-center"></div>
@@ -161,104 +161,105 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
         <section class="divider">
 
 
-
             <?php
-            if ($paginationData['total_pages'] > 0) {
+            if ($paginationData['total_pages'] > 0) { ?>
+                <div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;">
+                    <div class="col-md-3 user-profile-dir-list">
 
-                foreach ($user_query->results as $key => $user) {
-
-
-                    $directory_type = get_user_meta($user->ID, 'directory_type', true);
-                    $dir_map_marker = fw_get_db_post_option($directory_type, 'dir_map_marker', true);
-                    $reviews_switch = fw_get_db_post_option($directory_type, 'reviews', true);
-                    $current_date = date('Y-m-d H:i:s');
-                    $avatar = apply_filters(
-                        'docdirect_get_user_avatar_filter',
-                        docdirect_get_user_avatar(array('width' => 270, 'height' => 270), $user->ID),
-                        array('width' => 270, 'height' => 270) //size width,height
-                    );
-
-
-                    $privacy = docdirect_get_privacy_settings($user->ID); //Privacy setting
-
-                    $directories_array['fax'] = $user->fax;
-                    $directories_array['description'] = $user->description;
-                    $directories_array['title'] = $user->display_name;
-                    $directories_array['name'] = $user->first_name . ' ' . $user->last_name;
-                    $directories_array['user_nicename'] = $user->data->user_nicename;
-                    $directories_array['email'] = $user->user_email;
-                    $directories_array['phone_number'] = $user->phone_number;
-                    $directories_array['address'] = $user->user_address;
-                    $directories_array['car_no'] = $user->car_no;
-                    $featured_string = docdirect_get_user_featured_date($user->ID);
-                    $current_string = strtotime($current_date);
-                    $review_data = docdirect_get_everage_rating($user->ID);
-                    $get_username = docdirect_get_username($user->ID);
-
-
-                    if (isset($dir_map_marker['url']) && !empty($dir_map_marker['url'])) {
-                        $directories_array['icon'] = $dir_map_marker['url'];
-                    } else {
-                        if (!empty($dir_map_marker_default['url'])) {
-                            $directories_array['icon'] = $dir_map_marker_default['url'];
-                        } else {
-                            $directories_array['icon'] = get_template_directory_uri() . '/images/map-marker.png';
-                        }
-                    }
-                    ?>
-
-                    <div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;">
-                        <div class="col-md-2 user-profile-dir-list">
-
-                            <div class="row text-left row-c" style="padding-left: 40px;">
-                                <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
-                                        data-target="#myModal" >Search <?= $Type ?>
-                                </button>
-                            </div>
-
+                        <div class="row text-left row-c" style="padding-left: 40px;">
+                            <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
+                                    data-target="#myModal">Search <?= $Type ?>
+                            </button>
                         </div>
-                        <div class="col-md-9 iiiii">
 
-                            <div class="col-md-4">
-                                <?php if (empty($avatar)): ?>
-                                    <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
-                                        <img src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg" style="width: 100%; height: 285px"
-                                             alt="<?= $directories_array['title'] . ' - ' . site_url(); ?>"/></a>
-                                <?php else: ?>
-                                    <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
-                                        <img src="<?= $avatar ?>" style="width: 100%; height: 285px"
-                                             alt="<?= $directories_array['name'] . ' - ' . site_url(); ?>"/></a>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-md-8">
+                    </div>
+                    <div class=" col-md-9">
+                        <?php
+                        foreach ($user_query->results as $key => $user) {
 
-                                <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
-                                    <h3><?= ucwords($directories_array['name']); ?></h3>
-                                </a>
-                                <p>
-                                    <i class="fa fa-graduation-cap fa-lg"
-                                       style="margin-right: 12px; display: inline-block;"></i> <span
-                                            style="color: #16518c;"><strong
-                                                style="display: inline-flex;">
+
+                            $directory_type = get_user_meta($user->ID, 'directory_type', true);
+                            $dir_map_marker = fw_get_db_post_option($directory_type, 'dir_map_marker', true);
+                            $reviews_switch = fw_get_db_post_option($directory_type, 'reviews', true);
+                            $current_date = date('Y-m-d H:i:s');
+                            $avatar = apply_filters(
+                                'docdirect_get_user_avatar_filter',
+                                docdirect_get_user_avatar(array('width' => 270, 'height' => 270), $user->ID),
+                                array('width' => 270, 'height' => 270) //size width,height
+                            );
+
+
+                            $privacy = docdirect_get_privacy_settings($user->ID); //Privacy setting
+
+                            $directories_array['fax'] = $user->fax;
+                            $directories_array['description'] = $user->description;
+                            $directories_array['title'] = $user->display_name;
+                            $directories_array['name'] = $user->first_name . ' ' . $user->last_name;
+                            $directories_array['user_nicename'] = $user->data->user_nicename;
+                            $directories_array['email'] = $user->user_email;
+                            $directories_array['phone_number'] = $user->phone_number;
+                            $directories_array['address'] = $user->user_address;
+                            $directories_array['car_no'] = $user->car_no;
+                            $featured_string = docdirect_get_user_featured_date($user->ID);
+                            $current_string = strtotime($current_date);
+                            $review_data = docdirect_get_everage_rating($user->ID);
+                            $get_username = docdirect_get_username($user->ID);
+
+
+                            if (isset($dir_map_marker['url']) && !empty($dir_map_marker['url'])) {
+                                $directories_array['icon'] = $dir_map_marker['url'];
+                            } else {
+                                if (!empty($dir_map_marker_default['url'])) {
+                                    $directories_array['icon'] = $dir_map_marker_default['url'];
+                                } else {
+                                    $directories_array['icon'] = get_template_directory_uri() . '/images/map-marker.png';
+                                }
+                            }
+                            ?>
+                            <div class="row" style="margin-top: 30px;">
+                                <div class="col-md-4">
+                                    <?php if (empty($avatar)): ?>
+                                        <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
+                                            <img class="map-directory-list-thumbnail" src="<?php echo site_url(); ?>/wp-content/uploads/doctor/doctor_default.jpg"
+                                                 style="width: 100%; height: 290px; border: 2px solid #C5C5C7; padding: 4px;"
+                                                 alt="<?= $directories_array['title'] . ' - ' . site_url(); ?>"/></a>
+                                    <?php else: ?>
+                                        <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
+                                            <img class="map-directory-list-thumbnail" src="<?= $avatar ?>" style="width: 100%; height: 290px; border: 2px solid #C5C5C7; padding: 4px;" alt="<?= $directories_array['name'] . ' - ' . site_url(); ?>"/></a>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="col-md-8">
+
+                                    <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
+                                        <h3><?= ucwords($directories_array['name']); ?></h3>
+                                    </a>
+                                    <p>
+                                        <i class="fa fa-graduation-cap fa-lg"
+                                           style="margin-right: 12px; display: inline-block;"></i> <span
+                                                style="color: #16518c;"><strong
+                                                    style="display: inline-flex;">
 
                                         MBBS (DU), DMU (Dhaka)</strong></span>
-                                </p>
-                                <p><i class="fa fa-certificate fa-lg" style="margin-right: 20px;"></i>Family Medicine</p>
-                                <p><i class="fa fa-hospital-o fa-lg" style="margin-right: 20px;"></i><span
-                                            style="display: inline-flex;">Health AID Service</span></p>
-                                <p><i class="fa fa-money fa-lg" style="margin-right: 16px;"></i>New patient 500 BDT &amp;
-                                    Old&nbsp;patient
-                                    300 BDT</p>
-                                <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>
-                                    <?= (!empty($directories_array['address'])) ? ucfirst($directories_array['address']) : 'N/A'; ?>
-                                </p>
+                                    </p>
+                                    <p><i class="fa fa-certificate fa-lg" style="margin-right: 20px;"></i>Family Medicine
+                                    </p>
+                                    <p><i class="fa fa-hospital-o fa-lg" style="margin-right: 20px;"></i><span
+                                                style="display: inline-flex;">Health AID Service</span></p>
+                                    <p><i class="fa fa-money fa-lg" style="margin-right: 16px;"></i>New patient 500 BDT
+                                        &amp;
+                                        Old&nbsp;patient
+                                        300 BDT</p>
+                                    <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>
+                                        <?= (!empty($directories_array['address'])) ? ucfirst($directories_array['address']) : 'N/A'; ?>
+                                    </p>
 
-                                <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
-                                     data-a2a-url="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
-                                     data-a2a-title="<?= ucfirst($directories_array['name']); ?>"
-                                     style="line-height: 32px;">
-                                    <a class="a2a_dd"
-                                       href="https://www.addtoany.com/share#url=<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
+                                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+                                         data-a2a-url="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
+                                         data-a2a-title="<?= ucfirst($directories_array['name']); ?>"
+                                         style="line-height: 32px;">
+                                        <a class="a2a_dd"
+                                           href="https://www.addtoany.com/share#url=<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>">
                             <span class="a2a_svg a2a_s__default a2a_s_a2a" style="background-color: #253e7f">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 32 32">
@@ -268,10 +269,11 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     </g>
                                 </svg>
                             </span>
-                                        <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
-                                    </a>
-                                    <a class="a2a_button_facebook" target="_blank" href="/#facebook"
-                                       rel="nofollow noopener">
+                                            <span class="a2a_label a2a_localize"
+                                                  data-a2a-localize="inner,Share">Share</span>
+                                        </a>
+                                        <a class="a2a_button_facebook" target="_blank" href="/#facebook"
+                                           rel="nofollow noopener">
                             <span class="a2a_svg a2a_s__default a2a_s_facebook"
                                   style="background-color: #253e7f">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -282,9 +284,10 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     ></path>
                                 </svg>
                             </span>
-                                        <span class="a2a_label">Facebook</span>
-                                    </a>
-                                    <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
+                                            <span class="a2a_label">Facebook</span>
+                                        </a>
+                                        <a class="a2a_button_twitter" target="_blank" href="/#twitter"
+                                           rel="nofollow noopener">
                             <span class="a2a_svg a2a_s__default a2a_s_twitter"
                                   style="background-color: #253e7f">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -295,24 +298,25 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     ></path>
                                 </svg>
                             </span>
-                                        <span class="a2a_label">Twitter</span>
-                                    </a>
-                                    <a class="a2a_button_google_plus"></a>
-                                    <div style="clear: both;"></div>
+                                            <span class="a2a_label">Twitter</span>
+                                        </a>
+                                        <a class="a2a_button_google_plus"></a>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                    <script async="" src="https://static.addtoany.com/menu/page.js"></script>
+
+                                    <br/>
+                                    <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
+                                       class="btn btn-default btn-flat bt-new">View Profile</a>
+
+                                    <!--                                loop-->
                                 </div>
-                                <script async="" src="https://static.addtoany.com/menu/page.js"></script>
-
-                                <br/>
-                                <a href="<?php echo site_url(); ?>/doctor/<?php echo $directories_array['user_nicename']; ?>"
-                                   class="btn btn-default btn-flat bt-new">View Profile</a>
-
-<!--                                loop-->
                             </div>
-
-                        </div>
+                        <?php } ?>
                     </div>
+                </div>
 
-                <?php } ?>
+
                 <nav>
                     <ul class="pagination theme-colored">
                         <?php if ($paginationData['page'] > 1): ?>
@@ -683,8 +687,6 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
     ></div>
     <div class="text-center"></div>
 </div>
-
-
 
 
 <!-- mostafiz -->
