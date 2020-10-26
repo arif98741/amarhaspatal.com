@@ -301,7 +301,7 @@ rgba(255,255,255,0.7) 0%,
 rgba(255,255,255,0.7) 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc484848', endColorstr='#cc484848',GradientType=0);}
 .doc-leftarea{float:left;}
 .doc-leftarea h3{margin:0 0 5px;font-size:28px;color:#363636;line-height:30px;}
-.doc-leftarea span{margin:0;display:block;font-size:px;line-height:px;}
+.doc-leftarea span{margin:0;display:block;font-size:1px;line-height:10px;}
 .doc-rightarea{float:right;text-align:right;padding:5px 0;}
 .doc-rightarea .doc-btn{padding:0 25px;}
 .doc-featurelisting{width:100%;float:left;}

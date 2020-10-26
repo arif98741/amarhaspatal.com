@@ -163,89 +163,94 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
     <main id="main" class="site-main" role="main">
         <section class="divider">
 
-            <div class="row text-left row-c" style="padding-left: 40px;">
-                <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
-                        data-target="#myModal">Search <?= $Type ?>
-                </button>
+            <div class="col-md-3 user-profile-dir-list" style="margin-top: 18px;">
+
+                <div class="row text-left row-c" style="padding-left: 40px;">
+                    <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
+                            data-target="#myModal">Search <?= $Type ?>
+                    </button>
+                </div>
+
             </div>
-            <?php
-            if ($paginationData['total_pages'] > 0) {
+            <div class="col-md-9">
+                <?php
+                if ($paginationData['total_pages'] > 0) {
 
-                foreach ($user_query->results as $key => $user) {
-                    $directory_type = get_user_meta($user->ID, 'directory_type', true);
-                    $dir_map_marker = fw_get_db_post_option($directory_type, 'dir_map_marker', true);
-                    $reviews_switch = fw_get_db_post_option($directory_type, 'reviews', true);
-                    $current_date = date('Y-m-d H:i:s');
-                    $avatar = apply_filters(
-                        'docdirect_get_user_avatar_filter',
-                        docdirect_get_user_avatar(array('width' => 270, 'height' => 270), $user->ID),
-                        array('width' => 270, 'height' => 270) //size width,height
-                    );
+                    foreach ($user_query->results as $key => $user) {
+                        $directory_type = get_user_meta($user->ID, 'directory_type', true);
+                        $dir_map_marker = fw_get_db_post_option($directory_type, 'dir_map_marker', true);
+                        $reviews_switch = fw_get_db_post_option($directory_type, 'reviews', true);
+                        $current_date = date('Y-m-d H:i:s');
+                        $avatar = apply_filters(
+                            'docdirect_get_user_avatar_filter',
+                            docdirect_get_user_avatar(array('width' => 270, 'height' => 270), $user->ID),
+                            array('width' => 270, 'height' => 270) //size width,height
+                        );
 
 
-                    $privacy = docdirect_get_privacy_settings($user->ID); //Privacy setting
-                    $directories_array['blood_group'] = $user->blood_group;
-                    $directories_array['last_donation_date'] = $user->last_donation_date;
-                    $directories_array['description'] = $user->description;
-                    $directories_array['title'] = $user->display_name;
-                    $directories_array['name'] = $user->first_name . ' ' . $user->last_name;
-                    $directories_array['user_nicename'] = $user->data->user_nicename;
-                    $directories_array['email'] = $user->user_email;
-                    $directories_array['phone_number'] = $user->phone_number;
-                    $directories_array['address'] = $user->user_address;
-                    $featured_string = docdirect_get_user_featured_date($user->ID);
-                    $current_string = strtotime($current_date);
-                    $review_data = docdirect_get_everage_rating($user->ID);
-                    $get_username = docdirect_get_username($user->ID);
+                        $privacy = docdirect_get_privacy_settings($user->ID); //Privacy setting
+                        $directories_array['blood_group'] = $user->blood_group;
+                        $directories_array['last_donation_date'] = $user->last_donation_date;
+                        $directories_array['description'] = $user->description;
+                        $directories_array['title'] = $user->display_name;
+                        $directories_array['name'] = $user->first_name . ' ' . $user->last_name;
+                        $directories_array['user_nicename'] = $user->data->user_nicename;
+                        $directories_array['email'] = $user->user_email;
+                        $directories_array['phone_number'] = $user->phone_number;
+                        $directories_array['address'] = $user->user_address;
+                        $featured_string = docdirect_get_user_featured_date($user->ID);
+                        $current_string = strtotime($current_date);
+                        $review_data = docdirect_get_everage_rating($user->ID);
+                        $get_username = docdirect_get_username($user->ID);
 
-                    if (isset($dir_map_marker['url']) && !empty($dir_map_marker['url'])) {
-                        $directories_array['icon'] = $dir_map_marker['url'];
-                    } else {
-                        if (!empty($dir_map_marker_default['url'])) {
-                            $directories_array['icon'] = $dir_map_marker_default['url'];
+                        if (isset($dir_map_marker['url']) && !empty($dir_map_marker['url'])) {
+                            $directories_array['icon'] = $dir_map_marker['url'];
                         } else {
-                            $directories_array['icon'] = get_template_directory_uri() . '/images/map-marker.png';
+                            if (!empty($dir_map_marker_default['url'])) {
+                                $directories_array['icon'] = $dir_map_marker_default['url'];
+                            } else {
+                                $directories_array['icon'] = get_template_directory_uri() . '/images/map-marker.png';
+                            }
                         }
-                    }
-                    ?>
+                        ?>
 
-                    <div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;">
+                        <div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;">
 
-                        <div class="col-md-3 user-profile-dir-list">
+                            <div class="col-md-4 user-profile-dir-list">
 
-                            <?php if (empty($avatar)): ?>
+                                <?php if (empty($avatar)): ?>
+                                    <a href="<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>">
+                                        <img src="<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/ambulance_default.png"
+                                             alt="<?= $directories_array['title'] . ' - ' . site_url(); ?>"/></a>
+                                <?php else: ?>
+                                    <a href="<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>">
+                                        <img src="<?= $avatar ?>"
+                                             alt="<?= $directories_array['name'] . ' - ' . site_url(); ?>"/></a>
+                                <?php endif; ?>
+
+                            </div>
+                            <div class="col-md-8 iiiii">
+
                                 <a href="<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>">
-                                    <img src="<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/ambulance_default.png"
-                                         alt="<?= $directories_array['title'] . ' - ' . site_url(); ?>"/></a>
-                            <?php else: ?>
-                                <a href="<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>">
-                                    <img src="<?= $avatar ?>"
-                                         alt="<?= $directories_array['name'] . ' - ' . site_url(); ?>"/></a>
-                            <?php endif; ?>
+                                    <h3><?= ucwords($directories_array['name']); ?></h3>
+                                </a>
 
-                        </div>
-                        <div class="col-md-9 iiiii">
+                                <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>
+                                    <?= (!empty($directories_array['address'])) ? ucfirst($directories_array['address']) : 'N/A'; ?>
+                                </p>
+                                <p><i class="fa fa-phone fa-lg"
+                                      style="margin-right: 20px;"></i>Phone: <?= (!empty($directories_array['phone_number'])) ? $directories_array['phone_number'] : 'N/A'; ?>
+                                </p>
+                                <p><i class="fa fa-envelope fa-lg"
+                                      style="margin-right: 20px;"></i>Email: <?= (!empty($directories_array['email'])) ? $directories_array['email'] : 'N/A'; ?>
+                                </p>
 
-                            <a href="<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>">
-                                <h3><?= ucwords($directories_array['name']); ?></h3>
-                            </a>
-
-                            <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>
-                                <?= (!empty($directories_array['address'])) ? ucfirst($directories_array['address']) : 'N/A'; ?>
-                            </p>
-                            <p><i class="fa fa-phone fa-lg"
-                                  style="margin-right: 20px;"></i>Phone: <?= (!empty($directories_array['phone_number'])) ? $directories_array['phone_number'] : 'N/A'; ?>
-                            </p>
-                            <p><i class="fa fa-envelope fa-lg"
-                                  style="margin-right: 20px;"></i>Email: <?= (!empty($directories_array['email'])) ? $directories_array['email'] : 'N/A'; ?>
-                            </p>
-
-                            <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
-                                 data-a2a-url="<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>"
-                                 data-a2a-title="<?= ucfirst($directories_array['name']); ?>"
-                                 style="line-height: 32px;">
-                                <a class="a2a_dd"
-                                   href="https://www.addtoany.com/share#url=<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>">
+                                <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+                                     data-a2a-url="<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>"
+                                     data-a2a-title="<?= ucfirst($directories_array['name']); ?>"
+                                     style="line-height: 32px;">
+                                    <a class="a2a_dd"
+                                       href="https://www.addtoany.com/share#url=<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>">
                             <span class="a2a_svg a2a_s__default a2a_s_a2a" style="background-color: #253e7f">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 32 32">
@@ -255,10 +260,10 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     </g>
                                 </svg>
                             </span>
-                                    <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
-                                </a>
-                                <a class="a2a_button_facebook" target="_blank" href="/#facebook"
-                                   rel="nofollow noopener">
+                                        <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
+                                    </a>
+                                    <a class="a2a_button_facebook" target="_blank" href="/#facebook"
+                                       rel="nofollow noopener">
                             <span class="a2a_svg a2a_s__default a2a_s_facebook"
                                   style="background-color: #253e7f">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -269,9 +274,9 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     ></path>
                                 </svg>
                             </span>
-                                    <span class="a2a_label">Facebook</span>
-                                </a>
-                                <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
+                                        <span class="a2a_label">Facebook</span>
+                                    </a>
+                                    <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
                             <span class="a2a_svg a2a_s__default a2a_s_twitter"
                                   style="background-color: #253e7f">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -282,53 +287,54 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     ></path>
                                 </svg>
                             </span>
-                                    <span class="a2a_label">Twitter</span>
-                                </a>
-                                <a class="a2a_button_google_plus"></a>
-                                <div style="clear: both;"></div>
+                                        <span class="a2a_label">Twitter</span>
+                                    </a>
+                                    <a class="a2a_button_google_plus"></a>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <script async="" src="https://static.addtoany.com/menu/page.js"></script>
+
+                                <br/>
+                                <a href="<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>"
+                                   class="btn btn-default btn-flat bt-new">View Profile</a>
                             </div>
-                            <script async="" src="https://static.addtoany.com/menu/page.js"></script>
-
-                            <br/>
-                            <a href="<?php echo site_url(); ?>/diagnostics/<?php echo $directories_array['user_nicename']; ?>"
-                               class="btn btn-default btn-flat bt-new">View Profile</a>
                         </div>
-                    </div>
 
+
+                    <?php } ?>
+                    <nav>
+                        <ul class="pagination theme-colored">
+                            <?php if ($paginationData['page'] > 1): ?>
+                                <li>
+                                    <a href="<?= site_url(); ?>/dir-search/<?= ($paginationData['page'] - 1); ?>/?directory_type=<?= $directory_type ?>">
+                                        <span aria-hidden="true">«</span> </a>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php for ($i = 1; $i <= $paginationData['total_pages']; $i++) { ?>
+
+                                <li class="<?php ($paginationData['page'] == $i) ? active : '' ?>">
+                                    <a href="<?= site_url(); ?>/dir-search/<?= $i; ?>/?directory_type=<?= $directory_type ?>"><?php echo $i; ?></a>
+                                </li>
+                            <?php } ?>
+
+                            <?php if ($paginationData['total_pages'] != $paginationData['page']): ?>
+                                <li>
+                                    <a href="<?= site_url(); ?>/dir-search/<?= ($paginationData['page'] + 1); ?>/?directory_type=<?= $directory_type ?>">
+                                        <span aria-hidden="true">»</span> </a>
+                                </li>
+                            <?php endif; ?>
+
+                        </ul>
+                    </nav>
+                <?php } else {
+
+                    $noFoundMessage = 'No ' . $Type . ' Found';
+                    echo '<h4 class="text-center alert alert-warning">' . $noFoundMessage . '</h4>';
+                    ?>
 
                 <?php } ?>
-                <nav>
-                    <ul class="pagination theme-colored">
-                        <?php if ($paginationData['page'] > 1): ?>
-                            <li>
-                                <a href="<?= site_url(); ?>/dir-search/<?= ($paginationData['page'] - 1); ?>/?directory_type=<?= $directory_type ?>">
-                                    <span aria-hidden="true">«</span> </a>
-                            </li>
-                        <?php endif; ?>
-
-                        <?php for ($i = 1; $i <= $paginationData['total_pages']; $i++) { ?>
-
-                            <li class="<?php ($paginationData['page'] == $i) ? active : '' ?>">
-                                <a href="<?= site_url(); ?>/dir-search/<?= $i; ?>/?directory_type=<?= $directory_type ?>"><?php echo $i; ?></a>
-                            </li>
-                        <?php } ?>
-
-                        <?php if ($paginationData['total_pages'] != $paginationData['page']): ?>
-                            <li>
-                                <a href="<?= site_url(); ?>/dir-search/<?= ($paginationData['page'] + 1); ?>/?directory_type=<?= $directory_type ?>">
-                                    <span aria-hidden="true">»</span> </a>
-                            </li>
-                        <?php endif; ?>
-
-                    </ul>
-                </nav>
-            <?php } else {
-
-                $noFoundMessage = 'No ' . $Type . ' Found';
-                echo '<h4 class="text-center alert alert-warning">' . $noFoundMessage . '</h4>';
-                ?>
-
-            <?php } ?>
+            </div>
 
         </section>
     </main>

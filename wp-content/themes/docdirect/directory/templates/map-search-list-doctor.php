@@ -160,11 +160,10 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
     <main id="main" class="site-main" role="main">
         <section class="divider">
 
-
             <?php
             if ($paginationData['total_pages'] > 0) { ?>
-                <div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;">
-                    <div class="col-md-3 user-profile-dir-list">
+                <div class="" style="padding-top: 30px; padding-bottom: 30px;">
+                    <div class="col-md-3 user-profile-dir-list" style="margin-top: 18px;">
 
                         <div class="row text-left row-c" style="padding-left: 40px;">
                             <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
@@ -204,6 +203,10 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                             $current_string = strtotime($current_date);
                             $review_data = docdirect_get_everage_rating($user->ID);
                             $get_username = docdirect_get_username($user->ID);
+                            echo '<pre>';
+                            print_r($user);
+                            echo '</pre>';
+
 
 
                             if (isset($dir_map_marker['url']) && !empty($dir_map_marker['url'])) {
@@ -315,7 +318,6 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                         <?php } ?>
                     </div>
                 </div>
-
 
                 <nav>
                     <ul class="pagination theme-colored">

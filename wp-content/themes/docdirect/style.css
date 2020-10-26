@@ -14929,9 +14929,9 @@ a.del-featured-image {
     padding: 0
 }
 
-body.modal-open {
-    position: fixed
-}
+/*body.modal-open {*/
+/*    position: fixed*/
+/*}*/
 
 .tg-pkgexpireyandcounter {
     width: 100%;

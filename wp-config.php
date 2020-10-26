@@ -42,7 +42,7 @@
 
 /** The name of the database for WordPress */
 
-define( 'DB_NAME', 'amarhaspatal' );
+define( 'DB_NAME', 'amarhaspatal_temp' );
 
 
 
