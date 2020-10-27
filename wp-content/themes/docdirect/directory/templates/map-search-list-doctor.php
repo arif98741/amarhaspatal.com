@@ -162,14 +162,13 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 
             <?php
             if ($paginationData['total_pages'] > 0) { ?>
-                <div class="" style="padding-top: 30px; padding-bottom: 30px;">
+                <div class="" >
                     <div class="col-md-3 user-profile-dir-list" style="margin-top: 18px;">
 
-                        <div class="row text-left row-c" style="padding-left: 40px;">
-                            <button type="text" class="btn btn-default btn-flat bt-new" data-toggle="modal"
-                                    data-target="#myModal">Search <?= $Type ?>
-                            </button>
-                        </div>
+                        <?php
+                        get_template_part('customization/sidebar/search/sidebar-search');
+                        ?>
+
 
                     </div>
                     <div class=" col-md-9">
@@ -203,11 +202,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                             $current_string = strtotime($current_date);
                             $review_data = docdirect_get_everage_rating($user->ID);
                             $get_username = docdirect_get_username($user->ID);
-                            echo '<pre>';
-                            print_r($user);
-                            echo '</pre>';
-
-
+                           
 
                             if (isset($dir_map_marker['url']) && !empty($dir_map_marker['url'])) {
                                 $directories_array['icon'] = $dir_map_marker['url'];

@@ -16788,7 +16788,25 @@ section.tg-main-section.haslayout {
 .doc-footerbottombar .footer-social-icon-div {
     margin-top: 12px;
 }
-.prescription-block{
+
+.prescription-block {
     padding: 0;
 }
 
+/**
+sidebar search button
+ */
+.doc-btnarea button.doc-btn {
+    background: #253e7f !important;
+    margin: 0px;
+    margin-left: 9px;
+    font-size: 13px;
+}
+
+.search-filters-wrap .doc-widget {
+    width: 100%;
+    float: left;
+    margin: 0 0 30px;
+    margin-top: 13px;
+
+}
