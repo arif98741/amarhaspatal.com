@@ -36,4 +36,5 @@ require_once(get_template_directory() . '/directory/woo-hooks.php'); //woocommer
 require_once(get_template_directory() . '/inc/class-chat-system.php'); //Chat System Class
 require_once(get_template_directory() . '/customization/library/helper-functions.php');
 require_once(get_template_directory() . '/customization/library/functions/custom-functions.php');
+require_once(get_template_directory() . '/customization/user-profile/hook.php'); //Booking
 

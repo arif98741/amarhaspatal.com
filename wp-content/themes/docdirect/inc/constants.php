@@ -177,6 +177,9 @@ if (!function_exists('docdirect_prepare_constants')) {
 			
 			'delete_category' => esc_html__('Delete Category','docdirect'),
 			'delete_category_message' => esc_html__('Are you sure, you want to delete this category?','docdirect'),
+
+			'delete_chamber' => esc_html__('Delete Chamber','docdirect'),
+			'delete_chamber_message' => esc_html__('Are you sure, you want to delete this chamber?','docdirect'),
 			
 			'delete_service' => esc_html__('Delete Service','docdirect'),
 			'delete_service_message' => esc_html__('Are you sure, you want to delete this service?','docdirect'),

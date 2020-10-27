@@ -18,7 +18,7 @@ if (!class_exists('DocDirect_Scripts')) {
 
         /**
          * @Returns the *Singleton* instance of this class.
-         * @return Singleton The *Singleton* instance.
+         * @return DocDirect_Scripts|null The *Singleton* instance.
          */
         public static function getInstance()
         {
@@ -68,6 +68,7 @@ if (!class_exists('DocDirect_Scripts')) {
 
             if (is_user_logged_in()) {
 
+
                 if (isset($menu_type) && $menu_type === 'dashboard') { ?>
                     <div class="tg-widget tg-widget-accordions">
                         <h3><?php esc_html_e('Dashboard', 'docdirect'); ?></h3>
@@ -85,7 +86,8 @@ if (!class_exists('DocDirect_Scripts')) {
                                             href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'settings', $user_identity); ?>"><?php esc_html_e('Profile Settings', 'docdirect'); ?></a>
                                 </li>
                                 <?php if (apply_filters('docdirect_do_check_user_type', $user_identity) === true) { ?>
-                                    <li style="display: none" class="<?php echo($reference === 'documents' ? 'active' : ''); ?>"><a
+                                    <li style="display: none"
+                                        class="<?php echo($reference === 'documents' ? 'active' : ''); ?>"><a
                                                 href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'documents', $user_identity); ?>"><?php esc_html_e('Medical Documents', 'docdirect'); ?></a>
                                     </li>
                                     <li style="display: none"
@@ -127,11 +129,26 @@ if (!class_exists('DocDirect_Scripts')) {
                                     <?php } ?>
                                 <?php } ?>
                                 <?php if (!empty($is_chat) && $is_chat === 'yes') { ?>
-                                    <li style="display: none" class="<?php echo($reference === 'private-chat' ? 'active' : ''); ?> tg-privatemessages">
+                                    <li style="display: none"
+                                        class="<?php echo($reference === 'private-chat' ? 'active' : ''); ?> tg-privatemessages">
                                         <a href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'private-chat', $user_identity); ?>"><?php esc_html_e('Inbox', 'docdirect'); ?></a>
                                         <span class="tg-totalmessages"><?php echo intval($unread); ?></span>
                                     </li>
                                 <?php } ?>
+                                <!-- //add custom chamber to doctor menu start-->
+                                <?php
+                                if ($directory_type == 127 && is_user_logged_in()  && $current_user->ID === $user_identity) {
+
+                                    ?>
+                                    <li class="<?php echo($reference === 'chambers' ? 'active' : ''); ?>"><a
+                                                href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'chambers', $user_identity); ?>"><?php esc_html_e('My Chambers', 'docdirect'); ?></a>
+                                    </li>
+
+                                <?php }
+                                ?>
+                                <!-- //add custom chamber to doctor menu end-->
+
+
                                 <?php if (apply_filters('docdirect_do_check_user_type', $user_identity) === true) { ?>
                                     <?php if (apply_filters('docdirect_is_setting_enabled', $user_identity, 'favorite') === true) { ?>
                                         <li class="<?php echo($reference === 'wishlist' ? 'active' : ''); ?>"><a
@@ -145,7 +162,8 @@ if (!class_exists('DocDirect_Scripts')) {
                                 <?php } ?>
 
                                 <?php if (apply_filters('docdirect_do_check_user_type', $user_identity) === true) { ?>
-                                    <li style="display: none" class="<?php echo($reference === 'invoices' ? 'active' : ''); ?>"><a
+                                    <li style="display: none"
+                                        class="<?php echo($reference === 'invoices' ? 'active' : ''); ?>"><a
                                                 href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'invoices', $user_identity); ?>"><?php esc_html_e('Invoices & Packages', 'docdirect'); ?></a>
                                     </li>
                                 <?php } ?>
@@ -196,7 +214,8 @@ if (!class_exists('DocDirect_Scripts')) {
 
                                 <?php if (apply_filters('docdirect_do_check_user_type', $user_identity) === true) { ?>
 
-                                    <li style="display: none" class="<?php echo($reference === 'privacy-settings' ? 'active' : ''); ?>"><a
+                                    <li style="display: none"
+                                        class="<?php echo($reference === 'privacy-settings' ? 'active' : ''); ?>"><a
                                                 href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'privacy-settings', $user_identity); ?>"><?php esc_html_e('Privacy Settings', 'docdirect'); ?></a>
                                     </li>
                                 <?php } ?>
@@ -225,7 +244,8 @@ if (!class_exists('DocDirect_Scripts')) {
                     <ul>
                         <li class="<?php echo($reference === 'dashboard' ? 'active' : ''); ?>"><a
                                     href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'dashboard', $user_identity); ?>"><i
-                                        class="fa fa-line-chart"></i><?php esc_html_e('Profile', 'docdirect'); ?></a>
+                                        class="fa fa-line-chart"></i><?php esc_html_e('Profile', 'docdirect'); ?>
+                            </a>
                         </li>
                         <?php if (class_exists('bbPress')) { ?>
                             <li style="display: none"><a
@@ -240,7 +260,7 @@ if (!class_exists('DocDirect_Scripts')) {
                             </a></li>
 
                         <?php if (apply_filters('docdirect_do_check_user_type', $user_identity) === true) { ?>
-                            <li  class="<?php echo($reference === 'documents' ? 'active' : ''); ?>"><a
+                            <li class="<?php echo($reference === 'documents' ? 'active' : ''); ?>"><a
                                         href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'documents', $user_identity); ?>"><i
                                             class="fa fa-file"></i><?php esc_html_e('Medical Documents', 'docdirect'); ?>
                                 </a></li>
@@ -258,7 +278,8 @@ if (!class_exists('DocDirect_Scripts')) {
                             ?>
                             <li class="<?php echo($reference === 'teams' ? 'active' : ''); ?>"><a
                                         href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'teams', $user_identity); ?>"><i
-                                            class="fa fa-user"></i><?php esc_html_e('Manage Teams', 'docdirect'); ?></a>
+                                            class="fa fa-user"></i><?php esc_html_e('Manage Teams', 'docdirect'); ?>
+                                </a>
                             </li>
                         <?php } ?>
                         <?php if (isset($article_switch) && $article_switch === 'enable') { ?>
@@ -286,9 +307,11 @@ if (!class_exists('DocDirect_Scripts')) {
                         <?php } ?>
 
                         <?php if (!empty($is_chat) && $is_chat === 'yes') { ?>
-                            <li style="display: none" class="<?php echo($reference === 'private-chat' ? 'active' : ''); ?> tg-privatemessages">
+                            <li style="display: none"
+                                class="<?php echo($reference === 'private-chat' ? 'active' : ''); ?> tg-privatemessages">
                                 <a href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'private-chat', $user_identity); ?>"><i
-                                            class="fa fa-comment-o"></i><?php esc_html_e('Inbox', 'docdirect'); ?></a>
+                                            class="fa fa-comment-o"></i><?php esc_html_e('Inbox', 'docdirect'); ?>
+                                </a>
                                 <span class="tg-totalmessages"><?php echo intval($unread); ?></span>
                             </li>
                         <?php } ?>
@@ -303,13 +326,15 @@ if (!class_exists('DocDirect_Scripts')) {
                         <?php } else { ?>
                             <li class="<?php echo($reference === 'wishlist' ? 'active' : ''); ?>"><a
                                         href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'wishlist', $user_identity); ?>"><i
-                                            class="fa fa-heart"></i><?php esc_html_e('Favourites', 'docdirect'); ?></a>
+                                            class="fa fa-heart"></i><?php esc_html_e('Favourites', 'docdirect'); ?>
+                                </a>
                             </li>
                         <?php } ?>
 
 
                         <?php if (apply_filters('docdirect_do_check_user_type', $user_identity) === true) { ?>
-                            <li style="display: none" class="<?php echo($reference === 'invoices' ? 'active' : ''); ?>"><a
+                            <li style="display: none"
+                                class="<?php echo($reference === 'invoices' ? 'active' : ''); ?>"><a
                                         href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'invoices', $user_identity); ?>"><i
                                             class="fa fa-money"></i><?php esc_html_e('Invoices & Packages', 'docdirect'); ?>
                                 </a></li>
@@ -321,7 +346,8 @@ if (!class_exists('DocDirect_Scripts')) {
                             ?>
                             <li class="<?php echo($reference === 'schedules' ? 'active' : ''); ?>"><a
                                         href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'schedules', $user_identity); ?>"><i
-                                            class="fa fa-list"></i><?php esc_html_e('My Schedules', 'docdirect'); ?></a>
+                                            class="fa fa-list"></i><?php esc_html_e('My Schedules', 'docdirect'); ?>
+                                </a>
                             </li>
                         <?php } ?>
 
@@ -373,7 +399,8 @@ if (!class_exists('DocDirect_Scripts')) {
 
                         <?php if (is_user_logged_in()) { ?>
                             <li><a href="<?php echo esc_url(wp_logout_url(home_url('/'))); ?>"><i
-                                            class="fa fa-sign-in"></i><?php esc_html_e('Logout', 'docdirect'); ?></a>
+                                            class="fa fa-sign-in"></i><?php esc_html_e('Logout', 'docdirect'); ?>
+                                </a>
                             </li>
                         <?php } ?>
                     </ul>
@@ -387,7 +414,8 @@ if (!class_exists('DocDirect_Scripts')) {
          * @Generate Menu Link
          * @Returns
          */
-        public static function docdirect_profile_menu_link($profile_page = '', $slug = '', $user_identity = '', $return = false, $mode = '', $id = '')
+        public
+        static function docdirect_profile_menu_link($profile_page = '', $slug = '', $user_identity = '', $return = false, $mode = '', $id = '')
         {
             if (!isset($profile_page) or $profile_page == '') {
                 $permalink = home_url('/') . '?author=' . $user_identity;
@@ -425,7 +453,8 @@ if (!class_exists('DocDirect_Scripts')) {
          * @Generate Menu Link
          * @Returns
          */
-        public function docdirect_get_avatar()
+        public
+        function docdirect_get_avatar()
         {
             global $current_user, $wp_roles, $userdata, $post;
             $reference = (isset($_GET['ref']) && $_GET['ref'] <> '') ? $_GET['ref'] : $reference = '';
@@ -482,7 +511,8 @@ if (!class_exists('DocDirect_Scripts')) {
          * @get user info
          * @return
          */
-        public function docdirect_do_process_userinfo()
+        public
+        function docdirect_do_process_userinfo()
         {
             global $current_user, $wp_roles, $userdata, $post;
             $reference = (isset($_GET['ref']) && $_GET['ref'] <> '') ? $_GET['ref'] : $reference = '';
@@ -509,11 +539,13 @@ if (!class_exists('DocDirect_Scripts')) {
                                     <div class="tg-bottominfo tg-haslayout">
                                         <div class="tg-regardsleft">
                                             <em><?php esc_html_e('Regards,', 'docdirect'); ?></em>
-                                            <strong><?php echo esc_attr(get_bloginfo('description')); ?></strong></div>
+                                            <strong><?php echo esc_attr(get_bloginfo('description')); ?></strong>
+                                        </div>
                                         <div class="tg-regardsright"><strong class="logo"><img
                                                         class="<?php echo esc_attr($image_classes); ?>"
                                                         src="<?php echo esc_url($logo); ?>"
-                                                        alt="<?php echo esc_attr(get_bloginfo()); ?>"></strong></div>
+                                                        alt="<?php echo esc_attr(get_bloginfo()); ?>"></strong>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -595,4 +627,5 @@ if (!class_exists('DocDirect_Scripts')) {
 
     new DocDirect_Scripts();
 }
+
 ?>

@@ -23,6 +23,7 @@ jQuery(document).ready(function ($) {
 
     //Edit category
     jQuery(document).on('click', '.bk-edit-category', function () {
+       
         jQuery(this).parents('.bk-category-item').find('.bk-current-category').slideToggle(200);
     });
 
