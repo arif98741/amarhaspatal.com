@@ -555,10 +555,28 @@ $custom_slot_list = docdirect_prepare_seprate_array($custom_slot_list);
  * return HTML
 ------------------------------------------------>
 <script type="text/template" id="tmpl-default-slots">
+
     <div class="tg-timeslotswrapper">
         <div class="form-group">
-            <input type="text" name="slot_title" class="form-control" name="title"
-                   placeholder="<?php esc_attr_e('Chamber Name', 'docdirect'); ?>">
+            <div class="tg-select">
+
+                <select name="slot_title">
+
+                    <option value="">Select Chamber</option>
+                    <?php
+                    $service_chambers = get_user_meta($user_identity, 'service_chambers', true);
+                    foreach ($service_chambers as $service_chamber) { ?>
+                        <option value=""><?php esc_attr_e($service_chamber, 'docdirect'); ?></option>
+
+                    <?php } ?>
+
+
+                </select>
+            </div>
+
+
+            <!--            <input type="text" name="slot_title" class="form-control" name="title"-->
+            <!--                   placeholder="--><?php //esc_attr_e('Chamber Name', 'docdirect'); ?><!--">-->
         </div>
         <div class="form-group">
             <input type="text" name="slot_title" class="form-control" name="hospital_title"

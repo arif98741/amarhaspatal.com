@@ -156,19 +156,16 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                 ">
         </div>
     </div>
-    <div class="text-center"></div>
     <main id="main" class="site-main" role="main">
-        <section class="divider">
 
             <?php
             if ($paginationData['total_pages'] > 0) { ?>
                 <div class="" >
-                    <div class="col-md-3 user-profile-dir-list" style="margin-top: 18px;">
+                    <div class="col-md-3 user-profile-dir-list" style="margin-top: 18px; padding-left: 0px">
 
                         <?php
                         get_template_part('customization/sidebar/search/sidebar-search');
                         ?>
-
 
                     </div>
                     <div class=" col-md-9">
@@ -347,7 +344,6 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 
             <?php } ?>
 
-        </section>
     </main>
 
 

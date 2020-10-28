@@ -326,6 +326,7 @@ jQuery(document).ready(function ($) {
 
     //Add slots
     jQuery(document).on('click', '.add-default-slots', function () {
+       
         var _this = jQuery(this);
         var _form = jQuery(this).parents('.tg-daytimeslot').find('.timeslots-form-area .tg-timeslotswrapper');
 

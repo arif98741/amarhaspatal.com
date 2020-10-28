@@ -152,18 +152,18 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
 <div class="main-content container-fluid mslc">
     <div style="border: 1px solid #eee; padding: 8px;">
         <div style="background-image: url(<?php echo site_url(); ?>/wp-content/uploads/directory-list-banner/diagnostics.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center !important;
-    height: 150px;
-">
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center !important;
+                height: 150px;
+                ">
         </div>
     </div>
     <div class="text-center"></div>
     <main id="main" class="site-main" role="main">
         <section class="divider">
 
-            <div class="col-md-3">
+            <div class="col-md-3" style="padding-left: 0px">
 
                 <?php
                 get_template_part('customization/sidebar/search/sidebar-search');
@@ -211,7 +211,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                         }
                         ?>
 
-                        <div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;">
+                        <div class="container-fluid" style="padding-top: 16px; padding-bottom: 30px;">
 
                             <div class="col-md-4 user-profile-dir-list">
 
@@ -257,7 +257,8 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     </g>
                                 </svg>
                             </span>
-                                        <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
+                                        <span class="a2a_label a2a_localize"
+                                              data-a2a-localize="inner,Share">Share</span>
                                     </a>
                                     <a class="a2a_button_facebook" target="_blank" href="/#facebook"
                                        rel="nofollow noopener">
@@ -273,7 +274,8 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                             </span>
                                         <span class="a2a_label">Facebook</span>
                                     </a>
-                                    <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
+                                    <a class="a2a_button_twitter" target="_blank" href="/#twitter"
+                                       rel="nofollow noopener">
                             <span class="a2a_svg a2a_s__default a2a_s_twitter"
                                   style="background-color: #253e7f">
                                 <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

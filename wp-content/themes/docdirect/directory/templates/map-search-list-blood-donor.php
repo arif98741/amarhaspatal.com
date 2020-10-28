@@ -161,7 +161,7 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
     <div class="text-center"></div>
     <main id="main" class="site-main" role="main">
         <section class="divider">
-            <div class="col-md-3">
+            <div class="col-md-3" style="padding-left: 0px">
 
                 <?php
                 get_template_part('customization/sidebar/search/sidebar-search');
