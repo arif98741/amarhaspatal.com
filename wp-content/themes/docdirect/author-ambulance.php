@@ -161,7 +161,8 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                         <p>Email:
                                             <strong><?php echo (!empty($email)) ? $email : 'N/A'; ?></strong></p>
                                         <p>
-                                            Address: <strong><?php echo (!empty($address)) ? $address : 'N/A'; ?></strong>
+                                            Address:
+                                            <strong><?php echo (!empty($address)) ? $address : 'N/A'; ?></strong>
                                         </p>
                                         <button onclick="window.location='<?php echo site_url(); ?>/ambulance-booking'"
                                                 class="tg-btn-lg make-appointment-btn" type="button">

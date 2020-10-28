@@ -137,7 +137,7 @@ if (!class_exists('DocDirect_Scripts')) {
                                 <?php } ?>
                                 <!-- //add custom chamber to doctor menu start-->
                                 <?php
-                                if ($directory_type == 127 && is_user_logged_in()  && $current_user->ID === $user_identity) {
+                                if ($directory_type == 127 && is_user_logged_in() && $current_user->ID === $user_identity) {
 
                                     ?>
                                     <li class="<?php echo($reference === 'chambers' ? 'active' : ''); ?>"><a

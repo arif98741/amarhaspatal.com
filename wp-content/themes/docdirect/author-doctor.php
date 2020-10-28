@@ -353,13 +353,16 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
             <section style="margin-bottom: 30px;">
                 <div class="container-fluid mslc">
 
-                    <div id="shareThisStory"
-                         style="background: #f4f4f4; height: 62px; display: block; position: relative; overflow: hidden; width: 100%; margin-top: 30px; margin-bottom: 20px; padding: 16px 8px;">
-                        <h3 style="margin: 0; float: left;">Share This Story, Choose Your Platform!</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="shareThisStory"
+                                 style="background: #f4f4f4; height: 62px; display: block; position: relative; overflow: hidden; width: 100%; margin-top: 30px; margin-bottom: 20px; padding: 16px 8px;">
+                                <h3 style="margin: 0; float: left;">Share This Story, Choose Your Platform!</h3>
 
-                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="float: right; line-height: 32px;">
-                            <a class="a2a_dd"
-                               href="https://www.addtoany.com/share#url=https%3A%2F%2Fhasbd.com%2Fdoctors%2Fassist-prof-dr-md-rashed-anwar%2F&amp;title=ASSIST.%20PROF.%20DR.%20MD.%20RASHED%20ANWAR%20-%20HASBD">
+                                <div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+                                     style="float: right; line-height: 32px;">
+                                    <a class="a2a_dd"
+                                       href="https://www.addtoany.com/share#url=https%3A%2F%2Fhasbd.com%2Fdoctors%2Fassist-prof-dr-md-rashed-anwar%2F&amp;title=ASSIST.%20PROF.%20DR.%20MD.%20RASHED%20ANWAR%20-%20HASBD">
                 <span class="a2a_svg a2a_s__default a2a_s_a2a" style="background-color:#253e7f;">
                     <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                         <g fill="#FFF">
@@ -368,18 +371,21 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         </g>
                     </svg>
                 </span>
-                                <span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Share</span>
-                            </a>
-                            <a class="a2a_button_facebook" target="_blank" href="/#facebook" rel="nofollow noopener">
+                                        <span class="a2a_label a2a_localize"
+                                              data-a2a-localize="inner,Share">Share</span>
+                                    </a>
+                                    <a class="a2a_button_facebook" target="_blank" href="/#facebook"
+                                       rel="nofollow noopener">
                 <span class="a2a_svg a2a_s__default a2a_s_facebook" style="background-color: #253e7f">
                     <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                         <path fill="#FFF"
                               d="M17.78 27.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99 2.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123 0-5.26 1.905-5.26 5.405v3.016h-3.53v4.09h3.53V27.5h4.223z"></path>
                     </svg>
                 </span>
-                                <span class="a2a_label">Facebook</span>
-                            </a>
-                            <a class="a2a_button_twitter" target="_blank" href="/#twitter" rel="nofollow noopener">
+                                        <span class="a2a_label">Facebook</span>
+                                    </a>
+                                    <a class="a2a_button_twitter" target="_blank" href="/#twitter"
+                                       rel="nofollow noopener">
                 <span class="a2a_svg a2a_s__default a2a_s_twitter" style="background-color: #253e7f">
                     <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                         <path
@@ -388,12 +394,21 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         ></path>
                     </svg>
                 </span>
-                                <span class="a2a_label">Twitter</span>
-                            </a>
-                            <a class="a2a_button_google_plus"></a>
-                            <div style="clear: both;"></div>
+                                        <span class="a2a_label">Twitter</span>
+                                    </a>
+                                    <a class="a2a_button_google_plus"></a>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <script async="" src="https://static.addtoany.com/menu/page.js"></script>
+                            </div>
                         </div>
-                        <script async="" src="https://static.addtoany.com/menu/page.js"></script>
+                        <div class="col-md-6">
+                            <h3 style="margin: 0; float: left;">Reviews and Comment</h3>
+
+                            <?php
+                            get_template_part('directory/provider-page/template-author-reviews');
+                            ?>
+                        </div>
                     </div>
 
                     <div class="row">
