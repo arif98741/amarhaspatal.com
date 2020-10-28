@@ -293,6 +293,16 @@ if (!function_exists('docdirect_account_settings')) {
             update_user_meta($user_identity, 'bmdc_registration_no', esc_html($_POST['bmdc_registration_no']));
         }
 
+        //if isset car no
+        if (isset($_POST['new_patient_charge'])) {
+            update_user_meta($user_identity, 'new_patient_charge', esc_html($_POST['new_patient_charge']));
+        }
+
+         //if isset car no
+        if (isset($_POST['old_patient_charge'])) {
+            update_user_meta($user_identity, 'old_patient_charge', esc_html($_POST['old_patient_charge']));
+        }
+
 
         do_action('docdirect_do_update_profile_settings', $_POST); //Save custom data
 

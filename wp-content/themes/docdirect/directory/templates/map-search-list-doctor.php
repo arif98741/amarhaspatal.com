@@ -193,7 +193,8 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                             $directories_array['user_nicename'] = $user->data->user_nicename;
                             $directories_array['email'] = $user->user_email;
                             $directories_array['phone_number'] = $user->phone_number;
-                            $directories_array['address'] = $user->user_address;
+                            $directories_array['new_patient_charge'] = $user->new_patient_charge;
+                            $directories_array['old_patient_charge'] = $user->old_patient_charge;
                             $directories_array['car_no'] = $user->car_no;
                             $featured_string = docdirect_get_user_featured_date($user->ID);
                             $current_string = strtotime($current_date);
@@ -241,10 +242,10 @@ if (isset($search_page_map) && $search_page_map === 'enable') {
                                     </p>
                                     <p><i class="fa fa-hospital-o fa-lg" style="margin-right: 20px;"></i><span
                                                 style="display: inline-flex;">Health AID Service</span></p>
-                                    <p><i class="fa fa-money fa-lg" style="margin-right: 16px;"></i>New patient 500 BDT
+                                    <p><i class="fa fa-money fa-lg" style="margin-right: 16px;"></i>New Patient <strong><?php echo (!empty($directories_array['new_patient_charge'])) ? $directories_array['new_patient_charge']: 'N/A' ?></strong>
                                         &amp;
-                                        Old&nbsp;patient
-                                        300 BDT</p>
+                                        Old&nbsp;Patient
+                                        <strong><?php echo (!empty($directories_array['old_patient_charge'])) ? $directories_array['old_patient_charge']: 'N/A' ?></strong></p>
                                     <p><i class="fa fa-map-marker fa-lg" style="margin-right: 25px;"></i>
                                         <?= (!empty($directories_array['address'])) ? ucfirst($directories_array['address']) : 'N/A'; ?>
                                     </p>

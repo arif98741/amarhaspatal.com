@@ -38,6 +38,45 @@ $db_timezone = get_user_meta($author_profile->ID, 'default_timezone', true);
 $time_zone = get_user_meta($author_profile->ID, 'default_timezone', true);
 
 $slots = get_user_meta($author_profile->ID, 'default_slots')[0];
+//ambulance booking action start
+if (isset($_POST['ambulance_type'])) {
+
+
+    $ambulance_type = esc_html($_POST['ambulance_type']);
+    $booking_date = esc_html($_POST['booking_date']);
+    $start_from = esc_html($_POST['start_from']);
+    $destination = esc_html($_POST['destination']);
+    $trip_type = esc_html($_POST['trip_type']);
+    $full_name = esc_html($_POST['full_name']);
+    $email = esc_html($_POST['email']);
+    $reference_id = esc_html($_POST['reference_id']);
+    $contact_no = esc_html($_POST['contact_no']);
+    global $wpdb; //removed $name and $description there is no need to assign them to a global variable
+    // $table_name = $wpdb->prefix . "liquor_type"; //try not using Uppercase letters or blank spaces when naming db tables
+    $table_name = "ambulance_booking"; //try not using Uppercase letters or blank spaces when naming db tables
+    $message = '';
+
+    $status = $wpdb->insert($table_name, array(
+        'ambulance_type' => $ambulance_type,
+        'booking_date' => $booking_date,
+        'start_from' => $start_from,
+        'destination' => $destination,
+        'trip_type' => $trip_type,
+        'full_name' => $full_name,
+        'email' => $email,
+        'reference_id' => $reference_id,
+        'contact_no' => $contact_no,
+
+    ));
+    if ($status) {
+        $message = '<p style="font-size: 22px; color: green; text-align: center">Ambulance booking is successfully completed. We will contact
+    with you soon.
+</p>';
+    }
+
+}
+//ambulance booking action end
+
 
 if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && function_exists('fw_get_db_settings_option')) {
     if (apply_filters('docdirect_is_visitor', $author_profile->ID) === false) {
@@ -102,7 +141,9 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
 
             <div style="border: 0px solid red;" class="main-content container-fluid mslc">
 
+
                 <main id="main" class="site-main" role="main">
+
                     <div class="fusion-builder-row fusion-row row"
                          style="border-bottom: 1px solid #f3f3f3; margin-bottom: 25px;">
                         <div class="fusion-layout-column fusion_builder_column fusion_builder_column_1_3 fusion-one-third fusion-column-first 1_3 col-sm-6"
@@ -141,6 +182,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 <div class="fusion-clearfix"></div>
                             </div>
                         </div>
+
                         <div class="fusion-layout-column fusion_builder_column fusion_builder_column_2_3 fusion-two-third fusion-column-last 2_3 col-sm-6"
                              style="margin-top: 5px; margin-bottom: 0px; width: 65.3333%; padding-right: 30px;">
                             <div
@@ -164,8 +206,12 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                             Address:
                                             <strong><?php echo (!empty($address)) ? $address : 'N/A'; ?></strong>
                                         </p>
-                                        <button onclick="window.location='<?php echo site_url(); ?>/ambulance-booking'"
-                                                class="tg-btn-lg make-appointment-btn" type="button">
+
+                                        <button class="tg-btn-lg make-appointment-btn"
+                                                <?php if (!is_user_logged_in()): ?>data-toggle="modal"
+                                                data-target="#login-modal-front" <?php endif; ?> type="button"
+                                                data-toggle="modal" data-target=".tg-bookambulancemodal"
+                                                title="<?php if (is_user_logged_in() == false): ?> Please login first to book an ambulance <?php endif; ?>">
                                             Book Ambulance
                                         </button>
                                     </div>
@@ -199,8 +245,15 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
 
                     </style>
                     <div id="second-row">
-                        <div class="info"
-                             style="background: white; color: black; border: 1px solid #f2dedf; padding: 0px; margin: 0px 15px; border-radius: 5px;">
+
+                        <div class="info" style="background: white; color: black; border: 1px solid #f2dedf; padding: 0px; margin: 0px 15px; border-radius: 5px;">
+                            <?php
+                            if (!empty($message ))
+                            {
+                                echo $message;
+                                echo '<br>';
+                            }
+                            ?>
                             <div class="page-header bg-primary"
                                  style="background: #253e7f; text-align: center; margin-top: 0px; padding: 0px;">
                                 <h3 style="color: white; margin-top: 0px; padding-top: 10px; text-transform: uppercase; font-size: 16px;">
@@ -417,7 +470,6 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                             <div id="customers-testimonials" class="owl-carousel mostafizd">
                                 <!--TESTIMONIAL 1 -->
                                 <?php
-                                //user loop
                                 foreach ($users as $key => $user) {
 
 
@@ -469,7 +521,6 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 } ?>
 
                                 <!--END OF TESTIMONIAL 1 -->
-
                             </div>
                         </div>
                     </div>
@@ -1025,79 +1076,105 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
     <?php } ?>
     <?php get_footer(); ?>
     <?php
-    if (apply_filters('docdirect_is_setting_enabled', $author_profile->ID, 'appointments') === true) {
-        if (isset($current_user->ID)
-            &&
-            $current_user->ID != $author_profile->ID
-            &&
-            is_user_logged_in()
-        ) {
 
-            if (!empty($privacy['appointments'])
-                &&
-                $privacy['appointments'] == 'on'
-            ) {
-
-                ?>
-                <div class="modal fade tg-appointmentpopup" tabindex="-1" role="dialog"
-                     aria-labelledby="myLargeModalLabel">
-                    <div class="modal-dialog modal-lg tg-modalcontent" role="document">
-                        <form action="#" method="post" class="appointment-form">
-                            <fieldset class="booking-model-contents">
-                                <ul class="tg-navdocappointment" role="tablist">
-                                    <li class="active">
-                                        <a href="javascript:"
-                                           class="bk-step-1"><?php esc_html_e('1. choose service', 'docdirect'); ?>
-                                        </a>
-
-                                    </li>
-
-                                    <li><a href="javascript:"
-                                           class="bk-step-2"><?php esc_html_e('2. available schedule', 'docdirect'); ?></a>
-                                    </li>
-                                    <li><a href="javascript:"
-                                           class="bk-step-3"><?php esc_html_e('3. your contact detail', 'docdirect'); ?></a>
-                                    </li>
-                                    <li><a href="javascript:"
-                                           class="bk-step-4"><?php esc_html_e('4. Payment Mode', 'docdirect'); ?></a>
-                                    </li>
-                                    <li><a href="javascript:"
-                                           class="bk-step-5"><?php esc_html_e('5. Finish', 'docdirect'); ?></a></li>
-                                </ul>
-                                <div class="tab-content tg-appointmenttabcontent"
-                                     data-id="<?php echo esc_attr($author_profile->ID); ?>">
-                                    <div class="tab-pane active step-one-contents" id="one">
-                                        <?php docdirect_get_booking_step_one($author_profile->ID, 'echo'); ?>
-                                        <p id="step1-message" class="text-left"
-                                           style="color: red; font-size: 16px;"></p>
-                                    </div>
-                                    <div class="tab-pane step-two-contents" id="two">
-                                        <?php docdirect_get_booking_step_two_calender($author_profile->ID, 'echo'); ?>
-                                    </div>
-                                    <div class="tab-pane step-three-contents" id="three"></div>
-                                    <div class="tab-pane step-four-contents" id="four"></div>
-                                    <div class="tab-pane step-five-contents" id="five"></div>
-                                    <div class="tg-btnbox booking-step-button">
-                                        <button type="button"
-                                                class="tg-btn bk-step-prev"><?php esc_html_e('Previous', 'docdirect'); ?></button>
-                                        <button type="button"
-                                                class="tg-btn bk-step-next"><?php esc_html_e('next', 'docdirect'); ?></button>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            <?php }
-        }
-    }
 } else {
     get_template_part('content', 'author');
     get_footer();
 }
 do_action('am_chat_modal', $author_profile->ID);
+//booking action
+
 
 ?>
+<div class="modal fade tg-bookambulancemodal" tabindex="-1" role="dialog"
+     aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg tg-modalcontent" role="document">
+        <form action="<?php echo site_url(); ?>/ambulance/<?php echo $directories_array['user_nicename']; ?>" method="post" class="appointment-form">
+
+            <div class="card">
+
+                <div class="card-body">
+                    <h3 style="padding-left: 15px;">Ambulance Booking</h3>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" placeholder="Enter your full name"
+                               name="full_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Contact No</label>
+                        <input class="form-control" type="text" placeholder="Contact No"
+                               name="contact_no" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Email</label>
+                        <input class="input--style-6" type="text" placeholder="Enter your email here"
+                               name="email" required>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="name">Ambulance Type</label>
+
+                        <select name="ambulance_type" class="input--style-6" required>
+                            <option value="" selected disabled>Select Ambulance Type</option>
+                            <option value="Ac">Ac Ambulance</option>
+                            <option value="Non-Ac"> Non-Ac Ambulance</option>
+                            <option value="ICU"> ICU Ambulance</option>
+                            <option value="NICU"> NICU Ambulance</option>
+                            <option value="Freezer Van"> Freezer Van Ambulance</option>
+                            <option value="Air"> Air Ambulance</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Departing Date</label>
+                        <input class="input--style-6" type="date" name="booking_date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Start from</label>
+                        <input class="input--style-6" type="text" placeholder="Enter starting location"
+                               name="start_from" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="name">Destination</label>
+                        <input class="input--style-6" type="text" placeholder="Enter destination location"
+                               name="destination" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Select Trip Type</label>
+
+                        <select name="trip_type" class="input--style-6" id="sel1" required>
+                            <option value="" selected disabled>Select Type</option>
+                            <option value="Single Trip">Single Trip</option>
+                            <option value="Round Trip">Round Trip</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="name">Reference ID</label>
+                        <input class="form-control" type="text"
+                               placeholder="Enter reference id if available"
+                               name="reference_id" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button class="btn btn--radius-2 btn-primary"
+                                type="submit">Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
 <style>
     .testimonials {
         background-color: #f33f02;
@@ -1124,7 +1201,7 @@ do_action('am_chat_modal', $author_profile->ID);
         color: #fff;
         padding: 20px 10px;
         text-align: left;
-
+    }
     h5 {
         margin: 0 0 15px;
         font-size: 18px;
@@ -1141,7 +1218,7 @@ do_action('am_chat_modal', $author_profile->ID);
         font-size: 14px;
     }
 
-    }
+
     .item {
         text-align: center;
     / / padding: 20 px;
@@ -1182,11 +1259,6 @@ do_action('am_chat_modal', $author_profile->ID);
 
     .owl-carousel .owl-next {
         right: -70px;
-    }
-
-
-    .nav-tab {
-
     }
 
     div#nav-tab a {

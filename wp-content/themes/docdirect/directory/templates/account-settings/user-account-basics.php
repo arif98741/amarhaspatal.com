@@ -55,6 +55,23 @@ if (isset($db_directory_type) && !empty($db_directory_type)) {
                                placeholder="<?php esc_attr_e('BMDC Regration No', 'docdirect'); ?>">
                     </div>
                 </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <input class="form-control" name="new_patient_charge"
+                               value="<?php echo get_user_meta($user_identity, 'new_patient_charge', true); ?>"
+                               type="number"
+                               placeholder="<?php esc_attr_e('New Patient Fee', 'docdirect'); ?>">
+                    </div>
+                </div>
+                 <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <input class="form-control" name="old_patient_charge"
+                               value="<?php echo get_user_meta($user_identity, 'old_patient_charge', true); ?>"
+                               type="number"
+                               placeholder="<?php esc_attr_e('Old Patient Fee', 'docdirect'); ?>">
+                    </div>
+                </div>
+
 
 
             <?php endif; ?>

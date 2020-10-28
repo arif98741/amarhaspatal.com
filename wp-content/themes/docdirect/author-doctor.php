@@ -10,15 +10,15 @@ global $wp_query, $current_user;
 $author_profile = $wp_query->get_queried_object();
 
 $userMeta = get_user_meta($author_profile->ID);
-//echo '<pre>';
-//print_r(unserialize($userMeta['default_slots'][0]));
-//echo '</pre>';
-//exit;
+
 $name = $userMeta['first_name'][0] . ' ' . $userMeta['last_name'][0];
 $address = $userMeta['user_address'][0];
 $tagline = $userMeta['tagline'][0];
 $phone = $userMeta['phone_number'][0];
 $address = $userMeta['user_address'][0];
+$old_patient_charge = $userMeta['old_patient_charge'][0];
+$new_patient_charge = $userMeta['new_patient_charge'][0];
+
 $bmdc_registration_no = (isset($userMeta['bmdc_registration_no'][0])) ? $userMeta['bmdc_registration_no'][0] : '';
 
 $specialities = (isset($userMeta['user_profile_specialities'][0])) ? unserializeData($userMeta['user_profile_specialities'][0]) : '';
@@ -41,16 +41,28 @@ $time_zone = get_user_meta($author_profile->ID, 'default_timezone', true);
 
 $slots = get_user_meta($author_profile->ID, 'default_slots')[0];
 
+
 $days = [
     'sat', 'sun', 'mon',
-    'tue', 'wed', 'thur',
-    'friday'
+    'tue', 'wed', 'thu',
+    'fri'
 ];
+
+
 $newArray = [];
 foreach ($slots as $key => $slot) {
-
+    if (in_array($key, $days, true)) {
+        unset($slots[$key]);
+    } else {
+        $newArray = $slot;
+    }
 
 }
+//
+//echo '<pre>';
+//print_r($slots);
+//echo '</pre>';
+//exit;
 
 if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && function_exists('fw_get_db_settings_option')) {
     if (apply_filters('docdirect_is_visitor', $author_profile->ID) === false) {
@@ -66,6 +78,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
 
         docdirect_enque_map_library();//init Map
         docdirect_enque_rating_library();//rating
+
 
         $apointmentClass = 'appointment-disabled';
         if (!empty($privacy['appointments'])
@@ -243,10 +256,16 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                     <?php } ?>
                                 <?php }; ?>
                                 <p style="text-align: center;">
-                                    <strong>Consultation Fee:<br/> </strong>New Appointment Patient : Will Be Published
-                                    Soon<strong><br/> </strong>
+                                    <strong>Consultation Fee:<br/> </strong>New Appointment Patient
+                                    : <?php echo (!empty($new_patient_charge)) ? $new_patient_charge : 'N/A' ?></strong>
+                                    BDT
                                 </p>
-                                <p></p>
+                                <p style="text-align: center;">
+                                    Old Appointment Patient
+                                    : <?php echo (!empty($old_patient_charge)) ? $old_patient_charge : 'N/A' ?></strong>
+                                    BDT
+                                </p>
+
                             </div>
                         </div>
                         <div class="chamber"
@@ -312,19 +331,60 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                                 <hr/>
                                 <?php echo $address; ?><br/>
                                 <hr/>
-                                <strong>Available Day &amp; Time</strong><br/>
-
-                                <hr/>
-                                6:00 PM to 9:00 PM [Except Friday]
-                                <hr/>
                                 <strong>Appointment Contact</strong><br/>
                                 <hr/>
                                 <?php echo $phone; ?>
+                                <hr>
+                                <strong>Available Day &amp; Time</strong><br/>
+                                <?php
+
+
+                                ?>
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Schedule</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($slots as $day => $d) { ?>
+                                        <tr>
+                                            <td><?php echo $i; ?></td>
+                                            <td>
+                                                <?php
+                                                echo ucfirst(str_replace('-details', '', $day)) . 'day';
+                                                echo '<hr>';
+                                                foreach ($d as $time => $item) {
+                                                    $timeExplode = explode('-', $time);
+                                                    foreach ($timeExplode as $timeValue) {
+                                                        $time_in_12_hour_format = date("g:i a", strtotime($timeValue));
+                                                        echo $time_in_12_hour_format.' - ';
+                                                    }
+                                                    echo $item['slot_title'];
+                                                    echo '<br>';
+                                                }
+                                                ?>
+
+
+                                            </td>
+                                        </tr>
+
+                                        <?php $i++;
+                                    }
+
+                                    ?>
+
+                                    </tbody>
+
+                                </table>
                             </div>
                         </div>
                     </div>
                     <hr/>
-                      </div>
+            </div>
 
 
             <!-- TESTIMONIALS -->
@@ -489,7 +549,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         </div>
                     </div>
 
-<!--                    paste here-->
+                    <!--                    paste here-->
                     <div id="third-row row" style="width: 100%;">
                         <div class="page-header">
                             <h2 style="text-align: center;">FIND DOCTOR'S CHAMBER ON GOOGLE MAP</h2>
