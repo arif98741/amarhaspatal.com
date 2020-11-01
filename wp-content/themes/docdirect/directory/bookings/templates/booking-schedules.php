@@ -560,16 +560,22 @@ $custom_slot_list = docdirect_prepare_seprate_array($custom_slot_list);
         <div class="form-group">
             <div class="tg-select">
 
-                <select name="slot_title">
+                <select name="slot_title_chamber">
 
                     <option value="">Select Chamber</option>
                     <?php
-                    $service_chambers = get_user_meta($user_identity, 'service_chambers', true);
+                    $service_chambers = getDoctorChambers($_GET['identity']);
+                    $userMeta = get_user_meta($user_identity,'service_chambers');
+                    $service_chambers = unserialize($userMeta[0]);
+
                     foreach ($service_chambers as $service_chamber) { ?>
-                        <option value=""><?php esc_attr_e($service_chamber, 'docdirect'); ?></option>
-
+                        <option value="<?php
+                        echo $service_chamber['title'] . '|'
+                            . '|' . $service_chamber['new_patient_fee']
+                            . '|' . $service_chamber['old_patient_fee']
+                        ?>"><?php
+                            echo $service_chamber['title']; ?></option>
                     <?php } ?>
-
 
                 </select>
             </div>

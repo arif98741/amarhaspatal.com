@@ -17,7 +17,6 @@ if (!function_exists('docdirect_get_default_slots')) {
 
         $week_days = docdirect_get_week_array();
 
-        $default_slots = array();
         $default_slots = get_user_meta($user_identity, 'default_slots', true);
         $time_format = get_option('time_format');
 
@@ -31,8 +30,19 @@ if (!function_exists('docdirect_get_default_slots')) {
                     <div class="tg-box">
                         <a class="tg-deleteslot delete-current-slot" data-time="<?php echo esc_attr($key); ?>"
                            data-day="<?php echo esc_attr($day); ?>" href="javascript:;"><i class="fa fa-close"></i></a>
-                        <?php if (!empty($default_slots[$day . '-details'][$key]['slot_title'])) { ?>
-                            <span class="tg-title"><?php echo esc_attr($default_slots[$day . '-details'][$key]['slot_title']); ?></span>
+
+                        <?php if (!empty($default_slots[$day . '-details'][$key]['slot_title_chamber'])) {
+                            $explodeData = explode('|',$default_slots[$day . '-details'][$key]['slot_title_chamber']);
+                            $slotTitleChamber = $explodeData[0];
+                            $slotTitle = $default_slots[$day . '-details'][$key]['slot_title'];
+                            $newPatientFee = $explodeData[2];
+                            $oldPatientFee = $explodeData[3];
+
+                            ?>
+                            <span class="tg-title"><?php echo esc_attr($slotTitleChamber); ?>
+                                <br>New: <?php echo esc_attr($newPatientFee); ?> Tk
+                                <br>Old: <?php echo esc_attr($oldPatientFee); ?> Tk
+                            </span>
                         <?php } ?>
                         <time datetime="2020-010-01"><?php echo date_i18n($time_format, strtotime('2016-01-01 ' . $time[0])); ?>
                             -<?php echo date_i18n($time_format, strtotime('2016-01-01 ' . $time[1])); ?></time>
@@ -315,7 +325,6 @@ if (!function_exists('docdirect_get_booking_step_two')) {
 
         $week_days = docdirect_get_week_array();
 
-        $default_slots = array();
         $default_slots = get_user_meta($user_id, 'default_slots', false);
 
         $time_format = get_option('time_format');

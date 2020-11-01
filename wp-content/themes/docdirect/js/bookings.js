@@ -23,7 +23,7 @@ jQuery(document).ready(function ($) {
 
     //Edit category
     jQuery(document).on('click', '.bk-edit-category', function () {
-       
+
         jQuery(this).parents('.bk-category-item').find('.bk-current-category').slideToggle(200);
     });
 
@@ -326,7 +326,7 @@ jQuery(document).ready(function ($) {
 
     //Add slots
     jQuery(document).on('click', '.add-default-slots', function () {
-       
+
         var _this = jQuery(this);
         var _form = jQuery(this).parents('.tg-daytimeslot').find('.timeslots-form-area .tg-timeslotswrapper');
 
@@ -349,6 +349,7 @@ jQuery(document).ready(function ($) {
 
         var day = _this.parents('.tg-daytimeslot').data('day');
         var slot_title = _this.parents('.tg-daytimeslot').find('input[name=slot_title]').val();
+        var slot_title_chamber = _this.parents('.tg-daytimeslot').find('select[name=slot_title_chamber]').val();
         var start_time = _this.parents(".tg-daytimeslot").find('.start_time option:selected').val();
         var end_time = _this.parents(".tg-daytimeslot").find('.end_time option:selected').val();
         var meeting_time = _this.parents(".tg-daytimeslot").find('.meeting_time option:selected').val();
@@ -369,7 +370,13 @@ jQuery(document).ready(function ($) {
             return false;
         }
 
-        var dataString = 'day=' + day + '&slot_title=' + slot_title + '&start_time=' + start_time + '&end_time=' + end_time + '&meeting_time=' + meeting_time + '&padding_time=' + padding_time + '&action=docdirect_add_time_slots';
+        var dataString = 'day=' + day + '&slot_title_chamber=' + slot_title_chamber +
+            '&slot_title=' + slot_title +
+            '&start_time=' + start_time +
+            '&end_time=' + end_time +
+            '&meeting_time=' + meeting_time +
+            '&padding_time=' + padding_time +
+            '&action=docdirect_add_time_slots';
 
         jQuery.ajax({
             type: "POST",

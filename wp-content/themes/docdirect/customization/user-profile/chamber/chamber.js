@@ -14,10 +14,43 @@ jQuery(document).ready(function () {
      *
      *-------------------------------------------------*/
 
+
+    ///end of getting diagnostics and hospitals
+
     //Add chamber
     jQuery(document).on('click', '.bk-add-chamber-item', function () {
+        $.ajax({
+            type: "POST",
+            url: scripts_vars.ajaxurl,
+            dataType: 'JSON',
+            data: {
+                'action': 'get_hospital_and_chambers'
+            },
+            success: function (response) {
+                let str = response.data.replace(/\\/g, '');
+                var chamberDropdown = '<label style="color: #fff;">Chamber Name</label>' +
+                    '<select class="form-control service-chamber-title chamber-listing-dropdown" name="title">' +
+                    '<option value="">Select Chamber</option>';
+                $.each(JSON.parse(str), function (index, element) {
+                    let option = '<option value="' + element + '">' + element + '</option>';
+                    chamberDropdown += option;
+                });
+                chamberDropdown += '</select>';
+                $('.chamber-dropdown').html(chamberDropdown);
+            }
+        });
+
+
         var load_catgories = wp.template('append-service-chamber');
         jQuery('.bk-chamber-wrapper').append(load_catgories);
+    });
+
+
+    $(document).ready(function () {
+        $('.chamber-listing-dropdown').change(function () {
+            alert('hello');
+            
+        });
     });
 
     //Edit chamber
@@ -26,15 +59,50 @@ jQuery(document).ready(function () {
         jQuery(this).parents('.bk-chamber-item').find('.bk-current-chamber').slideToggle(200);
     });
 
+
+    $("#chamberForm").on('submit', function (event) {
+        //submitbtn
+
+        event.preventDefault(); // avoid to execute the actual submit of the form.
+        var form = $(this);
+        var url = form.attr('action');
+
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: scripts_vars.ajaxurl,
+            data: {
+                'action': 'docdirect_update_service_chamber',
+                form: JSON.stringify($(this).serializeArray())
+            },
+            success: function (response) {
+                if (response.message_type == 'success') {
+                    $.notify(response.message, "success");
+                    location.reload(true);
+                } else {
+                    $.notify(response.message, "warn");
+                    location.reload(true);
+
+                }
+            }
+        });
+
+    });
+
+
     //Add,Edit categories
     jQuery(document).on('click', '.bk-mainchamber-add', function (e) {
 
         e.preventDefault();
+
         var _this = jQuery(this);
         var key = _this.data('key');
         var type = _this.data('type');
 
         var title = _this.parents('.bk-current-chamber').find('.service-chamber-title').val();
+        var new_patient_fee = parseInt(_this.parents('.bk-current-chamber').find('.service-chamber-new-patient-fee').val());
+        var old_patient_fee = parseInt(_this.parents('.bk-current-chamber').find('.service-chamber-old-patient-fee').val());
+
 
         jQuery('body').append(loader_fullwidth_html);
 
@@ -44,8 +112,44 @@ jQuery(document).ready(function () {
             return false;
         }
 
-        var dataString = 'key=' + key + '&type=' + type + '&title=' + title + '&action=docdirect_update_service_chamber';
+        var dataString = 'key=' + key + '&type=' + type + '&title=' + title
+            + '&new_patient_fee=' + new_patient_fee
+            + '&old_patient_fee=' + old_patient_fee
+            + '&action=docdirect_update_service_chamber';
 
+
+        //form submit for chambers
+        // this is the id of the form
+
+
+        /*$("#submitbtn").click(function (event) {
+            //submitbtn
+
+            event.preventDefault(); // avoid to execute the actual submit of the form.
+
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+                type: "POST",
+                url: scripts_vars.ajaxurl,
+                action: "docdirect_update_service_chamber",
+                data: form.serialize(), // serializes the form's elements.
+                success: function (response) {
+
+                    jQuery.sticky(response.message, {
+                        classList: 'success',
+                        speed: 200,
+                        autoclose: 5000
+                    });
+                }
+            });
+
+
+        });*/
+
+
+        //form submit for chambers
         jQuery.ajax({
             type: "POST",
             url: scripts_vars.ajaxurl,
@@ -86,6 +190,8 @@ jQuery(document).ready(function () {
 
     //Delete categories
     jQuery(document).on('click', '.bk-delete-chamber', function (e) {
+
+
         e.preventDefault();
         var _this = jQuery(this);
         var key = _this.data('key');
@@ -167,11 +273,6 @@ jQuery(document).ready(function () {
 
         return false;
     });
-
-    
-
-
-
 
 
 });

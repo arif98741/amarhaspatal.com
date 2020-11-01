@@ -19,8 +19,8 @@ if (function_exists('fw_get_db_settings_option')) {
     $currency_select = 'USD';
 }
 
-
 $service_chambers = get_user_meta($user_identity, 'service_chambers', true);
+
 
 $booking_services = get_user_meta($user_identity, 'booking_services', true);
 $custom_slots = get_user_meta($user_identity, 'custom_slots', true);
@@ -34,8 +34,6 @@ if (!empty($custom_slots)) {
 }
 
 $custom_slot_list = docdirect_prepare_seprate_array($custom_slot_list);
-//echo '<pre>';
-//print_r( $booking_services); exit;
 
 ?>
 <div class="doc-booking-settings dr-bookings">
@@ -54,53 +52,87 @@ $custom_slot_list = docdirect_prepare_seprate_array($custom_slot_list);
                             <h3><?php esc_html_e('My Chambers', 'docdirect'); ?></h3>
                         </div>
                         <div class="row">
-                            <div class="col-md-8 col-sm-12">
-                                <div class="tg-doccategoties">
-                                    <div class="bk-chamber-wrapper">
-                                        <?php
-                                        if (!empty($service_chambers)) {
-                                            foreach ($service_chambers as $key => $value) {
-                                                ?>
-                                                <div class="bk-chamber-item">
-                                                    <div class="tg-doccategory">
-                                                        <span class="tg-catename"><?php echo esc_attr($value); ?></span>
-                                                        <span class="tg-catelinks">
+                            <form id="chamberForm" method="post">
+                                <div class="col-md-8 col-sm-12">
+                                    <div class="tg-doccategoties">
+                                        <div class="bk-chamber-wrapper">
+
+                                            <?php
+                                            $chambers = unserialize($service_chambers);
+
+                                            if (!empty($chambers)) {
+                                                foreach ($chambers as $key => $value) {
+
+                                                    ?>
+                                                    <div class="bk-chamber-item">
+                                                        <div class="tg-doccategory">
+                                                            <span class="tg-catename"><?php echo esc_attr($value['title']); ?></span>
+                                                            <span class="tg-catelinks">
                                                     <a href="javascript:;" class="bk-edit-chamber"><i
                                                                 class="fa fa-edit"></i></a>
                                                     <a href="javascript:;" data-type="db-delete"
                                                        data-key="<?php echo esc_attr($key); ?>"
                                                        class="bk-delete-chamber"><i class="fa fa-trash-o"></i></a>
                                                 </span>
-                                                    </div>
-                                                    <div class="tg-editcategory bk-current-chamber bk-elm-hide">
-                                                        <div class="form-group">
-                                                            <input data-key="<?php echo esc_attr($key); ?>" type="text"
-                                                                   value="<?php echo esc_attr($value); ?>"
-                                                                   class="form-control service-chamber-title"
-                                                                   name="chambername"
-                                                                   placeholder="<?php esc_attr_e('Category Title', 'docdirect'); ?>">
                                                         </div>
-                                                        <div class="form-group tg-btnarea">
-                                                            <button class="tg-update bk-mainchamber-add"
-                                                                    data-key="<?php echo esc_attr($key); ?>"
-                                                                    data-type="update"
-                                                                    type="submit"><?php esc_html_e('Update Now', 'docdirect'); ?></button>
+                                                        <div class="tg-editcategory bk-current-chamber bk-elm-hide">
+                                                            <div class="form-group">
+                                                                <label for="" style="color: #fff;">Chamber Title</label>
+                                                                <input data-key="<?php echo esc_attr($key); ?>"
+                                                                       type="text"
+                                                                       value="<?php echo esc_attr($value['title']); ?>"
+                                                                       class="form-control service-chamber-title"
+                                                                       name="title"
+                                                                       placeholder="<?php esc_attr_e('Chamber Title', 'docdirect'); ?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="" style="color: #fff;">New Patient
+                                                                    Fee</label>
+                                                                <input data-key="<?php echo esc_attr($key); ?>"
+                                                                       type="text"
+                                                                       value="<?php echo esc_attr($value['new_patient_fee']); ?>"
+                                                                       class="form-control service-chamber-new-patient-fee"
+                                                                       name="new_patient_fee"
+                                                                       placeholder="<?php esc_attr_e('New Patient Fee', 'docdirect'); ?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="" style="color: #fff;">Old Patient
+                                                                    Fee</label>
+                                                                <input data-key="<?php echo esc_attr($key); ?>"
+                                                                       type="text"
+                                                                       value="<?php echo esc_attr($value['old_patient_fee']); ?>"
+                                                                       class="form-control service-chamber-old-patient-fee"
+                                                                       name="old_patient_fee"
+                                                                       placeholder="<?php esc_attr_e('Old Patient Fee', 'docdirect'); ?>">
+                                                            </div>
+
+
+                                                            <div class="form-group tg-btnarea">
+
+                                                                <!--                                                                <button class="tg-update bk-mainchamber-add"-->
+                                                                <!--                                                                        data-key="-->
+                                                                <?php //echo esc_attr($key); ?><!--"-->
+                                                                <!--                                                                        data-type="update"-->
+                                                                <!--                                                                        type="submit">-->
+                                                                <?php //esc_html_e('Update Now', 'docdirect'); ?><!--</button>-->
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <?php
-                                            }
-                                        }
-                                        ?>
+                                                <?php }
+                                            } ?>
+
+
+                                        </div>
+                                        <a id="search_banner" class="tg-btn tg-btn-lg bk-add-chamber-item"
+                                           href="javascript:;"><?php esc_html_e('Add Chamber', 'docdirect'); ?></a>
                                     </div>
-                                    <a id="search_banner" class="tg-btn tg-btn-lg bk-add-chamber-item"
-                                       href="javascript:;"><?php esc_html_e('Add Chamber', 'docdirect'); ?></a>
                                 </div>
-                            </div>
 
                         </div>
                     </div>
-
+                    <br>
+                    <button id="submitbtn" type="submit" class="btn btn-primary">Update</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -113,22 +145,34 @@ $custom_slot_list = docdirect_prepare_seprate_array($custom_slot_list);
 <script type="text/template" id="tmpl-append-service-chamber">
     <div class="bk-chamber-item">
         <div class="tg-doccategory">
-            <span class="tg-catename"><?php esc_html_e('Chamber Name', 'docdirect'); ?></span>
+            <span class="tg-catename"><?php esc_html_e('Chamber', 'docdirect'); ?></span>
             <span class="tg-catelinks">
 				<a href="javascript:;" class="bk-edit-chamber"><i class="fa fa-edit"></i></a>
 				<a href="javascript:;" data-type="new-delete" data-key="" class="bk-delete-chamber"><i
                             class="fa fa-trash-o"></i></a>
 			</span>
         </div>
+
+
         <div class="tg-editcategory bk-current-chamber bk-elm-hide">
-            <div class="form-group">
-                <input type="text" class="form-control service-chamber-title" name="chambername">
-                       placeholder="<?php esc_html_e('Chamber Name', 'docdirect'); ?>">
+            <div class="form-group chamber-dropdown">
+                <label for="" style="color: #fff;"><?php esc_html_e('Chamber Name', 'docdirect'); ?></label>
+                <input type="text" class="form-control service-chamber-title" name="title">
             </div>
-            <div class="form-group tg-btnarea">
+            <div class="form-group">
+                <label for="" style="color: #fff;"><?php esc_html_e('New Patient Fee', 'docdirect'); ?></label>
+                <input type="text" class="form-control service-chamber-new-patient-fee" name="new_patient_fee">
+            </div>
+            <div class="form-group">
+                <label for="" style="color: #fff;"><?php esc_html_e('Old Patient Fee', 'docdirect'); ?></label>
+                <input type="text" class="form-control service-chamber-old-patient-fee" name="old_patient_fee">
+            </div>
+
+
+            <!--    <div class="form-group tg-btnarea">
                 <button class="tg-update bk-mainchamber-add" data-key="new" data-type="add"
                         type="submit"><?php esc_html_e('Update Now', 'docdirect'); ?></button>
-            </div>
+            </div> -->
         </div>
     </div>
 </script>
@@ -411,122 +455,5 @@ $custom_slot_list = docdirect_prepare_seprate_array($custom_slot_list);
                 <div class="custom-timeslots-data"></div>
             </div>
         </div>
-    </div>
-</script>
-
-<script type="text/template" id="tmpl-custom-slots">
-    <div class="tg-timeslotswrapper">
-        <form action="#" method="post" class="time-slots-form">
-            <div class="form-group">
-                <input type="text" name="slot_title" class="form-control" name="title"
-                       placeholder="<?php esc_attr_e('Chamber Name', 'docdirect'); ?>">
-            </div>
-            <div class="form-group">
-                <div class="tg-select">
-                    <select name="start_time" class="start_time">
-                        <option><?php esc_attr_e('Start Time', 'docdirect'); ?></option>
-                        <option value="0000">12:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0100">1:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0200">2:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0300">3:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0400">4:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0500">5:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0600">6:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0700">7:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0800">8:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0900">9:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="1000">10:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="1100">11:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="1200">12:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1300">1:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1400">2:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1500">3:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1600">4:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1700">5:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1800">6:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1900">7:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="2000">8:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="2100">9:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="2200">10:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="2300">11:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="2400">12:00 <?php esc_attr_e('am (night)', 'docdirect'); ?></option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="tg-select">
-                    <select name="end_time" class="end_time">
-                        <option><?php esc_attr_e('End Time', 'docdirect'); ?></option>
-                        <option value="0000">12:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0100">1:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0200">2:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0300">3:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0400">4:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0500">5:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0600">6:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0700">7:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0800">8:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="0900">9:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="1000">10:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="1100">11:00 <?php esc_attr_e('am', 'docdirect'); ?></option>
-                        <option value="1200">12:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1300">1:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1400">2:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1500">3:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1600">4:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1700">5:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1800">6:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="1900">7:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="2000">8:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="2100">9:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="2200">10:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="2300">11:00 <?php esc_attr_e('pm', 'docdirect'); ?></option>
-                        <option value="2400">12:00 <?php esc_attr_e('am (night)', 'docdirect'); ?></option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="tg-select">
-                    <select name="meeting_time" class="meeting_time">
-                        <option><?php esc_attr_e('Meeting Time', 'docdirect'); ?></option>
-                        <option value="60">1 <?php esc_attr_e('hours', 'docdirect'); ?></option>
-                        <option value="90">1 <?php esc_attr_e('hour', 'docdirect'); ?>,
-                            30 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="120">2 <?php esc_attr_e('hours', 'docdirect'); ?></option>
-                        <option value="45">45 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="30">30 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="20">20 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="15">15 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="10">10 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="5">5 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="tg-select">
-                    <select name="padding_time" class="padding_time">
-                        <option><?php esc_attr_e('Padding/Break Time', 'docdirect'); ?></option>
-                        <option value="90">1 <?php esc_attr_e('hour', 'docdirect'); ?>,
-                            30 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="1">1 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="2">2 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="5">5 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="10">10 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="15">15 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="20">20 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="30">30 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="45">45 <?php esc_attr_e('minutes', 'docdirect'); ?></option>
-                        <option value="60">1 <?php esc_attr_e('hour', 'docdirect'); ?></option>
-                    </select>
-                </div>
-            </div>
-            <div class="tg-btnbox">
-                <button type="submit"
-                        class="tg-btn save-custom-time-slots"><?php esc_html_e('save', 'docdirect'); ?></button>
-                <button type="submit"
-                        class="tg-btn remove-slots-form"><?php esc_html_e('Cancel', 'docdirect'); ?></button>
-            </div>
-    </div>
-    </div>
     </div>
 </script>

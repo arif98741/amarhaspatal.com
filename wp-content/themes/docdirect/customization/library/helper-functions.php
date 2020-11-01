@@ -1,5 +1,5 @@
 <?php
-
+global $current_user, $wp_roles, $userdata, $post;
 /**
  * Search Pagination
  * @param $meta_query
@@ -109,11 +109,31 @@ if (!function_exists('getPostTermChildCategory')) {
 if (!function_exists('session_store_custom')) {
     function session_store_custom()
     {
-        global  $wp_session;
-        $wp_session  = WP_Session_Tokens::get_instance();
+        global $wp_session;
+        $wp_session = WP_Session_Tokens::get_instance();
 
     }
 }
 
 //shop page customization
-add_filter( 'woocommerce_product_subcategories_hide_empty', '__return_false' );
+add_filter('woocommerce_product_subcategories_hide_empty', '__return_false');
+
+/**
+ * Get Doctor Chambers As Array
+ * @param string $id
+ * @return mixed
+ */
+function getDoctorChambers($id = '')
+{
+    global $wp_query, $current_user;
+    $author_profile = $wp_query->get_queried_object();
+    if (!empty($id)) {
+        $data = get_user_meta($id, 'service_chambers', true);
+
+    } else {
+        $data = get_user_meta($author_profile->ID, 'service_chambers', true);
+
+    }
+
+}
+

@@ -210,10 +210,10 @@ if (!class_exists('docdirect_footers')) {
 
                                                             <?php
                                                             $args = array(
-                                                                'orderby' => 'registered', // registered date
+                                                              //  'orderby' => 'registered', // registered date
                                                                 'order' => 'DESC', // last registered goes first
-                                                                'number' => 6, // limit to the last one, not required,
-                                                                'offset' => 2
+                                                                'number' => 4, // limit to the last one, not required,
+                                                              //  'offset' => 2
                                                             );
 
                                                             $users = get_users($args);

@@ -246,10 +246,10 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                     </style>
                     <div id="second-row">
 
-                        <div class="info" style="background: white; color: black; border: 1px solid #f2dedf; padding: 0px; margin: 0px 15px; border-radius: 5px;">
+                        <div class="info"
+                             style="background: white; color: black; border: 1px solid #f2dedf; padding: 0px; margin: 0px 15px; border-radius: 5px;">
                             <?php
-                            if (!empty($message ))
-                            {
+                            if (!empty($message)) {
                                 echo $message;
                                 echo '<br>';
                             }
@@ -380,23 +380,29 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
             <!-- TESTIMONIALS -->
             <?php
 
+            $specialities = get_user_meta($author_profile->ID, 'user_profile_specialities');
+            $ambulanceSpecialities = $specialities[0];
+
             $meta_query = array(
                 'relation' => 'AND',
                 array(
                     'key' => 'directory_type',
                     'value' => 123,
                     'compare' => '='
-                )
+                ),
+                array(
+                    'key' => 'user_profile_specialities',
+                    'value' => sprintf(':"%s";', $ambulanceSpecialities[0]),
+                    'compare' => 'LIKE'
+                ),
             );
 
             $query_args = array(
                 'order' => 'asc',
                 'orderby' => 'id',
                 'meta_query' => $meta_query,
-                'posts_per_page' => 3,
-
+                'posts_per_page' => 4,
             );
-
             $user_query = new WP_User_Query($query_args);
             $users = $user_query->get_results();
             ?>
@@ -1089,7 +1095,8 @@ do_action('am_chat_modal', $author_profile->ID);
 <div class="modal fade tg-bookambulancemodal" tabindex="-1" role="dialog"
      aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg tg-modalcontent" role="document">
-        <form action="<?php echo site_url(); ?>/ambulance/<?php echo $directories_array['user_nicename']; ?>" method="post" class="appointment-form">
+        <form action="<?php echo site_url(); ?>/ambulance/<?php echo $directories_array['user_nicename']; ?>"
+              method="post" class="appointment-form">
 
             <div class="card">
 
@@ -1202,6 +1209,7 @@ do_action('am_chat_modal', $author_profile->ID);
         padding: 20px 10px;
         text-align: left;
     }
+
     h5 {
         margin: 0 0 15px;
         font-size: 18px;

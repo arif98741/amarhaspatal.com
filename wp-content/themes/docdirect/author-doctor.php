@@ -41,7 +41,6 @@ $time_zone = get_user_meta($author_profile->ID, 'default_timezone', true);
 
 $slots = get_user_meta($author_profile->ID, 'default_slots')[0];
 
-
 $days = [
     'sat', 'sun', 'mon',
     'tue', 'wed', 'thu',
@@ -229,166 +228,159 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                         }
 
                     </style>
-                    <div id="second-row">
-                        <div class="info"
-                             style="background: white; color: black; border: 1px solid #f2dedf; padding: 0px; margin: 0px 15px; border-radius: 5px;">
-                            <div class="page-header bg-primary"
-                                 style="background: #253e7f; text-align: center; margin-top: 0px; padding: 0px;">
-                                <h3 style="color: white; margin-top: 0px; padding-top: 10px; text-transform: uppercase; font-size: 16px;">
-                                    Info</h3>
-                            </div>
-                            <div class="">
-                                <?php
-
-                                if (array_key_exists('experience', $userMeta)) {
-                                    $experiences = unserializeData($userMeta['experience'][0]);
-
-                                    ?>
-                                    <?php foreach ($experiences as $experience) { ?>
-
-                                        <p style="text-align: center;">
-                                            <?php echo $experience['title']; ?><br/>
-                                            <?php echo strtoupper($experience['company']); ?>
-                                        </p>
-
-
-                                        <hr/>
-                                    <?php } ?>
-                                <?php }; ?>
-                                <p style="text-align: center;">
-                                    <strong>Consultation Fee:<br/> </strong>New Appointment Patient
-                                    : <?php echo (!empty($new_patient_charge)) ? $new_patient_charge : 'N/A' ?></strong>
-                                    BDT
-                                </p>
-                                <p style="text-align: center;">
-                                    Old Appointment Patient
-                                    : <?php echo (!empty($old_patient_charge)) ? $old_patient_charge : 'N/A' ?></strong>
-                                    BDT
-                                </p>
-
-                            </div>
-                        </div>
-                        <div class="chamber"
-                             style="background: #f0f1f3; color: black; border: 1px solid #f2dedf; padding: 0px; border-radius: 5px;">
-                            <div class="page-header bg-primary"
-                                 style="background: #253e7f; text-align: center; margin-top: 0px; padding: 0px; margin-bottom: 0px;">
-                                <h3 style="color: white; margin-top: 0px; padding-top: 10px; text-transform: uppercase; font-size: 16px;">
-                                    Chamber and Schedule</h3>
-                            </div>
-                            <style>
-                                .collapse hr {
-                                    margin: 0px;
-                                    border-top: 1px solid #ccc;
-                                }
-
-                                a.hospital-title-button {
-                                    background: #6b6b6b;
-                                    font-family: Agency FB, serif;
-                                    font-size: 20px;
-                                    font-weight: bold;
-                                    color: white !important;
-                                    border: 0px;
-                                    width: 100%;
-                                    padding: 10px 0px;
-                                    border-bottom: 1px solid #e5e5e5;
-                                    line-height: inherit;
-                                    border-radius: 0 !important;
-                                }
-
-                                a.hospital-title-button:hover,
-                                a.hospital-title-button:visited,
-                                a.hospital-title-button:active,
-                                a.hospital-title-button:focus {
-                                    color: white !important;
-                                }
-
-                                .blink {
-                                    animation: blinker 3000ms linear infinite;
-                                }
-
-                                @keyframes blinker {
-                                    10% {
-                                        color: #6b6b6b;
-                                    }
-                                    70% {
-                                        color: white;
-                                    }
-                                }
-                            </style>
-                            <a class="btn btn-block hospital-title-button blink"
-                               href="https://hasbd.com/diagnostics/popular-diagnostic-centre-ltd-uttara-branch-02/"
-                               data-toggle="collapse" data-target="#chamber1" style="">
-                                POPULAR DIAGNOSTIC CENTRE LTD | UTTARA BRANCH-02
-                            </a>
-                            <div id="chamber1" class="collapse in" style="padding: 0px 5px;">
-                                <p>
-                                    <strong>Department: </strong> Nephrology Department <br/>
-                                    He is a specialist of Nephrology Dept. (Kidney, Ureter, Urinary Bladder related
-                                    problem)
-                                </p>
-                                <hr/>
-                                <strong>Address:</strong>
-                                <hr/>
-                                <?php echo $address; ?><br/>
-                                <hr/>
-                                <strong>Appointment Contact</strong><br/>
-                                <hr/>
-                                <?php echo $phone; ?>
-                                <hr>
-                                <strong>Available Day &amp; Time</strong><br/>
-                                <?php
-
-
-                                ?>
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>Day</th>
-                                        <th>Schedule</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="info"
+                                 style="background: white; color: black; border: 1px solid #f2dedf; padding: 0px; margin: 0px 15px; border-radius: 5px;">
+                                <div class="page-header bg-primary"
+                                     style="background: #253e7f; text-align: center; margin-top: 0px; padding: 0px;">
+                                    <h3 style="color: white; margin-top: 0px; padding-top: 10px; text-transform: uppercase; font-size: 16px;">
+                                        Info</h3>
+                                </div>
+                                <div class="">
                                     <?php
-                                    $i = 1;
-                                    foreach ($slots as $day => $d) { ?>
-                                        <tr>
-                                            <td><?php echo $i; ?></td>
-                                            <td>
-                                                <?php
-                                                echo ucfirst(str_replace('-details', '', $day)) . 'day';
-                                                echo '<hr>';
-                                                foreach ($d as $time => $item) {
-                                                    $timeExplode = explode('-', $time);
-                                                    foreach ($timeExplode as $timeValue) {
-                                                        $time_in_12_hour_format = date("g:i a", strtotime($timeValue));
-                                                        echo $time_in_12_hour_format.' - ';
-                                                    }
-                                                    echo $item['slot_title'];
-                                                    echo '<br>';
-                                                }
-                                                ?>
+
+                                    if (array_key_exists('experience', $userMeta)) {
+                                        $experiences = unserializeData($userMeta['experience'][0]);
+
+                                        ?>
+                                        <?php foreach ($experiences as $experience) { ?>
+
+                                            <p style="text-align: center;">
+                                                <?php echo $experience['title']; ?><br/>
+                                                <?php echo strtoupper($experience['company']); ?>
+                                            </p>
 
 
-                                            </td>
-                                        </tr>
+                                            <hr/>
+                                        <?php } ?>
+                                    <?php }; ?>
 
-                                        <?php $i++;
-                                    }
 
-                                    ?>
-
-                                    </tbody>
-
-                                </table>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-8">
+                            <div class="chamber"
+                                 style="background: #f0f1f3; color: black; border: 1px solid #f2dedf; padding: 0px; border-radius: 5px;">
+                                <div class="page-header bg-primary"
+                                     style="background: #253e7f; text-align: center; margin-top: 0px; padding: 0px; margin-bottom: 0px;">
+                                    <h3 style="color: white; margin-top: 0px; padding-top: 10px; text-transform: uppercase; font-size: 16px;">
+                                        Chamber and Schedule</h3>
+                                </div>
+                                <style>
+                                    .collapse hr {
+                                        margin: 0px;
+                                        border-top: 1px solid #ccc;
+                                    }
+
+                                    a.hospital-title-button {
+                                        background: #6b6b6b;
+                                        font-family: Agency FB, serif;
+                                        font-size: 20px;
+                                        font-weight: bold;
+                                        color: white !important;
+                                        border: 0px;
+                                        width: 100%;
+                                        padding: 10px 0px;
+                                        border-bottom: 1px solid #e5e5e5;
+                                        line-height: inherit;
+                                        border-radius: 0 !important;
+                                    }
+
+                                    a.hospital-title-button:hover,
+                                    a.hospital-title-button:visited,
+                                    a.hospital-title-button:active,
+                                    a.hospital-title-button:focus {
+                                        color: white !important;
+                                    }
+
+                                    .blink {
+                                        animation: blinker 3000ms linear infinite;
+                                    }
+
+                                    @keyframes blinker {
+                                        10% {
+                                            color: #6b6b6b;
+                                        }
+                                        70% {
+                                            color: white;
+                                        }
+                                    }
+                                </style>
+                                <a class="btn btn-block hospital-title-button blink"
+                                   href="https://hasbd.com/diagnostics/popular-diagnostic-centre-ltd-uttara-branch-02/"
+                                   data-toggle="collapse" data-target="#chamber1" style="">
+                                    POPULAR DIAGNOSTIC CENTRE LTD | UTTARA BRANCH-02
+                                </a>
+                                <div id="chamber1" class="collapse in" style="padding: 0px 5px;">
+                                    <p>
+                                        <strong>Department: </strong> Nephrology Department <br/>
+                                        He is a specialist of Nephrology Dept. (Kidney, Ureter, Urinary Bladder related
+                                        problem)
+                                    </p>
+                                    <hr/>
+                                    <strong>Address:</strong>
+                                    <hr/>
+                                    <?php echo $address; ?><br/>
+                                    <hr/>
+                                    <strong>Appointment Contact</strong><br/>
+                                    <hr/>
+                                    <?php echo $phone; ?>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Day</th>
+                                            <th>Schedule</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        $i = 1;
+                                        foreach ($slots as $day => $d) { ?>
+                                            <tr>
+                                                <td><?php echo $i; ?></td>
+                                                <td>
+                                                    <?php
+                                                    echo ucfirst(str_replace('-details', '', $day)) . 'day';
+                                                    echo '<hr>';
+                                                    foreach ($d as $time => $item) {
+                                                        $timeExplode = explode('-', $time);
+                                                        foreach ($timeExplode as $timeValue) {
+                                                            $time_in_12_hour_format = date("g:i a", strtotime($timeValue));
+                                                            echo $time_in_12_hour_format.' - ';
+                                                        }
+                                                        echo $item['slot_title'];
+                                                        echo '<br>';
+                                                    }
+                                                    ?>
+
+
+                                                </td>
+                                            </tr>
+
+                                            <?php $i++;
+                                        }
+
+                                        ?>
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="second-row">
+
+
                     </div>
                     <hr/>
             </div>
 
-
             <!-- TESTIMONIALS -->
             <?php
+
 
             $meta_query = array(
                 'relation' => 'AND',
@@ -398,7 +390,6 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                     'compare' => '='
                 )
             );
-
             $query_args = array(
                 'order' => 'asc',
                 'orderby' => 'id',

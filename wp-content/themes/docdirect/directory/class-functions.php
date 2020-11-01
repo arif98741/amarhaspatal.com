@@ -143,7 +143,7 @@ if (!class_exists('DocDirect_Scripts')) {
                                     <li class="<?php echo($reference === 'chambers' ? 'active' : ''); ?>"><a
                                                 href="<?php DocDirect_Scripts::docdirect_profile_menu_link($profile_page, 'chambers', $user_identity); ?>"><?php esc_html_e('My Chambers', 'docdirect'); ?></a>
                                     </li>
-
+                                 
                                 <?php }
                                 ?>
                                 <!-- //add custom chamber to doctor menu end-->
