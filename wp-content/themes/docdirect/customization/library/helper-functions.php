@@ -164,6 +164,19 @@ function getSpecilizedDoctors($author)
 
     $user_query = new WP_User_Query($query_args);
     return $user_query->get_results();
+}
 
+function formatSlot($slots)
+{
+    $formatted = [];
+
+    foreach ($slots as $key => $slot) {
+        $formatted [] = [
+            'time' => $key,
+            'slot_title' => $slot['slot_title_chamber'],
+        ];
+    }
+
+    return $formatted;
 }
 

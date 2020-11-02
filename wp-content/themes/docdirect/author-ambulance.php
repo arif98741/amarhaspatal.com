@@ -380,31 +380,7 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
             <!-- TESTIMONIALS -->
             <?php
 
-            $specialities = get_user_meta($author_profile->ID, 'user_profile_specialities');
-            $ambulanceSpecialities = $specialities[0];
 
-            $meta_query = array(
-                'relation' => 'AND',
-                array(
-                    'key' => 'directory_type',
-                    'value' => 123,
-                    'compare' => '='
-                ),
-                array(
-                    'key' => 'user_profile_specialities',
-                    'value' => sprintf(':"%s";', $ambulanceSpecialities[0]),
-                    'compare' => 'LIKE'
-                ),
-            );
-
-            $query_args = array(
-                'order' => 'asc',
-                'orderby' => 'id',
-                'meta_query' => $meta_query,
-                'posts_per_page' => 4,
-            );
-            $user_query = new WP_User_Query($query_args);
-            $users = $user_query->get_results();
             ?>
             <section style="margin-bottom: 30px;">
                 <div class="container-fluid mslc">
@@ -476,6 +452,47 @@ if (apply_filters('docdirect_get_user_type', $author_profile->ID) === true && fu
                             <div id="customers-testimonials" class="owl-carousel mostafizd">
                                 <!--TESTIMONIAL 1 -->
                                 <?php
+                                wp_reset_query();
+                                $specialities = get_user_meta($author_profile->ID, 'user_profile_specialities', true);
+                                $ambulanceSpecialities = [];
+                                foreach ($specialities as $key => $speciality) {
+
+                                    $ambulanceSpecialities[] = array(
+                                        'key' => 'user_profile_specialities',
+                                        'value' => $key,
+                                        'compare' => "LIKE",
+                                    );
+                                }
+                                $args = array(
+                                    'meta_query' =>
+                                        array(
+                                            array(
+                                                'relation' => 'AND',
+                                                array(
+                                                    'key' => 'directory_type',
+                                                    'value' => 123,
+                                                    'compare' => '='
+                                                )
+                                            ),
+                                            array(
+                                                'relation' => 'and',
+                                                $ambulanceSpecialities
+                                            ),
+                                            array(
+                                                'relation' => 'and',
+                                                $ambulanceSpecialities
+                                            )
+                                        )
+                                );
+
+                                $query_args = array(
+                                    'order' => 'asc',
+                                    'orderby' => 'id',
+                                    'meta_query' => $args,
+                                    'posts_per_page' => 4,
+                                );
+                                $user_query = new WP_User_Query($query_args);
+                                $users = $user_query->get_results();
                                 foreach ($users as $key => $user) {
 
 

@@ -7,8 +7,6 @@
             <div class="tg-doctors-list tg-haslayout">
                 <?php dynamic_sidebar('search-page-sidebar'); ?>
             </div>
-
         <?php } ?>
-
     </form>
 </div>

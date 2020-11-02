@@ -1451,7 +1451,7 @@ do_action('am_chat_modal', $author_profile->ID);
             }
         });
         $('#specialized-doctors').owlCarousel({
-            loop: true,
+            loop: false,
             center: true,
             items: 3,
             margin: 30,
