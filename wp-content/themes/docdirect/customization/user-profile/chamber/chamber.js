@@ -122,33 +122,6 @@ jQuery(document).ready(function () {
         // this is the id of the form
 
 
-        /*$("#submitbtn").click(function (event) {
-            //submitbtn
-
-            event.preventDefault(); // avoid to execute the actual submit of the form.
-
-            var form = $(this);
-            var url = form.attr('action');
-
-            $.ajax({
-                type: "POST",
-                url: scripts_vars.ajaxurl,
-                action: "docdirect_update_service_chamber",
-                data: form.serialize(), // serializes the form's elements.
-                success: function (response) {
-
-                    jQuery.sticky(response.message, {
-                        classList: 'success',
-                        speed: 200,
-                        autoclose: 5000
-                    });
-                }
-            });
-
-
-        });*/
-
-
         //form submit for chambers
         jQuery.ajax({
             type: "POST",

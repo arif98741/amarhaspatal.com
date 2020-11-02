@@ -137,3 +137,33 @@ function getDoctorChambers($id = '')
 
 }
 
+
+/**
+ * Get Specialized Doctors
+ * @param $author
+ * @return array
+ */
+function getSpecilizedDoctors($author)
+{
+    $first_name = get_user_meta($author, 'first_name', true);
+    $meta_query = array(
+        'relation' => 'and',
+        array(
+            'key' => 'default_slots',
+            'value' => $first_name,
+            'compare' => 'LIKE'
+        ),
+    );
+
+    $query_args = array(
+        'order' => 'asc',
+        'orderby' => 'id',
+        'meta_query' => $meta_query,
+        'posts_per_page' => 3
+    );
+
+    $user_query = new WP_User_Query($query_args);
+    return $user_query->get_results();
+
+}
+

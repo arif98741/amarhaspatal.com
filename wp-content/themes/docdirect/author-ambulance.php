@@ -1475,7 +1475,7 @@ do_action('am_chat_modal', $author_profile->ID);
     });
     jQuery(document).ready(function ($) {
         "use strict";
-        $('#customers-testimonials').owlCarousel({
+        $('#customers-testimonial').owlCarousel({
             loop: true,
             center: true,
             items: 3,
